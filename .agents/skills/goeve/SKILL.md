@@ -5,10 +5,10 @@ description: >
   适用于：编写调用 ESI 接口的 Go 代码、查找某个游戏功能（市场、钱包、舰队、合同、资产等）
   对应的客户端方法、对接网易 EVE SSO OAuth2 授权、处理 ETag/分页/错误。
   Use the goeve Go client library for the NetEase EVE Online ESI API — endpoint lookup,
-  SSO OAuth2 auth, functional-option/pagination/error conventions.
+  SSO OAuth2 auth, explicit-parameter/pagination/error conventions.
 metadata:
   author: younland
-  version: "3.0"
+  version: "4.0"
 ---
 
 # goeve — 网易 EVE Online ESI Go 客户端
@@ -31,32 +31,34 @@ grep goeve go.mod || go get github.com/younland/goeve
 
 | 约定 | 说明 |
 |---|---|
-| 创建客户端 | `client := goeve.NewClient(goeve.WithTimeout(30*time.Second), goeve.WithDebug(true))`；客户端选项还有 `WithBaseURL` / `WithHTTPClient` / `WithTokenSource` / `WithLanguage`（默认 Accept-Language）；**需要授权的接口在调用时用请求选项 `goeve.WithAuthToken(token)` 传入令牌**（仅本次请求生效，覆盖 TokenSource） |
+| 创建客户端 | `client := goeve.NewClient(goeve.WithTimeout(30*time.Second), goeve.WithDebug(true))`；客户端选项还有 `WithBaseURL` / `WithHTTPClient` / `WithTokenSource` / `WithLanguage`（默认 Accept-Language） |
 | 返回值 | 只有 `(result, error)`，不返回 `*resty.Response`。对象返回指针 `*models.Xxx`，数组返回切片 `[]models.Xxx`，204 响应只返回 `error` |
-| 参数 | 第一个参数永远是 `context.Context`；**路径与业务必需参数是位置参数**（如 `characterID`、`regionID` + `orderType`）；**所有可选查询/Header 参数统一为 `...goeve.RequestOption`**，不再有每方法独立的参数结构体 |
+| 参数 | 第一个参数永远是 `context.Context`；之后是**路径与业务必需参数**（如 `characterID`、`regionID, orderType`），**再按固定顺序追加可选参数**。签名以 `goeve_iface.go` 与方法 godoc 为准 |
+| 零值约定 | `token ""` = 使用客户端 TokenSource / 匿名；`page 0` = 默认第 1 页；`ifNoneMatch ""` = 不传 ETag；string 用 `""`、数值用 `0`、切片用 `nil`、bool 用 `false` 表示"不传该参数" |
 | 命名 | 方法名已语义化（如 `get_characters_character_id` → `GetCharacter`，`get_markets_region_id_orders` → `GetMarketOrders`，`get_characters_character_id_wallet` → `GetCharacterWalletBalance`），**不要按 operationId 机械推导**，以 `goeve_iface.go` 与方法 godoc 为准 |
-| 类型 | ID 类型以 swagger 为准：character/alliance/corporation/region 是 `int32`，structure/fleet/killmail 相关多为 `int64`，不要凭习惯强转 |
+| 类型 | ID 类型以 swagger 为准：character/alliance/corporation/region 是 `int32`，structure/fleet/killmail/starbase 相关多为 `int64`，不要凭习惯强转 |
 
-全部 `RequestOption`（可选项按方法而异，传前看 godoc）：
+### 显式参数约定 / Explicit parameter order
 
-| 选项 | 用途 |
-|---|---|
-| `goeve.WithPage(page int32)` | 分页页码（邮件、资产、合同、订单等） |
-| `goeve.WithIfNoneMatch(etag string)` | ETag 协商（If-None-Match 头） |
-| `goeve.WithAcceptLanguage(lang string)` | 单请求覆盖 Accept-Language（优先级高于客户端级 `WithLanguage`） |
-| `goeve.WithFromEvent(id int32)` | 日历：只返回晚于指定事件 ID 的事件 |
-| `goeve.WithLabelIDs([]int32)` | 联系人：按标签 ID 过滤（重复查询参数） |
-| `goeve.WithWatched(watched bool)` | 联系人：新增/编辑时的 watched 标志 |
-| `goeve.WithIncludeCompleted(completed bool)` | 工业作业：包含已完成作业 |
-| `goeve.WithLabels([]int32)` | 邮件：按标签过滤 |
-| `goeve.WithLastMailID(id int32)` | 邮件：翻页锚点（返回更早的邮件） |
-| `goeve.WithStrict(strict bool)` | 名称解析（ResolveNamesToIDs）：严格匹配 |
-| `goeve.WithFromID(id int64)` | 钱包流水/交易：回溯翻页（返回更早的记录） |
-| `goeve.WithAvoid([]int32)` | 路线规划：避开指定星系 |
-| `goeve.WithConnections([][]int32)` | 路线规划：必须经过的星系组 |
-| `goeve.WithFlag(flag string)` | 路线规划：路径偏好 flag（如 shortest/secure/insecure） |
-| `goeve.WithFilter(filter string)` | 公开建筑列表过滤（market 等） |
-| `goeve.WithMaxWarID(id int32)` | 战争列表翻页 |
+没有请求选项、没有参数结构体——每个方法的全部参数都是显式位置参数，顺序固定：
+
+1. **路径参数 + 业务必需参数**（如 `characterID`、`regionID, orderType`、`killmailHash, killmailID`）
+2. **`token string`**：接口需要授权时存在；空字符串 = 使用客户端 TokenSource / 匿名；显式传入则优先于 TokenSource
+3. **`page int32`**：支持分页的接口存在；0 = 不传（默认第 1 页）
+4. **该接口特有的可选业务查询参数**：按签名顺序排列，如 `fromID int64`、`typeID int32`、`maxWarID int32`、`includeCompleted bool`、`labels []int32`、`lastMailID int32`、`strict bool`、`watched bool`、`filter string`、`fromEvent int32`、`labelIDs []int32`、`avoid []int32`、`connections [][]int32`、`flag string`
+5. **`ifNoneMatch string`**：GET 接口存在且通常是最后一个参数；空 = 不传，传入 ETag 时 304 返回 nil 结果 + nil error
+
+签名示例（均可在 `goeve_iface.go` 中核对）：
+
+```go
+GetServerStatus(ctx, ifNoneMatch string) (*models.ServerStatus, error)
+GetCharacter(ctx, characterID int32, ifNoneMatch string) (*models.Character, error)
+GetCharacterWalletBalance(ctx, characterID int32, token string, ifNoneMatch string) (float64, error)
+GetCharacterMails(ctx, characterID int32, token string, labels []int32, lastMailID int32, ifNoneMatch string) ([]models.MailHeader, error)
+GetMarketOrders(ctx, regionID int32, orderType string, page int32, typeID int32, ifNoneMatch string) ([]models.MarketOrder, error)
+GetRoute(ctx, destination int32, origin int32, avoid []int32, connections [][]int32, flag string, ifNoneMatch string) ([]int32, error)
+GetWars(ctx, maxWarID int32, ifNoneMatch string) ([]int32, error)
+```
 
 ## 模块定位 / Module index
 
@@ -89,24 +91,21 @@ resp, _ := http.DefaultClient.Do(req)
 
 // After: goeve
 client := goeve.NewClient(goeve.WithTokenSource(ts))
-character, err := client.GetCharacter(ctx, 95234356)
+character, err := client.GetCharacter(ctx, 95234356, "")
 if err != nil {
     var apiErr *goeve.APIError
     if errors.As(err, &apiErr) { /* apiErr.StatusCode, apiErr.Message ... */ }
 }
 ```
 
-典型调用（注意必需参数为位置参数，可选参数为函数选项）：
+典型调用（注意必需参数与可选参数的固定顺序）：
 
 ```go
-// 市场订单：regionID、orderType 是必需参数（位置传参），page 是选项
-orders, err := client.GetMarketOrders(ctx, 10000002, "sell", goeve.WithPage(1))
+// 市场订单：regionID、orderType 是必需参数，page、typeID、ifNoneMatch 依次追加（0/"" = 不传）
+orders, err := client.GetMarketOrders(ctx, 10000002, "sell", 1, 0, "")
 
-// 路线规划：destination、origin 是位置参数（注意顺序），避开/经过星系是选项
-route, err := client.GetRoute(ctx, 30002187, 30000142,
-    goeve.WithAvoid([]int32{30000144}),
-    goeve.WithFlag("secure"),
-)
+// 路线规划：destination、origin 是必需参数（注意顺序），avoid/connections/flag 可选
+route, err := client.GetRoute(ctx, 30002187, 30000142, []int32{30000144}, nil, "secure", "")
 
 // 简体中文返回（客户端级默认值）
 client := goeve.NewClient(goeve.WithLanguage(goeve.LanguageChinese))
@@ -133,11 +132,14 @@ token, err := goeve.GetTokenFromCode(ctx, code, goeve.AuthorizeConfig{})
 
 // Step 3: 挂 TokenSource，access_token 过期自动用 refresh_token 续期
 client := goeve.NewClient(goeve.WithTokenSource(goeve.NewTokenSource(token)))
-balance, err := client.GetCharacterWalletBalance(ctx, characterID)
+
+// Step 4: 调用受保护接口：token 传 "" 走客户端 TokenSource（也可显式传 token.AccessToken）
+balance, err := client.GetCharacterWalletBalance(ctx, characterID, "", "")
 ```
 
 隐式流程（仅 20 分钟 access_token，无 refresh_token）：
-`ResponseType: goeve.ResponseTypeToken` + `goeve.ParseImplicitRedirect(redirectURL)`。
+`ResponseType: goeve.ResponseTypeToken` + `goeve.ParseImplicitRedirect(redirectURL)`，
+然后同样用 `goeve.NewTokenSource(token)` 挂载。
 
 刷新：`token, err := goeve.RefreshAccessToken(ctx, refreshToken)`。
 
@@ -145,9 +147,9 @@ balance, err := client.GetCharacterWalletBalance(ctx, characterID)
 
 | 场景 | 做法 |
 |---|---|
-| ETag 协商 | 传 `goeve.WithIfNoneMatch(etag)`；服务器返回 304 时**结果为 nil 且 err 为 nil**（表示数据未变化），这是正常路径不是错误 |
-| 分页 | 循环递增 `goeve.WithPage(n)` 直到返回空切片（`X-Pages` 响应头不对外暴露）；钱包流水/交易用 `WithFromID` 回溯更早记录 |
-| 简体中文 | 客户端级 `goeve.WithLanguage(goeve.LanguageChinese)`，或单请求 `goeve.WithAcceptLanguage(goeve.LanguageChinese)` |
+| ETag 协商 | 最后一个参数传 ETag（`ifNoneMatch`）；服务器返回 304 时**结果为 nil 且 err 为 nil**（表示数据未变化），这是正常路径不是错误 |
+| 分页 | `page` 参数从 1 开始递增直到返回空切片（`X-Pages` 响应头不对外暴露，0 = 默认第 1 页）；`GetWalletTransactions` 等特殊接口没有 `page`，用 `fromID` 回溯更早记录 |
+| 简体中文 | 客户端级 `goeve.WithLanguage(goeve.LanguageChinese)`（对所有请求生效，无按请求覆盖选项） |
 | 数据源 | 网易服只有 tranquility，`datasource` 一般不用传 |
 
 ## 错误处理
@@ -155,7 +157,7 @@ balance, err := client.GetCharacterWalletBalance(ctx, characterID)
 所有 ESI 错误（400/401/403/420/500/503/504）统一解码为 `*goeve.APIError`：
 
 ```go
-_, err := client.GetCharacter(ctx, 1)
+_, err := client.GetCharacter(ctx, 1, "")
 var apiErr *goeve.APIError
 if errors.As(err, &apiErr) && apiErr.StatusCode == 404 { /* 不存在 */ }
 // 403 时 apiErr.SSOStatus 附带 SSO 状态码；504 时 apiErr.Timeout 为允许秒数
@@ -167,8 +169,9 @@ if errors.As(err, &apiErr) && apiErr.StatusCode == 404 { /* 不存在 */ }
 2. **scope 一次最多 4 个**，更多权限需分多次授权或多次跳转。
 3. **不要把 304 当错误**：nil + nil 就是"数据没变化"。
 4. **必须传 ctx**：所有方法第一个参数是 `context.Context`。
-5. **必需参数是位置参数**（如 `GetMarketOrders` 的 `regionID, orderType`），可选参数才是 `RequestOption`；不要再构造任何参数结构体（该机制已移除）。
-6. 方法所需 scope 标注在该方法的 godoc `Scopes:` 行，公开接口标注 `none (public endpoint)`。
+5. **可选参数不能省略**：签名里有几个参数就要传几个，`token ""`、`page 0`、`ifNoneMatch ""`、`nil` 切片表示"不传"；不写任何请求选项或参数结构体。
+6. **每个方法的可选参数集合不同**：以 `goeve_iface.go` 签名/godoc 为准（如 `GetCharacterMails` 没有 `page`，翻页用 `lastMailID`）。
+7. 方法所需 scope 标注在该方法的 godoc `Scopes:` 行，公开接口标注 `none (public endpoint)`。
 
 ## 验证
 
@@ -183,13 +186,14 @@ gofmt -l . && go vet ./... && go test ./...   # 测试含对公开接口的真�
 ### Q: 怎么找到某个游戏功能对应的调用？
 
 先在 `references/modules.md` 按功能定位模块文件，再到 `goeve_iface.go` 或方法 godoc
-查准确方法名——命名已语义化（如角色邮件列表方法命名为 `GetCharacterMails`），
+查准确签名——命名已语义化（如角色邮件列表方法命名为 `GetCharacterMails`），
 **不能按 operationId 机械转换推名字**。方法 godoc 标注了路由、缓存时长和所需 scope。
 
 ### Q: 分页什么时候停？
 
-递增 `WithPage(n)` 直到返回空切片；不要依赖 `X-Pages` 头（未暴露）。钱包流水/市场交易
-等特殊接口用 `WithFromID` 取更早记录。
+有 `page` 参数的接口：从 1 递增直到返回空切片；不要依赖 `X-Pages` 头（未暴露）。
+无 `page` 的接口（如 `GetCharacterMails`、`GetWalletTransactions`）用各自的
+`lastMailID` / `fromID` 参数回溯更早数据。
 
 ### Q: 403 了怎么办？
 

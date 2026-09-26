@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,18 @@ import (
 // 路由: GET /characters/{character_id}/search/ — 该路由缓存长达 3600 秒
 // Scopes: esi-search.search_structures.v1
 // 权限: esi-search.search_structures.v1
-func (c *Client) SearchEntities(ctx context.Context, characterID int32, categories []string, search string, opts ...RequestOption) (*models.SearchResult, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) SearchEntities(ctx context.Context, characterID int32, categories []string, search string, token string, strict bool, ifNoneMatch string) (*models.SearchResult, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if strict {
+		query.Set("strict", strconv.FormatBool(strict))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	for _, v := range categories {
 		query.Add("categories", v)
 	}

@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,12 @@ import (
 // 路由: GET /dogma/attributes/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaAttributes(ctx context.Context, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetDogmaAttributes(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/dogma/attributes/", pathParams, query, headers, &result)
@@ -31,8 +36,12 @@ func (c *Client) GetDogmaAttributes(ctx context.Context, opts ...RequestOption) 
 // 路由: GET /dogma/attributes/{attribute_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaAttribute(ctx context.Context, attributeID int32, opts ...RequestOption) (*models.DogmaAttribute, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetDogmaAttribute(ctx context.Context, attributeID int32, ifNoneMatch string) (*models.DogmaAttribute, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"attribute_id": strconv.FormatInt(int64(attributeID), 10)}
 	var result *models.DogmaAttribute
 	err := c.get(ctx, "/dogma/attributes/{attribute_id}/", pathParams, query, headers, &result)
@@ -49,8 +58,12 @@ func (c *Client) GetDogmaAttribute(ctx context.Context, attributeID int32, opts 
 // 路由: GET /dogma/dynamic/items/{type_id}/{item_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaDynamicItem(ctx context.Context, itemID int64, typeID int32, opts ...RequestOption) (*models.DogmaDynamicItem, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetDogmaDynamicItem(ctx context.Context, itemID int64, typeID int32, ifNoneMatch string) (*models.DogmaDynamicItem, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"item_id": strconv.FormatInt(int64(itemID), 10), "type_id": strconv.FormatInt(int64(typeID), 10)}
 	var result *models.DogmaDynamicItem
 	err := c.get(ctx, "/dogma/dynamic/items/{type_id}/{item_id}/", pathParams, query, headers, &result)
@@ -67,8 +80,12 @@ func (c *Client) GetDogmaDynamicItem(ctx context.Context, itemID int64, typeID i
 // 路由: GET /dogma/effects/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaEffects(ctx context.Context, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetDogmaEffects(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/dogma/effects/", pathParams, query, headers, &result)
@@ -85,8 +102,12 @@ func (c *Client) GetDogmaEffects(ctx context.Context, opts ...RequestOption) ([]
 // 路由: GET /dogma/effects/{effect_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaEffect(ctx context.Context, effectID int32, opts ...RequestOption) (*models.DogmaEffect, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetDogmaEffect(ctx context.Context, effectID int32, ifNoneMatch string) (*models.DogmaEffect, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"effect_id": strconv.FormatInt(int64(effectID), 10)}
 	var result *models.DogmaEffect
 	err := c.get(ctx, "/dogma/effects/{effect_id}/", pathParams, query, headers, &result)

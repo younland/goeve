@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,18 @@ import (
 // 路由: GET /characters/{character_id}/calendar/ — 该路由缓存长达 5 秒
 // Scopes: esi-calendar.read_calendar_events.v1
 // 权限: esi-calendar.read_calendar_events.v1
-func (c *Client) GetCharacterCalendarEvents(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.CalendarEventSummary, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterCalendarEvents(ctx context.Context, characterID int32, token string, fromEvent int32, ifNoneMatch string) ([]models.CalendarEventSummary, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if fromEvent != 0 {
+		query.Set("from_event", strconv.FormatInt(int64(fromEvent), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CalendarEventSummary
 	err := c.get(ctx, "/characters/{character_id}/calendar/", pathParams, query, headers, &result)
@@ -31,8 +42,15 @@ func (c *Client) GetCharacterCalendarEvents(ctx context.Context, characterID int
 // 路由: GET /characters/{character_id}/calendar/{event_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-calendar.read_calendar_events.v1
 // 权限: esi-calendar.read_calendar_events.v1
-func (c *Client) GetCalendarEvent(ctx context.Context, characterID int32, eventID int32, opts ...RequestOption) (*models.CalendarEvent, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCalendarEvent(ctx context.Context, characterID int32, eventID int32, token string, ifNoneMatch string) (*models.CalendarEvent, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "event_id": strconv.FormatInt(int64(eventID), 10)}
 	var result *models.CalendarEvent
 	err := c.get(ctx, "/characters/{character_id}/calendar/{event_id}/", pathParams, query, headers, &result)
@@ -49,8 +67,15 @@ func (c *Client) GetCalendarEvent(ctx context.Context, characterID int32, eventI
 // 路由: GET /characters/{character_id}/calendar/{event_id}/attendees/ — 该路由缓存长达 600 秒
 // Scopes: esi-calendar.read_calendar_events.v1
 // 权限: esi-calendar.read_calendar_events.v1
-func (c *Client) GetCalendarEventAttendees(ctx context.Context, characterID int32, eventID int32, opts ...RequestOption) ([]models.CalendarEventAttendee, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCalendarEventAttendees(ctx context.Context, characterID int32, eventID int32, token string, ifNoneMatch string) ([]models.CalendarEventAttendee, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "event_id": strconv.FormatInt(int64(eventID), 10)}
 	var result []models.CalendarEventAttendee
 	err := c.get(ctx, "/characters/{character_id}/calendar/{event_id}/attendees/", pathParams, query, headers, &result)
@@ -67,8 +92,12 @@ func (c *Client) GetCalendarEventAttendees(ctx context.Context, characterID int3
 // 路由: PUT /characters/{character_id}/calendar/{event_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-calendar.respond_calendar_events.v1
 // 权限: esi-calendar.respond_calendar_events.v1
-func (c *Client) RespondToCalendarEvent(ctx context.Context, characterID int32, eventID int32, body *models.CalendarEventResponse, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) RespondToCalendarEvent(ctx context.Context, characterID int32, eventID int32, body *models.CalendarEventResponse, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "event_id": strconv.FormatInt(int64(eventID), 10)}
 	if body == nil {
 		return errBodyRequired

@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,15 @@ import (
 // 路由: GET /characters/{character_id}/wallet/ — 该路由缓存长达 120 秒
 // Scopes: esi-wallet.read_character_wallet.v1
 // 权限: esi-wallet.read_character_wallet.v1
-func (c *Client) GetCharacterWalletBalance(ctx context.Context, characterID int32, opts ...RequestOption) (float64, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterWalletBalance(ctx context.Context, characterID int32, token string, ifNoneMatch string) (float64, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result float64
 	err := c.get(ctx, "/characters/{character_id}/wallet/", pathParams, query, headers, &result)
@@ -31,8 +39,18 @@ func (c *Client) GetCharacterWalletBalance(ctx context.Context, characterID int3
 // 路由: GET /characters/{character_id}/wallet/journal/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_character_wallet.v1
 // 权限: esi-wallet.read_character_wallet.v1
-func (c *Client) GetCharacterWalletJournal(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.WalletJournalEntry, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterWalletJournal(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.WalletJournalEntry, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.WalletJournalEntry
 	err := c.get(ctx, "/characters/{character_id}/wallet/journal/", pathParams, query, headers, &result)
@@ -49,8 +67,18 @@ func (c *Client) GetCharacterWalletJournal(ctx context.Context, characterID int3
 // 路由: GET /characters/{character_id}/wallet/transactions/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_character_wallet.v1
 // 权限: esi-wallet.read_character_wallet.v1
-func (c *Client) GetWalletTransactions(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.CharacterWalletTransaction, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetWalletTransactions(ctx context.Context, characterID int32, token string, fromID int64, ifNoneMatch string) ([]models.CharacterWalletTransaction, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if fromID != 0 {
+		query.Set("from_id", strconv.FormatInt(fromID, 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterWalletTransaction
 	err := c.get(ctx, "/characters/{character_id}/wallet/transactions/", pathParams, query, headers, &result)
@@ -67,8 +95,15 @@ func (c *Client) GetWalletTransactions(ctx context.Context, characterID int32, o
 // 路由: GET /corporations/{corporation_id}/wallets/ — 该路由缓存长达 300 秒
 // Scopes: esi-wallet.read_corporation_wallets.v1
 // 权限: esi-wallet.read_corporation_wallets.v1
-func (c *Client) GetCorporationWallets(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationWallet, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationWallets(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.CorporationWallet, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationWallet
 	err := c.get(ctx, "/corporations/{corporation_id}/wallets/", pathParams, query, headers, &result)
@@ -85,8 +120,18 @@ func (c *Client) GetCorporationWallets(ctx context.Context, corporationID int32,
 // 路由: GET /corporations/{corporation_id}/wallets/{division}/journal/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_corporation_wallets.v1
 // 权限: esi-wallet.read_corporation_wallets.v1
-func (c *Client) GetCorporationWalletJournal(ctx context.Context, corporationID int32, division int32, opts ...RequestOption) ([]models.WalletJournalEntry, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationWalletJournal(ctx context.Context, corporationID int32, division int32, token string, page int32, ifNoneMatch string) ([]models.WalletJournalEntry, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10), "division": strconv.FormatInt(int64(division), 10)}
 	var result []models.WalletJournalEntry
 	err := c.get(ctx, "/corporations/{corporation_id}/wallets/{division}/journal/", pathParams, query, headers, &result)
@@ -103,8 +148,18 @@ func (c *Client) GetCorporationWalletJournal(ctx context.Context, corporationID 
 // 路由: GET /corporations/{corporation_id}/wallets/{division}/transactions/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_corporation_wallets.v1
 // 权限: esi-wallet.read_corporation_wallets.v1
-func (c *Client) GetCorporationWalletTransactions(ctx context.Context, corporationID int32, division int32, opts ...RequestOption) ([]models.CorporationWalletTransaction, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationWalletTransactions(ctx context.Context, corporationID int32, division int32, token string, fromID int64, ifNoneMatch string) ([]models.CorporationWalletTransaction, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if fromID != 0 {
+		query.Set("from_id", strconv.FormatInt(fromID, 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10), "division": strconv.FormatInt(int64(division), 10)}
 	var result []models.CorporationWalletTransaction
 	err := c.get(ctx, "/corporations/{corporation_id}/wallets/{division}/transactions/", pathParams, query, headers, &result)

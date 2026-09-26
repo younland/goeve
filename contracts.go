@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,18 @@ import (
 // 路由: GET /characters/{character_id}/contracts/ — 该路由缓存长达 300 秒
 // Scopes: esi-contracts.read_character_contracts.v1
 // 权限: esi-contracts.read_character_contracts.v1
-func (c *Client) GetCharacterContracts(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.Contract, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterContracts(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.Contract, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.Contract
 	err := c.get(ctx, "/characters/{character_id}/contracts/", pathParams, query, headers, &result)
@@ -31,8 +42,15 @@ func (c *Client) GetCharacterContracts(ctx context.Context, characterID int32, o
 // 路由: GET /characters/{character_id}/contracts/{contract_id}/bids/ — 该路由缓存长达 300 秒
 // Scopes: esi-contracts.read_character_contracts.v1
 // 权限: esi-contracts.read_character_contracts.v1
-func (c *Client) GetCharacterContractBids(ctx context.Context, characterID int32, contractID int32, opts ...RequestOption) ([]models.ContractBid, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterContractBids(ctx context.Context, characterID int32, contractID int32, token string, ifNoneMatch string) ([]models.ContractBid, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "contract_id": strconv.FormatInt(int64(contractID), 10)}
 	var result []models.ContractBid
 	err := c.get(ctx, "/characters/{character_id}/contracts/{contract_id}/bids/", pathParams, query, headers, &result)
@@ -49,8 +67,15 @@ func (c *Client) GetCharacterContractBids(ctx context.Context, characterID int32
 // 路由: GET /characters/{character_id}/contracts/{contract_id}/items/ — 该路由缓存长达 3600 秒
 // Scopes: esi-contracts.read_character_contracts.v1
 // 权限: esi-contracts.read_character_contracts.v1
-func (c *Client) GetCharacterContractItems(ctx context.Context, characterID int32, contractID int32, opts ...RequestOption) ([]models.ContractItem, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterContractItems(ctx context.Context, characterID int32, contractID int32, token string, ifNoneMatch string) ([]models.ContractItem, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "contract_id": strconv.FormatInt(int64(contractID), 10)}
 	var result []models.ContractItem
 	err := c.get(ctx, "/characters/{character_id}/contracts/{contract_id}/items/", pathParams, query, headers, &result)
@@ -67,8 +92,18 @@ func (c *Client) GetCharacterContractItems(ctx context.Context, characterID int3
 // 路由: GET /corporations/{corporation_id}/contracts/ — 该路由缓存长达 300 秒
 // Scopes: esi-contracts.read_corporation_contracts.v1
 // 权限: esi-contracts.read_corporation_contracts.v1
-func (c *Client) GetCorporationContracts(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.Contract, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationContracts(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.Contract, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.Contract
 	err := c.get(ctx, "/corporations/{corporation_id}/contracts/", pathParams, query, headers, &result)
@@ -85,8 +120,18 @@ func (c *Client) GetCorporationContracts(ctx context.Context, corporationID int3
 // 路由: GET /corporations/{corporation_id}/contracts/{contract_id}/bids/ — 该路由缓存长达 3600 秒
 // Scopes: esi-contracts.read_corporation_contracts.v1
 // 权限: esi-contracts.read_corporation_contracts.v1
-func (c *Client) GetCorporationContractBids(ctx context.Context, contractID int32, corporationID int32, opts ...RequestOption) ([]models.ContractBid, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationContractBids(ctx context.Context, contractID int32, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.ContractBid, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"contract_id": strconv.FormatInt(int64(contractID), 10), "corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.ContractBid
 	err := c.get(ctx, "/corporations/{corporation_id}/contracts/{contract_id}/bids/", pathParams, query, headers, &result)
@@ -103,8 +148,15 @@ func (c *Client) GetCorporationContractBids(ctx context.Context, contractID int3
 // 路由: GET /corporations/{corporation_id}/contracts/{contract_id}/items/ — 该路由缓存长达 3600 秒
 // Scopes: esi-contracts.read_corporation_contracts.v1
 // 权限: esi-contracts.read_corporation_contracts.v1
-func (c *Client) GetCorporationContractItems(ctx context.Context, contractID int32, corporationID int32, opts ...RequestOption) ([]models.ContractItem, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationContractItems(ctx context.Context, contractID int32, corporationID int32, token string, ifNoneMatch string) ([]models.ContractItem, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"contract_id": strconv.FormatInt(int64(contractID), 10), "corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.ContractItem
 	err := c.get(ctx, "/corporations/{corporation_id}/contracts/{contract_id}/items/", pathParams, query, headers, &result)
@@ -121,8 +173,15 @@ func (c *Client) GetCorporationContractItems(ctx context.Context, contractID int
 // 路由: GET /contracts/public/bids/{contract_id}/ — 该路由缓存长达 300 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetPublicContractBids(ctx context.Context, contractID int32, opts ...RequestOption) ([]models.PublicContractBid, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetPublicContractBids(ctx context.Context, contractID int32, page int32, ifNoneMatch string) ([]models.PublicContractBid, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"contract_id": strconv.FormatInt(int64(contractID), 10)}
 	var result []models.PublicContractBid
 	err := c.get(ctx, "/contracts/public/bids/{contract_id}/", pathParams, query, headers, &result)
@@ -139,8 +198,15 @@ func (c *Client) GetPublicContractBids(ctx context.Context, contractID int32, op
 // 路由: GET /contracts/public/items/{contract_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetPublicContractItems(ctx context.Context, contractID int32, opts ...RequestOption) ([]models.PublicContractItem, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetPublicContractItems(ctx context.Context, contractID int32, page int32, ifNoneMatch string) ([]models.PublicContractItem, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"contract_id": strconv.FormatInt(int64(contractID), 10)}
 	var result []models.PublicContractItem
 	err := c.get(ctx, "/contracts/public/items/{contract_id}/", pathParams, query, headers, &result)
@@ -157,8 +223,15 @@ func (c *Client) GetPublicContractItems(ctx context.Context, contractID int32, o
 // 路由: GET /contracts/public/{region_id}/ — 该路由缓存长达 1800 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetPublicContracts(ctx context.Context, regionID int32, opts ...RequestOption) ([]models.PublicContract, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetPublicContracts(ctx context.Context, regionID int32, page int32, ifNoneMatch string) ([]models.PublicContract, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionID), 10)}
 	var result []models.PublicContract
 	err := c.get(ctx, "/contracts/public/{region_id}/", pathParams, query, headers, &result)

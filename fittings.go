@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,12 @@ import (
 // 路由: DELETE /characters/{character_id}/fittings/{fitting_id}/
 // Scopes: esi-fittings.write_fittings.v1
 // 权限: esi-fittings.write_fittings.v1
-func (c *Client) DeleteCharacterFitting(ctx context.Context, characterID int32, fittingID int32, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) DeleteCharacterFitting(ctx context.Context, characterID int32, fittingID int32, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "fitting_id": strconv.FormatInt(int64(fittingID), 10)}
 	err := c.delete(ctx, "/characters/{character_id}/fittings/{fitting_id}/", pathParams, query, headers)
 	return err
@@ -27,8 +32,15 @@ func (c *Client) DeleteCharacterFitting(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/fittings/ — 该路由缓存长达 300 秒
 // Scopes: esi-fittings.read_fittings.v1
 // 权限: esi-fittings.read_fittings.v1
-func (c *Client) GetCharacterFittings(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.Fitting, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterFittings(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.Fitting, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.Fitting
 	err := c.get(ctx, "/characters/{character_id}/fittings/", pathParams, query, headers, &result)
@@ -45,8 +57,12 @@ func (c *Client) GetCharacterFittings(ctx context.Context, characterID int32, op
 // 路由: POST /characters/{character_id}/fittings/
 // Scopes: esi-fittings.write_fittings.v1
 // 权限: esi-fittings.write_fittings.v1
-func (c *Client) CreateCharacterFitting(ctx context.Context, characterID int32, body *models.FittingRequest, opts ...RequestOption) (*models.NewFitting, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) CreateCharacterFitting(ctx context.Context, characterID int32, body *models.FittingRequest, token string) (*models.NewFitting, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
 		return nil, errBodyRequired

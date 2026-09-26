@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,15 @@ import (
 // 路由: GET /characters/{character_id}/fw/stats/
 // Scopes: esi-characters.read_fw_stats.v1
 // 权限: esi-characters.read_fw_stats.v1
-func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterFactionWarfareStats, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterFactionWarfareStats, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterFactionWarfareStats
 	err := c.get(ctx, "/characters/{character_id}/fw/stats/", pathParams, query, headers, &result)
@@ -31,8 +39,15 @@ func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterI
 // 路由: GET /corporations/{corporation_id}/fw/stats/
 // Scopes: esi-corporations.read_fw_stats.v1
 // 权限: esi-corporations.read_fw_stats.v1
-func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, corporationID int32, opts ...RequestOption) (*models.CorporationFactionWarfareStats, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, corporationID int32, token string, ifNoneMatch string) (*models.CorporationFactionWarfareStats, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result *models.CorporationFactionWarfareStats
 	err := c.get(ctx, "/corporations/{corporation_id}/fw/stats/", pathParams, query, headers, &result)
@@ -49,8 +64,12 @@ func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, corporat
 // 路由: GET /fw/leaderboards/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareLeaderboard(ctx context.Context, opts ...RequestOption) (*models.FactionWarfareLeaderboard, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetFactionWarfareLeaderboard(ctx context.Context, ifNoneMatch string) (*models.FactionWarfareLeaderboard, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result *models.FactionWarfareLeaderboard
 	err := c.get(ctx, "/fw/leaderboards/", pathParams, query, headers, &result)
@@ -67,8 +86,12 @@ func (c *Client) GetFactionWarfareLeaderboard(ctx context.Context, opts ...Reque
 // 路由: GET /fw/leaderboards/characters/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareCharacterLeaderboard(ctx context.Context, opts ...RequestOption) (*models.FactionWarfareCharacterLeaderboard, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetFactionWarfareCharacterLeaderboard(ctx context.Context, ifNoneMatch string) (*models.FactionWarfareCharacterLeaderboard, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result *models.FactionWarfareCharacterLeaderboard
 	err := c.get(ctx, "/fw/leaderboards/characters/", pathParams, query, headers, &result)
@@ -85,8 +108,12 @@ func (c *Client) GetFactionWarfareCharacterLeaderboard(ctx context.Context, opts
 // 路由: GET /fw/leaderboards/corporations/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareCorporationLeaderboard(ctx context.Context, opts ...RequestOption) (*models.FactionWarfareCorporationLeaderboard, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetFactionWarfareCorporationLeaderboard(ctx context.Context, ifNoneMatch string) (*models.FactionWarfareCorporationLeaderboard, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result *models.FactionWarfareCorporationLeaderboard
 	err := c.get(ctx, "/fw/leaderboards/corporations/", pathParams, query, headers, &result)
@@ -103,8 +130,12 @@ func (c *Client) GetFactionWarfareCorporationLeaderboard(ctx context.Context, op
 // 路由: GET /fw/stats/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareStats(ctx context.Context, opts ...RequestOption) ([]models.FactionWarfareStats, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetFactionWarfareStats(ctx context.Context, ifNoneMatch string) ([]models.FactionWarfareStats, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.FactionWarfareStats
 	err := c.get(ctx, "/fw/stats/", pathParams, query, headers, &result)
@@ -121,8 +152,12 @@ func (c *Client) GetFactionWarfareStats(ctx context.Context, opts ...RequestOpti
 // 路由: GET /fw/systems/ — 该路由缓存长达 1800 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareSystems(ctx context.Context, opts ...RequestOption) ([]models.FactionWarfareSystem, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetFactionWarfareSystems(ctx context.Context, ifNoneMatch string) ([]models.FactionWarfareSystem, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.FactionWarfareSystem
 	err := c.get(ctx, "/fw/systems/", pathParams, query, headers, &result)
@@ -139,8 +174,12 @@ func (c *Client) GetFactionWarfareSystems(ctx context.Context, opts ...RequestOp
 // 路由: GET /fw/wars/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareWars(ctx context.Context, opts ...RequestOption) ([]models.FactionWarfareWar, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetFactionWarfareWars(ctx context.Context, ifNoneMatch string) ([]models.FactionWarfareWar, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.FactionWarfareWar
 	err := c.get(ctx, "/fw/wars/", pathParams, query, headers, &result)

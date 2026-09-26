@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 )
 
 // GetIncursions List incursions.
@@ -12,8 +13,12 @@ import (
 // 路由: GET /incursions/ — 该路由缓存长达 300 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetIncursions(ctx context.Context, opts ...RequestOption) ([]models.Incursion, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetIncursions(ctx context.Context, ifNoneMatch string) ([]models.Incursion, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.Incursion
 	err := c.get(ctx, "/incursions/", pathParams, query, headers, &result)

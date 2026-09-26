@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 )
 
 // GetPrices List insurance levels.
@@ -12,8 +13,12 @@ import (
 // 路由: GET /insurance/prices/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetPrices(ctx context.Context, opts ...RequestOption) ([]models.InsurancePrice, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetPrices(ctx context.Context, ifNoneMatch string) ([]models.InsurancePrice, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.InsurancePrice
 	err := c.get(ctx, "/insurance/prices/", pathParams, query, headers, &result)

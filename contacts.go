@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,12 @@ import (
 // 路由: DELETE /characters/{character_id}/contacts/
 // Scopes: esi-characters.write_contacts.v1
 // 权限: esi-characters.write_contacts.v1
-func (c *Client) DeleteCharacterContacts(ctx context.Context, characterID int32, contactIDs []int32, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) DeleteCharacterContacts(ctx context.Context, characterID int32, contactIDs []int32, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	for _, v := range contactIDs {
 		query.Add("contact_ids", strconv.Itoa(int(v)))
 	}
@@ -30,8 +35,18 @@ func (c *Client) DeleteCharacterContacts(ctx context.Context, characterID int32,
 // 路由: GET /alliances/{alliance_id}/contacts/ — 该路由缓存长达 300 秒
 // Scopes: esi-alliances.read_contacts.v1
 // 权限: esi-alliances.read_contacts.v1
-func (c *Client) GetAllianceContacts(ctx context.Context, allianceID int32, opts ...RequestOption) ([]models.AllianceContact, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetAllianceContacts(ctx context.Context, allianceID int32, token string, page int32, ifNoneMatch string) ([]models.AllianceContact, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result []models.AllianceContact
 	err := c.get(ctx, "/alliances/{alliance_id}/contacts/", pathParams, query, headers, &result)
@@ -48,8 +63,15 @@ func (c *Client) GetAllianceContacts(ctx context.Context, allianceID int32, opts
 // 路由: GET /alliances/{alliance_id}/contacts/labels/ — 该路由缓存长达 300 秒
 // Scopes: esi-alliances.read_contacts.v1
 // 权限: esi-alliances.read_contacts.v1
-func (c *Client) GetAllianceContactLabels(ctx context.Context, allianceID int32, opts ...RequestOption) ([]models.ContactLabel, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetAllianceContactLabels(ctx context.Context, allianceID int32, token string, ifNoneMatch string) ([]models.ContactLabel, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result []models.ContactLabel
 	err := c.get(ctx, "/alliances/{alliance_id}/contacts/labels/", pathParams, query, headers, &result)
@@ -66,8 +88,18 @@ func (c *Client) GetAllianceContactLabels(ctx context.Context, allianceID int32,
 // 路由: GET /characters/{character_id}/contacts/ — 该路由缓存长达 300 秒
 // Scopes: esi-characters.read_contacts.v1
 // 权限: esi-characters.read_contacts.v1
-func (c *Client) GetCharacterContacts(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.CharacterContact, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterContacts(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.CharacterContact, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterContact
 	err := c.get(ctx, "/characters/{character_id}/contacts/", pathParams, query, headers, &result)
@@ -84,8 +116,15 @@ func (c *Client) GetCharacterContacts(ctx context.Context, characterID int32, op
 // 路由: GET /characters/{character_id}/contacts/labels/ — 该路由缓存长达 300 秒
 // Scopes: esi-characters.read_contacts.v1
 // 权限: esi-characters.read_contacts.v1
-func (c *Client) GetCharacterContactLabels(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.ContactLabel, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterContactLabels(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.ContactLabel, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.ContactLabel
 	err := c.get(ctx, "/characters/{character_id}/contacts/labels/", pathParams, query, headers, &result)
@@ -102,8 +141,18 @@ func (c *Client) GetCharacterContactLabels(ctx context.Context, characterID int3
 // 路由: GET /corporations/{corporation_id}/contacts/ — 该路由缓存长达 300 秒
 // Scopes: esi-corporations.read_contacts.v1
 // 权限: esi-corporations.read_contacts.v1
-func (c *Client) GetCorporationContacts(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationContact, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationContacts(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationContact, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationContact
 	err := c.get(ctx, "/corporations/{corporation_id}/contacts/", pathParams, query, headers, &result)
@@ -120,8 +169,15 @@ func (c *Client) GetCorporationContacts(ctx context.Context, corporationID int32
 // 路由: GET /corporations/{corporation_id}/contacts/labels/ — 该路由缓存长达 300 秒
 // Scopes: esi-corporations.read_contacts.v1
 // 权限: esi-corporations.read_contacts.v1
-func (c *Client) GetCorporationContactLabels(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.ContactLabel, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationContactLabels(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.ContactLabel, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.ContactLabel
 	err := c.get(ctx, "/corporations/{corporation_id}/contacts/labels/", pathParams, query, headers, &result)
@@ -138,8 +194,18 @@ func (c *Client) GetCorporationContactLabels(ctx context.Context, corporationID 
 // 路由: POST /characters/{character_id}/contacts/
 // Scopes: esi-characters.write_contacts.v1
 // 权限: esi-characters.write_contacts.v1
-func (c *Client) AddCharacterContacts(ctx context.Context, characterID int32, standing float64, body []int32, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) AddCharacterContacts(ctx context.Context, characterID int32, standing float64, body []int32, token string, labelIDs []int32, watched bool) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	for _, v := range labelIDs {
+		query.Add("label_ids", strconv.FormatInt(int64(v), 10))
+	}
+	if watched {
+		query.Set("watched", strconv.FormatBool(watched))
+	}
 	query.Set("standing", strconv.FormatFloat(standing, 'f', -1, 64))
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
@@ -160,8 +226,18 @@ func (c *Client) AddCharacterContacts(ctx context.Context, characterID int32, st
 // 路由: PUT /characters/{character_id}/contacts/
 // Scopes: esi-characters.write_contacts.v1
 // 权限: esi-characters.write_contacts.v1
-func (c *Client) EditCharacterContacts(ctx context.Context, characterID int32, standing float64, body []int32, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) EditCharacterContacts(ctx context.Context, characterID int32, standing float64, body []int32, token string, labelIDs []int32, watched bool) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	for _, v := range labelIDs {
+		query.Add("label_ids", strconv.FormatInt(int64(v), 10))
+	}
+	if watched {
+		query.Set("watched", strconv.FormatBool(watched))
+	}
 	query.Set("standing", strconv.FormatFloat(standing, 'f', -1, 64))
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {

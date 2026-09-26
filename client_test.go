@@ -14,7 +14,7 @@ import (
 // TestGetServerStatus 对公开的 /status 接口发起真实网络调用。
 func TestGetServerStatus(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	status, err := client.GetServerStatus(context.Background())
+	status, err := client.GetServerStatus(context.Background(), "")
 	if err != nil {
 		t.Fatalf("GetServerStatus failed: %v", err)
 	}
@@ -30,7 +30,7 @@ func TestGetServerStatus(t *testing.T) {
 // TestGetCharacterNotFound 检查查询不存在的角色时返回结构化的 404 APIError。
 func TestGetCharacterNotFound(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	_, err := client.GetCharacter(context.Background(), 1)
+	_, err := client.GetCharacter(context.Background(), 1, "")
 	if err == nil {
 		t.Fatal("expected an error")
 	}
@@ -50,7 +50,7 @@ func TestGetUniverseCategories(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
 	ctx := context.Background()
 
-	categories, err := client.GetUniverseCategories(ctx)
+	categories, err := client.GetUniverseCategories(ctx, "")
 	if err != nil {
 		t.Fatalf("GetUniverseCategories failed: %v", err)
 	}
@@ -63,7 +63,7 @@ func TestGetUniverseCategories(t *testing.T) {
 	// the result stays nil — this must not be reported as an error.
 	// 条件请求：数据未变化时服务器返回 304，结果保持为 nil，不应报错。
 	etag := `W/"e224bfe767a9e9f3fa0e4615aac73f2c3a63fd0c792e553d5f203e03"`
-	result, err := client.GetUniverseCategories(ctx, WithIfNoneMatch(etag))
+	result, err := client.GetUniverseCategories(ctx, etag)
 	if err != nil {
 		t.Fatalf("GetUniverseCategories with If-None-Match failed: %v", err)
 	}
@@ -76,7 +76,7 @@ func TestGetUniverseCategories(t *testing.T) {
 // TestAPIError 检查无效 ID 是否以结构化的 APIError 返回。
 func TestAPIError(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	_, err := client.GetCharacter(context.Background(), 0)
+	_, err := client.GetCharacter(context.Background(), 0, "")
 	if err == nil {
 		t.Fatal("expected an error")
 	}
@@ -166,25 +166,25 @@ func TestTokenValid(t *testing.T) {
 }
 
 // TestWithAuthTokenPerRequest verifies that WithAuthToken sends the token only
-// for the request that carries the option.
-// TestWithAuthTokenPerRequest 验证 WithAuthToken 只为携带该选项的请求发送令牌。
+// the Authorization header only for requests that pass a non-empty token.
+// TestWithAuthTokenPerRequest 验证显式 token 参数只为传入非空令牌的请求发送 Authorization 头。
 func TestWithAuthTokenPerRequest(t *testing.T) {
 	var gotAuth []string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		gotAuth = append(gotAuth, r.Header.Get("Authorization"))
 		w.Header().Set("Content-Type", "application/json")
-		_, _ = w.Write([]byte(`{"players":1,"server_version":"test","start_time":"2026-09-27T00:00:00Z","vip":false}`))
+		_, _ = w.Write([]byte(`1.23`))
 	}))
 	defer server.Close()
 
 	client := NewClient(WithBaseURL(server.URL))
 
-	// without the option: no Authorization header / 不带选项：无 Authorization 头
-	if _, err := client.GetServerStatus(context.Background()); err != nil {
+	// empty token: no Authorization header / 空令牌：不携带 Authorization 头
+	if _, err := client.GetCharacterWalletBalance(context.Background(), 95234356, "", ""); err != nil {
 		t.Fatalf("unauthenticated request failed: %v", err)
 	}
-	// with the option: Bearer token sent / 带选项：发送 Bearer 令牌
-	if _, err := client.GetServerStatus(context.Background(), WithAuthToken("abc123")); err != nil {
+	// explicit token: Bearer sent / 显式传入令牌：发送 Bearer
+	if _, err := client.GetCharacterWalletBalance(context.Background(), 95234356, "abc123", ""); err != nil {
 		t.Fatalf("authenticated request failed: %v", err)
 	}
 
@@ -192,7 +192,7 @@ func TestWithAuthTokenPerRequest(t *testing.T) {
 		t.Fatalf("expected 2 requests, got %d", len(gotAuth))
 	}
 	if gotAuth[0] != "" {
-		t.Errorf("request without option should not carry Authorization, got %q", gotAuth[0])
+		t.Errorf("request without token should not carry Authorization, got %q", gotAuth[0])
 	}
 	if gotAuth[1] != "Bearer abc123" {
 		t.Errorf("Authorization = %q, want %q", gotAuth[1], "Bearer abc123")

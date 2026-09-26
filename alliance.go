@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,12 @@ import (
 // 路由: GET /alliances/{alliance_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAlliance(ctx context.Context, allianceID int32, opts ...RequestOption) (*models.Alliance, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetAlliance(ctx context.Context, allianceID int32, ifNoneMatch string) (*models.Alliance, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result *models.Alliance
 	err := c.get(ctx, "/alliances/{alliance_id}/", pathParams, query, headers, &result)
@@ -31,8 +36,12 @@ func (c *Client) GetAlliance(ctx context.Context, allianceID int32, opts ...Requ
 // 路由: GET /alliances/{alliance_id}/corporations/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAllianceCorporations(ctx context.Context, allianceID int32, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetAllianceCorporations(ctx context.Context, allianceID int32, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result []int32
 	err := c.get(ctx, "/alliances/{alliance_id}/corporations/", pathParams, query, headers, &result)
@@ -49,8 +58,12 @@ func (c *Client) GetAllianceCorporations(ctx context.Context, allianceID int32, 
 // 路由: GET /alliances/{alliance_id}/icons/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAllianceIcons(ctx context.Context, allianceID int32, opts ...RequestOption) (*models.AllianceIcons, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetAllianceIcons(ctx context.Context, allianceID int32, ifNoneMatch string) (*models.AllianceIcons, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result *models.AllianceIcons
 	err := c.get(ctx, "/alliances/{alliance_id}/icons/", pathParams, query, headers, &result)
@@ -67,8 +80,12 @@ func (c *Client) GetAllianceIcons(ctx context.Context, allianceID int32, opts ..
 // 路由: GET /alliances/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAlliances(ctx context.Context, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetAlliances(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/alliances/", pathParams, query, headers, &result)

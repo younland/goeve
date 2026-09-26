@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,15 @@ import (
 // 路由: GET /characters/{character_id}/attributes/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharacterAttributes(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterAttributes, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterAttributes(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterAttributes, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterAttributes
 	err := c.get(ctx, "/characters/{character_id}/attributes/", pathParams, query, headers, &result)
@@ -31,8 +39,15 @@ func (c *Client) GetCharacterAttributes(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/skillqueue/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skillqueue.v1
 // 权限: esi-skills.read_skillqueue.v1
-func (c *Client) GetCharacterSkillQueue(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.SkillQueueEntry, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterSkillQueue(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.SkillQueueEntry, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.SkillQueueEntry
 	err := c.get(ctx, "/characters/{character_id}/skillqueue/", pathParams, query, headers, &result)
@@ -49,8 +64,15 @@ func (c *Client) GetCharacterSkillQueue(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/skills/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharacterSkills(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterSkills, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterSkills(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterSkills, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterSkills
 	err := c.get(ctx, "/characters/{character_id}/skills/", pathParams, query, headers, &result)

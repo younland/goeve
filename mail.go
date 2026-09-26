@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,12 @@ import (
 // 路由: DELETE /characters/{character_id}/mail/labels/{label_id}/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) DeleteCharacterMailLabel(ctx context.Context, characterID int32, labelID int32, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) DeleteCharacterMailLabel(ctx context.Context, characterID int32, labelID int32, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "label_id": strconv.FormatInt(int64(labelID), 10)}
 	err := c.delete(ctx, "/characters/{character_id}/mail/labels/{label_id}/", pathParams, query, headers)
 	return err
@@ -27,8 +32,12 @@ func (c *Client) DeleteCharacterMailLabel(ctx context.Context, characterID int32
 // 路由: DELETE /characters/{character_id}/mail/{mail_id}/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) DeleteCharacterMail(ctx context.Context, characterID int32, mailID int32, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) DeleteCharacterMail(ctx context.Context, characterID int32, mailID int32, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "mail_id": strconv.FormatInt(int64(mailID), 10)}
 	err := c.delete(ctx, "/characters/{character_id}/mail/{mail_id}/", pathParams, query, headers)
 	return err
@@ -41,8 +50,21 @@ func (c *Client) DeleteCharacterMail(ctx context.Context, characterID int32, mai
 // 路由: GET /characters/{character_id}/mail/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.MailHeader, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, token string, labels []int32, lastMailID int32, ifNoneMatch string) ([]models.MailHeader, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	for _, v := range labels {
+		query.Add("labels", strconv.FormatInt(int64(v), 10))
+	}
+	if lastMailID != 0 {
+		query.Set("last_mail_id", strconv.FormatInt(int64(lastMailID), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.MailHeader
 	err := c.get(ctx, "/characters/{character_id}/mail/", pathParams, query, headers, &result)
@@ -59,8 +81,15 @@ func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, opts 
 // 路由: GET /characters/{character_id}/mail/labels/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, opts ...RequestOption) (*models.MailLabels, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.MailLabels, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.MailLabels
 	err := c.get(ctx, "/characters/{character_id}/mail/labels/", pathParams, query, headers, &result)
@@ -77,8 +106,15 @@ func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/mail/lists/ — 该路由缓存长达 120 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.MailingList, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.MailingList, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.MailingList
 	err := c.get(ctx, "/characters/{character_id}/mail/lists/", pathParams, query, headers, &result)
@@ -95,8 +131,15 @@ func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, o
 // 路由: GET /characters/{character_id}/mail/{mail_id}/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMail(ctx context.Context, characterID int32, mailID int32, opts ...RequestOption) (*models.Mail, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterMail(ctx context.Context, characterID int32, mailID int32, token string, ifNoneMatch string) (*models.Mail, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "mail_id": strconv.FormatInt(int64(mailID), 10)}
 	var result *models.Mail
 	err := c.get(ctx, "/characters/{character_id}/mail/{mail_id}/", pathParams, query, headers, &result)
@@ -113,8 +156,12 @@ func (c *Client) GetCharacterMail(ctx context.Context, characterID int32, mailID
 // 路由: POST /characters/{character_id}/mail/
 // Scopes: esi-mail.send_mail.v1
 // 权限: esi-mail.send_mail.v1
-func (c *Client) SendCharacterMail(ctx context.Context, characterID int32, body *models.MailRequest, opts ...RequestOption) (int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) SendCharacterMail(ctx context.Context, characterID int32, body *models.MailRequest, token string) (int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
 		return 0, errBodyRequired
@@ -134,8 +181,12 @@ func (c *Client) SendCharacterMail(ctx context.Context, characterID int32, body 
 // 路由: POST /characters/{character_id}/mail/labels/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) CreateCharacterMailLabel(ctx context.Context, characterID int32, body *models.MailLabelRequest, opts ...RequestOption) (int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) CreateCharacterMailLabel(ctx context.Context, characterID int32, body *models.MailLabelRequest, token string) (int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
 		return 0, errBodyRequired
@@ -155,8 +206,12 @@ func (c *Client) CreateCharacterMailLabel(ctx context.Context, characterID int32
 // 路由: PUT /characters/{character_id}/mail/{mail_id}/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) UpdateCharacterMail(ctx context.Context, characterID int32, mailID int32, body *models.MailMetadata, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) UpdateCharacterMail(ctx context.Context, characterID int32, mailID int32, body *models.MailMetadata, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "mail_id": strconv.FormatInt(int64(mailID), 10)}
 	if body == nil {
 		return errBodyRequired

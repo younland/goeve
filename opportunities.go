@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,15 @@ import (
 // 路由: GET /characters/{character_id}/opportunities/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_opportunities.v1
 // 权限: esi-characters.read_opportunities.v1
-func (c *Client) GetCharacterOpportunities(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.OpportunityCompletion, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterOpportunities(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.OpportunityCompletion, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.OpportunityCompletion
 	err := c.get(ctx, "/characters/{character_id}/opportunities/", pathParams, query, headers, &result)
@@ -31,8 +39,12 @@ func (c *Client) GetCharacterOpportunities(ctx context.Context, characterID int3
 // 路由: GET /opportunities/groups/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetOpportunityGroups(ctx context.Context, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetOpportunityGroups(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/opportunities/groups/", pathParams, query, headers, &result)
@@ -49,8 +61,12 @@ func (c *Client) GetOpportunityGroups(ctx context.Context, opts ...RequestOption
 // 路由: GET /opportunities/groups/{group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetOpportunityGroup(ctx context.Context, groupID int32, opts ...RequestOption) (*models.OpportunityGroup, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetOpportunityGroup(ctx context.Context, groupID int32, ifNoneMatch string) (*models.OpportunityGroup, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupID), 10)}
 	var result *models.OpportunityGroup
 	err := c.get(ctx, "/opportunities/groups/{group_id}/", pathParams, query, headers, &result)
@@ -67,8 +83,12 @@ func (c *Client) GetOpportunityGroup(ctx context.Context, groupID int32, opts ..
 // 路由: GET /opportunities/tasks/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetOpportunityTasks(ctx context.Context, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetOpportunityTasks(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/opportunities/tasks/", pathParams, query, headers, &result)
@@ -85,8 +105,12 @@ func (c *Client) GetOpportunityTasks(ctx context.Context, opts ...RequestOption)
 // 路由: GET /opportunities/tasks/{task_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetOpportunityTask(ctx context.Context, taskID int32, opts ...RequestOption) (*models.OpportunityTask, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetOpportunityTask(ctx context.Context, taskID int32, ifNoneMatch string) (*models.OpportunityTask, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"task_id": strconv.FormatInt(int64(taskID), 10)}
 	var result *models.OpportunityTask
 	err := c.get(ctx, "/opportunities/tasks/{task_id}/", pathParams, query, headers, &result)

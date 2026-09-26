@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,15 @@ import (
 // 路由: GET /characters/{character_id}/location/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_location.v1
 // 权限: esi-location.read_location.v1
-func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterLocation, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterLocation, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterLocation
 	err := c.get(ctx, "/characters/{character_id}/location/", pathParams, query, headers, &result)
@@ -31,8 +39,15 @@ func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, op
 // 路由: GET /characters/{character_id}/online/ — 该路由缓存长达 60 秒
 // Scopes: esi-location.read_online.v1
 // 权限: esi-location.read_online.v1
-func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, opts ...RequestOption) (*models.OnlineStatus, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.OnlineStatus, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.OnlineStatus
 	err := c.get(ctx, "/characters/{character_id}/online/", pathParams, query, headers, &result)
@@ -49,8 +64,15 @@ func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, opts
 // 路由: GET /characters/{character_id}/ship/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_ship_type.v1
 // 权限: esi-location.read_ship_type.v1
-func (c *Client) GetCharacterShip(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterShip, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterShip(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterShip, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterShip
 	err := c.get(ctx, "/characters/{character_id}/ship/", pathParams, query, headers, &result)

@@ -13,7 +13,8 @@ A Go client library for the NetEase EVE Online EVE Swagger Interface (ESI), hand
 - Full coverage of all **204 ESI operations / 204 个 ESI 接口全覆盖** (38 modules: Character, Corporation, Universe, Market, Fleets, ...)
   覆盖全部 38 个模块：角色、军团、宇宙、市场、舰队等
 - Semantic method names (no mechanical operationId conversion / 方法名语义化命名，非 operationId 机械转换)
-- Functional options for all optional parameters / 全部可选参数函数式选项化（`...goeve.RequestOption`）
+- Explicit positional parameters: required business parameters plus optional ones (`token`, `page`, `ifNoneMatch`, filters) in a fixed order, zero value = omit
+  显式位置参数：必需业务参数在前，可选参数（`token`、`page`、`ifNoneMatch`、过滤器等）按固定顺序追加，零值表示不传
 - Bilingual godoc on every method, model and field (English + 简体中文) / 每个方法、模型、字段都有中英双语注释
 - Integrated NetEase EVE SSO OAuth2 token acquisition (implicit + authorization code + refresh) / 内置网易 EVE SSO OAuth2 令牌获取（隐式、授权码、刷新）
 - ETag / `If-None-Match` (304) support / ETag 缓存协商支持
@@ -43,9 +44,9 @@ Methods are called directly on the `Client`, and the source files are organized 
 
 (All 32 modules / 共 32 个模块，见 `goeve_iface.go`)
 
-Public endpoints need no token; required business parameters (IDs, `orderType`, ...) are positional, optional ones (page, ETag, language, filters) are `...goeve.RequestOption`:
+Public endpoints need no token; every method takes its path/business parameters explicitly, followed by optional ones in a fixed order — `token` (empty = client TokenSource / anonymous), `page` (0 = default), business filters, and finally `ifNoneMatch` (empty = no ETag):
 
-公开接口无需令牌；必需业务参数（ID、`orderType` 等）为位置参数，可选参数（分页、ETag、语言、过滤器等）为 `...goeve.RequestOption`：
+公开接口无需令牌；每个方法的参数显式传入：路径与业务必需参数在前，可选参数按固定顺序追加——`token`（空 = 使用客户端 TokenSource / 匿名）、`page`（0 = 默认第 1 页）、业务过滤参数，最后 `ifNoneMatch`（空 = 不传 ETag）：
 
 ```go
 package main
@@ -65,22 +66,22 @@ func main() {
     )
 
     // Server status / 服务器状态
-    status, err := client.GetServerStatus(context.Background())
+    status, err := client.GetServerStatus(context.Background(), "")
     if err != nil {
         log.Fatal(err)
     }
     log.Printf("players=%d version=%s", status.Players, status.ServerVersion)
 
     // Character public info / 角色公开信息
-    character, err := client.GetCharacter(context.Background(), 95234356)
+    character, err := client.GetCharacter(context.Background(), 95234356, "")
     if err != nil {
         log.Fatal(err)
     }
     log.Printf("name=%s corp=%d", character.Name, character.CorporationId)
 
-    // Market orders: regionID and orderType are positional, page is an option
-    // 市场订单：regionID 与 orderType 为位置参数，page 为函数选项
-    orders, err := client.GetMarketOrders(context.Background(), 10000002, "sell", goeve.WithPage(1))
+    // Market orders: regionID and orderType are business parameters, page and typeID optional
+    // 市场订单：regionID、orderType 为业务参数，page、typeID 为可选参数（0 = 不传）
+    orders, err := client.GetMarketOrders(context.Background(), 10000002, "sell", 1, 0, "")
     if err != nil {
         log.Fatal(err)
     }
@@ -113,8 +114,9 @@ token, err := goeve.GetTokenFromCode(context.Background(), code, goeve.Authorize
 ts := goeve.NewTokenSource(token)
 client := goeve.NewClient(goeve.WithTokenSource(ts))
 
-// 4. Call authenticated endpoints / 调用受保护接口
-balance, err := client.GetCharacterWalletBalance(context.Background(), characterID)
+// 4. Call authenticated endpoints: token "" uses the client's TokenSource
+//    调用受保护接口：token 传 "" 表示使用客户端 TokenSource（也可显式传 token.AccessToken）
+balance, err := client.GetCharacterWalletBalance(context.Background(), characterID, "", "")
 ```
 
 ### Implicit flow / 隐式模式
@@ -129,10 +131,7 @@ authURL := goeve.BuildAuthorizeURL(goeve.AuthorizeConfig{
     Scope:        "esi-location.read_location.v1",
 })
 token, err := goeve.ParseImplicitRedirect(redirectURL)
-
-// the token is passed per request on endpoints that require it
-// 需要授权的接口在调用时传入令牌（仅本次请求生效）
-character, err := client.GetCharacter(ctx, characterID, goeve.WithAuthToken(token.AccessToken))
+client := goeve.NewClient(goeve.WithTokenSource(goeve.NewTokenSource(token)))
 ```
 
 ### Refresh / 刷新
@@ -146,32 +145,36 @@ token, err := goeve.RefreshAccessToken(context.Background(), refreshToken)
 ## Pagination, ETag and language / 分页、ETag 与语言
 
 ```go
-// Pagination: loop WithPage until an empty page is returned
-// 分页：循环 WithPage 直至返回空页
+// Pagination: loop page (0 = default first page) until an empty page is returned
+// 分页：循环递增 page（0 = 默认第 1 页）直至返回空页
 page := int32(1)
 for {
-    mails, err := client.GetCharacterMails(ctx, characterID, goeve.WithPage(page))
+    assets, err := client.GetCharacterAssets(ctx, characterID, "", page, "")
     if err != nil {
         log.Fatal(err)
     }
-    if len(mails) == 0 {
+    if len(assets) == 0 {
         break // last page reached / 已到最后一页
     }
-    // ... process mails / 处理邮件 ...
+    // ... process assets / 处理资产 ...
     page++
 }
 
-// ETag negotiation: pass WithIfNoneMatch; on 304 the result is nil and err is nil
-// ETag 协商：传入 WithIfNoneMatch；服务器返回 304 时结果为 nil 且无错误
-mails, err := client.GetCharacterMails(ctx, characterID, goeve.WithIfNoneMatch(etag))
+// Mail has no page parameter: walk back with lastMailID (0 = from the newest)
+// 邮件接口没有 page 参数：用 lastMailID 回溯翻页（0 = 从最新开始）
+mails, err := client.GetCharacterMails(ctx, characterID, "", nil, lastMailID, "")
+
+// ETag negotiation: pass ifNoneMatch as the last argument; on 304 the result is nil and err is nil
+// ETag 协商：最后一个参数传 ETag；服务器返回 304 时结果为 nil 且无错误
+mails, err = client.GetCharacterMails(ctx, characterID, "", nil, 0, etag)
 if err == nil && mails == nil {
     // not modified / 数据未变化
 }
 
-// Language: client-level default, or per-request override
-// 语言：客户端级默认值，也可按请求覆盖
-client := goeve.NewClient(goeve.WithLanguage(goeve.LanguageChinese)) // all requests / 所有请求
-region, err := client.GetUniverseRegion(ctx, regionID, goeve.WithAcceptLanguage(goeve.LanguageEnglish))
+// Language: client-level WithLanguage applies Accept-Language to every request
+// 语言：客户端级 WithLanguage 为所有请求设置 Accept-Language
+client := goeve.NewClient(goeve.WithLanguage(goeve.LanguageChinese))
+region, err := client.GetUniverseRegion(ctx, regionID, "")
 ```
 
 ## Project structure / 项目结构
@@ -180,9 +183,10 @@ Hand-written, gocloak-style layout (no code generator / 无代码生成器，手
 
 ```
 goeve/
-├── client.go        # Client core: options, RequestOption helpers, resty v2 request pipeline
-│                    # 客户端核心：客户端选项、RequestOption 选项助手与请求管线
-├── goeve_iface.go   # ClientIface: all 204 methods, grouped by module 客户端接口（按模块分组）
+├── client.go        # Client core: client options, request pipeline (resty v2)
+│                    # 客户端核心：客户端选项与请求管线
+├── goeve_iface.go   # ClientIface: all 204 method signatures, grouped by module
+│                    # 客户端接口（按模块分组）
 ├── token.go         # NetEase EVE SSO OAuth2 (authorize/code/refresh/TokenSource)
 ├── errors.go        # APIError covering all ESI error models 结构化错误
 ├── models.go        # Shared constants (languages, datasource) 共享常量
@@ -195,14 +199,15 @@ goeve/
 
 Response types live in the `models` sub package and are referenced as
 `models.Character`, `models.MarketOrder`, `models.WalletJournalEntry`, etc.
-There are no per-method params structs: all optional parameters are expressed
-uniformly as `RequestOption` functional options (`WithPage`, `WithIfNoneMatch`,
-`WithAcceptLanguage`, ...).
+All request parameters are explicit positional arguments: after the required
+path/business parameters, optional ones are appended in a fixed order
+(`token`, `page`, business filters, `ifNoneMatch`), where a zero value
+(`""`, `0`, `nil`, `false`) means "do not send".
 
 响应类型位于 `models` 子包，以 `models.Character`、`models.MarketOrder`、
-`models.WalletJournalEntry` 等形式引用。不再有每方法独立的参数结构体：
-可选参数统一为 `RequestOption` 函数选项（`WithPage`、`WithIfNoneMatch`、
-`WithAcceptLanguage` 等）。
+`models.WalletJournalEntry` 等形式引用。所有请求参数均为显式位置参数：
+必需的路径/业务参数之后，按固定顺序追加可选参数（`token`、`page`、
+业务过滤参数、`ifNoneMatch`），零值（`""`、`0`、`nil`、`false`）表示不传。
 
 When CCP/NetEase publishes an updated spec, download it from
 `https://ali-esi.evepc.163.com/latest/swagger.json` for reference and extend the
@@ -213,7 +218,7 @@ corresponding module files.
 
 ## AI Skills / 智能体技能
 
-This repo ships an agent skill (`.agents/skills/goeve/SKILL.md`) that teaches coding agents how to use this library — endpoint lookup by module, SSO flow, functional-option conventions and error handling.
+This repo ships an agent skill (`.agents/skills/goeve/SKILL.md`) that teaches coding agents how to use this library — endpoint lookup by module, SSO flow, explicit-parameter conventions and error handling.
 
 本仓库内置智能体技能（`.agents/skills/goeve/SKILL.md`），向 Claude Code、Cursor、Kimi Code 等编程智能体传授本库用法。
 

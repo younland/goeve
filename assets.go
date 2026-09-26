@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,18 @@ import (
 // 路由: GET /characters/{character_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.CharacterAsset, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.CharacterAsset, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterAsset
 	err := c.get(ctx, "/characters/{character_id}/assets/", pathParams, query, headers, &result)
@@ -31,8 +42,18 @@ func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, opts
 // 路由: GET /corporations/{corporation_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationAsset, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationAsset, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationAsset
 	err := c.get(ctx, "/corporations/{corporation_id}/assets/", pathParams, query, headers, &result)
@@ -49,8 +70,12 @@ func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, 
 // 路由: POST /characters/{character_id}/assets/locations/
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharacterAssetLocations(ctx context.Context, characterID int32, body []int64, opts ...RequestOption) ([]models.AssetLocation, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterAssetLocations(ctx context.Context, characterID int32, body []int64, token string) ([]models.AssetLocation, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
 		return nil, errBodyRequired
@@ -70,8 +95,12 @@ func (c *Client) GetCharacterAssetLocations(ctx context.Context, characterID int
 // 路由: POST /characters/{character_id}/assets/names/
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharacterAssetNames(ctx context.Context, characterID int32, body []int64, opts ...RequestOption) ([]models.AssetName, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterAssetNames(ctx context.Context, characterID int32, body []int64, token string) ([]models.AssetName, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
 		return nil, errBodyRequired
@@ -91,8 +120,12 @@ func (c *Client) GetCharacterAssetNames(ctx context.Context, characterID int32, 
 // 路由: POST /corporations/{corporation_id}/assets/locations/
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationAssetLocations(ctx context.Context, corporationID int32, body []int64, opts ...RequestOption) ([]models.AssetLocation, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationAssetLocations(ctx context.Context, corporationID int32, body []int64, token string) ([]models.AssetLocation, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	if body == nil {
 		return nil, errBodyRequired
@@ -112,8 +145,12 @@ func (c *Client) GetCorporationAssetLocations(ctx context.Context, corporationID
 // 路由: POST /corporations/{corporation_id}/assets/names/
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationAssetNames(ctx context.Context, corporationID int32, body []int64, opts ...RequestOption) ([]models.AssetName, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationAssetNames(ctx context.Context, corporationID int32, body []int64, token string) ([]models.AssetName, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	if body == nil {
 		return nil, errBodyRequired

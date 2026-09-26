@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,18 @@ import (
 // 路由: GET /characters/{character_id}/bookmarks/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_character_bookmarks.v1
 // 权限: esi-bookmarks.read_character_bookmarks.v1
-func (c *Client) GetCharacterBookmarks(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.CharacterBookmark, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterBookmarks(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.CharacterBookmark, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterBookmark
 	err := c.get(ctx, "/characters/{character_id}/bookmarks/", pathParams, query, headers, &result)
@@ -31,8 +42,18 @@ func (c *Client) GetCharacterBookmarks(ctx context.Context, characterID int32, o
 // 路由: GET /characters/{character_id}/bookmarks/folders/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_character_bookmarks.v1
 // 权限: esi-bookmarks.read_character_bookmarks.v1
-func (c *Client) GetCharacterBookmarkFolders(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.CharacterBookmarkFolder, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCharacterBookmarkFolders(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.CharacterBookmarkFolder, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterBookmarkFolder
 	err := c.get(ctx, "/characters/{character_id}/bookmarks/folders/", pathParams, query, headers, &result)
@@ -49,8 +70,18 @@ func (c *Client) GetCharacterBookmarkFolders(ctx context.Context, characterID in
 // 路由: GET /corporations/{corporation_id}/bookmarks/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_corporation_bookmarks.v1
 // 权限: esi-bookmarks.read_corporation_bookmarks.v1
-func (c *Client) ListCorporationBookmarks(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationBookmark, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) ListCorporationBookmarks(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationBookmark, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationBookmark
 	err := c.get(ctx, "/corporations/{corporation_id}/bookmarks/", pathParams, query, headers, &result)
@@ -67,8 +98,18 @@ func (c *Client) ListCorporationBookmarks(ctx context.Context, corporationID int
 // 路由: GET /corporations/{corporation_id}/bookmarks/folders/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_corporation_bookmarks.v1
 // 权限: esi-bookmarks.read_corporation_bookmarks.v1
-func (c *Client) ListCorporationBookmarkFolders(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationBookmarkFolder, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) ListCorporationBookmarkFolders(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationBookmarkFolder, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationBookmarkFolder
 	err := c.get(ctx, "/corporations/{corporation_id}/bookmarks/folders/", pathParams, query, headers, &result)

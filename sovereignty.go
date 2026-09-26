@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 )
 
 // GetSovereigntyCampaigns List sovereignty campaigns.
@@ -12,8 +13,12 @@ import (
 // 路由: GET /sovereignty/campaigns/ — 该路由缓存长达 5 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSovereigntyCampaigns(ctx context.Context, opts ...RequestOption) ([]models.SovereigntyCampaign, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetSovereigntyCampaigns(ctx context.Context, ifNoneMatch string) ([]models.SovereigntyCampaign, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.SovereigntyCampaign
 	err := c.get(ctx, "/sovereignty/campaigns/", pathParams, query, headers, &result)
@@ -30,8 +35,12 @@ func (c *Client) GetSovereigntyCampaigns(ctx context.Context, opts ...RequestOpt
 // 路由: GET /sovereignty/map/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSovereigntyMap(ctx context.Context, opts ...RequestOption) ([]models.SovereigntySystem, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetSovereigntyMap(ctx context.Context, ifNoneMatch string) ([]models.SovereigntySystem, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.SovereigntySystem
 	err := c.get(ctx, "/sovereignty/map/", pathParams, query, headers, &result)
@@ -48,8 +57,12 @@ func (c *Client) GetSovereigntyMap(ctx context.Context, opts ...RequestOption) (
 // 路由: GET /sovereignty/structures/ — 该路由缓存长达 120 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSovereigntyStructures(ctx context.Context, opts ...RequestOption) ([]models.SovereigntyStructure, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetSovereigntyStructures(ctx context.Context, ifNoneMatch string) ([]models.SovereigntyStructure, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []models.SovereigntyStructure
 	err := c.get(ctx, "/sovereignty/structures/", pathParams, query, headers, &result)

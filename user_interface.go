@@ -2,6 +2,7 @@ package goeve
 
 import (
 	"context"
+	"net/url"
 	"strconv"
 
 	"github.com/younland/goeve/models"
@@ -14,8 +15,12 @@ import (
 // 路由: POST /ui/autopilot/waypoint/
 // Scopes: esi-ui.write_waypoint.v1
 // 权限: esi-ui.write_waypoint.v1
-func (c *Client) SetAutopilotWaypoint(ctx context.Context, addToBeginning bool, clearOtherWaypoints bool, destinationID int64, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) SetAutopilotWaypoint(ctx context.Context, addToBeginning bool, clearOtherWaypoints bool, destinationID int64, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	query.Set("add_to_beginning", strconv.FormatBool(addToBeginning))
 	query.Set("clear_other_waypoints", strconv.FormatBool(clearOtherWaypoints))
 	query.Set("destination_id", strconv.FormatInt(destinationID, 10))
@@ -31,8 +36,12 @@ func (c *Client) SetAutopilotWaypoint(ctx context.Context, addToBeginning bool, 
 // 路由: POST /ui/openwindow/contract/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenContractWindow(ctx context.Context, contractID string, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) OpenContractWindow(ctx context.Context, contractID string, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	query.Set("contract_id", contractID)
 	var pathParams map[string]string
 	err := c.post(ctx, "/ui/openwindow/contract/", pathParams, query, headers, nil, nil)
@@ -46,8 +55,12 @@ func (c *Client) OpenContractWindow(ctx context.Context, contractID string, opts
 // 路由: POST /ui/openwindow/information/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenInformationWindow(ctx context.Context, targetID string, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) OpenInformationWindow(ctx context.Context, targetID string, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	query.Set("target_id", targetID)
 	var pathParams map[string]string
 	err := c.post(ctx, "/ui/openwindow/information/", pathParams, query, headers, nil, nil)
@@ -61,8 +74,12 @@ func (c *Client) OpenInformationWindow(ctx context.Context, targetID string, opt
 // 路由: POST /ui/openwindow/marketdetails/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenMarketDetails(ctx context.Context, typeID string, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) OpenMarketDetails(ctx context.Context, typeID string, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	query.Set("type_id", typeID)
 	var pathParams map[string]string
 	err := c.post(ctx, "/ui/openwindow/marketdetails/", pathParams, query, headers, nil, nil)
@@ -76,8 +93,12 @@ func (c *Client) OpenMarketDetails(ctx context.Context, typeID string, opts ...R
 // 路由: POST /ui/openwindow/newmail/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenNewMailWindow(ctx context.Context, body *models.NewMailRequest, opts ...RequestOption) error {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) OpenNewMailWindow(ctx context.Context, body *models.NewMailRequest, token string) error {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
 	var pathParams map[string]string
 	if body == nil {
 		return errBodyRequired

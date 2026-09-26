@@ -3,6 +3,7 @@ package goeve
 import (
 	"context"
 	"github.com/younland/goeve/models"
+	"net/url"
 	"strconv"
 )
 
@@ -13,8 +14,12 @@ import (
 // 路由: GET /corporations/{corporation_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCorporationInformation(ctx context.Context, corporationID int32, opts ...RequestOption) (*models.Corporation, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationInformation(ctx context.Context, corporationID int32, ifNoneMatch string) (*models.Corporation, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result *models.Corporation
 	err := c.get(ctx, "/corporations/{corporation_id}/", pathParams, query, headers, &result)
@@ -31,8 +36,12 @@ func (c *Client) GetCorporationInformation(ctx context.Context, corporationID in
 // 路由: GET /corporations/{corporation_id}/alliancehistory/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCorporationAllianceHistory(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.AllianceHistoryEntry, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationAllianceHistory(ctx context.Context, corporationID int32, ifNoneMatch string) ([]models.AllianceHistoryEntry, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.AllianceHistoryEntry
 	err := c.get(ctx, "/corporations/{corporation_id}/alliancehistory/", pathParams, query, headers, &result)
@@ -49,8 +58,18 @@ func (c *Client) GetCorporationAllianceHistory(ctx context.Context, corporationI
 // 路由: GET /corporations/{corporation_id}/blueprints/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_blueprints.v1
 // 权限: esi-corporations.read_blueprints.v1
-func (c *Client) GetCorporationBlueprints(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.Blueprint, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationBlueprints(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.Blueprint, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.Blueprint
 	err := c.get(ctx, "/corporations/{corporation_id}/blueprints/", pathParams, query, headers, &result)
@@ -67,8 +86,18 @@ func (c *Client) GetCorporationBlueprints(ctx context.Context, corporationID int
 // 路由: GET /corporations/{corporation_id}/containers/logs/ — 该路由缓存长达 600 秒
 // Scopes: esi-corporations.read_container_logs.v1
 // 权限: esi-corporations.read_container_logs.v1
-func (c *Client) GetCorporationContainerLogs(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.ContainerLog, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationContainerLogs(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.ContainerLog, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.ContainerLog
 	err := c.get(ctx, "/corporations/{corporation_id}/containers/logs/", pathParams, query, headers, &result)
@@ -85,8 +114,15 @@ func (c *Client) GetCorporationContainerLogs(ctx context.Context, corporationID 
 // 路由: GET /corporations/{corporation_id}/divisions/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_divisions.v1
 // 权限: esi-corporations.read_divisions.v1
-func (c *Client) GetCorporationDivisions(ctx context.Context, corporationID int32, opts ...RequestOption) (*models.CorporationDivisions, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationDivisions(ctx context.Context, corporationID int32, token string, ifNoneMatch string) (*models.CorporationDivisions, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result *models.CorporationDivisions
 	err := c.get(ctx, "/corporations/{corporation_id}/divisions/", pathParams, query, headers, &result)
@@ -103,8 +139,15 @@ func (c *Client) GetCorporationDivisions(ctx context.Context, corporationID int3
 // 路由: GET /corporations/{corporation_id}/facilities/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_facilities.v1
 // 权限: esi-corporations.read_facilities.v1
-func (c *Client) GetCorporationFacilities(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationFacility, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationFacilities(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.CorporationFacility, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationFacility
 	err := c.get(ctx, "/corporations/{corporation_id}/facilities/", pathParams, query, headers, &result)
@@ -121,8 +164,12 @@ func (c *Client) GetCorporationFacilities(ctx context.Context, corporationID int
 // 路由: GET /corporations/{corporation_id}/icons/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCorporationIcon(ctx context.Context, corporationID int32, opts ...RequestOption) (*models.CorporationIcons, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationIcon(ctx context.Context, corporationID int32, ifNoneMatch string) (*models.CorporationIcons, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result *models.CorporationIcons
 	err := c.get(ctx, "/corporations/{corporation_id}/icons/", pathParams, query, headers, &result)
@@ -139,8 +186,18 @@ func (c *Client) GetCorporationIcon(ctx context.Context, corporationID int32, op
 // 路由: GET /corporations/{corporation_id}/medals/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_medals.v1
 // 权限: esi-corporations.read_medals.v1
-func (c *Client) GetCorporationMedals(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationMedal, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationMedals(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationMedal, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationMedal
 	err := c.get(ctx, "/corporations/{corporation_id}/medals/", pathParams, query, headers, &result)
@@ -157,8 +214,18 @@ func (c *Client) GetCorporationMedals(ctx context.Context, corporationID int32, 
 // 路由: GET /corporations/{corporation_id}/medals/issued/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_medals.v1
 // 权限: esi-corporations.read_medals.v1
-func (c *Client) GetCorporationIssuedMedals(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.IssuedMedal, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationIssuedMedals(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.IssuedMedal, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.IssuedMedal
 	err := c.get(ctx, "/corporations/{corporation_id}/medals/issued/", pathParams, query, headers, &result)
@@ -175,8 +242,15 @@ func (c *Client) GetCorporationIssuedMedals(ctx context.Context, corporationID i
 // 路由: GET /corporations/{corporation_id}/members/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_corporation_membership.v1
 // 权限: esi-corporations.read_corporation_membership.v1
-func (c *Client) GetCorporationMembers(ctx context.Context, corporationID int32, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationMembers(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []int32
 	err := c.get(ctx, "/corporations/{corporation_id}/members/", pathParams, query, headers, &result)
@@ -193,8 +267,15 @@ func (c *Client) GetCorporationMembers(ctx context.Context, corporationID int32,
 // 路由: GET /corporations/{corporation_id}/members/limit/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.track_members.v1
 // 权限: esi-corporations.track_members.v1
-func (c *Client) GetCorporationMemberLimit(ctx context.Context, corporationID int32, opts ...RequestOption) (int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationMemberLimit(ctx context.Context, corporationID int32, token string, ifNoneMatch string) (int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result int32
 	err := c.get(ctx, "/corporations/{corporation_id}/members/limit/", pathParams, query, headers, &result)
@@ -211,8 +292,15 @@ func (c *Client) GetCorporationMemberLimit(ctx context.Context, corporationID in
 // 路由: GET /corporations/{corporation_id}/members/titles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_titles.v1
 // 权限: esi-corporations.read_titles.v1
-func (c *Client) GetCorporationMemberTitles(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.MemberTitles, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationMemberTitles(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.MemberTitles, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.MemberTitles
 	err := c.get(ctx, "/corporations/{corporation_id}/members/titles/", pathParams, query, headers, &result)
@@ -229,8 +317,15 @@ func (c *Client) GetCorporationMemberTitles(ctx context.Context, corporationID i
 // 路由: GET /corporations/{corporation_id}/membertracking/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.track_members.v1
 // 权限: esi-corporations.track_members.v1
-func (c *Client) GetCorporationMemberTracking(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.MemberTrackingEntry, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationMemberTracking(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.MemberTrackingEntry, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.MemberTrackingEntry
 	err := c.get(ctx, "/corporations/{corporation_id}/membertracking/", pathParams, query, headers, &result)
@@ -247,8 +342,15 @@ func (c *Client) GetCorporationMemberTracking(ctx context.Context, corporationID
 // 路由: GET /corporations/{corporation_id}/roles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_corporation_membership.v1
 // 权限: esi-corporations.read_corporation_membership.v1
-func (c *Client) GetCorporationMemberRoles(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationMemberRoles, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationMemberRoles(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.CorporationMemberRoles, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationMemberRoles
 	err := c.get(ctx, "/corporations/{corporation_id}/roles/", pathParams, query, headers, &result)
@@ -265,8 +367,18 @@ func (c *Client) GetCorporationMemberRoles(ctx context.Context, corporationID in
 // 路由: GET /corporations/{corporation_id}/roles/history/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_corporation_membership.v1
 // 权限: esi-corporations.read_corporation_membership.v1
-func (c *Client) GetCorporationMemberRolesHistory(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationRoleHistory, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationMemberRolesHistory(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationRoleHistory, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationRoleHistory
 	err := c.get(ctx, "/corporations/{corporation_id}/roles/history/", pathParams, query, headers, &result)
@@ -283,8 +395,18 @@ func (c *Client) GetCorporationMemberRolesHistory(ctx context.Context, corporati
 // 路由: GET /corporations/{corporation_id}/shareholders/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_corporation_wallets.v1
 // 权限: esi-wallet.read_corporation_wallets.v1
-func (c *Client) GetCorporationShareholders(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.Shareholder, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationShareholders(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.Shareholder, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.Shareholder
 	err := c.get(ctx, "/corporations/{corporation_id}/shareholders/", pathParams, query, headers, &result)
@@ -301,8 +423,18 @@ func (c *Client) GetCorporationShareholders(ctx context.Context, corporationID i
 // 路由: GET /corporations/{corporation_id}/standings/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_standings.v1
 // 权限: esi-corporations.read_standings.v1
-func (c *Client) GetCorporationStandings(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.Standing, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationStandings(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.Standing, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.Standing
 	err := c.get(ctx, "/corporations/{corporation_id}/standings/", pathParams, query, headers, &result)
@@ -319,8 +451,18 @@ func (c *Client) GetCorporationStandings(ctx context.Context, corporationID int3
 // 路由: GET /corporations/{corporation_id}/starbases/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_starbases.v1
 // 权限: esi-corporations.read_starbases.v1
-func (c *Client) GetCorporationStarbases(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.Starbase, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationStarbases(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.Starbase, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.Starbase
 	err := c.get(ctx, "/corporations/{corporation_id}/starbases/", pathParams, query, headers, &result)
@@ -337,8 +479,15 @@ func (c *Client) GetCorporationStarbases(ctx context.Context, corporationID int3
 // 路由: GET /corporations/{corporation_id}/starbases/{starbase_id}/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_starbases.v1
 // 权限: esi-corporations.read_starbases.v1
-func (c *Client) GetCorporationStarbase(ctx context.Context, corporationID int32, starbaseID int64, systemID string, opts ...RequestOption) (*models.StarbaseDetail, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationStarbase(ctx context.Context, corporationID int32, starbaseID int64, systemID string, token string, ifNoneMatch string) (*models.StarbaseDetail, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	query.Set("system_id", systemID)
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10), "starbase_id": strconv.FormatInt(int64(starbaseID), 10)}
 	var result *models.StarbaseDetail
@@ -356,8 +505,18 @@ func (c *Client) GetCorporationStarbase(ctx context.Context, corporationID int32
 // 路由: GET /corporations/{corporation_id}/structures/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_structures.v1
 // 权限: esi-corporations.read_structures.v1
-func (c *Client) GetCorporationStructures(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationStructure, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationStructures(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationStructure, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if page > 0 {
+		query.Set("page", strconv.FormatInt(int64(page), 10))
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationStructure
 	err := c.get(ctx, "/corporations/{corporation_id}/structures/", pathParams, query, headers, &result)
@@ -374,8 +533,15 @@ func (c *Client) GetCorporationStructures(ctx context.Context, corporationID int
 // 路由: GET /corporations/{corporation_id}/titles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_titles.v1
 // 权限: esi-corporations.read_titles.v1
-func (c *Client) GetCorporationTitles(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationTitle, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetCorporationTitles(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.CorporationTitle, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
+	}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationTitle
 	err := c.get(ctx, "/corporations/{corporation_id}/titles/", pathParams, query, headers, &result)
@@ -392,8 +558,12 @@ func (c *Client) GetCorporationTitles(ctx context.Context, corporationID int32, 
 // 路由: GET /corporations/npccorps/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetNpcCorporations(ctx context.Context, opts ...RequestOption) ([]int32, error) {
-	query, headers := newRequestOptions(opts...)
+func (c *Client) GetNpcCorporations(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+	query := url.Values{}
+	headers := map[string]string{}
+	if ifNoneMatch != "" {
+		headers["If-None-Match"] = ifNoneMatch
+	}
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/corporations/npccorps/", pathParams, query, headers, &result)
