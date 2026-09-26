@@ -14,7 +14,7 @@ import (
 // 路由: DELETE /characters/{character_id}/mail/labels/{label_id}/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) DeleteCharacterMailLabel(ctx context.Context, characterID int32, labelID int32, token string) error {
+func (c *Client) DeleteCharacterMailLabel(ctx context.Context, token string, characterID int32, labelID int32) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -32,7 +32,7 @@ func (c *Client) DeleteCharacterMailLabel(ctx context.Context, characterID int32
 // 路由: DELETE /characters/{character_id}/mail/{mail_id}/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) DeleteCharacterMail(ctx context.Context, characterID int32, mailID int32, token string) error {
+func (c *Client) DeleteCharacterMail(ctx context.Context, token string, characterID int32, mailID int32) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -50,7 +50,7 @@ func (c *Client) DeleteCharacterMail(ctx context.Context, characterID int32, mai
 // 路由: GET /characters/{character_id}/mail/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, token string, labels []int32, lastMailID int32, ifNoneMatch ...string) ([]models.MailHeader, error) {
+func (c *Client) GetCharacterMails(ctx context.Context, token string, characterID int32, labels []int32, lastMailID int32, ifNoneMatch ...string) ([]models.MailHeader, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -81,7 +81,7 @@ func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, token
 // 路由: GET /characters/{character_id}/mail/labels/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.MailLabels, error) {
+func (c *Client) GetCharacterMailLabels(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.MailLabels, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -106,7 +106,7 @@ func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/mail/lists/ — 该路由缓存长达 120 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.MailingList, error) {
+func (c *Client) GetCharacterMailLists(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.MailingList, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -131,7 +131,7 @@ func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, t
 // 路由: GET /characters/{character_id}/mail/{mail_id}/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMail(ctx context.Context, characterID int32, mailID int32, token string, ifNoneMatch ...string) (*models.Mail, error) {
+func (c *Client) GetCharacterMail(ctx context.Context, token string, characterID int32, mailID int32, ifNoneMatch ...string) (*models.Mail, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -156,7 +156,7 @@ func (c *Client) GetCharacterMail(ctx context.Context, characterID int32, mailID
 // 路由: POST /characters/{character_id}/mail/
 // Scopes: esi-mail.send_mail.v1
 // 权限: esi-mail.send_mail.v1
-func (c *Client) SendCharacterMail(ctx context.Context, characterID int32, body *models.MailRequest, token string) (int32, error) {
+func (c *Client) SendCharacterMail(ctx context.Context, token string, characterID int32, body *models.MailRequest) (int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -181,7 +181,7 @@ func (c *Client) SendCharacterMail(ctx context.Context, characterID int32, body 
 // 路由: POST /characters/{character_id}/mail/labels/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) CreateCharacterMailLabel(ctx context.Context, characterID int32, body *models.MailLabelRequest, token string) (int32, error) {
+func (c *Client) CreateCharacterMailLabel(ctx context.Context, token string, characterID int32, body *models.MailLabelRequest) (int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -206,7 +206,7 @@ func (c *Client) CreateCharacterMailLabel(ctx context.Context, characterID int32
 // 路由: PUT /characters/{character_id}/mail/{mail_id}/
 // Scopes: esi-mail.organize_mail.v1
 // 权限: esi-mail.organize_mail.v1
-func (c *Client) UpdateCharacterMail(ctx context.Context, characterID int32, mailID int32, body *models.MailMetadata, token string) error {
+func (c *Client) UpdateCharacterMail(ctx context.Context, token string, characterID int32, mailID int32, body *models.MailMetadata) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

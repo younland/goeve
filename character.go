@@ -36,7 +36,7 @@ func (c *Client) GetCharacter(ctx context.Context, characterID int32, ifNoneMatc
 // 路由: GET /characters/{character_id}/agents_research/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_agents_research.v1
 // 权限: esi-characters.read_agents_research.v1
-func (c *Client) GetCharacterAgentsResearch(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.AgentResearch, error) {
+func (c *Client) GetCharacterAgentsResearch(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.AgentResearch, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -61,7 +61,7 @@ func (c *Client) GetCharacterAgentsResearch(ctx context.Context, characterID int
 // 路由: GET /characters/{character_id}/blueprints/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_blueprints.v1
 // 权限: esi-characters.read_blueprints.v1
-func (c *Client) GetCharacterBlueprints(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.Blueprint, error) {
+func (c *Client) GetCharacterBlueprints(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.Blueprint, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -111,7 +111,7 @@ func (c *Client) GetCharacterCorporationHistory(ctx context.Context, characterID
 // 路由: GET /characters/{character_id}/fatigue/ — 该路由缓存长达 300 秒
 // Scopes: esi-characters.read_fatigue.v1
 // 权限: esi-characters.read_fatigue.v1
-func (c *Client) GetCharacterJumpFatigue(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.JumpFatigue, error) {
+func (c *Client) GetCharacterJumpFatigue(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.JumpFatigue, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -136,7 +136,7 @@ func (c *Client) GetCharacterJumpFatigue(ctx context.Context, characterID int32,
 // 路由: GET /characters/{character_id}/medals/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_medals.v1
 // 权限: esi-characters.read_medals.v1
-func (c *Client) GetCharacterMedals(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Medal, error) {
+func (c *Client) GetCharacterMedals(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.Medal, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -161,7 +161,7 @@ func (c *Client) GetCharacterMedals(ctx context.Context, characterID int32, toke
 // 路由: GET /characters/{character_id}/notifications/ — 该路由缓存长达 600 秒
 // Scopes: esi-characters.read_notifications.v1
 // 权限: esi-characters.read_notifications.v1
-func (c *Client) GetCharacterNotifications(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Notification, error) {
+func (c *Client) GetCharacterNotifications(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.Notification, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -186,7 +186,7 @@ func (c *Client) GetCharacterNotifications(ctx context.Context, characterID int3
 // 路由: GET /characters/{character_id}/notifications/contacts/ — 该路由缓存长达 600 秒
 // Scopes: esi-characters.read_notifications.v1
 // 权限: esi-characters.read_notifications.v1
-func (c *Client) GetCharacterContactNotifications(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.ContactNotification, error) {
+func (c *Client) GetCharacterContactNotifications(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.ContactNotification, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -233,7 +233,7 @@ func (c *Client) GetCharacterPortrait(ctx context.Context, characterID int32, if
 // 路由: GET /characters/{character_id}/roles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_corporation_roles.v1
 // 权限: esi-characters.read_corporation_roles.v1
-func (c *Client) GetCharacterCorporationRoles(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterCorporationRoles, error) {
+func (c *Client) GetCharacterCorporationRoles(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.CharacterCorporationRoles, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -258,7 +258,7 @@ func (c *Client) GetCharacterCorporationRoles(ctx context.Context, characterID i
 // 路由: GET /characters/{character_id}/standings/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_standings.v1
 // 权限: esi-characters.read_standings.v1
-func (c *Client) GetCharacterStandings(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Standing, error) {
+func (c *Client) GetCharacterStandings(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.Standing, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -283,7 +283,7 @@ func (c *Client) GetCharacterStandings(ctx context.Context, characterID int32, t
 // 路由: GET /characters/{character_id}/titles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_titles.v1
 // 权限: esi-characters.read_titles.v1
-func (c *Client) GetCharacterCorporationTitles(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.CharacterTitle, error) {
+func (c *Client) GetCharacterCorporationTitles(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.CharacterTitle, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -330,7 +330,7 @@ func (c *Client) CharacterAffiliation(ctx context.Context, body []int32) ([]mode
 // 路由: POST /characters/{character_id}/cspa/
 // Scopes: esi-characters.read_contacts.v1
 // 权限: esi-characters.read_contacts.v1
-func (c *Client) CalculateCharacterCspaCharge(ctx context.Context, characterID int32, body []int32, token string) (float64, error) {
+func (c *Client) CalculateCharacterCspaCharge(ctx context.Context, token string, characterID int32, body []int32) (float64, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

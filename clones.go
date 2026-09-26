@@ -15,7 +15,7 @@ import (
 // 路由: GET /characters/{character_id}/clones/ — 该路由缓存长达 120 秒
 // Scopes: esi-clones.read_clones.v1
 // 权限: esi-clones.read_clones.v1
-func (c *Client) GetCharacterClones(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.Clones, error) {
+func (c *Client) GetCharacterClones(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.Clones, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -40,7 +40,7 @@ func (c *Client) GetCharacterClones(ctx context.Context, characterID int32, toke
 // 路由: GET /characters/{character_id}/implants/ — 该路由缓存长达 120 秒
 // Scopes: esi-clones.read_implants.v1
 // 权限: esi-clones.read_implants.v1
-func (c *Client) GetCharacterImplants(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]int32, error) {
+func (c *Client) GetCharacterImplants(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

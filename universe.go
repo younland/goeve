@@ -482,7 +482,7 @@ func (c *Client) GetPublicStructures(ctx context.Context, filter string, ifNoneM
 // 路由: GET /universe/structures/{structure_id}/ — 该路由缓存长达 3600 秒
 // Scopes: esi-universe.read_structures.v1
 // 权限: esi-universe.read_structures.v1
-func (c *Client) GetUniverseStructure(ctx context.Context, structureID int64, token string, ifNoneMatch ...string) (*models.UniverseStructure, error) {
+func (c *Client) GetUniverseStructure(ctx context.Context, token string, structureID int64, ifNoneMatch ...string) (*models.UniverseStructure, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

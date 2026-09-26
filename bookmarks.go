@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/bookmarks/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_character_bookmarks.v1
 // 权限: esi-bookmarks.read_character_bookmarks.v1
-func (c *Client) GetCharacterBookmarks(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.CharacterBookmark, error) {
+func (c *Client) GetCharacterBookmarks(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.CharacterBookmark, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -42,7 +42,7 @@ func (c *Client) GetCharacterBookmarks(ctx context.Context, characterID int32, t
 // 路由: GET /characters/{character_id}/bookmarks/folders/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_character_bookmarks.v1
 // 权限: esi-bookmarks.read_character_bookmarks.v1
-func (c *Client) GetCharacterBookmarkFolders(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.CharacterBookmarkFolder, error) {
+func (c *Client) GetCharacterBookmarkFolders(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.CharacterBookmarkFolder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -70,7 +70,7 @@ func (c *Client) GetCharacterBookmarkFolders(ctx context.Context, characterID in
 // 路由: GET /corporations/{corporation_id}/bookmarks/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_corporation_bookmarks.v1
 // 权限: esi-bookmarks.read_corporation_bookmarks.v1
-func (c *Client) ListCorporationBookmarks(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationBookmark, error) {
+func (c *Client) ListCorporationBookmarks(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.CorporationBookmark, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -98,7 +98,7 @@ func (c *Client) ListCorporationBookmarks(ctx context.Context, corporationID int
 // 路由: GET /corporations/{corporation_id}/bookmarks/folders/ — 该路由缓存长达 3600 秒
 // Scopes: esi-bookmarks.read_corporation_bookmarks.v1
 // 权限: esi-bookmarks.read_corporation_bookmarks.v1
-func (c *Client) ListCorporationBookmarkFolders(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationBookmarkFolder, error) {
+func (c *Client) ListCorporationBookmarkFolders(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.CorporationBookmarkFolder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

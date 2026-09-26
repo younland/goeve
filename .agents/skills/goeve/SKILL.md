@@ -33,7 +33,7 @@ grep goeve go.mod || go get github.com/younland/goeve
 |---|---|
 | 创建客户端 | `client := goeve.NewClient(goeve.WithTimeout(30*time.Second), goeve.WithDebug(true))`；客户端选项还有 `WithBaseURL` / `WithHTTPClient` / `WithTokenSource` / `WithLanguage`（默认 Accept-Language） |
 | 返回值 | 只有 `(result, error)`，不返回 `*resty.Response`。对象返回指针 `*models.Xxx`，数组返回切片 `[]models.Xxx`，204 响应只返回 `error` |
-| 参数 | 第一个参数永远是 `context.Context`；之后是**路径与业务必需参数**（如 `characterID`、`regionID, orderType`），**再按固定顺序追加可选参数**。签名以 `goeve_iface.go` 与方法 godoc 为准 |
+| 参数 | 第一个参数永远是 `context.Context`；**需授权接口的 `token` 紧随其后**（ctx 后第一位）；之后是**路径与业务必需参数**（如 `characterID`、`regionID, orderType`），**再按固定顺序追加可选参数**（`page`、业务过滤参数、变长 `ifNoneMatch`）。签名以 `goeve_iface.go` 与方法 godoc 为准 |
 | 零值约定 | `token ""` = 使用客户端 TokenSource / 匿名；`page 0` = 默认第 1 页；string 用 `""`、数值用 `0`、切片用 `nil`、bool 用 `false` 表示"不传该参数"；GET 方法的 ETag 变长参数直接省略即可 |
 | 命名 | 方法名已语义化（如 `get_characters_character_id` → `GetCharacter`，`get_markets_region_id_orders` → `GetMarketOrders`，`get_characters_character_id_wallet` → `GetCharacterWalletBalance`），**不要按 operationId 机械推导**，以 `goeve_iface.go` 与方法 godoc 为准 |
 | 类型 | ID 类型以 swagger 为准：character/alliance/corporation/region 是 `int32`，structure/fleet/killmail/starbase 相关多为 `int64`，不要凭习惯强转 |
@@ -42,8 +42,8 @@ grep goeve go.mod || go get github.com/younland/goeve
 
 没有请求选项、没有参数结构体——每个方法的全部参数都是显式位置参数，顺序固定：
 
-1. **路径参数 + 业务必需参数**（如 `characterID`、`regionID, orderType`、`killmailHash, killmailID`）
-2. **`token string`**：接口需要授权时存在；空字符串 = 使用客户端 TokenSource / 匿名；显式传入则优先于 TokenSource
+1. **`token string`**：仅需授权接口存在，且固定为 `ctx` 之后第一位；空字符串 = 使用客户端 TokenSource / 匿名；显式传入则优先于 TokenSource
+2. **路径参数 + 业务必需参数**（如 `characterID`、`regionID, orderType`、`killmailHash, killmailID`）
 3. **`page int32`**：支持分页的接口存在；0 = 不传（默认第 1 页）
 4. **该接口特有的可选业务查询参数**：按签名顺序排列，如 `fromID int64`、`typeID int32`、`maxWarID int32`、`includeCompleted bool`、`labels []int32`、`lastMailID int32`、`strict bool`、`watched bool`、`filter string`、`fromEvent int32`、`labelIDs []int32`、`avoid []int32`、`connections [][]int32`、`flag string`
 5. **`ifNoneMatch ...string`**：仅 GET 接口存在，且总是最后一个参数；**变长可选参数**——不传表示不做 ETag 协商，传一个 ETag 字符串则携带 If-None-Match 头，服务器返回 304 时结果为 nil + nil error
@@ -53,8 +53,8 @@ grep goeve go.mod || go get github.com/younland/goeve
 ```go
 GetServerStatus(ctx, ifNoneMatch ...string) (*models.ServerStatus, error)
 GetCharacter(ctx, characterID int32, ifNoneMatch ...string) (*models.Character, error)
-GetCharacterWalletBalance(ctx, characterID int32, token string, ifNoneMatch ...string) (float64, error)
-GetCharacterMails(ctx, characterID int32, token string, labels []int32, lastMailID int32, ifNoneMatch ...string) ([]models.MailHeader, error)
+GetCharacterWalletBalance(ctx, token string, characterID int32, ifNoneMatch ...string) (float64, error)
+GetCharacterMails(ctx, token string, characterID int32, labels []int32, lastMailID int32, ifNoneMatch ...string) ([]models.MailHeader, error)
 GetMarketOrders(ctx, regionID int32, orderType string, page int32, typeID int32, ifNoneMatch ...string) ([]models.MarketOrder, error)
 GetRoute(ctx, destination int32, origin int32, avoid []int32, connections [][]int32, flag string, ifNoneMatch ...string) ([]int32, error)
 GetWars(ctx, maxWarID int32, ifNoneMatch ...string) ([]int32, error)
@@ -98,13 +98,16 @@ if err != nil {
 }
 ```
 
-典型调用（注意必需参数与可选参数的固定顺序；GET 末尾的 ETag 变长参数可省略）：
+典型调用（注意参数固定顺序：ctx → token（仅授权接口）→ 路径/业务参数 → 可选参数）：
 
 ```go
-// 市场订单：regionID、orderType 是必需参数，page、typeID 依次追加（0 = 不传），不传 ETag
+// 受保护接口：token 紧跟 ctx，空串 = 使用客户端 TokenSource
+balance, err := client.GetCharacterWalletBalance(ctx, "", characterID)
+
+// 市场订单（公开接口无 token）：regionID、orderType 是必需参数，page、typeID 依次追加（0 = 不传），不传 ETag
 orders, err := client.GetMarketOrders(ctx, 10000002, "sell", 1, 0)
 
-// 路线规划：destination、origin 是必需参数（注意顺序），avoid/connections/flag 可选
+// 路线规划（公开）：destination、origin 是必需参数（注意顺序），avoid/connections/flag 可选
 route, err := client.GetRoute(ctx, 30002187, 30000142, []int32{30000144}, nil, "secure")
 
 // 带 ETag 的条件请求：把 ETag 作为最后一个变长参数传入
@@ -136,8 +139,8 @@ token, err := goeve.GetTokenFromCode(ctx, code, goeve.AuthorizeConfig{})
 // Step 3: 挂 TokenSource，access_token 过期自动用 refresh_token 续期
 client := goeve.NewClient(goeve.WithTokenSource(goeve.NewTokenSource(token)))
 
-// Step 4: 调用受保护接口：token 传 "" 走客户端 TokenSource（也可显式传 token.AccessToken）
-balance, err := client.GetCharacterWalletBalance(ctx, characterID, "")
+// Step 4: 调用受保护接口：ctx 后的 token 传 "" 走客户端 TokenSource（也可显式传 token.AccessToken）
+balance, err := client.GetCharacterWalletBalance(ctx, "", characterID)
 ```
 
 隐式流程（仅 20 分钟 access_token，无 refresh_token）：
@@ -171,7 +174,7 @@ if errors.As(err, &apiErr) && apiErr.StatusCode == 404 { /* 不存在 */ }
 1. **refresh_token 等同密码**：泄露等于账号失陷，必须安全存储；用户可在官网"ESI解除授权"解除。
 2. **scope 一次最多 4 个**，更多权限需分多次授权或多次跳转。
 3. **不要把 304 当错误**：nil + nil 就是"数据没变化"。
-4. **必须传 ctx**：所有方法第一个参数是 `context.Context`。
+4. **必须传 ctx**：所有方法第一个参数是 `context.Context`；需授权接口的 `token` 固定为 ctx 之后第一位，不要再把 token 放到路径参数后面。
 5. **可选参数不能省略**：`token`/`page`/业务过滤参数是固定位置参数，签名里有就要传，`token ""`、`page 0`、`nil` 切片表示"不传"；只有 GET 方法末尾的 ETag 变长参数可以整个省略；不写任何请求选项或参数结构体。
 6. **每个方法的可选参数集合不同**：以 `goeve_iface.go` 签名/godoc 为准（如 `GetCharacterMails` 没有 `page`，翻页用 `lastMailID`）。
 7. 方法所需 scope 标注在该方法的 godoc `Scopes:` 行，公开接口标注 `none (public endpoint)`。

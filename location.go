@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/location/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_location.v1
 // 权限: esi-location.read_location.v1
-func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterLocation, error) {
+func (c *Client) GetCharacterLocation(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.CharacterLocation, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -39,7 +39,7 @@ func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, to
 // 路由: GET /characters/{character_id}/online/ — 该路由缓存长达 60 秒
 // Scopes: esi-location.read_online.v1
 // 权限: esi-location.read_online.v1
-func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.OnlineStatus, error) {
+func (c *Client) GetCharacterOnline(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.OnlineStatus, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -64,7 +64,7 @@ func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, toke
 // 路由: GET /characters/{character_id}/ship/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_ship_type.v1
 // 权限: esi-location.read_ship_type.v1
-func (c *Client) GetCharacterShip(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterShip, error) {
+func (c *Client) GetCharacterShip(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.CharacterShip, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

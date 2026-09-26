@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.CharacterAsset, error) {
+func (c *Client) GetCharacterAssets(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.CharacterAsset, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -42,7 +42,7 @@ func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, toke
 // 路由: GET /corporations/{corporation_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationAsset, error) {
+func (c *Client) GetCorporationAssets(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.CorporationAsset, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -70,7 +70,7 @@ func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, 
 // 路由: POST /characters/{character_id}/assets/locations/
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharacterAssetLocations(ctx context.Context, characterID int32, body []int64, token string) ([]models.AssetLocation, error) {
+func (c *Client) GetCharacterAssetLocations(ctx context.Context, token string, characterID int32, body []int64) ([]models.AssetLocation, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -95,7 +95,7 @@ func (c *Client) GetCharacterAssetLocations(ctx context.Context, characterID int
 // 路由: POST /characters/{character_id}/assets/names/
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharacterAssetNames(ctx context.Context, characterID int32, body []int64, token string) ([]models.AssetName, error) {
+func (c *Client) GetCharacterAssetNames(ctx context.Context, token string, characterID int32, body []int64) ([]models.AssetName, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -120,7 +120,7 @@ func (c *Client) GetCharacterAssetNames(ctx context.Context, characterID int32, 
 // 路由: POST /corporations/{corporation_id}/assets/locations/
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationAssetLocations(ctx context.Context, corporationID int32, body []int64, token string) ([]models.AssetLocation, error) {
+func (c *Client) GetCorporationAssetLocations(ctx context.Context, token string, corporationID int32, body []int64) ([]models.AssetLocation, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -145,7 +145,7 @@ func (c *Client) GetCorporationAssetLocations(ctx context.Context, corporationID
 // 路由: POST /corporations/{corporation_id}/assets/names/
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationAssetNames(ctx context.Context, corporationID int32, body []int64, token string) ([]models.AssetName, error) {
+func (c *Client) GetCorporationAssetNames(ctx context.Context, token string, corporationID int32, body []int64) ([]models.AssetName, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

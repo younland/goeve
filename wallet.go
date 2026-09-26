@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/wallet/ — 该路由缓存长达 120 秒
 // Scopes: esi-wallet.read_character_wallet.v1
 // 权限: esi-wallet.read_character_wallet.v1
-func (c *Client) GetCharacterWalletBalance(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (float64, error) {
+func (c *Client) GetCharacterWalletBalance(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (float64, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -39,7 +39,7 @@ func (c *Client) GetCharacterWalletBalance(ctx context.Context, characterID int3
 // 路由: GET /characters/{character_id}/wallet/journal/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_character_wallet.v1
 // 权限: esi-wallet.read_character_wallet.v1
-func (c *Client) GetCharacterWalletJournal(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.WalletJournalEntry, error) {
+func (c *Client) GetCharacterWalletJournal(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.WalletJournalEntry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -67,7 +67,7 @@ func (c *Client) GetCharacterWalletJournal(ctx context.Context, characterID int3
 // 路由: GET /characters/{character_id}/wallet/transactions/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_character_wallet.v1
 // 权限: esi-wallet.read_character_wallet.v1
-func (c *Client) GetWalletTransactions(ctx context.Context, characterID int32, token string, fromID int64, ifNoneMatch ...string) ([]models.CharacterWalletTransaction, error) {
+func (c *Client) GetWalletTransactions(ctx context.Context, token string, characterID int32, fromID int64, ifNoneMatch ...string) ([]models.CharacterWalletTransaction, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -95,7 +95,7 @@ func (c *Client) GetWalletTransactions(ctx context.Context, characterID int32, t
 // 路由: GET /corporations/{corporation_id}/wallets/ — 该路由缓存长达 300 秒
 // Scopes: esi-wallet.read_corporation_wallets.v1
 // 权限: esi-wallet.read_corporation_wallets.v1
-func (c *Client) GetCorporationWallets(ctx context.Context, corporationID int32, token string, ifNoneMatch ...string) ([]models.CorporationWallet, error) {
+func (c *Client) GetCorporationWallets(ctx context.Context, token string, corporationID int32, ifNoneMatch ...string) ([]models.CorporationWallet, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -120,7 +120,7 @@ func (c *Client) GetCorporationWallets(ctx context.Context, corporationID int32,
 // 路由: GET /corporations/{corporation_id}/wallets/{division}/journal/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_corporation_wallets.v1
 // 权限: esi-wallet.read_corporation_wallets.v1
-func (c *Client) GetCorporationWalletJournal(ctx context.Context, corporationID int32, division int32, token string, page int32, ifNoneMatch ...string) ([]models.WalletJournalEntry, error) {
+func (c *Client) GetCorporationWalletJournal(ctx context.Context, token string, corporationID int32, division int32, page int32, ifNoneMatch ...string) ([]models.WalletJournalEntry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -148,7 +148,7 @@ func (c *Client) GetCorporationWalletJournal(ctx context.Context, corporationID 
 // 路由: GET /corporations/{corporation_id}/wallets/{division}/transactions/ — 该路由缓存长达 3600 秒
 // Scopes: esi-wallet.read_corporation_wallets.v1
 // 权限: esi-wallet.read_corporation_wallets.v1
-func (c *Client) GetCorporationWalletTransactions(ctx context.Context, corporationID int32, division int32, token string, fromID int64, ifNoneMatch ...string) ([]models.CorporationWalletTransaction, error) {
+func (c *Client) GetCorporationWalletTransactions(ctx context.Context, token string, corporationID int32, division int32, fromID int64, ifNoneMatch ...string) ([]models.CorporationWalletTransaction, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

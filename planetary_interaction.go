@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/planets/ — 该路由缓存长达 600 秒
 // Scopes: esi-planets.manage_planets.v1
 // 权限: esi-planets.manage_planets.v1
-func (c *Client) GetCharacterColonies(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Colony, error) {
+func (c *Client) GetCharacterColonies(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.Colony, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -39,7 +39,7 @@ func (c *Client) GetCharacterColonies(ctx context.Context, characterID int32, to
 // 路由: GET /characters/{character_id}/planets/{planet_id}/
 // Scopes: esi-planets.manage_planets.v1
 // 权限: esi-planets.manage_planets.v1
-func (c *Client) GetCharacterColonyLayout(ctx context.Context, characterID int32, planetID int32, token string, ifNoneMatch ...string) (*models.ColonyLayout, error) {
+func (c *Client) GetCharacterColonyLayout(ctx context.Context, token string, characterID int32, planetID int32, ifNoneMatch ...string) (*models.ColonyLayout, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -64,7 +64,7 @@ func (c *Client) GetCharacterColonyLayout(ctx context.Context, characterID int32
 // 路由: GET /corporations/{corporation_id}/customs_offices/ — 该路由缓存长达 3600 秒
 // Scopes: esi-planets.read_customs_offices.v1
 // 权限: esi-planets.read_customs_offices.v1
-func (c *Client) GetCorporationCustomsOffices(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CustomsOffice, error) {
+func (c *Client) GetCorporationCustomsOffices(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.CustomsOffice, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

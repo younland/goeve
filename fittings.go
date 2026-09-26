@@ -14,7 +14,7 @@ import (
 // 路由: DELETE /characters/{character_id}/fittings/{fitting_id}/
 // Scopes: esi-fittings.write_fittings.v1
 // 权限: esi-fittings.write_fittings.v1
-func (c *Client) DeleteCharacterFitting(ctx context.Context, characterID int32, fittingID int32, token string) error {
+func (c *Client) DeleteCharacterFitting(ctx context.Context, token string, characterID int32, fittingID int32) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -32,7 +32,7 @@ func (c *Client) DeleteCharacterFitting(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/fittings/ — 该路由缓存长达 300 秒
 // Scopes: esi-fittings.read_fittings.v1
 // 权限: esi-fittings.read_fittings.v1
-func (c *Client) GetCharacterFittings(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Fitting, error) {
+func (c *Client) GetCharacterFittings(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.Fitting, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -57,7 +57,7 @@ func (c *Client) GetCharacterFittings(ctx context.Context, characterID int32, to
 // 路由: POST /characters/{character_id}/fittings/
 // Scopes: esi-fittings.write_fittings.v1
 // 权限: esi-fittings.write_fittings.v1
-func (c *Client) CreateCharacterFitting(ctx context.Context, characterID int32, body *models.FittingRequest, token string) (*models.NewFitting, error) {
+func (c *Client) CreateCharacterFitting(ctx context.Context, token string, characterID int32, body *models.FittingRequest) (*models.NewFitting, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

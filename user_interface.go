@@ -15,7 +15,7 @@ import (
 // 路由: POST /ui/autopilot/waypoint/
 // Scopes: esi-ui.write_waypoint.v1
 // 权限: esi-ui.write_waypoint.v1
-func (c *Client) SetAutopilotWaypoint(ctx context.Context, addToBeginning bool, clearOtherWaypoints bool, destinationID int64, token string) error {
+func (c *Client) SetAutopilotWaypoint(ctx context.Context, token string, addToBeginning bool, clearOtherWaypoints bool, destinationID int64) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -36,7 +36,7 @@ func (c *Client) SetAutopilotWaypoint(ctx context.Context, addToBeginning bool, 
 // 路由: POST /ui/openwindow/contract/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenContractWindow(ctx context.Context, contractID string, token string) error {
+func (c *Client) OpenContractWindow(ctx context.Context, token string, contractID string) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -55,7 +55,7 @@ func (c *Client) OpenContractWindow(ctx context.Context, contractID string, toke
 // 路由: POST /ui/openwindow/information/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenInformationWindow(ctx context.Context, targetID string, token string) error {
+func (c *Client) OpenInformationWindow(ctx context.Context, token string, targetID string) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -74,7 +74,7 @@ func (c *Client) OpenInformationWindow(ctx context.Context, targetID string, tok
 // 路由: POST /ui/openwindow/marketdetails/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenMarketDetails(ctx context.Context, typeID string, token string) error {
+func (c *Client) OpenMarketDetails(ctx context.Context, token string, typeID string) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -93,7 +93,7 @@ func (c *Client) OpenMarketDetails(ctx context.Context, typeID string, token str
 // 路由: POST /ui/openwindow/newmail/
 // Scopes: esi-ui.open_window.v1
 // 权限: esi-ui.open_window.v1
-func (c *Client) OpenNewMailWindow(ctx context.Context, body *models.NewMailRequest, token string) error {
+func (c *Client) OpenNewMailWindow(ctx context.Context, token string, body *models.NewMailRequest) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

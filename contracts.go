@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/contracts/ — 该路由缓存长达 300 秒
 // Scopes: esi-contracts.read_character_contracts.v1
 // 权限: esi-contracts.read_character_contracts.v1
-func (c *Client) GetCharacterContracts(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.Contract, error) {
+func (c *Client) GetCharacterContracts(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.Contract, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -42,7 +42,7 @@ func (c *Client) GetCharacterContracts(ctx context.Context, characterID int32, t
 // 路由: GET /characters/{character_id}/contracts/{contract_id}/bids/ — 该路由缓存长达 300 秒
 // Scopes: esi-contracts.read_character_contracts.v1
 // 权限: esi-contracts.read_character_contracts.v1
-func (c *Client) GetCharacterContractBids(ctx context.Context, characterID int32, contractID int32, token string, ifNoneMatch ...string) ([]models.ContractBid, error) {
+func (c *Client) GetCharacterContractBids(ctx context.Context, token string, characterID int32, contractID int32, ifNoneMatch ...string) ([]models.ContractBid, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -67,7 +67,7 @@ func (c *Client) GetCharacterContractBids(ctx context.Context, characterID int32
 // 路由: GET /characters/{character_id}/contracts/{contract_id}/items/ — 该路由缓存长达 3600 秒
 // Scopes: esi-contracts.read_character_contracts.v1
 // 权限: esi-contracts.read_character_contracts.v1
-func (c *Client) GetCharacterContractItems(ctx context.Context, characterID int32, contractID int32, token string, ifNoneMatch ...string) ([]models.ContractItem, error) {
+func (c *Client) GetCharacterContractItems(ctx context.Context, token string, characterID int32, contractID int32, ifNoneMatch ...string) ([]models.ContractItem, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -92,7 +92,7 @@ func (c *Client) GetCharacterContractItems(ctx context.Context, characterID int3
 // 路由: GET /corporations/{corporation_id}/contracts/ — 该路由缓存长达 300 秒
 // Scopes: esi-contracts.read_corporation_contracts.v1
 // 权限: esi-contracts.read_corporation_contracts.v1
-func (c *Client) GetCorporationContracts(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.Contract, error) {
+func (c *Client) GetCorporationContracts(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.Contract, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -120,7 +120,7 @@ func (c *Client) GetCorporationContracts(ctx context.Context, corporationID int3
 // 路由: GET /corporations/{corporation_id}/contracts/{contract_id}/bids/ — 该路由缓存长达 3600 秒
 // Scopes: esi-contracts.read_corporation_contracts.v1
 // 权限: esi-contracts.read_corporation_contracts.v1
-func (c *Client) GetCorporationContractBids(ctx context.Context, contractID int32, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.ContractBid, error) {
+func (c *Client) GetCorporationContractBids(ctx context.Context, token string, contractID int32, corporationID int32, page int32, ifNoneMatch ...string) ([]models.ContractBid, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -148,7 +148,7 @@ func (c *Client) GetCorporationContractBids(ctx context.Context, contractID int3
 // 路由: GET /corporations/{corporation_id}/contracts/{contract_id}/items/ — 该路由缓存长达 3600 秒
 // Scopes: esi-contracts.read_corporation_contracts.v1
 // 权限: esi-contracts.read_corporation_contracts.v1
-func (c *Client) GetCorporationContractItems(ctx context.Context, contractID int32, corporationID int32, token string, ifNoneMatch ...string) ([]models.ContractItem, error) {
+func (c *Client) GetCorporationContractItems(ctx context.Context, token string, contractID int32, corporationID int32, ifNoneMatch ...string) ([]models.ContractItem, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

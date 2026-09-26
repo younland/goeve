@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/industry/jobs/ — 该路由缓存长达 300 秒
 // Scopes: esi-industry.read_character_jobs.v1
 // 权限: esi-industry.read_character_jobs.v1
-func (c *Client) GetCharacterIndustryJobs(ctx context.Context, characterID int32, token string, includeCompleted bool, ifNoneMatch ...string) ([]models.CharacterIndustryJob, error) {
+func (c *Client) GetCharacterIndustryJobs(ctx context.Context, token string, characterID int32, includeCompleted bool, ifNoneMatch ...string) ([]models.CharacterIndustryJob, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -42,7 +42,7 @@ func (c *Client) GetCharacterIndustryJobs(ctx context.Context, characterID int32
 // 路由: GET /characters/{character_id}/mining/ — 该路由缓存长达 600 秒
 // Scopes: esi-industry.read_character_mining.v1
 // 权限: esi-industry.read_character_mining.v1
-func (c *Client) GetCharacterMiningLedger(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.MiningLedgerEntry, error) {
+func (c *Client) GetCharacterMiningLedger(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.MiningLedgerEntry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -70,7 +70,7 @@ func (c *Client) GetCharacterMiningLedger(ctx context.Context, characterID int32
 // 路由: GET /corporation/{corporation_id}/mining/extractions/ — 该路由缓存长达 1800 秒
 // Scopes: esi-industry.read_corporation_mining.v1
 // 权限: esi-industry.read_corporation_mining.v1
-func (c *Client) GetCorporationMoonExtractions(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.MoonExtraction, error) {
+func (c *Client) GetCorporationMoonExtractions(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.MoonExtraction, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -98,7 +98,7 @@ func (c *Client) GetCorporationMoonExtractions(ctx context.Context, corporationI
 // 路由: GET /corporation/{corporation_id}/mining/observers/ — 该路由缓存长达 3600 秒
 // Scopes: esi-industry.read_corporation_mining.v1
 // 权限: esi-industry.read_corporation_mining.v1
-func (c *Client) GetCorporationMiningObservers(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.MiningObserver, error) {
+func (c *Client) GetCorporationMiningObservers(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.MiningObserver, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -126,7 +126,7 @@ func (c *Client) GetCorporationMiningObservers(ctx context.Context, corporationI
 // 路由: GET /corporation/{corporation_id}/mining/observers/{observer_id}/ — 该路由缓存长达 3600 秒
 // Scopes: esi-industry.read_corporation_mining.v1
 // 权限: esi-industry.read_corporation_mining.v1
-func (c *Client) GetCorporationMiningObserverData(ctx context.Context, corporationID int32, observerID int64, token string, page int32, ifNoneMatch ...string) ([]models.MiningObserverEntry, error) {
+func (c *Client) GetCorporationMiningObserverData(ctx context.Context, token string, corporationID int32, observerID int64, page int32, ifNoneMatch ...string) ([]models.MiningObserverEntry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -154,7 +154,7 @@ func (c *Client) GetCorporationMiningObserverData(ctx context.Context, corporati
 // 路由: GET /corporations/{corporation_id}/industry/jobs/ — 该路由缓存长达 300 秒
 // Scopes: esi-industry.read_corporation_jobs.v1
 // 权限: esi-industry.read_corporation_jobs.v1
-func (c *Client) GetCorporationIndustryJobs(ctx context.Context, corporationID int32, token string, page int32, includeCompleted bool, ifNoneMatch ...string) ([]models.CorporationIndustryJob, error) {
+func (c *Client) GetCorporationIndustryJobs(ctx context.Context, token string, corporationID int32, page int32, includeCompleted bool, ifNoneMatch ...string) ([]models.CorporationIndustryJob, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

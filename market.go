@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/orders/ — 该路由缓存长达 1200 秒
 // Scopes: esi-markets.read_character_orders.v1
 // 权限: esi-markets.read_character_orders.v1
-func (c *Client) GetCharacterMarketOrders(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.CharacterMarketOrder, error) {
+func (c *Client) GetCharacterMarketOrders(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.CharacterMarketOrder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -39,7 +39,7 @@ func (c *Client) GetCharacterMarketOrders(ctx context.Context, characterID int32
 // 路由: GET /characters/{character_id}/orders/history/ — 该路由缓存长达 3600 秒
 // Scopes: esi-markets.read_character_orders.v1
 // 权限: esi-markets.read_character_orders.v1
-func (c *Client) GetCharacterMarketOrderHistory(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.CharacterMarketOrderHistory, error) {
+func (c *Client) GetCharacterMarketOrderHistory(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.CharacterMarketOrderHistory, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -67,7 +67,7 @@ func (c *Client) GetCharacterMarketOrderHistory(ctx context.Context, characterID
 // 路由: GET /corporations/{corporation_id}/orders/ — 该路由缓存长达 1200 秒
 // Scopes: esi-markets.read_corporation_orders.v1
 // 权限: esi-markets.read_corporation_orders.v1
-func (c *Client) GetCorporationMarketOrders(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationMarketOrder, error) {
+func (c *Client) GetCorporationMarketOrders(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.CorporationMarketOrder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -95,7 +95,7 @@ func (c *Client) GetCorporationMarketOrders(ctx context.Context, corporationID i
 // 路由: GET /corporations/{corporation_id}/orders/history/ — 该路由缓存长达 3600 秒
 // Scopes: esi-markets.read_corporation_orders.v1
 // 权限: esi-markets.read_corporation_orders.v1
-func (c *Client) GetCorporationMarketOrderHistory(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationMarketOrderHistory, error) {
+func (c *Client) GetCorporationMarketOrderHistory(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.CorporationMarketOrderHistory, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -266,7 +266,7 @@ func (c *Client) GetMarketTypes(ctx context.Context, regionID int32, page int32,
 // 路由: GET /markets/structures/{structure_id}/ — 该路由缓存长达 300 秒
 // Scopes: esi-markets.structure_markets.v1
 // 权限: esi-markets.structure_markets.v1
-func (c *Client) GetStructureMarketOrders(ctx context.Context, structureID int64, token string, page int32, ifNoneMatch ...string) ([]models.StructureMarketOrder, error) {
+func (c *Client) GetStructureMarketOrders(ctx context.Context, token string, structureID int64, page int32, ifNoneMatch ...string) ([]models.StructureMarketOrder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/loyalty/points/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_loyalty.v1
 // 权限: esi-characters.read_loyalty.v1
-func (c *Client) GetCharacterLoyaltyPoints(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.LoyaltyPoints, error) {
+func (c *Client) GetCharacterLoyaltyPoints(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.LoyaltyPoints, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

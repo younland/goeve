@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/calendar/ — 该路由缓存长达 5 秒
 // Scopes: esi-calendar.read_calendar_events.v1
 // 权限: esi-calendar.read_calendar_events.v1
-func (c *Client) GetCharacterCalendarEvents(ctx context.Context, characterID int32, token string, fromEvent int32, ifNoneMatch ...string) ([]models.CalendarEventSummary, error) {
+func (c *Client) GetCharacterCalendarEvents(ctx context.Context, token string, characterID int32, fromEvent int32, ifNoneMatch ...string) ([]models.CalendarEventSummary, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -42,7 +42,7 @@ func (c *Client) GetCharacterCalendarEvents(ctx context.Context, characterID int
 // 路由: GET /characters/{character_id}/calendar/{event_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-calendar.read_calendar_events.v1
 // 权限: esi-calendar.read_calendar_events.v1
-func (c *Client) GetCalendarEvent(ctx context.Context, characterID int32, eventID int32, token string, ifNoneMatch ...string) (*models.CalendarEvent, error) {
+func (c *Client) GetCalendarEvent(ctx context.Context, token string, characterID int32, eventID int32, ifNoneMatch ...string) (*models.CalendarEvent, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -67,7 +67,7 @@ func (c *Client) GetCalendarEvent(ctx context.Context, characterID int32, eventI
 // 路由: GET /characters/{character_id}/calendar/{event_id}/attendees/ — 该路由缓存长达 600 秒
 // Scopes: esi-calendar.read_calendar_events.v1
 // 权限: esi-calendar.read_calendar_events.v1
-func (c *Client) GetCalendarEventAttendees(ctx context.Context, characterID int32, eventID int32, token string, ifNoneMatch ...string) ([]models.CalendarEventAttendee, error) {
+func (c *Client) GetCalendarEventAttendees(ctx context.Context, token string, characterID int32, eventID int32, ifNoneMatch ...string) ([]models.CalendarEventAttendee, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -92,7 +92,7 @@ func (c *Client) GetCalendarEventAttendees(ctx context.Context, characterID int3
 // 路由: PUT /characters/{character_id}/calendar/{event_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-calendar.respond_calendar_events.v1
 // 权限: esi-calendar.respond_calendar_events.v1
-func (c *Client) RespondToCalendarEvent(ctx context.Context, characterID int32, eventID int32, body *models.CalendarEventResponse, token string) error {
+func (c *Client) RespondToCalendarEvent(ctx context.Context, token string, characterID int32, eventID int32, body *models.CalendarEventResponse) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

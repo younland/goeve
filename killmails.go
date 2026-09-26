@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/killmails/recent/ — 该路由缓存长达 300 秒
 // Scopes: esi-killmails.read_killmails.v1
 // 权限: esi-killmails.read_killmails.v1
-func (c *Client) GetCharacterKillmails(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.KillmailRef, error) {
+func (c *Client) GetCharacterKillmails(ctx context.Context, token string, characterID int32, page int32, ifNoneMatch ...string) ([]models.KillmailRef, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -42,7 +42,7 @@ func (c *Client) GetCharacterKillmails(ctx context.Context, characterID int32, t
 // 路由: GET /corporations/{corporation_id}/killmails/recent/ — 该路由缓存长达 300 秒
 // Scopes: esi-killmails.read_corporation_killmails.v1
 // 权限: esi-killmails.read_corporation_killmails.v1
-func (c *Client) GetCorporationKillmails(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.KillmailRef, error) {
+func (c *Client) GetCorporationKillmails(ctx context.Context, token string, corporationID int32, page int32, ifNoneMatch ...string) ([]models.KillmailRef, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

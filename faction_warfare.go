@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/fw/stats/
 // Scopes: esi-characters.read_fw_stats.v1
 // 权限: esi-characters.read_fw_stats.v1
-func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterFactionWarfareStats, error) {
+func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.CharacterFactionWarfareStats, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -39,7 +39,7 @@ func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterI
 // 路由: GET /corporations/{corporation_id}/fw/stats/
 // Scopes: esi-corporations.read_fw_stats.v1
 // 权限: esi-corporations.read_fw_stats.v1
-func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, corporationID int32, token string, ifNoneMatch ...string) (*models.CorporationFactionWarfareStats, error) {
+func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, token string, corporationID int32, ifNoneMatch ...string) (*models.CorporationFactionWarfareStats, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

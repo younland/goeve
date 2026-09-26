@@ -180,11 +180,11 @@ func TestWithAuthTokenPerRequest(t *testing.T) {
 	client := NewClient(WithBaseURL(server.URL))
 
 	// empty token: no Authorization header / 空令牌：不携带 Authorization 头
-	if _, err := client.GetCharacterWalletBalance(context.Background(), 95234356, ""); err != nil {
+	if _, err := client.GetCharacterWalletBalance(context.Background(), "", 95234356); err != nil {
 		t.Fatalf("unauthenticated request failed: %v", err)
 	}
 	// explicit token: Bearer sent / 显式传入令牌：发送 Bearer
-	if _, err := client.GetCharacterWalletBalance(context.Background(), 95234356, "abc123", ""); err != nil {
+	if _, err := client.GetCharacterWalletBalance(context.Background(), "abc123", 95234356); err != nil {
 		t.Fatalf("authenticated request failed: %v", err)
 	}
 

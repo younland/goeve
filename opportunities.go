@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/opportunities/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_opportunities.v1
 // 权限: esi-characters.read_opportunities.v1
-func (c *Client) GetCharacterOpportunities(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.OpportunityCompletion, error) {
+func (c *Client) GetCharacterOpportunities(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) ([]models.OpportunityCompletion, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {

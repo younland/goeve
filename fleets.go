@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/fleet/ — 该路由缓存长达 60 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetCharacterFleet(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.FleetMembership, error) {
+func (c *Client) GetCharacterFleet(ctx context.Context, token string, characterID int32, ifNoneMatch ...string) (*models.FleetMembership, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -39,7 +39,7 @@ func (c *Client) GetCharacterFleet(ctx context.Context, characterID int32, token
 // 路由: GET /fleets/{fleet_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetFleet(ctx context.Context, fleetID int64, token string, ifNoneMatch ...string) (*models.Fleet, error) {
+func (c *Client) GetFleet(ctx context.Context, token string, fleetID int64, ifNoneMatch ...string) (*models.Fleet, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -64,7 +64,7 @@ func (c *Client) GetFleet(ctx context.Context, fleetID int64, token string, ifNo
 // 路由: PUT /fleets/{fleet_id}/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) UpdateFleetSettings(ctx context.Context, fleetID int64, body *models.FleetSettings, token string) error {
+func (c *Client) UpdateFleetSettings(ctx context.Context, token string, fleetID int64, body *models.FleetSettings) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -87,7 +87,7 @@ func (c *Client) UpdateFleetSettings(ctx context.Context, fleetID int64, body *m
 // 路由: GET /fleets/{fleet_id}/members/ — 该路由缓存长达 5 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetFleetMembers(ctx context.Context, fleetID int64, token string, ifNoneMatch ...string) ([]models.FleetMember, error) {
+func (c *Client) GetFleetMembers(ctx context.Context, token string, fleetID int64, ifNoneMatch ...string) ([]models.FleetMember, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -112,7 +112,7 @@ func (c *Client) GetFleetMembers(ctx context.Context, fleetID int64, token strin
 // 路由: POST /fleets/{fleet_id}/members/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) CreateFleetInvitation(ctx context.Context, fleetID int64, body *models.FleetInvitation, token string) error {
+func (c *Client) CreateFleetInvitation(ctx context.Context, token string, fleetID int64, body *models.FleetInvitation) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -133,7 +133,7 @@ func (c *Client) CreateFleetInvitation(ctx context.Context, fleetID int64, body 
 // 路由: DELETE /fleets/{fleet_id}/members/{member_id}/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) KickFleetMember(ctx context.Context, fleetID int64, memberID int32, token string) error {
+func (c *Client) KickFleetMember(ctx context.Context, token string, fleetID int64, memberID int32) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -153,7 +153,7 @@ func (c *Client) KickFleetMember(ctx context.Context, fleetID int64, memberID in
 // 路由: PUT /fleets/{fleet_id}/members/{member_id}/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) MoveFleetMember(ctx context.Context, fleetID int64, memberID int32, body *models.FleetMemberMovement, token string) error {
+func (c *Client) MoveFleetMember(ctx context.Context, token string, fleetID int64, memberID int32, body *models.FleetMemberMovement) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -176,7 +176,7 @@ func (c *Client) MoveFleetMember(ctx context.Context, fleetID int64, memberID in
 // 路由: DELETE /fleets/{fleet_id}/squads/{squad_id}/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) DeleteFleetSquad(ctx context.Context, fleetID int64, squadID int64, token string) error {
+func (c *Client) DeleteFleetSquad(ctx context.Context, token string, fleetID int64, squadID int64) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -196,7 +196,7 @@ func (c *Client) DeleteFleetSquad(ctx context.Context, fleetID int64, squadID in
 // 路由: PUT /fleets/{fleet_id}/squads/{squad_id}/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) RenameFleetSquad(ctx context.Context, fleetID int64, squadID int64, body *models.FleetNaming, token string) error {
+func (c *Client) RenameFleetSquad(ctx context.Context, token string, fleetID int64, squadID int64, body *models.FleetNaming) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -219,7 +219,7 @@ func (c *Client) RenameFleetSquad(ctx context.Context, fleetID int64, squadID in
 // 路由: GET /fleets/{fleet_id}/wings/ — 该路由缓存长达 5 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetFleetWings(ctx context.Context, fleetID int64, token string, ifNoneMatch ...string) ([]models.FleetWing, error) {
+func (c *Client) GetFleetWings(ctx context.Context, token string, fleetID int64, ifNoneMatch ...string) ([]models.FleetWing, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -244,7 +244,7 @@ func (c *Client) GetFleetWings(ctx context.Context, fleetID int64, token string,
 // 路由: POST /fleets/{fleet_id}/wings/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) CreateFleetWing(ctx context.Context, fleetID int64, token string) (*models.NewFleetWing, error) {
+func (c *Client) CreateFleetWing(ctx context.Context, token string, fleetID int64) (*models.NewFleetWing, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -266,7 +266,7 @@ func (c *Client) CreateFleetWing(ctx context.Context, fleetID int64, token strin
 // 路由: DELETE /fleets/{fleet_id}/wings/{wing_id}/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) DeleteFleetWing(ctx context.Context, fleetID int64, wingID int64, token string) error {
+func (c *Client) DeleteFleetWing(ctx context.Context, token string, fleetID int64, wingID int64) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -286,7 +286,7 @@ func (c *Client) DeleteFleetWing(ctx context.Context, fleetID int64, wingID int6
 // 路由: PUT /fleets/{fleet_id}/wings/{wing_id}/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) RenameFleetWing(ctx context.Context, fleetID int64, wingID int64, body *models.FleetNaming, token string) error {
+func (c *Client) RenameFleetWing(ctx context.Context, token string, fleetID int64, wingID int64, body *models.FleetNaming) error {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -309,7 +309,7 @@ func (c *Client) RenameFleetWing(ctx context.Context, fleetID int64, wingID int6
 // 路由: POST /fleets/{fleet_id}/wings/{wing_id}/squads/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) CreateFleetSquad(ctx context.Context, fleetID int64, wingID int64, token string) (*models.NewFleetSquad, error) {
+func (c *Client) CreateFleetSquad(ctx context.Context, token string, fleetID int64, wingID int64) (*models.NewFleetSquad, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
