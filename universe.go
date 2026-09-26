@@ -6,17 +6,17 @@ import (
 	"strconv"
 )
 
-// GetAncestries Get ancestries.
-// GetAncestries 获取血统.
+// GetUniverseAncestries Get ancestries.
+// GetUniverseAncestries 获取血统.
 //
 // Route: GET /universe/ancestries/
 // 路由: GET /universe/ancestries/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAncestries(ctx context.Context, params *models.GetAncestriesParams) ([]models.GetUniverseAncestries, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseAncestries(ctx context.Context, opts ...RequestOption) ([]models.UniverseAncestry, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result []models.GetUniverseAncestries
+	var result []models.UniverseAncestry
 	err := c.get(ctx, "/universe/ancestries/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -24,17 +24,17 @@ func (c *Client) GetAncestries(ctx context.Context, params *models.GetAncestries
 	return result, nil
 }
 
-// GetAsteroidBeltsAsteroidBeltId Get asteroid belt information.
-// GetAsteroidBeltsAsteroidBeltId 获取小行星带信息.
+// GetUniverseAsteroidBelt Get asteroid belt information.
+// GetUniverseAsteroidBelt 获取小行星带信息.
 //
 // Route: GET /universe/asteroid_belts/{asteroid_belt_id}/
 // 路由: GET /universe/asteroid_belts/{asteroid_belt_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAsteroidBeltsAsteroidBeltId(ctx context.Context, asteroidBeltId int32, params *models.GetAsteroidBeltsAsteroidBeltIdParams) (*models.GetUniverseAsteroidBeltsAsteroidBeltId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"asteroid_belt_id": strconv.FormatInt(int64(asteroidBeltId), 10)}
-	var result *models.GetUniverseAsteroidBeltsAsteroidBeltId
+func (c *Client) GetUniverseAsteroidBelt(ctx context.Context, asteroidBeltID int32, opts ...RequestOption) (*models.UniverseAsteroidBelt, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"asteroid_belt_id": strconv.FormatInt(int64(asteroidBeltID), 10)}
+	var result *models.UniverseAsteroidBelt
 	err := c.get(ctx, "/universe/asteroid_belts/{asteroid_belt_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -42,17 +42,17 @@ func (c *Client) GetAsteroidBeltsAsteroidBeltId(ctx context.Context, asteroidBel
 	return result, nil
 }
 
-// GetBloodlines Get bloodlines.
-// GetBloodlines 获取种族血脉.
+// GetUniverseBloodlines Get bloodlines.
+// GetUniverseBloodlines 获取种族血脉.
 //
 // Route: GET /universe/bloodlines/
 // 路由: GET /universe/bloodlines/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetBloodlines(ctx context.Context, params *models.GetBloodlinesParams) ([]models.GetUniverseBloodlines, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseBloodlines(ctx context.Context, opts ...RequestOption) ([]models.UniverseBloodline, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result []models.GetUniverseBloodlines
+	var result []models.UniverseBloodline
 	err := c.get(ctx, "/universe/bloodlines/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -60,15 +60,15 @@ func (c *Client) GetBloodlines(ctx context.Context, params *models.GetBloodlines
 	return result, nil
 }
 
-// GetCategories Get item categories.
-// GetCategories 获取物品类别.
+// GetUniverseCategories Get item categories.
+// GetUniverseCategories 获取物品类别.
 //
 // Route: GET /universe/categories/
 // 路由: GET /universe/categories/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCategories(ctx context.Context, params *models.GetCategoriesParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseCategories(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/universe/categories/", pathParams, query, headers, &result)
@@ -78,17 +78,17 @@ func (c *Client) GetCategories(ctx context.Context, params *models.GetCategories
 	return result, nil
 }
 
-// GetCategoriesCategoryId Get item category information.
-// GetCategoriesCategoryId 获取物品类别信息.
+// GetUniverseCategory Get item category information.
+// GetUniverseCategory 获取物品类别信息.
 //
 // Route: GET /universe/categories/{category_id}/
 // 路由: GET /universe/categories/{category_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCategoriesCategoryId(ctx context.Context, categoryId int32, params *models.GetCategoriesCategoryIdParams) (*models.GetUniverseCategoriesCategoryId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"category_id": strconv.FormatInt(int64(categoryId), 10)}
-	var result *models.GetUniverseCategoriesCategoryId
+func (c *Client) GetUniverseCategory(ctx context.Context, categoryID int32, opts ...RequestOption) (*models.UniverseCategory, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"category_id": strconv.FormatInt(int64(categoryID), 10)}
+	var result *models.UniverseCategory
 	err := c.get(ctx, "/universe/categories/{category_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -103,8 +103,8 @@ func (c *Client) GetCategoriesCategoryId(ctx context.Context, categoryId int32, 
 // 路由: GET /universe/constellations/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetConstellations(ctx context.Context, params *models.GetConstellationsParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetConstellations(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/universe/constellations/", pathParams, query, headers, &result)
@@ -114,17 +114,17 @@ func (c *Client) GetConstellations(ctx context.Context, params *models.GetConste
 	return result, nil
 }
 
-// GetConstellationsConstellationId Get constellation information.
-// GetConstellationsConstellationId 获取星座信息.
+// GetConstellationInformation Get constellation information.
+// GetConstellationInformation 获取星座信息.
 //
 // Route: GET /universe/constellations/{constellation_id}/
 // 路由: GET /universe/constellations/{constellation_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetConstellationsConstellationId(ctx context.Context, constellationId int32, params *models.GetConstellationsConstellationIdParams) (*models.GetUniverseConstellationsConstellationId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"constellation_id": strconv.FormatInt(int64(constellationId), 10)}
-	var result *models.GetUniverseConstellationsConstellationId
+func (c *Client) GetConstellationInformation(ctx context.Context, constellationID int32, opts ...RequestOption) (*models.UniverseConstellation, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"constellation_id": strconv.FormatInt(int64(constellationID), 10)}
+	var result *models.UniverseConstellation
 	err := c.get(ctx, "/universe/constellations/{constellation_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -132,17 +132,17 @@ func (c *Client) GetConstellationsConstellationId(ctx context.Context, constella
 	return result, nil
 }
 
-// GetFactions Get factions.
-// GetFactions 获取势力.
+// GetUniverseFactions Get factions.
+// GetUniverseFactions 获取势力.
 //
 // Route: GET /universe/factions/
 // 路由: GET /universe/factions/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactions(ctx context.Context, params *models.GetFactionsParams) ([]models.GetUniverseFactions, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseFactions(ctx context.Context, opts ...RequestOption) ([]models.UniverseFaction, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result []models.GetUniverseFactions
+	var result []models.UniverseFaction
 	err := c.get(ctx, "/universe/factions/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -150,15 +150,15 @@ func (c *Client) GetFactions(ctx context.Context, params *models.GetFactionsPara
 	return result, nil
 }
 
-// GetGraphics Get graphics.
-// GetGraphics 获取图形资源.
+// GetUniverseGraphics Get graphics.
+// GetUniverseGraphics 获取图形资源.
 //
 // Route: GET /universe/graphics/
 // 路由: GET /universe/graphics/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetGraphics(ctx context.Context, params *models.GetGraphicsParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseGraphics(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/universe/graphics/", pathParams, query, headers, &result)
@@ -168,17 +168,17 @@ func (c *Client) GetGraphics(ctx context.Context, params *models.GetGraphicsPara
 	return result, nil
 }
 
-// GetGraphicsGraphicId Get graphic information.
-// GetGraphicsGraphicId 获取图形资源信息.
+// GetUniverseGraphic Get graphic information.
+// GetUniverseGraphic 获取图形资源信息.
 //
 // Route: GET /universe/graphics/{graphic_id}/
 // 路由: GET /universe/graphics/{graphic_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetGraphicsGraphicId(ctx context.Context, graphicId int32, params *models.GetGraphicsGraphicIdParams) (*models.GetUniverseGraphicsGraphicId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"graphic_id": strconv.FormatInt(int64(graphicId), 10)}
-	var result *models.GetUniverseGraphicsGraphicId
+func (c *Client) GetUniverseGraphic(ctx context.Context, graphicID int32, opts ...RequestOption) (*models.UniverseGraphic, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"graphic_id": strconv.FormatInt(int64(graphicID), 10)}
+	var result *models.UniverseGraphic
 	err := c.get(ctx, "/universe/graphics/{graphic_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -186,15 +186,15 @@ func (c *Client) GetGraphicsGraphicId(ctx context.Context, graphicId int32, para
 	return result, nil
 }
 
-// GetGroups Get item groups.
-// GetGroups 获取物品分组.
+// GetUniverseGroups Get item groups.
+// GetUniverseGroups 获取物品分组.
 //
 // Route: GET /universe/groups/
 // 路由: GET /universe/groups/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetGroups(ctx context.Context, params *models.GetGroupsParamsX) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseGroups(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/universe/groups/", pathParams, query, headers, &result)
@@ -204,17 +204,17 @@ func (c *Client) GetGroups(ctx context.Context, params *models.GetGroupsParamsX)
 	return result, nil
 }
 
-// GetGroupsGroupId Get item group information.
-// GetGroupsGroupId 获取物品分组信息.
+// GetUniverseGroup Get item group information.
+// GetUniverseGroup 获取物品分组信息.
 //
 // Route: GET /universe/groups/{group_id}/
 // 路由: GET /universe/groups/{group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetGroupsGroupId(ctx context.Context, groupId int32, params *models.GetGroupsGroupIdParamsX) (*models.GetUniverseGroupsGroupId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupId), 10)}
-	var result *models.GetUniverseGroupsGroupId
+func (c *Client) GetUniverseGroup(ctx context.Context, groupID int32, opts ...RequestOption) (*models.UniverseGroup, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupID), 10)}
+	var result *models.UniverseGroup
 	err := c.get(ctx, "/universe/groups/{group_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -222,17 +222,17 @@ func (c *Client) GetGroupsGroupId(ctx context.Context, groupId int32, params *mo
 	return result, nil
 }
 
-// GetMoonsMoonId Get moon information.
-// GetMoonsMoonId 获取卫星信息.
+// GetUniverseMoon Get moon information.
+// GetUniverseMoon 获取卫星信息.
 //
 // Route: GET /universe/moons/{moon_id}/
 // 路由: GET /universe/moons/{moon_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMoonsMoonId(ctx context.Context, moonId int32, params *models.GetMoonsMoonIdParams) (*models.GetUniverseMoonsMoonId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"moon_id": strconv.FormatInt(int64(moonId), 10)}
-	var result *models.GetUniverseMoonsMoonId
+func (c *Client) GetUniverseMoon(ctx context.Context, moonID int32, opts ...RequestOption) (*models.UniverseMoon, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"moon_id": strconv.FormatInt(int64(moonID), 10)}
+	var result *models.UniverseMoon
 	err := c.get(ctx, "/universe/moons/{moon_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -240,17 +240,17 @@ func (c *Client) GetMoonsMoonId(ctx context.Context, moonId int32, params *model
 	return result, nil
 }
 
-// GetPlanetsPlanetId Get planet information.
-// GetPlanetsPlanetId 获取行星信息.
+// GetUniversePlanet Get planet information.
+// GetUniversePlanet 获取行星信息.
 //
 // Route: GET /universe/planets/{planet_id}/
 // 路由: GET /universe/planets/{planet_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetPlanetsPlanetId(ctx context.Context, planetId int32, params *models.GetPlanetsPlanetIdParams) (*models.GetUniversePlanetsPlanetId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"planet_id": strconv.FormatInt(int64(planetId), 10)}
-	var result *models.GetUniversePlanetsPlanetId
+func (c *Client) GetUniversePlanet(ctx context.Context, planetID int32, opts ...RequestOption) (*models.UniversePlanet, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"planet_id": strconv.FormatInt(int64(planetID), 10)}
+	var result *models.UniversePlanet
 	err := c.get(ctx, "/universe/planets/{planet_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -258,17 +258,17 @@ func (c *Client) GetPlanetsPlanetId(ctx context.Context, planetId int32, params 
 	return result, nil
 }
 
-// GetRaces Get character races.
-// GetRaces 获取角色种族.
+// GetUniverseRaces Get character races.
+// GetUniverseRaces 获取角色种族.
 //
 // Route: GET /universe/races/
 // 路由: GET /universe/races/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetRaces(ctx context.Context, params *models.GetRacesParams) ([]models.GetUniverseRaces, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseRaces(ctx context.Context, opts ...RequestOption) ([]models.UniverseRace, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result []models.GetUniverseRaces
+	var result []models.UniverseRace
 	err := c.get(ctx, "/universe/races/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -276,15 +276,15 @@ func (c *Client) GetRaces(ctx context.Context, params *models.GetRacesParams) ([
 	return result, nil
 }
 
-// GetRegions Get regions.
-// GetRegions 获取星域列表.
+// GetUniverseRegions Get regions.
+// GetUniverseRegions 获取星域列表.
 //
 // Route: GET /universe/regions/
 // 路由: GET /universe/regions/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetRegions(ctx context.Context, params *models.GetRegionsParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseRegions(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/universe/regions/", pathParams, query, headers, &result)
@@ -294,17 +294,17 @@ func (c *Client) GetRegions(ctx context.Context, params *models.GetRegionsParams
 	return result, nil
 }
 
-// GetRegionsRegionId Get region information.
-// GetRegionsRegionId 获取星域信息.
+// GetUniverseRegion Get region information.
+// GetUniverseRegion 获取星域信息.
 //
 // Route: GET /universe/regions/{region_id}/
 // 路由: GET /universe/regions/{region_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetRegionsRegionId(ctx context.Context, regionId int32, params *models.GetRegionsRegionIdParams) (*models.GetUniverseRegionsRegionId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionId), 10)}
-	var result *models.GetUniverseRegionsRegionId
+func (c *Client) GetUniverseRegion(ctx context.Context, regionID int32, opts ...RequestOption) (*models.UniverseRegion, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionID), 10)}
+	var result *models.UniverseRegion
 	err := c.get(ctx, "/universe/regions/{region_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -312,17 +312,17 @@ func (c *Client) GetRegionsRegionId(ctx context.Context, regionId int32, params 
 	return result, nil
 }
 
-// GetStargatesStargateId Get stargate information.
-// GetStargatesStargateId 获取星门信息.
+// GetUniverseStargate Get stargate information.
+// GetUniverseStargate 获取星门信息.
 //
 // Route: GET /universe/stargates/{stargate_id}/
 // 路由: GET /universe/stargates/{stargate_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStargatesStargateId(ctx context.Context, stargateId int32, params *models.GetStargatesStargateIdParams) (*models.GetUniverseStargatesStargateId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"stargate_id": strconv.FormatInt(int64(stargateId), 10)}
-	var result *models.GetUniverseStargatesStargateId
+func (c *Client) GetUniverseStargate(ctx context.Context, stargateID int32, opts ...RequestOption) (*models.UniverseStargate, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"stargate_id": strconv.FormatInt(int64(stargateID), 10)}
+	var result *models.UniverseStargate
 	err := c.get(ctx, "/universe/stargates/{stargate_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -330,17 +330,17 @@ func (c *Client) GetStargatesStargateId(ctx context.Context, stargateId int32, p
 	return result, nil
 }
 
-// GetStarsStarId Get star information.
-// GetStarsStarId 获取恒星信息.
+// GetUniverseStar Get star information.
+// GetUniverseStar 获取恒星信息.
 //
 // Route: GET /universe/stars/{star_id}/
 // 路由: GET /universe/stars/{star_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStarsStarId(ctx context.Context, starId int32, params *models.GetStarsStarIdParams) (*models.GetUniverseStarsStarId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"star_id": strconv.FormatInt(int64(starId), 10)}
-	var result *models.GetUniverseStarsStarId
+func (c *Client) GetUniverseStar(ctx context.Context, starID int32, opts ...RequestOption) (*models.UniverseStar, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"star_id": strconv.FormatInt(int64(starID), 10)}
+	var result *models.UniverseStar
 	err := c.get(ctx, "/universe/stars/{star_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -348,17 +348,17 @@ func (c *Client) GetStarsStarId(ctx context.Context, starId int32, params *model
 	return result, nil
 }
 
-// GetStationsStationId Get station information.
-// GetStationsStationId 获取空间站信息.
+// GetUniverseStation Get station information.
+// GetUniverseStation 获取空间站信息.
 //
 // Route: GET /universe/stations/{station_id}/
 // 路由: GET /universe/stations/{station_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStationsStationId(ctx context.Context, stationId int32, params *models.GetStationsStationIdParams) (*models.GetUniverseStationsStationId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"station_id": strconv.FormatInt(int64(stationId), 10)}
-	var result *models.GetUniverseStationsStationId
+func (c *Client) GetUniverseStation(ctx context.Context, stationID int32, opts ...RequestOption) (*models.UniverseStation, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"station_id": strconv.FormatInt(int64(stationID), 10)}
+	var result *models.UniverseStation
 	err := c.get(ctx, "/universe/stations/{station_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -366,15 +366,15 @@ func (c *Client) GetStationsStationId(ctx context.Context, stationId int32, para
 	return result, nil
 }
 
-// GetStructures List all public structures.
-// GetStructures 列出所有公开建筑.
+// GetPublicStructures List all public structures.
+// GetPublicStructures 列出所有公开建筑.
 //
 // Route: GET /universe/structures/ — This route is cached for up to 3600 seconds
 // 路由: GET /universe/structures/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStructures(ctx context.Context, params *models.GetStructuresParamsX) ([]int64, error) {
-	query, headers := params.Values()
+func (c *Client) GetPublicStructures(ctx context.Context, opts ...RequestOption) ([]int64, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int64
 	err := c.get(ctx, "/universe/structures/", pathParams, query, headers, &result)
@@ -384,17 +384,17 @@ func (c *Client) GetStructures(ctx context.Context, params *models.GetStructures
 	return result, nil
 }
 
-// GetStructuresStructureId Get structure information.
-// GetStructuresStructureId 获取建筑信息.
+// GetUniverseStructure Get structure information.
+// GetUniverseStructure 获取建筑信息.
 //
 // Route: GET /universe/structures/{structure_id}/ — This route is cached for up to 3600 seconds
 // 路由: GET /universe/structures/{structure_id}/ — 该路由缓存长达 3600 秒
 // Scopes: esi-universe.read_structures.v1
 // 权限: esi-universe.read_structures.v1
-func (c *Client) GetStructuresStructureId(ctx context.Context, structureId int64, params *models.GetStructuresStructureIdParams) (*models.GetUniverseStructuresStructureId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"structure_id": strconv.FormatInt(int64(structureId), 10)}
-	var result *models.GetUniverseStructuresStructureId
+func (c *Client) GetUniverseStructure(ctx context.Context, structureID int64, opts ...RequestOption) (*models.UniverseStructure, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"structure_id": strconv.FormatInt(int64(structureID), 10)}
+	var result *models.UniverseStructure
 	err := c.get(ctx, "/universe/structures/{structure_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -402,17 +402,17 @@ func (c *Client) GetStructuresStructureId(ctx context.Context, structureId int64
 	return result, nil
 }
 
-// GetSystemJumps Get system jumps.
-// GetSystemJumps 获取星系跃迁数.
+// GetUniverseSystemJumps Get system jumps.
+// GetUniverseSystemJumps 获取星系跃迁数.
 //
 // Route: GET /universe/system_jumps/ — This route is cached for up to 3600 seconds
 // 路由: GET /universe/system_jumps/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSystemJumps(ctx context.Context, params *models.GetSystemJumpsParams) ([]models.GetUniverseSystemJumps, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseSystemJumps(ctx context.Context, opts ...RequestOption) ([]models.UniverseSystemJump, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result []models.GetUniverseSystemJumps
+	var result []models.UniverseSystemJump
 	err := c.get(ctx, "/universe/system_jumps/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -420,17 +420,17 @@ func (c *Client) GetSystemJumps(ctx context.Context, params *models.GetSystemJum
 	return result, nil
 }
 
-// GetSystemKills Get system kills.
-// GetSystemKills 获取星系击杀数.
+// GetUniverseSystemKills Get system kills.
+// GetUniverseSystemKills 获取星系击杀数.
 //
 // Route: GET /universe/system_kills/ — This route is cached for up to 3600 seconds
 // 路由: GET /universe/system_kills/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSystemKills(ctx context.Context, params *models.GetSystemKillsParams) ([]models.GetUniverseSystemKills, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseSystemKills(ctx context.Context, opts ...RequestOption) ([]models.UniverseSystemKills, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result []models.GetUniverseSystemKills
+	var result []models.UniverseSystemKills
 	err := c.get(ctx, "/universe/system_kills/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -438,15 +438,15 @@ func (c *Client) GetSystemKills(ctx context.Context, params *models.GetSystemKil
 	return result, nil
 }
 
-// GetSystems Get solar systems.
-// GetSystems 获取星系列表.
+// GetUniverseSystems Get solar systems.
+// GetUniverseSystems 获取星系列表.
 //
 // Route: GET /universe/systems/
 // 路由: GET /universe/systems/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSystems(ctx context.Context, params *models.GetSystemsParamsX) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseSystems(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/universe/systems/", pathParams, query, headers, &result)
@@ -456,17 +456,17 @@ func (c *Client) GetSystems(ctx context.Context, params *models.GetSystemsParams
 	return result, nil
 }
 
-// GetSystemsSystemId Get solar system information.
-// GetSystemsSystemId 获取星系信息.
+// GetUniverseSystem Get solar system information.
+// GetUniverseSystem 获取星系信息.
 //
 // Route: GET /universe/systems/{system_id}/
 // 路由: GET /universe/systems/{system_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSystemsSystemId(ctx context.Context, systemId int32, params *models.GetSystemsSystemIdParams) (*models.GetUniverseSystemsSystemId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"system_id": strconv.FormatInt(int64(systemId), 10)}
-	var result *models.GetUniverseSystemsSystemId
+func (c *Client) GetUniverseSystem(ctx context.Context, systemID int32, opts ...RequestOption) (*models.UniverseSolarSystem, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"system_id": strconv.FormatInt(int64(systemID), 10)}
+	var result *models.UniverseSolarSystem
 	err := c.get(ctx, "/universe/systems/{system_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -474,15 +474,15 @@ func (c *Client) GetSystemsSystemId(ctx context.Context, systemId int32, params 
 	return result, nil
 }
 
-// GetTypes Get types.
-// GetTypes 获取类型列表.
+// GetUniverseTypes Get types.
+// GetUniverseTypes 获取类型列表.
 //
 // Route: GET /universe/types/
 // 路由: GET /universe/types/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetTypes(ctx context.Context, params *models.GetTypesParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetUniverseTypes(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/universe/types/", pathParams, query, headers, &result)
@@ -492,17 +492,17 @@ func (c *Client) GetTypes(ctx context.Context, params *models.GetTypesParams) ([
 	return result, nil
 }
 
-// GetTypesTypeId Get type information.
-// GetTypesTypeId 获取类型信息.
+// GetUniverseType Get type information.
+// GetUniverseType 获取类型信息.
 //
 // Route: GET /universe/types/{type_id}/
 // 路由: GET /universe/types/{type_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetTypesTypeId(ctx context.Context, typeId int32, params *models.GetTypesTypeIdParams) (*models.GetUniverseTypesTypeId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"type_id": strconv.FormatInt(int64(typeId), 10)}
-	var result *models.GetUniverseTypesTypeId
+func (c *Client) GetUniverseType(ctx context.Context, typeID int32, opts ...RequestOption) (*models.UniverseType, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"type_id": strconv.FormatInt(int64(typeID), 10)}
+	var result *models.UniverseType
 	err := c.get(ctx, "/universe/types/{type_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -510,20 +510,20 @@ func (c *Client) GetTypesTypeId(ctx context.Context, typeId int32, params *model
 	return result, nil
 }
 
-// PostIds Bulk names to IDs.
-// PostIds 批量将名称转换为 ID.
+// ResolveNamesToIDs Bulk names to IDs.
+// ResolveNamesToIDs 批量将名称转换为 ID.
 //
 // Route: POST /universe/ids/
 // 路由: POST /universe/ids/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) PostIds(ctx context.Context, body []string, params *models.PostIdsParams) (*models.PostUniverseIds, error) {
-	query, headers := params.Values()
+func (c *Client) ResolveNamesToIDs(ctx context.Context, body []string, opts ...RequestOption) (*models.ResolvedIds, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result *models.PostUniverseIds
+	var result *models.ResolvedIds
 	err := c.post(ctx, "/universe/ids/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err
@@ -531,20 +531,20 @@ func (c *Client) PostIds(ctx context.Context, body []string, params *models.Post
 	return result, nil
 }
 
-// PostNames Get names and categories for a set of IDs.
-// PostNames 按一组 ID 获取名称与类别.
+// ResolveIDsToNames Get names and categories for a set of IDs.
+// ResolveIDsToNames 按一组 ID 获取名称与类别.
 //
 // Route: POST /universe/names/
 // 路由: POST /universe/names/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) PostNames(ctx context.Context, body []int32, params *models.PostNamesParams) ([]models.PostUniverseNames, error) {
-	query, headers := params.Values()
+func (c *Client) ResolveIDsToNames(ctx context.Context, body []int32, opts ...RequestOption) ([]models.UniverseName, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result []models.PostUniverseNames
+	var result []models.UniverseName
 	err := c.post(ctx, "/universe/names/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err

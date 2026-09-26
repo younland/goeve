@@ -1,14 +1,12 @@
 package models
 
 import (
-	"net/url"
-	"strconv"
 	"time"
 )
 
-// GetCharactersCharacterIdKillmailsRecent 200 ok object.
-// GetCharactersCharacterIdKillmailsRecent 200 ok 对象.
-type GetCharactersCharacterIdKillmailsRecent struct {
+// KillmailRef 200 ok object.
+// KillmailRef 200 ok 对象.
+type KillmailRef struct {
 	// KillmailHash A hash of this killmail.
 	// KillmailHash 该击杀报告的哈希值.
 	KillmailHash string `json:"killmail_hash"`
@@ -17,20 +15,9 @@ type GetCharactersCharacterIdKillmailsRecent struct {
 	KillmailId int32 `json:"killmail_id"`
 }
 
-// GetCorporationsCorporationIdKillmailsRecent 200 ok object.
-// GetCorporationsCorporationIdKillmailsRecent 200 ok 对象.
-type GetCorporationsCorporationIdKillmailsRecent struct {
-	// KillmailHash A hash of this killmail.
-	// KillmailHash 该击杀报告的哈希值.
-	KillmailHash string `json:"killmail_hash"`
-	// KillmailId ID of this killmail.
-	// KillmailId 此击杀报告的 ID.
-	KillmailId int32 `json:"killmail_id"`
-}
-
-// GetKillmailsKillmailIdKillmailHashAttacker attacker object.
-// GetKillmailsKillmailIdKillmailHashAttacker 攻击者对象.
-type GetKillmailsKillmailIdKillmailHashAttacker struct {
+// KillmailAttacker attacker object.
+// KillmailAttacker 攻击者对象.
+type KillmailAttacker struct {
 	// AllianceId alliance_id integer.
 	// AllianceId 联盟 ID 整数.
 	AllianceId int32 `json:"alliance_id"`
@@ -60,9 +47,9 @@ type GetKillmailsKillmailIdKillmailHashAttacker struct {
 	WeaponTypeId int32 `json:"weapon_type_id"`
 }
 
-// GetKillmailsKillmailIdKillmailHashItem item object.
-// GetKillmailsKillmailIdKillmailHashItem 物品对象.
-type GetKillmailsKillmailIdKillmailHashItem struct {
+// KillmailItem item object.
+// KillmailItem 物品对象.
+type KillmailItem struct {
 	// Flag Flag for the location of the item.
 	// Flag 表示物品位置的标志.
 	Flag int32 `json:"flag"`
@@ -71,7 +58,7 @@ type GetKillmailsKillmailIdKillmailHashItem struct {
 	ItemTypeId int32 `json:"item_type_id"`
 	// Items items array.
 	// Items items 数组.
-	Items []GetKillmailsKillmailIdKillmailHashItemsItem `json:"items"`
+	Items []KillmailContainedItem `json:"items"`
 	// QuantityDestroyed How many of the item were destroyed if any.
 	// QuantityDestroyed 该物品被摧毁的数量（如有）
 	QuantityDestroyed int64 `json:"quantity_destroyed"`
@@ -83,9 +70,9 @@ type GetKillmailsKillmailIdKillmailHashItem struct {
 	Singleton int32 `json:"singleton"`
 }
 
-// GetKillmailsKillmailIdKillmailHashItemsItem item object.
-// GetKillmailsKillmailIdKillmailHashItemsItem 物品对象.
-type GetKillmailsKillmailIdKillmailHashItemsItem struct {
+// KillmailContainedItem item object.
+// KillmailContainedItem 物品对象.
+type KillmailContainedItem struct {
 	// Flag flag integer.
 	// Flag 位置标记整数.
 	Flag int32 `json:"flag"`
@@ -103,12 +90,12 @@ type GetKillmailsKillmailIdKillmailHashItemsItem struct {
 	Singleton int32 `json:"singleton"`
 }
 
-// GetKillmailsKillmailIdKillmailHash 200 ok object.
-// GetKillmailsKillmailIdKillmailHash 200 ok 对象.
-type GetKillmailsKillmailIdKillmailHash struct {
+// Killmail 200 ok object.
+// Killmail 200 ok 对象.
+type Killmail struct {
 	// Attackers attackers array.
 	// Attackers 攻击者数组.
-	Attackers []GetKillmailsKillmailIdKillmailHashAttacker `json:"attackers"`
+	Attackers []KillmailAttacker `json:"attackers"`
 	// KillmailId ID of the killmail.
 	// KillmailId 击杀报告 ID.
 	KillmailId int32 `json:"killmail_id"`
@@ -123,18 +110,18 @@ type GetKillmailsKillmailIdKillmailHash struct {
 	SolarSystemId int32 `json:"solar_system_id"`
 	// Supporters supporters array.
 	// Supporters 支持者列表 array.
-	Supporters []GetKillmailsKillmailIdKillmailHashSupporter `json:"supporters"`
+	Supporters []KillmailSupporter `json:"supporters"`
 	// Victim victim object.
 	// Victim victim 对象.
-	Victim GetKillmailsKillmailIdKillmailHashVictim `json:"victim"`
+	Victim KillmailVictim `json:"victim"`
 	// WarId War if the killmail is generated in relation to an official war.
 	// WarId 如果击杀报告因正式战争而产生，则对应的战争.
 	WarId int32 `json:"war_id"`
 }
 
-// GetKillmailsKillmailIdKillmailHashPosition Coordinates of the victim in Cartesian space relative to the Sun.
-// GetKillmailsKillmailIdKillmailHashPosition 受害者相对于太阳的笛卡尔空间坐标.
-type GetKillmailsKillmailIdKillmailHashPosition struct {
+// KillmailPosition Coordinates of the victim in Cartesian space relative to the Sun.
+// KillmailPosition 受害者相对于太阳的笛卡尔空间坐标.
+type KillmailPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -146,9 +133,9 @@ type GetKillmailsKillmailIdKillmailHashPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetKillmailsKillmailIdKillmailHashSupporter supporter object.
-// GetKillmailsKillmailIdKillmailHashSupporter 支持者 object.
-type GetKillmailsKillmailIdKillmailHashSupporter struct {
+// KillmailSupporter supporter object.
+// KillmailSupporter 支持者 object.
+type KillmailSupporter struct {
 	// AllianceId alliance_id integer.
 	// AllianceId 联盟 ID 整数.
 	AllianceId int32 `json:"alliance_id"`
@@ -178,9 +165,9 @@ type GetKillmailsKillmailIdKillmailHashSupporter struct {
 	ShipTypeId int32 `json:"ship_type_id"`
 }
 
-// GetKillmailsKillmailIdKillmailHashVictim victim object.
-// GetKillmailsKillmailIdKillmailHashVictim victim 对象.
-type GetKillmailsKillmailIdKillmailHashVictim struct {
+// KillmailVictim victim object.
+// KillmailVictim victim 对象.
+type KillmailVictim struct {
 	// AllianceId alliance_id integer.
 	// AllianceId 联盟 ID 整数.
 	AllianceId int32 `json:"alliance_id"`
@@ -198,143 +185,11 @@ type GetKillmailsKillmailIdKillmailHashVictim struct {
 	FactionId int32 `json:"faction_id"`
 	// Items items array.
 	// Items items 数组.
-	Items []GetKillmailsKillmailIdKillmailHashItem `json:"items"`
+	Items []KillmailItem `json:"items"`
 	// Position Coordinates of the victim in Cartesian space relative to the Sun.
 	// Position 受害者相对于太阳的笛卡尔空间坐标.
-	Position GetKillmailsKillmailIdKillmailHashPosition `json:"position"`
+	Position KillmailPosition `json:"position"`
 	// ShipTypeId The ship that the victim was piloting and was destroyed.
 	// ShipTypeId 受害者驾驶的、已被击毁的舰船.
 	ShipTypeId int32 `json:"ship_type_id"`
-}
-
-// GetCharactersCharacterIdKillmailsRecentParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdKillmailsRecentParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdKillmailsRecentParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdKillmailsRecentParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationsCorporationIdKillmailsRecentParams holds the optional query and header parameters of the request.
-// GetCorporationsCorporationIdKillmailsRecentParams 保存请求的可选查询与头部参数。
-type GetCorporationsCorporationIdKillmailsRecentParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationsCorporationIdKillmailsRecentParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetKillmailIdKillmailHashParams holds the optional query and header parameters of the request.
-// GetKillmailIdKillmailHashParams 保存请求的可选查询与头部参数。
-type GetKillmailIdKillmailHashParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetKillmailIdKillmailHashParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
 }

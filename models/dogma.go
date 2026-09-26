@@ -1,74 +1,8 @@
 package models
 
-import "net/url"
-
-// GetAttributesAttributeIdParams holds the optional query and header parameters of the request.
-// GetAttributesAttributeIdParams 保存请求的可选查询与头部参数。
-type GetAttributesAttributeIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetAttributesAttributeIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetAttributesParams holds the optional query and header parameters of the request.
-// GetAttributesParams 保存请求的可选查询与头部参数。
-type GetAttributesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetAttributesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetDogmaAttributesAttributeId 200 ok object.
-// GetDogmaAttributesAttributeId 200 ok 对象.
-type GetDogmaAttributesAttributeId struct {
+// DogmaAttribute 200 ok object.
+// DogmaAttribute 200 ok 对象.
+type DogmaAttribute struct {
 	// AttributeId attribute_id integer.
 	// AttributeId 属性 ID 整数.
 	AttributeId int32 `json:"attribute_id"`
@@ -101,9 +35,9 @@ type GetDogmaAttributesAttributeId struct {
 	UnitId int32 `json:"unit_id"`
 }
 
-// GetDogmaDynamicItemsTypeIdItemIdDogmaAttribute dogma_attribute object.
-// GetDogmaDynamicItemsTypeIdItemIdDogmaAttribute 教条属性对象.
-type GetDogmaDynamicItemsTypeIdItemIdDogmaAttribute struct {
+// DogmaAttributeValue dogma_attribute object.
+// DogmaAttributeValue 教条属性对象.
+type DogmaAttributeValue struct {
 	// AttributeId attribute_id integer.
 	// AttributeId 属性 ID 整数.
 	AttributeId int32 `json:"attribute_id"`
@@ -112,9 +46,9 @@ type GetDogmaDynamicItemsTypeIdItemIdDogmaAttribute struct {
 	Value float64 `json:"value"`
 }
 
-// GetDogmaDynamicItemsTypeIdItemIdDogmaEffect dogma_effect object.
-// GetDogmaDynamicItemsTypeIdItemIdDogmaEffect 教条效果对象.
-type GetDogmaDynamicItemsTypeIdItemIdDogmaEffect struct {
+// DogmaEffectValue dogma_effect object.
+// DogmaEffectValue 教条效果对象.
+type DogmaEffectValue struct {
 	// EffectId effect_id integer.
 	// EffectId 效果 ID 整数.
 	EffectId int32 `json:"effect_id"`
@@ -123,18 +57,18 @@ type GetDogmaDynamicItemsTypeIdItemIdDogmaEffect struct {
 	IsDefault bool `json:"is_default"`
 }
 
-// GetDogmaDynamicItemsTypeIdItemId 200 ok object.
-// GetDogmaDynamicItemsTypeIdItemId 200 ok 对象.
-type GetDogmaDynamicItemsTypeIdItemId struct {
+// DogmaDynamicItem 200 ok object.
+// DogmaDynamicItem 200 ok 对象.
+type DogmaDynamicItem struct {
 	// CreatedBy The ID of the character who created the item.
 	// CreatedBy 创建该物品的角色 ID.
 	CreatedBy int32 `json:"created_by"`
 	// DogmaAttributes dogma_attributes array.
 	// DogmaAttributes 教条属性数组.
-	DogmaAttributes []GetDogmaDynamicItemsTypeIdItemIdDogmaAttribute `json:"dogma_attributes"`
+	DogmaAttributes []DogmaAttributeValue `json:"dogma_attributes"`
 	// DogmaEffects dogma_effects array.
 	// DogmaEffects 教条效果数组.
-	DogmaEffects []GetDogmaDynamicItemsTypeIdItemIdDogmaEffect `json:"dogma_effects"`
+	DogmaEffects []DogmaEffectValue `json:"dogma_effects"`
 	// MutatorTypeId The type ID of the mutator used to generate the dynamic item.
 	// MutatorTypeId 用于生成动态物品的变换器（mutator）的 type ID。
 	MutatorTypeId int32 `json:"mutator_type_id"`
@@ -143,9 +77,9 @@ type GetDogmaDynamicItemsTypeIdItemId struct {
 	SourceTypeId int32 `json:"source_type_id"`
 }
 
-// GetDogmaEffectsEffectIdModifier modifier object.
-// GetDogmaEffectsEffectIdModifier modifier 对象.
-type GetDogmaEffectsEffectIdModifier struct {
+// DogmaEffectModifier modifier object.
+// DogmaEffectModifier modifier 对象.
+type DogmaEffectModifier struct {
 	// Domain domain string.
 	// Domain 作用域字符串.
 	Domain string `json:"domain"`
@@ -166,9 +100,9 @@ type GetDogmaEffectsEffectIdModifier struct {
 	Operator int32 `json:"operator"`
 }
 
-// GetDogmaEffectsEffectId 200 ok object.
-// GetDogmaEffectsEffectId 200 ok 对象.
-type GetDogmaEffectsEffectId struct {
+// DogmaEffect 200 ok object.
+// DogmaEffect 200 ok 对象.
+type DogmaEffect struct {
 	// Description description string.
 	// Description 描述字符串.
 	Description string `json:"description"`
@@ -210,7 +144,7 @@ type GetDogmaEffectsEffectId struct {
 	IsWarpSafe bool `json:"is_warp_safe"`
 	// Modifiers modifiers array.
 	// Modifiers modifiers 数组.
-	Modifiers []GetDogmaEffectsEffectIdModifier `json:"modifiers"`
+	Modifiers []DogmaEffectModifier `json:"modifiers"`
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
@@ -232,100 +166,4 @@ type GetDogmaEffectsEffectId struct {
 	// TrackingSpeedAttributeId tracking_speed_attribute_id integer.
 	// TrackingSpeedAttributeId tracking_speed_attribute_id 整数.
 	TrackingSpeedAttributeId int32 `json:"tracking_speed_attribute_id"`
-}
-
-// GetDynamicItemsTypeIdItemIdParams holds the optional query and header parameters of the request.
-// GetDynamicItemsTypeIdItemIdParams 保存请求的可选查询与头部参数。
-type GetDynamicItemsTypeIdItemIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetDynamicItemsTypeIdItemIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetEffectsEffectIdParams holds the optional query and header parameters of the request.
-// GetEffectsEffectIdParams 保存请求的可选查询与头部参数。
-type GetEffectsEffectIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetEffectsEffectIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetEffectsParams holds the optional query and header parameters of the request.
-// GetEffectsParams 保存请求的可选查询与头部参数。
-type GetEffectsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetEffectsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
 }

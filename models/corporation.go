@@ -1,14 +1,12 @@
 package models
 
 import (
-	"net/url"
-	"strconv"
 	"time"
 )
 
-// GetCorporationsCorporationIdAlliancehistory 200 ok object.
-// GetCorporationsCorporationIdAlliancehistory 200 ok 对象.
-type GetCorporationsCorporationIdAlliancehistory struct {
+// AllianceHistoryEntry 200 ok object.
+// AllianceHistoryEntry 200 ok 对象.
+type AllianceHistoryEntry struct {
 	// AllianceId alliance_id integer.
 	// AllianceId 联盟 ID 整数.
 	AllianceId int32 `json:"alliance_id"`
@@ -23,39 +21,9 @@ type GetCorporationsCorporationIdAlliancehistory struct {
 	StartDate time.Time `json:"start_date"`
 }
 
-// GetCorporationsCorporationIdBlueprints 200 ok object.
-// GetCorporationsCorporationIdBlueprints 200 ok 对象.
-type GetCorporationsCorporationIdBlueprints struct {
-	// ItemId Unique ID for this item.
-	// ItemId 此物品的唯一 ID。
-	ItemId int64 `json:"item_id"`
-	// LocationFlag Type of the location_id.
-	// LocationFlag location_id 的类型.
-	// Enum values: "AssetSafety", "AutoFit", "Bonus", "Booster", "BoosterBay", "Capsule", "Cargo", "CorpDeliveries", "CorpSAG1", "CorpSAG2", "CorpSAG3", "CorpSAG4", "CorpSAG5", "CorpSAG6", "CorpSAG7", "CrateLoot", "Deliveries", "DroneBay", "DustBattle", "DustDatabank", "FighterBay", "FighterTube0", "FighterTube1", "FighterTube2", "FighterTube3", "FighterTube4", "FleetHangar", "FrigateEscapeBay", "Hangar", "HangarAll", "HiSlot0", "HiSlot1", "HiSlot2", "HiSlot3", "HiSlot4", "HiSlot5", "HiSlot6", "HiSlot7", "HiddenModifiers", "Implant", "Impounded", "JunkyardReprocessed", "JunkyardTrashed", "LoSlot0", "LoSlot1", "LoSlot2", "LoSlot3", "LoSlot4", "LoSlot5", "LoSlot6", "LoSlot7", "Locked", "MedSlot0", "MedSlot1", "MedSlot2", "MedSlot3", "MedSlot4", "MedSlot5", "MedSlot6", "MedSlot7", "OfficeFolder", "Pilot", "PlanetSurface", "QuafeBay", "QuantumCoreRoom", "Reward", "RigSlot0", "RigSlot1", "RigSlot2", "RigSlot3", "RigSlot4", "RigSlot5", "RigSlot6", "RigSlot7", "SecondaryStorage", "ServiceSlot0", "ServiceSlot1", "ServiceSlot2", "ServiceSlot3", "ServiceSlot4", "ServiceSlot5", "ServiceSlot6", "ServiceSlot7", "ShipHangar", "ShipOffline", "Skill", "SkillInTraining", "SpecializedAmmoHold", "SpecializedCommandCenterHold", "SpecializedFuelBay", "SpecializedGasHold", "SpecializedIndustrialShipHold", "SpecializedLargeShipHold", "SpecializedMaterialBay", "SpecializedMediumShipHold", "SpecializedMineralHold", "SpecializedOreHold", "SpecializedPlanetaryCommoditiesHold", "SpecializedSalvageHold", "SpecializedShipHold", "SpecializedSmallShipHold", "StructureActive", "StructureFuel", "StructureInactive", "StructureOffline", "SubSystemBay", "SubSystemSlot0", "SubSystemSlot1", "SubSystemSlot2", "SubSystemSlot3", "SubSystemSlot4", "SubSystemSlot5", "SubSystemSlot6", "SubSystemSlot7", "Unlocked", "Wallet", "Wardrobe".
-	LocationFlag string `json:"location_flag"`
-	// LocationId References a station, a ship or an item_id if this blueprint is located within a container.
-	// LocationId 若蓝图位于集装箱内，则引用一个空间站、舰船或 item_id。
-	LocationId int64 `json:"location_id"`
-	// MaterialEfficiency Material Efficiency Level of the blueprint.
-	// MaterialEfficiency 蓝图的材料效率等级。
-	MaterialEfficiency int32 `json:"material_efficiency"`
-	// Quantity A range of numbers with a minimum of -2 and no maximum value where -1 is an original and -2 is a copy. It can be a positive integer if it is a stack of blueprint originals fresh from the market (e.g. no activities performed on them yet).
-	// Quantity 一个数值范围，最小值为 -2，无最大值，其中 -1 表示原版蓝图，-2 表示拷贝。如果是一叠刚从市场上买来的原版蓝图（例如尚未对其执行任何活动），则可以是正整数。
-	Quantity int32 `json:"quantity"`
-	// Runs Number of runs remaining if the blueprint is a copy, -1 if it is an original.
-	// Runs 若蓝图为拷贝则为其剩余运转次数，若为原始蓝图则为 -1。
-	Runs int32 `json:"runs"`
-	// TimeEfficiency Time Efficiency Level of the blueprint.
-	// TimeEfficiency 蓝图的时间效率等级。
-	TimeEfficiency int32 `json:"time_efficiency"`
-	// TypeId type_id integer.
-	// TypeId type_id 整数.
-	TypeId int32 `json:"type_id"`
-}
-
-// GetCorporationsCorporationIdContainersLogs 200 ok object.
-// GetCorporationsCorporationIdContainersLogs 200 ok 对象.
-type GetCorporationsCorporationIdContainersLogs struct {
+// ContainerLog 200 ok object.
+// ContainerLog 200 ok 对象.
+type ContainerLog struct {
 	// Action action string.
 	// Action 操作字符串.
 	// Enum values: "add", "assemble", "configure", "enter_password", "lock", "move", "repackage", "set_name", "set_password", "unlock".
@@ -97,9 +65,9 @@ type GetCorporationsCorporationIdContainersLogs struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCorporationsCorporationIdDivisionsHangarHangar hangar object.
-// GetCorporationsCorporationIdDivisionsHangarHangar 机库对象.
-type GetCorporationsCorporationIdDivisionsHangarHangar struct {
+// Division hangar object.
+// Division 机库对象.
+type Division struct {
 	// Division division integer.
 	// Division 部门整数.
 	Division int32 `json:"division"`
@@ -108,31 +76,20 @@ type GetCorporationsCorporationIdDivisionsHangarHangar struct {
 	Name string `json:"name"`
 }
 
-// GetCorporationsCorporationIdDivisions 200 ok object.
-// GetCorporationsCorporationIdDivisions 200 ok 对象.
-type GetCorporationsCorporationIdDivisions struct {
+// CorporationDivisions 200 ok object.
+// CorporationDivisions 200 ok 对象.
+type CorporationDivisions struct {
 	// Hangar hangar array.
 	// Hangar 机库数组.
-	Hangar []GetCorporationsCorporationIdDivisionsHangarHangar `json:"hangar"`
+	Hangar []Division `json:"hangar"`
 	// Wallet wallet array.
 	// Wallet 钱包数组.
-	Wallet []GetCorporationsCorporationIdDivisionsWalletWallet `json:"wallet"`
+	Wallet []Division `json:"wallet"`
 }
 
-// GetCorporationsCorporationIdDivisionsWalletWallet wallet object.
-// GetCorporationsCorporationIdDivisionsWalletWallet 钱包对象.
-type GetCorporationsCorporationIdDivisionsWalletWallet struct {
-	// Division division integer.
-	// Division 部门整数.
-	Division int32 `json:"division"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// GetCorporationsCorporationIdFacilities 200 ok object.
-// GetCorporationsCorporationIdFacilities 200 ok 对象.
-type GetCorporationsCorporationIdFacilities struct {
+// CorporationFacility 200 ok object.
+// CorporationFacility 200 ok 对象.
+type CorporationFacility struct {
 	// FacilityId facility_id integer.
 	// FacilityId 设施 ID 整数.
 	FacilityId int64 `json:"facility_id"`
@@ -144,9 +101,9 @@ type GetCorporationsCorporationIdFacilities struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCorporationsCorporationIdIcons 200 ok object.
-// GetCorporationsCorporationIdIcons 200 ok 对象.
-type GetCorporationsCorporationIdIcons struct {
+// CorporationIcons 200 ok object.
+// CorporationIcons 200 ok 对象.
+type CorporationIcons struct {
 	// Px128x128 px128x128 string.
 	// Px128x128 px128x128 字符串.
 	Px128x128 string `json:"px128x128"`
@@ -158,9 +115,9 @@ type GetCorporationsCorporationIdIcons struct {
 	Px64x64 string `json:"px64x64"`
 }
 
-// GetCorporationsCorporationIdMedals 200 ok object.
-// GetCorporationsCorporationIdMedals 200 ok 对象.
-type GetCorporationsCorporationIdMedals struct {
+// CorporationMedal 200 ok object.
+// CorporationMedal 200 ok 对象.
+type CorporationMedal struct {
 	// CreatedAt created_at string.
 	// CreatedAt 创建时间字符串.
 	CreatedAt time.Time `json:"created_at"`
@@ -178,9 +135,9 @@ type GetCorporationsCorporationIdMedals struct {
 	Title string `json:"title"`
 }
 
-// GetCorporationsCorporationIdMedalsIssued 200 ok object.
-// GetCorporationsCorporationIdMedalsIssued 200 ok 对象.
-type GetCorporationsCorporationIdMedalsIssued struct {
+// IssuedMedal 200 ok object.
+// IssuedMedal 200 ok 对象.
+type IssuedMedal struct {
 	// CharacterId ID of the character who was rewarded this medal.
 	// CharacterId 被授予此勋章的角色 ID.
 	CharacterId int32 `json:"character_id"`
@@ -202,9 +159,9 @@ type GetCorporationsCorporationIdMedalsIssued struct {
 	Status string `json:"status"`
 }
 
-// GetCorporationsCorporationIdMembersTitles 200 ok object.
-// GetCorporationsCorporationIdMembersTitles 200 ok 对象.
-type GetCorporationsCorporationIdMembersTitles struct {
+// MemberTitles 200 ok object.
+// MemberTitles 200 ok 对象.
+type MemberTitles struct {
 	// CharacterId character_id integer.
 	// CharacterId 角色 ID 整数.
 	CharacterId int32 `json:"character_id"`
@@ -213,9 +170,9 @@ type GetCorporationsCorporationIdMembersTitles struct {
 	Titles []int32 `json:"titles"`
 }
 
-// GetCorporationsCorporationIdMembertracking 200 ok object.
-// GetCorporationsCorporationIdMembertracking 200 ok 对象.
-type GetCorporationsCorporationIdMembertracking struct {
+// MemberTrackingEntry 200 ok object.
+// MemberTrackingEntry 200 ok 对象.
+type MemberTrackingEntry struct {
 	// BaseId base_id integer.
 	// BaseId 基地 ID 整数.
 	BaseId int32 `json:"base_id"`
@@ -239,9 +196,9 @@ type GetCorporationsCorporationIdMembertracking struct {
 	StartDate time.Time `json:"start_date"`
 }
 
-// GetCorporationsCorporationId 200 ok object.
-// GetCorporationsCorporationId 200 ok 对象.
-type GetCorporationsCorporationId struct {
+// Corporation 200 ok object.
+// Corporation 200 ok 对象.
+type Corporation struct {
 	// AllianceId ID of the alliance that corporation is a member of, if any.
 	// AllianceId 该军团所属联盟的 ID（如有）
 	AllianceId int32 `json:"alliance_id"`
@@ -286,9 +243,9 @@ type GetCorporationsCorporationId struct {
 	WarEligible bool `json:"war_eligible"`
 }
 
-// GetCorporationsCorporationIdRoles 200 ok object.
-// GetCorporationsCorporationIdRoles 200 ok 对象.
-type GetCorporationsCorporationIdRoles struct {
+// CorporationMemberRoles 200 ok object.
+// CorporationMemberRoles 200 ok 对象.
+type CorporationMemberRoles struct {
 	// CharacterId character_id integer.
 	// CharacterId 角色 ID 整数.
 	CharacterId int32 `json:"character_id"`
@@ -318,9 +275,9 @@ type GetCorporationsCorporationIdRoles struct {
 	RolesAtOther []string `json:"roles_at_other"`
 }
 
-// GetCorporationsCorporationIdRolesHistory 200 ok object.
-// GetCorporationsCorporationIdRolesHistory 200 ok 对象.
-type GetCorporationsCorporationIdRolesHistory struct {
+// CorporationRoleHistory 200 ok object.
+// CorporationRoleHistory 200 ok 对象.
+type CorporationRoleHistory struct {
 	// ChangedAt changed_at string.
 	// ChangedAt 变更时间字符串.
 	ChangedAt time.Time `json:"changed_at"`
@@ -342,9 +299,9 @@ type GetCorporationsCorporationIdRolesHistory struct {
 	RoleType string `json:"role_type"`
 }
 
-// GetCorporationsCorporationIdShareholders 200 ok object.
-// GetCorporationsCorporationIdShareholders 200 ok 对象.
-type GetCorporationsCorporationIdShareholders struct {
+// Shareholder 200 ok object.
+// Shareholder 200 ok 对象.
+type Shareholder struct {
 	// ShareCount share_count integer.
 	// ShareCount 股份数量 integer.
 	ShareCount int64 `json:"share_count"`
@@ -357,24 +314,9 @@ type GetCorporationsCorporationIdShareholders struct {
 	ShareholderType string `json:"shareholder_type"`
 }
 
-// GetCorporationsCorporationIdStandings 200 ok object.
-// GetCorporationsCorporationIdStandings 200 ok 对象.
-type GetCorporationsCorporationIdStandings struct {
-	// FromId from_id integer.
-	// FromId 发送者 ID 整数.
-	FromId int32 `json:"from_id"`
-	// FromType from_type string.
-	// FromType 发送者类型字符串.
-	// Enum values: "agent", "npc_corp", "faction".
-	FromType string `json:"from_type"`
-	// Standing standing number.
-	// Standing 声望 number.
-	Standing float64 `json:"standing"`
-}
-
-// GetCorporationsCorporationIdStarbases 200 ok object.
-// GetCorporationsCorporationIdStarbases 200 ok 对象.
-type GetCorporationsCorporationIdStarbases struct {
+// Starbase 200 ok object.
+// Starbase 200 ok 对象.
+type Starbase struct {
 	// MoonId The moon this starbase (POS) is anchored on, unanchored POSes do not have this information.
 	// MoonId 此母星基地（POS）锚定的卫星，未锚定的 POS 无此信息.
 	MoonId int32 `json:"moon_id"`
@@ -402,9 +344,9 @@ type GetCorporationsCorporationIdStarbases struct {
 	UnanchorAt time.Time `json:"unanchor_at"`
 }
 
-// GetCorporationsCorporationIdStarbasesStarbaseIdFuel fuel object.
-// GetCorporationsCorporationIdStarbasesStarbaseIdFuel 燃料对象.
-type GetCorporationsCorporationIdStarbasesStarbaseIdFuel struct {
+// StarbaseFuel fuel object.
+// StarbaseFuel 燃料对象.
+type StarbaseFuel struct {
 	// Quantity quantity integer.
 	// Quantity 数量 integer.
 	Quantity int32 `json:"quantity"`
@@ -413,9 +355,9 @@ type GetCorporationsCorporationIdStarbasesStarbaseIdFuel struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCorporationsCorporationIdStarbasesStarbaseId 200 ok object.
-// GetCorporationsCorporationIdStarbasesStarbaseId 200 ok 对象.
-type GetCorporationsCorporationIdStarbasesStarbaseId struct {
+// StarbaseDetail 200 ok object.
+// StarbaseDetail 200 ok 对象.
+type StarbaseDetail struct {
 	// AllowAllianceMembers allow_alliance_members boolean.
 	// AllowAllianceMembers 是否允许联盟成员布尔值.
 	AllowAllianceMembers bool `json:"allow_alliance_members"`
@@ -448,7 +390,7 @@ type GetCorporationsCorporationIdStarbasesStarbaseId struct {
 	FuelBayView string `json:"fuel_bay_view"`
 	// Fuels Fuel blocks and other things that will be consumed when operating a starbase (POS)
 	// Fuels 运营母星基地（POS）时将消耗的燃料块及其他物资.
-	Fuels []GetCorporationsCorporationIdStarbasesStarbaseIdFuel `json:"fuels"`
+	Fuels []StarbaseFuel `json:"fuels"`
 	// Offline Who can offline starbase (POS) and its structures.
 	// Offline 谁可以下线母星（POS）及其建筑.
 	// Enum values: "alliance_member", "config_starbase_equipment_role", "corporation_member", "starbase_fuel_technician_role".
@@ -466,9 +408,9 @@ type GetCorporationsCorporationIdStarbasesStarbaseId struct {
 	UseAllianceStandings bool `json:"use_alliance_standings"`
 }
 
-// GetCorporationsCorporationIdStructures 200 ok object.
-// GetCorporationsCorporationIdStructures 200 ok 对象.
-type GetCorporationsCorporationIdStructures struct {
+// CorporationStructure 200 ok object.
+// CorporationStructure 200 ok 对象.
+type CorporationStructure struct {
 	// CorporationId ID of the corporation that owns the structure.
 	// CorporationId 拥有此建筑的军团 ID.
 	CorporationId int32 `json:"corporation_id"`
@@ -492,7 +434,7 @@ type GetCorporationsCorporationIdStructures struct {
 	ReinforceHour int32 `json:"reinforce_hour"`
 	// Services Contains a list of service upgrades, and their state.
 	// Services 包含服务升级列表及其状态.
-	Services []GetCorporationsCorporationIdStructuresService `json:"services"`
+	Services []StructureService `json:"services"`
 	// State state string.
 	// State 状态 string.
 	// Enum values: "anchor_vulnerable", "anchoring", "armor_reinforce", "armor_vulnerable", "deploy_vulnerable", "fitting_invulnerable", "hull_reinforce", "hull_vulnerable", "online_deprecated", "onlining_vulnerable", "shield_vulnerable", "unanchored", "unknown".
@@ -517,9 +459,9 @@ type GetCorporationsCorporationIdStructures struct {
 	UnanchorsAt time.Time `json:"unanchors_at"`
 }
 
-// GetCorporationsCorporationIdStructuresService service object.
-// GetCorporationsCorporationIdStructuresService 服务 object.
-type GetCorporationsCorporationIdStructuresService struct {
+// StructureService service object.
+// StructureService 服务 object.
+type StructureService struct {
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
@@ -529,9 +471,9 @@ type GetCorporationsCorporationIdStructuresService struct {
 	State string `json:"state"`
 }
 
-// GetCorporationsCorporationIdTitles 200 ok object.
-// GetCorporationsCorporationIdTitles 200 ok 对象.
-type GetCorporationsCorporationIdTitles struct {
+// CorporationTitle 200 ok object.
+// CorporationTitle 200 ok 对象.
+type CorporationTitle struct {
 	// GrantableRoles grantable_roles array.
 	// GrantableRoles 可授予角色数组.
 	GrantableRoles []string `json:"grantable_roles"`
@@ -545,7 +487,7 @@ type GetCorporationsCorporationIdTitles struct {
 	// GrantableRolesAtOther 其他地点可授予角色数组.
 	GrantableRolesAtOther []string `json:"grantable_roles_at_other"`
 	// Name name string.
-	// Name name 字符串.
+	// Name 名称 string.
 	Name string `json:"name"`
 	// Roles roles array.
 	// Roles 角色列表 array.
@@ -562,978 +504,4 @@ type GetCorporationsCorporationIdTitles struct {
 	// TitleId title_id integer.
 	// TitleId title_id 整数.
 	TitleId int32 `json:"title_id"`
-}
-
-// GetCorporationIdAlliancehistoryParams holds the optional query and header parameters of the request.
-// GetCorporationIdAlliancehistoryParams 保存请求的可选查询与头部参数。
-type GetCorporationIdAlliancehistoryParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCorporationIdAlliancehistoryParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetCorporationIdBlueprintsParams holds the optional query and header parameters of the request.
-// GetCorporationIdBlueprintsParams 保存请求的可选查询与头部参数。
-type GetCorporationIdBlueprintsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdBlueprintsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdContainersLogsParams holds the optional query and header parameters of the request.
-// GetCorporationIdContainersLogsParams 保存请求的可选查询与头部参数。
-type GetCorporationIdContainersLogsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdContainersLogsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdDivisionsParams holds the optional query and header parameters of the request.
-// GetCorporationIdDivisionsParams 保存请求的可选查询与头部参数。
-type GetCorporationIdDivisionsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdDivisionsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdFacilitiesParams holds the optional query and header parameters of the request.
-// GetCorporationIdFacilitiesParams 保存请求的可选查询与头部参数。
-type GetCorporationIdFacilitiesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdFacilitiesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdIconsParams holds the optional query and header parameters of the request.
-// GetCorporationIdIconsParams 保存请求的可选查询与头部参数。
-type GetCorporationIdIconsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCorporationIdIconsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetCorporationIdMedalsParams holds the optional query and header parameters of the request.
-// GetCorporationIdMedalsParams 保存请求的可选查询与头部参数。
-type GetCorporationIdMedalsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdMedalsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdMedalsIssuedParams holds the optional query and header parameters of the request.
-// GetCorporationIdMedalsIssuedParams 保存请求的可选查询与头部参数。
-type GetCorporationIdMedalsIssuedParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdMedalsIssuedParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdMembersParams holds the optional query and header parameters of the request.
-// GetCorporationIdMembersParams 保存请求的可选查询与头部参数。
-type GetCorporationIdMembersParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdMembersParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdMembersLimitParams holds the optional query and header parameters of the request.
-// GetCorporationIdMembersLimitParams 保存请求的可选查询与头部参数。
-type GetCorporationIdMembersLimitParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdMembersLimitParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdMembersTitlesParams holds the optional query and header parameters of the request.
-// GetCorporationIdMembersTitlesParams 保存请求的可选查询与头部参数。
-type GetCorporationIdMembersTitlesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdMembersTitlesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdMembertrackingParams holds the optional query and header parameters of the request.
-// GetCorporationIdMembertrackingParams 保存请求的可选查询与头部参数。
-type GetCorporationIdMembertrackingParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdMembertrackingParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdParams holds the optional query and header parameters of the request.
-// GetCorporationIdParams 保存请求的可选查询与头部参数。
-type GetCorporationIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCorporationIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetCorporationIdRolesParams holds the optional query and header parameters of the request.
-// GetCorporationIdRolesParams 保存请求的可选查询与头部参数。
-type GetCorporationIdRolesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdRolesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdRolesHistoryParams holds the optional query and header parameters of the request.
-// GetCorporationIdRolesHistoryParams 保存请求的可选查询与头部参数。
-type GetCorporationIdRolesHistoryParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdRolesHistoryParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdShareholdersParams holds the optional query and header parameters of the request.
-// GetCorporationIdShareholdersParams 保存请求的可选查询与头部参数。
-type GetCorporationIdShareholdersParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdShareholdersParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdStandingsParams holds the optional query and header parameters of the request.
-// GetCorporationIdStandingsParams 保存请求的可选查询与头部参数。
-type GetCorporationIdStandingsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdStandingsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdStarbasesParams holds the optional query and header parameters of the request.
-// GetCorporationIdStarbasesParams 保存请求的可选查询与头部参数。
-type GetCorporationIdStarbasesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdStarbasesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdStarbasesStarbaseIdParams holds the optional query and header parameters of the request.
-// GetCorporationIdStarbasesStarbaseIdParams 保存请求的可选查询与头部参数。
-type GetCorporationIdStarbasesStarbaseIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// SystemId The solar system this starbase (POS) is located in,.
-	// SystemId 此母星基地（POS）所在的星系，.
-	SystemId *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdStarbasesStarbaseIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.SystemId != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("system_id", strconv.FormatInt(int64(*p.SystemId), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdStructuresParams holds the optional query and header parameters of the request.
-// GetCorporationIdStructuresParams 保存请求的可选查询与头部参数。
-type GetCorporationIdStructuresParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdStructuresParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationIdTitlesParams holds the optional query and header parameters of the request.
-// GetCorporationIdTitlesParams 保存请求的可选查询与头部参数。
-type GetCorporationIdTitlesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationIdTitlesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetNpccorpsParams holds the optional query and header parameters of the request.
-// GetNpccorpsParams 保存请求的可选查询与头部参数。
-type GetNpccorpsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetNpccorpsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
 }

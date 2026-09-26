@@ -1,488 +1,12 @@
 package models
 
 import (
-	"net/url"
-	"strconv"
 	"time"
 )
 
-// GetCharacterIdAgentsResearchParams holds the optional query and header parameters of the request.
-// GetCharacterIdAgentsResearchParams 保存请求的可选查询与头部参数。
-type GetCharacterIdAgentsResearchParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdAgentsResearchParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdBlueprintsParams holds the optional query and header parameters of the request.
-// GetCharacterIdBlueprintsParams 保存请求的可选查询与头部参数。
-type GetCharacterIdBlueprintsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdBlueprintsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdCorporationhistoryParams holds the optional query and header parameters of the request.
-// GetCharacterIdCorporationhistoryParams 保存请求的可选查询与头部参数。
-type GetCharacterIdCorporationhistoryParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCharacterIdCorporationhistoryParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetCharacterIdFatigueParams holds the optional query and header parameters of the request.
-// GetCharacterIdFatigueParams 保存请求的可选查询与头部参数。
-type GetCharacterIdFatigueParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdFatigueParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdMedalsParams holds the optional query and header parameters of the request.
-// GetCharacterIdMedalsParams 保存请求的可选查询与头部参数。
-type GetCharacterIdMedalsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdMedalsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdNotificationsContactsParams holds the optional query and header parameters of the request.
-// GetCharacterIdNotificationsContactsParams 保存请求的可选查询与头部参数。
-type GetCharacterIdNotificationsContactsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdNotificationsContactsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdNotificationsParams holds the optional query and header parameters of the request.
-// GetCharacterIdNotificationsParams 保存请求的可选查询与头部参数。
-type GetCharacterIdNotificationsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdNotificationsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdParams holds the optional query and header parameters of the request.
-// GetCharacterIdParams 保存请求的可选查询与头部参数。
-type GetCharacterIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCharacterIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetCharacterIdPortraitParams holds the optional query and header parameters of the request.
-// GetCharacterIdPortraitParams 保存请求的可选查询与头部参数。
-type GetCharacterIdPortraitParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCharacterIdPortraitParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetCharacterIdRolesParams holds the optional query and header parameters of the request.
-// GetCharacterIdRolesParams 保存请求的可选查询与头部参数。
-type GetCharacterIdRolesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdRolesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdStandingsParams holds the optional query and header parameters of the request.
-// GetCharacterIdStandingsParams 保存请求的可选查询与头部参数。
-type GetCharacterIdStandingsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdStandingsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharacterIdTitlesParams holds the optional query and header parameters of the request.
-// GetCharacterIdTitlesParams 保存请求的可选查询与头部参数。
-type GetCharacterIdTitlesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharacterIdTitlesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharactersCharacterIdAgentsResearch 200 ok object.
-// GetCharactersCharacterIdAgentsResearch 200 ok 对象.
-type GetCharactersCharacterIdAgentsResearch struct {
+// AgentResearch 200 ok object.
+// AgentResearch 200 ok 对象.
+type AgentResearch struct {
 	// AgentId agent_id integer.
 	// AgentId 代理人 ID 整数.
 	AgentId int32 `json:"agent_id"`
@@ -500,9 +24,9 @@ type GetCharactersCharacterIdAgentsResearch struct {
 	StartedAt time.Time `json:"started_at"`
 }
 
-// GetCharactersCharacterIdBlueprints 200 ok object.
-// GetCharactersCharacterIdBlueprints 200 ok 对象.
-type GetCharactersCharacterIdBlueprints struct {
+// Blueprint 200 ok object.
+// Blueprint 200 ok 对象.
+type Blueprint struct {
 	// ItemId Unique ID for this item.
 	// ItemId 此物品的唯一 ID。
 	ItemId int64 `json:"item_id"`
@@ -530,9 +54,9 @@ type GetCharactersCharacterIdBlueprints struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCharactersCharacterIdCorporationhistory 200 ok object.
-// GetCharactersCharacterIdCorporationhistory 200 ok 对象.
-type GetCharactersCharacterIdCorporationhistory struct {
+// CorporationHistoryEntry 200 ok object.
+// CorporationHistoryEntry 200 ok 对象.
+type CorporationHistoryEntry struct {
 	// CorporationId corporation_id integer.
 	// CorporationId 军团 ID 整数.
 	CorporationId int32 `json:"corporation_id"`
@@ -547,9 +71,9 @@ type GetCharactersCharacterIdCorporationhistory struct {
 	StartDate time.Time `json:"start_date"`
 }
 
-// GetCharactersCharacterIdFatigue 200 ok object.
-// GetCharactersCharacterIdFatigue 200 ok 对象.
-type GetCharactersCharacterIdFatigue struct {
+// JumpFatigue 200 ok object.
+// JumpFatigue 200 ok 对象.
+type JumpFatigue struct {
 	// JumpFatigueExpireDate Character's jump fatigue expiry.
 	// JumpFatigueExpireDate 角色跳跃疲劳到期时间.
 	JumpFatigueExpireDate time.Time `json:"jump_fatigue_expire_date"`
@@ -561,9 +85,9 @@ type GetCharactersCharacterIdFatigue struct {
 	LastUpdateDate time.Time `json:"last_update_date"`
 }
 
-// GetCharactersCharacterIdMedals 200 ok object.
-// GetCharactersCharacterIdMedals 200 ok 对象.
-type GetCharactersCharacterIdMedals struct {
+// Medal 200 ok object.
+// Medal 200 ok 对象.
+type Medal struct {
 	// CorporationId corporation_id integer.
 	// CorporationId 军团 ID 整数.
 	CorporationId int32 `json:"corporation_id"`
@@ -575,7 +99,7 @@ type GetCharactersCharacterIdMedals struct {
 	Description string `json:"description"`
 	// Graphics graphics array.
 	// Graphics 图形数组.
-	Graphics []GetCharactersCharacterIdMedalsGraphic `json:"graphics"`
+	Graphics []MedalGraphic `json:"graphics"`
 	// IssuerId issuer_id integer.
 	// IssuerId 发布者 ID 整数.
 	IssuerId int32 `json:"issuer_id"`
@@ -594,9 +118,9 @@ type GetCharactersCharacterIdMedals struct {
 	Title string `json:"title"`
 }
 
-// GetCharactersCharacterIdMedalsGraphic graphic object.
-// GetCharactersCharacterIdMedalsGraphic 图形对象.
-type GetCharactersCharacterIdMedalsGraphic struct {
+// MedalGraphic graphic object.
+// MedalGraphic 图形对象.
+type MedalGraphic struct {
 	// Color color integer.
 	// Color 颜色整数.
 	Color int32 `json:"color"`
@@ -611,9 +135,9 @@ type GetCharactersCharacterIdMedalsGraphic struct {
 	Part int32 `json:"part"`
 }
 
-// GetCharactersCharacterIdNotifications 200 ok object.
-// GetCharactersCharacterIdNotifications 200 ok 对象.
-type GetCharactersCharacterIdNotifications struct {
+// Notification 200 ok object.
+// Notification 200 ok 对象.
+type Notification struct {
 	// IsRead is_read boolean.
 	// IsRead 是否已读布尔值.
 	IsRead bool `json:"is_read"`
@@ -635,13 +159,13 @@ type GetCharactersCharacterIdNotifications struct {
 	Timestamp time.Time `json:"timestamp"`
 	// TypeValue type string.
 	// TypeValue 类型字符串.
-	// Enum values: "AcceptedAlly", "AcceptedSurrender", "AgentRetiredTrigravian", "AllAnchoringMsg", "AllMaintenanceBillMsg", "AllStrucInvulnerableMsg", "AllStructVulnerableMsg", "AllWarCorpJoinedAllianceMsg", "AllWarDeclaredMsg", "AllWarInvalidatedMsg", "AllWarRetractedMsg", "AllWarSurrenderMsg", "AllianceCapitalChanged", "AllianceWarDeclaredV2", "AllyContractCancelled", "AllyJoinedWarAggressorMsg", "AllyJoinedWarAllyMsg", "AllyJoinedWarDefenderMsg", "BattlePunishFriendlyFire", "BillOutOfMoneyMsg", "BillPaidCorpAllMsg", "BountyClaimMsg", "BountyESSShared", "BountyESSTaken", "BountyPlacedAlliance", "BountyPlacedChar", "BountyPlacedCorp", "BountyYourBountyClaimed", "BuddyConnectContactAdd", "CharAppAcceptMsg", "CharAppRejectMsg", "CharAppWithdrawMsg", "CharLeftCorpMsg", "CharMedalMsg", "CharTerminationMsg", "CloneActivationMsg", "CloneActivationMsg2", "CloneMovedMsg", "CloneRevokedMsg1", "CloneRevokedMsg2", "CombatOperationFinished", "ContactAdd", "ContactEdit", "ContainerPasswordMsg", "ContractRegionChangedToPochven", "CorpAllBillMsg", "CorpAppAcceptMsg", "CorpAppInvitedMsg", "CorpAppNewMsg", "CorpAppRejectCustomMsg", "CorpAppRejectMsg", "CorpBecameWarEligible", "CorpDividendMsg", "CorpFriendlyFireDisableTimerCompleted", "CorpFriendlyFireDisableTimerStarted", "CorpFriendlyFireEnableTimerCompleted", "CorpFriendlyFireEnableTimerStarted", "CorpKicked", "CorpLiquidationMsg", "CorpNewCEOMsg", "CorpNewsMsg", "CorpNoLongerWarEligible", "CorpOfficeExpirationMsg", "CorpStructLostMsg", "CorpTaxChangeMsg", "CorpVoteCEORevokedMsg", "CorpVoteMsg", "CorpWarDeclaredMsg", "CorpWarDeclaredV2", "CorpWarFightingLegalMsg", "CorpWarInvalidatedMsg", "CorpWarRetractedMsg", "CorpWarSurrenderMsg", "CorporationGoalClosed", "CorporationGoalCompleted", "CorporationGoalCreated", "CustomsMsg", "DeclareWar", "DistrictAttacked", "DustAppAcceptedMsg", "ESSMainBankLink", "EntosisCaptureStarted", "ExpertSystemExpired", "ExpertSystemExpiryImminent", "FWAllianceKickMsg", "FWAllianceWarningMsg", "FWCharKickMsg", "FWCharRankGainMsg", "FWCharRankLossMsg", "FWCharWarningMsg", "FWCorpJoinMsg", "FWCorpKickMsg", "FWCorpLeaveMsg", "FWCorpWarningMsg", "FacWarCorpJoinRequestMsg", "FacWarCorpJoinWithdrawMsg", "FacWarCorpLeaveRequestMsg", "FacWarCorpLeaveWithdrawMsg", "FacWarLPDisqualifiedEvent", "FacWarLPDisqualifiedKill", "FacWarLPPayoutEvent", "FacWarLPPayoutKill", "GameTimeAdded", "GameTimeReceived", "GameTimeSent", "GiftReceived", "IHubDestroyedByBillFailure", "IncursionCompletedMsg", "IndustryOperationFinished", "IndustryTeamAuctionLost", "IndustryTeamAuctionWon", "InfrastructureHubBillAboutToExpire", "InsuranceExpirationMsg", "InsuranceFirstShipMsg", "InsuranceInvalidatedMsg", "InsuranceIssuedMsg", "InsurancePayoutMsg", "InvasionCompletedMsg", "InvasionSystemLogin", "InvasionSystemStart", "JumpCloneDeletedMsg1", "JumpCloneDeletedMsg2", "KillReportFinalBlow", "KillReportVictim", "KillRightAvailable", "KillRightAvailableOpen", "KillRightEarned", "KillRightUnavailable", "KillRightUnavailableOpen", "KillRightUsed", "LocateCharMsg", "MadeWarMutual", "MercOfferRetractedMsg", "MercOfferedNegotiationMsg", "MissionCanceledTriglavian", "MissionOfferExpirationMsg", "MissionTimeoutMsg", "MoonminingAutomaticFracture", "MoonminingExtractionCancelled", "MoonminingExtractionFinished", "MoonminingExtractionStarted", "MoonminingLaserFired", "MutualWarExpired", "MutualWarInviteAccepted", "MutualWarInviteRejected", "MutualWarInviteSent", "NPCStandingsGained", "NPCStandingsLost", "OfferToAllyRetracted", "OfferedSurrender", "OfferedToAlly", "OfficeLeaseCanceledInsufficientStandings", "OldLscMessages", "OperationFinished", "OrbitalAttacked", "OrbitalReinforced", "OwnershipTransferred", "RaffleCreated", "RaffleExpired", "RaffleFinished", "ReimbursementMsg", "ResearchMissionAvailableMsg", "RetractsWar", "SeasonalChallengeCompleted", "SovAllClaimAquiredMsg", "SovAllClaimLostMsg", "SovCommandNodeEventStarted", "SovCorpBillLateMsg", "SovCorpClaimFailMsg", "SovDisruptorMsg", "SovStationEnteredFreeport", "SovStructureDestroyed", "SovStructureReinforced", "SovStructureSelfDestructCancel", "SovStructureSelfDestructFinished", "SovStructureSelfDestructRequested", "SovereigntyIHDamageMsg", "SovereigntySBUDamageMsg", "SovereigntyTCUDamageMsg", "StationAggressionMsg1", "StationAggressionMsg2", "StationConquerMsg", "StationServiceDisabled", "StationServiceEnabled", "StationStateChangeMsg", "StoryLineMissionAvailableMsg", "StructureAnchoring", "StructureCourierContractChanged", "StructureDestroyed", "StructureFuelAlert", "StructureImpendingAbandonmentAssetsAtRisk", "StructureItemsDelivered", "StructureItemsMovedToSafety", "StructureLostArmor", "StructureLostShields", "StructureOnline", "StructurePaintPurchased", "StructureServicesOffline", "StructureUnanchoring", "StructureUnderAttack", "StructureWentHighPower", "StructureWentLowPower", "StructuresJobsCancelled", "StructuresJobsPaused", "StructuresReinforcementChanged", "TowerAlertMsg", "TowerResourceAlertMsg", "TransactionReversalMsg", "TutorialMsg", "WarAdopted ", "WarAllyInherited", "WarAllyOfferDeclinedMsg", "WarConcordInvalidates", "WarDeclared", "WarEndedHqSecurityDrop", "WarHQRemovedFromSpace", "WarInherited", "WarInvalid", "WarRetracted", "WarRetractedByConcord", "WarSurrenderDeclinedMsg", "WarSurrenderOfferMsg".
+	// Enum values: "AcceptedAlly", "AcceptedSurrender", "AgentRetiredTrigravian", "AllAnchoringMsg", "AllMaintenanceBillMsg", "AllStrucInvulnerableMsg", "AllStructVulnerableMsg", "AllWarCorpJoinedAllianceMsg", "AllWarDeclaredMsg", "AllWarInvalidatedMsg", "AllWarRetractedMsg", "AllWarSurrenderMsg", "AllianceCapitalChanged", "AllianceWarDeclaredV2", "AllyContractCancelled", "AllyJoinedWarAggressorMsg", "AllyJoinedWarAllyMsg", "AllyJoinedWarDefenderMsg", "BattlePunishFriendlyFire", "BillOutOfMoneyMsg", "BillPaidCorpAllMsg", "BountyClaimMsg", "BountyESSShared", "BountyESSTaken", "BountyPlacedAlliance", "BountyPlacedChar", "BountyPlacedCorp", "BountyYourBountyClaimed", "BuddyConnectContactAdd", "CharAppAcceptMsg", "CharAppRejectMsg", "CharAppWithdrawMsg", "CharLeftCorpMsg", "CharMedalMsg", "CharTerminationMsg", "CloneActivationMsg", "CloneActivationMsg2", "CloneMovedMsg", "CloneRevokedMsg1", "CloneRevokedMsg2", "CombatOperationFinished", "ContactAdd", "ContactEdit", "ContainerPasswordMsg", "ContractRegionChangedToPochven", "CorpAllBillMsg", "CorpAppAcceptMsg", "CorpAppInvitedMsg", "CorpAppNewMsg", "CorpAppRejectCustomMsg", "CorpAppRejectMsg", "CorpBecameWarEligible", "CorpDividendMsg", "CorpFriendlyFireDisableTimerCompleted", "CorpFriendlyFireDisableTimerStarted", "CorpFriendlyFireEnableTimerCompleted", "CorpFriendlyFireEnableTimerStarted", "CorpKicked", "CorpLiquidationMsg", "CorpNewCEOMsg", "CorpNewsMsg", "CorpNoLongerWarEligible", "CorpOfficeExpirationMsg", "CorpStructLostMsg", "CorpTaxChangeMsg", "CorpVoteCEORevokedMsg", "CorpVoteMsg", "CorpWarDeclaredMsg", "CorpWarDeclaredV2", "CorpWarFightingLegalMsg", "CorpWarInvalidatedMsg", "CorpWarRetractedMsg", "CorpWarSurrenderMsg", "CorporationGoalClosed", "CorporationGoalCompleted", "CorporationGoalCreated", "CustomsMsg", "DeclareWar", "DistrictAttacked", "DustAppAcceptedMsg", "ESSMainBankLink", "EntosisCaptureStarted", "ExpertSystemExpired", "ExpertSystemExpiryImminent", "FWAllianceKickMsg", "FWAllianceWarningMsg", "FWCharKickMsg", "FWCharRankGainMsg", "FWCharRankLossMsg", "FWCharWarningMsg", "FWCorpJoinMsg", "FWCorpKickMsg", "FWCorpLeaveMsg", "FWCorpWarningMsg", "FacWarCorpJoinRequestMsg", "FacWarCorpJoinWithdrawMsg", "FacWarCorpLeaveRequestMsg", "FacWarCorpLeaveWithdrawMsg", "FacWarLPDisqualifiedEvent", "FacWarLPDisqualifiedKill", "FacWarLPPayoutEvent", "FacWarLPPayoutKill", "GameTimeAdded", "GameTimeReceived", "GameTimeSent", "GiftReceived", "IHubDestroyedByBillFailure", "IncursionCompletedMsg", "IndustryOperationFinished", "IndustryTeamAuctionLost", "IndustryTeamAuctionWon", "InfrastructureHubBillAboutToExpire", "InsuranceExpirationMsg", "InsuranceFirstShipMsg", "InsuranceInvalidatedMsg", "InsuranceIssuedMsg", "InsurancePayoutMsg", "InvasionCompletedMsg", "InvasionSystemLogin", "InvasionSystemStart", "JumpCloneDeletedMsg1", "JumpCloneDeletedMsg2", "KillReportFinalBlow", "KillReportVictim", "KillRightAvailable", "KillRightAvailableOpen", "KillRightEarned", "KillRightUnavailable", "KillRightUnavailableOpen", "KillRightUsed", "LocateCharMsg", "MadeWarMutual", "MercOfferRetracted", "MercOfferedNegotiationMsg", "MissionCanceledTriglavian", "MissionOfferExpirationMsg", "MissionTimeoutMsg", "MoonminingAutomaticFracture", "MoonminingExtractionCancelled", "MoonminingExtractionFinished", "MoonminingExtractionStarted", "MoonminingLaserFired", "MutualWarExpired", "MutualWarInviteAccepted", "MutualWarInviteRejected", "MutualWarInviteSent", "NPCStandingsGained", "NPCStandingsLost", "OfferToAllyRetracted", "OfferedSurrender", "OfferedToAlly", "OfficeLeaseCanceledInsufficientStandings", "OldLscMessages", "OperationFinished", "OrbitalAttacked", "OrbitalReinforced", "OwnershipTransferred", "RaffleCreated", "RaffleExpired", "RaffleFinished", "ReimbursementMsg", "ResearchMissionAvailableMsg", "RetractsWar", "SeasonalChallengeCompleted", "SovAllClaimAquiredMsg", "SovAllClaimLostMsg", "SovCommandNodeEventStarted", "SovCorpBillLateMsg", "SovCorpClaimFailMsg", "SovDisruptorMsg", "SovStationEnteredFreeport", "SovStructureDestroyed", "SovStructureReinforced", "SovStructureSelfDestructCancel", "SovStructureSelfDestructFinished", "SovStructureSelfDestructRequested", "SovereigntyIHDamageMsg", "SovereigntySBUDamageMsg", "SovereigntyTCUDamageMsg", "StationAggressionMsg1", "StationAggressionMsg2", "StationConquerMsg", "StationServiceDisabled", "StationServiceEnabled", "StationStateChangeMsg", "StoryLineMissionAvailableMsg", "StructureAnchoring", "StructureCourierContractChanged", "StructureDestroyed", "StructureFuelAlert", "StructureImpendingAbandonmentAssetsAtRisk", "StructureItemsDelivered", "StructureItemsMovedToSafety", "StructureLostArmor", "StructureLostShields", "StructureOnline", "StructurePaintPurchased", "StructureServicesOffline", "StructureUnanchoring", "StructureUnderAttack", "StructureWentHighPower", "StructureWentLowPower", "StructuresJobsCancelled", "StructuresJobsPaused", "StructuresReinforcementChanged", "TowerAlertMsg", "TowerResourceAlertMsg", "TransactionReversalMsg", "TutorialMsg", "WarAdopted ", "WarAllyInherited", "WarAllyOfferDeclinedMsg", "WarConcordInvalidates", "WarDeclared", "WarEndedHqSecurityDrop", "WarHQRemovedFromSpace", "WarInherited", "WarInvalid", "WarRetracted", "WarRetractedByConcord", "WarSurrenderDeclinedMsg", "WarSurrenderOfferMsg".
 	TypeValue string `json:"type"`
 }
 
-// GetCharactersCharacterIdNotificationsContacts 200 ok object.
-// GetCharactersCharacterIdNotificationsContacts 200 ok 对象.
-type GetCharactersCharacterIdNotificationsContacts struct {
+// ContactNotification 200 ok object.
+// ContactNotification 200 ok 对象.
+type ContactNotification struct {
 	// Message message string.
 	// Message message 字符串.
 	Message string `json:"message"`
@@ -659,9 +183,9 @@ type GetCharactersCharacterIdNotificationsContacts struct {
 	StandingLevel float64 `json:"standing_level"`
 }
 
-// GetCharactersCharacterId 200 ok object.
-// GetCharactersCharacterId 200 ok 对象.
-type GetCharactersCharacterId struct {
+// Character 200 ok object.
+// Character 200 ok 对象.
+type Character struct {
 	// AllianceId The character's alliance ID.
 	// AllianceId 角色的联盟 ID.
 	AllianceId int32 `json:"alliance_id"`
@@ -698,9 +222,9 @@ type GetCharactersCharacterId struct {
 	Title string `json:"title"`
 }
 
-// GetCharactersCharacterIdPortrait 200 ok object.
-// GetCharactersCharacterIdPortrait 200 ok 对象.
-type GetCharactersCharacterIdPortrait struct {
+// CharacterPortraits 200 ok object.
+// CharacterPortraits 200 ok 对象.
+type CharacterPortraits struct {
 	// Px128x128 px128x128 string.
 	// Px128x128 px128x128 字符串.
 	Px128x128 string `json:"px128x128"`
@@ -715,9 +239,9 @@ type GetCharactersCharacterIdPortrait struct {
 	Px64x64 string `json:"px64x64"`
 }
 
-// GetCharactersCharacterIdRoles 200 ok object.
-// GetCharactersCharacterIdRoles 200 ok 对象.
-type GetCharactersCharacterIdRoles struct {
+// CharacterCorporationRoles 200 ok object.
+// CharacterCorporationRoles 200 ok 对象.
+type CharacterCorporationRoles struct {
 	// Roles roles array.
 	// Roles 角色列表 array.
 	Roles []string `json:"roles"`
@@ -732,9 +256,9 @@ type GetCharactersCharacterIdRoles struct {
 	RolesAtOther []string `json:"roles_at_other"`
 }
 
-// GetCharactersCharacterIdStandings 200 ok object.
-// GetCharactersCharacterIdStandings 200 ok 对象.
-type GetCharactersCharacterIdStandings struct {
+// Standing 200 ok object.
+// Standing 200 ok 对象.
+type Standing struct {
 	// FromId from_id integer.
 	// FromId 发送者 ID 整数.
 	FromId int32 `json:"from_id"`
@@ -747,9 +271,9 @@ type GetCharactersCharacterIdStandings struct {
 	Standing float64 `json:"standing"`
 }
 
-// GetCharactersCharacterIdTitles 200 ok object.
-// GetCharactersCharacterIdTitles 200 ok 对象.
-type GetCharactersCharacterIdTitles struct {
+// CharacterTitle 200 ok object.
+// CharacterTitle 200 ok 对象.
+type CharacterTitle struct {
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
@@ -758,64 +282,9 @@ type GetCharactersCharacterIdTitles struct {
 	TitleId int32 `json:"title_id"`
 }
 
-// PostAffiliationParams holds the optional query and header parameters of the request.
-// PostAffiliationParams 保存请求的可选查询与头部参数。
-type PostAffiliationParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-}
-
-func (p *PostAffiliationParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	return query, headers
-}
-
-// PostCharacterIdCspaParams holds the optional query and header parameters of the request.
-// PostCharacterIdCspaParams 保存请求的可选查询与头部参数。
-type PostCharacterIdCspaParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *PostCharacterIdCspaParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// PostCharactersAffiliation 200 ok object.
-// PostCharactersAffiliation 200 ok 对象.
-type PostCharactersAffiliation struct {
+// CharacterAffiliation 200 ok object.
+// CharacterAffiliation 200 ok 对象.
+type CharacterAffiliation struct {
 	// AllianceId The character's alliance ID, if their corporation is in an alliance.
 	// AllianceId 角色的联盟 ID，前提是其军团加入了联盟.
 	AllianceId int32 `json:"alliance_id"`

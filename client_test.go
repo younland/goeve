@@ -2,20 +2,19 @@ package goeve
 
 import (
 	"context"
-	"github.com/younland/goeve/models"
 	"net/url"
 	"strings"
 	"testing"
 	"time"
 )
 
-// TestGetStatus performs a real network call against the public /status endpoint.
-// TestGetStatus 对公开的 /status 接口发起真实网络调用。
-func TestGetStatus(t *testing.T) {
+// TestGetServerStatus performs a real network call against the public /status endpoint.
+// TestGetServerStatus 对公开的 /status 接口发起真实网络调用。
+func TestGetServerStatus(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	status, err := client.GetStatus(context.Background(), nil)
+	status, err := client.GetServerStatus(context.Background())
 	if err != nil {
-		t.Fatalf("GetStatus failed: %v", err)
+		t.Fatalf("GetServerStatus failed: %v", err)
 	}
 	if status.ServerVersion == "" {
 		t.Fatal("server_version is empty")
@@ -24,12 +23,12 @@ func TestGetStatus(t *testing.T) {
 		status.ServerVersion, status.Players, status.Vip, status.StartTime)
 }
 
-// TestGetCharactersCharacterIdNotFound checks that querying a non-existent character
+// TestGetCharacterNotFound checks that querying a non-existent character
 // returns a structured 404 APIError.
-// TestGetCharactersCharacterIdNotFound 检查查询不存在的角色时返回结构化的 404 APIError。
-func TestGetCharactersCharacterIdNotFound(t *testing.T) {
+// TestGetCharacterNotFound 检查查询不存在的角色时返回结构化的 404 APIError。
+func TestGetCharacterNotFound(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	_, err := client.GetCharacterId(context.Background(), 1, nil)
+	_, err := client.GetCharacter(context.Background(), 1)
 	if err == nil {
 		t.Fatal("expected an error")
 	}
@@ -49,9 +48,9 @@ func TestGetUniverseCategories(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
 	ctx := context.Background()
 
-	categories, err := client.GetCategories(ctx, nil)
+	categories, err := client.GetUniverseCategories(ctx)
 	if err != nil {
-		t.Fatalf("GetCategories failed: %v", err)
+		t.Fatalf("GetUniverseCategories failed: %v", err)
 	}
 	if len(categories) == 0 {
 		t.Fatal("no categories returned")
@@ -62,10 +61,9 @@ func TestGetUniverseCategories(t *testing.T) {
 	// the result stays nil — this must not be reported as an error.
 	// 条件请求：数据未变化时服务器返回 304，结果保持为 nil，不应报错。
 	etag := `W/"e224bfe767a9e9f3fa0e4615aac73f2c3a63fd0c792e553d5f203e03"`
-	params := &models.GetCategoriesParams{IfNoneMatch: &etag}
-	result, err := client.GetCategories(ctx, params)
+	result, err := client.GetUniverseCategories(ctx, WithIfNoneMatch(etag))
 	if err != nil {
-		t.Fatalf("GetCategories with If-None-Match failed: %v", err)
+		t.Fatalf("GetUniverseCategories with If-None-Match failed: %v", err)
 	}
 	if result != nil {
 		t.Fatalf("expected nil result on 304, got %v", result)
@@ -76,7 +74,7 @@ func TestGetUniverseCategories(t *testing.T) {
 // TestAPIError 检查无效 ID 是否以结构化的 APIError 返回。
 func TestAPIError(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	_, err := client.GetCharacterId(context.Background(), 0, nil)
+	_, err := client.GetCharacter(context.Background(), 0)
 	if err == nil {
 		t.Fatal("expected an error")
 	}

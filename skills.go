@@ -6,17 +6,17 @@ import (
 	"strconv"
 )
 
-// GetCharactersCharacterIdAttributes Get character attributes.
-// GetCharactersCharacterIdAttributes 获取角色属性.
+// GetCharacterAttributes Get character attributes.
+// GetCharacterAttributes 获取角色属性.
 //
 // Route: GET /characters/{character_id}/attributes/ — This route is cached for up to 120 seconds
 // 路由: GET /characters/{character_id}/attributes/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharactersCharacterIdAttributes(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdAttributesParams) (*models.GetCharactersCharacterIdAttributes, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdAttributes
+func (c *Client) GetCharacterAttributes(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterAttributes, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result *models.CharacterAttributes
 	err := c.get(ctx, "/characters/{character_id}/attributes/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -24,17 +24,17 @@ func (c *Client) GetCharactersCharacterIdAttributes(ctx context.Context, charact
 	return result, nil
 }
 
-// GetCharactersCharacterIdSkillqueue Get character's skill queue.
-// GetCharactersCharacterIdSkillqueue 获取角色技能队列.
+// GetCharacterSkillQueue Get character's skill queue.
+// GetCharacterSkillQueue 获取角色技能队列.
 //
 // Route: GET /characters/{character_id}/skillqueue/ — This route is cached for up to 120 seconds
 // 路由: GET /characters/{character_id}/skillqueue/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skillqueue.v1
 // 权限: esi-skills.read_skillqueue.v1
-func (c *Client) GetCharactersCharacterIdSkillqueue(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdSkillqueueParams) ([]models.GetCharactersCharacterIdSkillqueue, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result []models.GetCharactersCharacterIdSkillqueue
+func (c *Client) GetCharacterSkillQueue(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.SkillQueueEntry, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result []models.SkillQueueEntry
 	err := c.get(ctx, "/characters/{character_id}/skillqueue/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -42,17 +42,17 @@ func (c *Client) GetCharactersCharacterIdSkillqueue(ctx context.Context, charact
 	return result, nil
 }
 
-// GetCharactersCharacterIdSkills Get character skills.
-// GetCharactersCharacterIdSkills 获取角色技能.
+// GetCharacterSkills Get character skills.
+// GetCharacterSkills 获取角色技能.
 //
 // Route: GET /characters/{character_id}/skills/ — This route is cached for up to 120 seconds
 // 路由: GET /characters/{character_id}/skills/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharactersCharacterIdSkills(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdSkillsParams) (*models.GetCharactersCharacterIdSkills, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdSkills
+func (c *Client) GetCharacterSkills(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterSkills, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result *models.CharacterSkills
 	err := c.get(ctx, "/characters/{character_id}/skills/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

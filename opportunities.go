@@ -6,17 +6,17 @@ import (
 	"strconv"
 )
 
-// GetCharactersCharacterIdOpportunities Get a character's completed tasks.
-// GetCharactersCharacterIdOpportunities 获取角色已完成的任务.
+// GetCharacterOpportunities Get a character's completed tasks.
+// GetCharacterOpportunities 获取角色已完成的任务.
 //
 // Route: GET /characters/{character_id}/opportunities/ — This route is cached for up to 3600 seconds
 // 路由: GET /characters/{character_id}/opportunities/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_opportunities.v1
 // 权限: esi-characters.read_opportunities.v1
-func (c *Client) GetCharactersCharacterIdOpportunities(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdOpportunitiesParams) ([]models.GetCharactersCharacterIdOpportunities, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result []models.GetCharactersCharacterIdOpportunities
+func (c *Client) GetCharacterOpportunities(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.OpportunityCompletion, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result []models.OpportunityCompletion
 	err := c.get(ctx, "/characters/{character_id}/opportunities/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -24,15 +24,15 @@ func (c *Client) GetCharactersCharacterIdOpportunities(ctx context.Context, char
 	return result, nil
 }
 
-// GetOpportunitiesGroups Get opportunities groups.
-// GetOpportunitiesGroups 获取机遇组列表.
+// GetOpportunityGroups Get opportunities groups.
+// GetOpportunityGroups 获取机遇组列表.
 //
 // Route: GET /opportunities/groups/
 // 路由: GET /opportunities/groups/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetOpportunitiesGroups(ctx context.Context, params *models.GetGroupsParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetOpportunityGroups(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/opportunities/groups/", pathParams, query, headers, &result)
@@ -42,17 +42,17 @@ func (c *Client) GetOpportunitiesGroups(ctx context.Context, params *models.GetG
 	return result, nil
 }
 
-// GetOpportunitiesGroupsGroupId Get opportunities group.
-// GetOpportunitiesGroupsGroupId 获取机遇组.
+// GetOpportunityGroup Get opportunities group.
+// GetOpportunityGroup 获取机遇组.
 //
 // Route: GET /opportunities/groups/{group_id}/
 // 路由: GET /opportunities/groups/{group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetOpportunitiesGroupsGroupId(ctx context.Context, groupId int32, params *models.GetGroupsGroupIdParams) (*models.GetOpportunitiesGroupsGroupId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupId), 10)}
-	var result *models.GetOpportunitiesGroupsGroupId
+func (c *Client) GetOpportunityGroup(ctx context.Context, groupID int32, opts ...RequestOption) (*models.OpportunityGroup, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupID), 10)}
+	var result *models.OpportunityGroup
 	err := c.get(ctx, "/opportunities/groups/{group_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -60,15 +60,15 @@ func (c *Client) GetOpportunitiesGroupsGroupId(ctx context.Context, groupId int3
 	return result, nil
 }
 
-// GetTasks Get opportunities tasks.
-// GetTasks 获取机遇任务列表.
+// GetOpportunityTasks Get opportunities tasks.
+// GetOpportunityTasks 获取机遇任务列表.
 //
 // Route: GET /opportunities/tasks/
 // 路由: GET /opportunities/tasks/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetTasks(ctx context.Context, params *models.GetTasksParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetOpportunityTasks(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/opportunities/tasks/", pathParams, query, headers, &result)
@@ -78,17 +78,17 @@ func (c *Client) GetTasks(ctx context.Context, params *models.GetTasksParams) ([
 	return result, nil
 }
 
-// GetTasksTaskId Get opportunities task.
-// GetTasksTaskId 获取机遇任务.
+// GetOpportunityTask Get opportunities task.
+// GetOpportunityTask 获取机遇任务.
 //
 // Route: GET /opportunities/tasks/{task_id}/
 // 路由: GET /opportunities/tasks/{task_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetTasksTaskId(ctx context.Context, taskId int32, params *models.GetTasksTaskIdParams) (*models.GetOpportunitiesTasksTaskId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"task_id": strconv.FormatInt(int64(taskId), 10)}
-	var result *models.GetOpportunitiesTasksTaskId
+func (c *Client) GetOpportunityTask(ctx context.Context, taskID int32, opts ...RequestOption) (*models.OpportunityTask, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"task_id": strconv.FormatInt(int64(taskID), 10)}
+	var result *models.OpportunityTask
 	err := c.get(ctx, "/opportunities/tasks/{task_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

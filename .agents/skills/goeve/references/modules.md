@@ -2,9 +2,11 @@
 
 网易 EVE Online ESI 全部 32 个模块的接口简要说明。方法在根包同名文件（如 `character.go`），
 类型在 `models/` 子包同名文件。每条注明：用途、典型方法与是否需授权（scope）。
+方法名已语义化；必需参数为位置参数，可选参数统一为 `...goeve.RequestOption`。
 
 The 32 ESI modules at a glance. Methods live in the root file of the same name
-(e.g. `character.go`), types in `models/`. Scopes are noted per module.
+(e.g. `character.go`), types in `models/`. Scopes are noted per module. Method names are
+semantic; required parameters are positional, optional ones are `...goeve.RequestOption`.
 
 ## Status — 服务器状态 (1)
 
@@ -12,7 +14,7 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 |
 |---|---|
-| `GetStatus` | 获取服务器运行时间和玩家数量 |
+| `GetServerStatus` | 获取服务器运行时间和玩家数量 |
 
 ## Character — 角色 (14)
 
@@ -20,19 +22,19 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterId` | 角色公开信息（名称、军团、种族、血统） | 公开 |
-| `GetCharacterIdPortrait` | 角色头像 URL | 公开 |
-| `PostAffiliation` | 批量查询角色所属军团/联盟 | 公开 |
-| `GetCharacterIdCorporationhistory` | 角色军团历史 | 公开 |
-| `GetCharacterIdNotifications` | 角色通知列表（攻击警报、建筑通知等） | `esi-characters.read_notifications.v1` |
-| `GetCharacterIdNotificationsContacts` | 联系人相关新通知 | 同上 |
-| `GetCharacterIdStandings` | NPC/军团/联盟声望 | `esi-characters.read_standings.v1` |
-| `GetCharacterIdMedals` | 已获勋章 | `esi-characters.read_medals.v1` |
-| `GetCharacterIdRoles` / `GetCharacterIdTitles` | 军团职务/称号 | `esi-characters.read_titles.v1` |
-| `GetCharacterIdAgentsResearch` | 代理人研究数据 | `esi-characters.read_agents_research.v1` |
-| `GetCharacterIdBlueprints` | 蓝图（原件/拷贝） | `esi-characters.read_blueprints.v1` |
-| `GetCharacterIdFatigue` | 跳跃疲劳 | `esi-characters.read_fatigue.v1` |
-| `PostCharacterIdCspa` | 计算向多个角色发邮件的 CSPA 费用 | `esi-characters.calculate_cspa.v1` |
+| `GetCharacter` | 角色公开信息（名称、军团、种族、血统） | 公开 |
+| `GetCharacterPortrait` | 角色头像 URL | 公开 |
+| `CharacterAffiliation` | 批量查询角色所属军团/联盟 | 公开 |
+| `GetCharacterCorporationHistory` | 角色军团历史 | 公开 |
+| `GetCharacterNotifications` | 角色通知列表（攻击警报、建筑通知等） | `esi-characters.read_notifications.v1` |
+| `GetCharacterContactNotifications` | 联系人相关新通知 | 同上 |
+| `GetCharacterStandings` | NPC/军团/联盟声望 | `esi-characters.read_standings.v1` |
+| `GetCharacterMedals` | 已获勋章 | `esi-characters.read_medals.v1` |
+| `GetCharacterCorporationRoles` / `GetCharacterCorporationTitles` | 军团职务/称号 | `esi-characters.read_titles.v1` |
+| `GetCharacterAgentsResearch` | 代理人研究数据 | `esi-characters.read_agents_research.v1` |
+| `GetCharacterBlueprints` | 蓝图（原件/拷贝，`WithPage` 分页） | `esi-characters.read_blueprints.v1` |
+| `GetCharacterJumpFatigue` | 跳跃疲劳 | `esi-characters.read_fatigue.v1` |
+| `CalculateCharacterCspaCharge` | 计算向多个角色发邮件的 CSPA 费用 | `esi-characters.calculate_cspa.v1` |
 
 ## Corporation — 军团 (22)
 
@@ -40,21 +42,21 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCorporationId` | 军团公开信息 | 公开 |
-| `GetCorporationIdIcons` | 军团图标 | 公开 |
-| `GetCorporationIdAlliancehistory` | 联盟历史 | 公开 |
-| `GetNpccorps` | NPC 军团 ID 列表 | 公开 |
-| `GetCorporationIdMembers` / `MembersLimit` / `MembersTitles` | 成员/上限/成员称号 | `esi-corporations.read_corporation_membership.v1` |
-| `GetCorporationIdMembertracking` | 成员上线/位置追踪 | `esi-corporations.track_members.v1` |
-| `GetCorporationIdStructures` | 军团建筑（燃料、增强状态） | `esi-corporations.read_structures.v1` |
-| `GetCorporationIdStarbases` / `StarbasesStarbaseId` | 母星(POS)列表/详情 | `esi-corporations.read_starbases.v1` |
-| `GetCorporationIdBlueprints` | 军团蓝图 | `esi-corporations.read_blueprints.v1` |
-| `GetCorporationIdContainersLogs` | 机柜(ALSC)日志 | `esi-corporations.read_container_logs.v1` |
-| `GetCorporationIdDivisions` / `Facilities` | 部门划分/设施 | `esi-corporations.read_divisions.v1` |
-| `GetCorporationIdMedals` / `MedalsIssued` | 勋章/颁发记录 | `esi-corporations.read_medals.v1` |
-| `GetCorporationIdRoles` / `RolesHistory` | 成员角色/变更历史 | `esi-corporations.read_corporation_roles.v1` |
-| `GetCorporationIdShareholders` | 股东列表 | `esi-wallet.read_corporation_wallets.v1` |
-| `GetCorporationIdStandings` / `Titles` | 声望/称号体系 | `esi-corporations.read_standings.v1` |
+| `GetCorporationInformation` | 军团公开信息 | 公开 |
+| `GetCorporationIcon` | 军团图标 | 公开 |
+| `GetCorporationAllianceHistory` | 联盟历史 | 公开 |
+| `GetNpcCorporations` | NPC 军团 ID 列表 | 公开 |
+| `GetCorporationMembers` / `GetCorporationMemberLimit` / `GetCorporationMemberTitles` | 成员/上限/成员称号 | `esi-corporations.read_corporation_membership.v1` |
+| `GetCorporationMemberTracking` | 成员上线/位置追踪 | `esi-corporations.track_members.v1` |
+| `GetCorporationStructures` | 军团建筑（燃料、增强状态，`WithPage` 分页） | `esi-corporations.read_structures.v1` |
+| `GetCorporationStarbases` / `GetCorporationStarbase` | 母星(POS)列表/详情（详情需 `corporationID, starbaseID, systemID`） | `esi-corporations.read_starbases.v1` |
+| `GetCorporationBlueprints` | 军团蓝图 | `esi-corporations.read_blueprints.v1` |
+| `GetCorporationContainerLogs` | 机柜(ALSC)日志 | `esi-corporations.read_container_logs.v1` |
+| `GetCorporationDivisions` / `GetCorporationFacilities` | 部门划分/设施 | `esi-corporations.read_divisions.v1` |
+| `GetCorporationMedals` / `GetCorporationIssuedMedals` | 勋章/颁发记录 | `esi-corporations.read_medals.v1` |
+| `GetCorporationMemberRoles` / `GetCorporationMemberRolesHistory` | 成员角色/变更历史 | `esi-corporations.read_corporation_roles.v1` |
+| `GetCorporationShareholders` | 股东列表 | `esi-wallet.read_corporation_wallets.v1` |
+| `GetCorporationStandings` / `GetCorporationTitles` | 声望/称号体系 | `esi-corporations.read_standings.v1` |
 
 ## Universe — 宇宙 (30)
 
@@ -62,20 +64,20 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 |
 |---|---|
-| `PostIds` / `PostNames` | 名称↔ID 批量互转（最多 100 个） |
-| `GetRegions` / `GetRegionsRegionId` | 星域列表/详情 |
-| `GetConstellations` / `GetConstellationsConstellationId` | 星座列表/详情 |
-| `GetSystems` / `GetSystemsSystemId` | 星系列表/详情 |
-| `GetTypes` / `GetTypesTypeId` | 物品类型列表/详情（舰船、装备、物资…） |
-| `GetCategories` / `GetCategoriesCategoryId` | 物品分类 |
-| `GetGroups` / `GetGroupsGroupId` | 物品分组 |
-| `GetMoonsMoonId` / `GetPlanetsPlanetId` | 月球/行星详情 |
-| `GetStargatesStargateId` / `GetStarsStarId` | 星门/恒星详情 |
-| `GetStationsStationId` / `GetStructuresStructureId` | 空间站/建筑详情 |
-| `GetStructures` | 所有公开建筑 ID |
-| `GetSystemJumps` / `GetSystemKills` | 各星系跳跃数/击毁统计（近 1 小时） |
-| `GetRaces` / `GetBloodlines` / `GetAncestries` / `GetFactions` | 种族/血统/祖先/势力 |
-| `GetGraphics` / `GetGraphicsGraphicId` | 图形资源 |
+| `ResolveNamesToIDs` / `ResolveIDsToNames` | 名称↔ID 批量互转（最多 100 个，`WithStrict` 严格匹配） |
+| `GetUniverseRegions` / `GetUniverseRegion` | 星域列表/详情 |
+| `GetConstellations` / `GetConstellationInformation` | 星座列表/详情 |
+| `GetUniverseSystems` / `GetUniverseSystem` | 星系列表/详情 |
+| `GetUniverseTypes` / `GetUniverseType` | 物品类型列表/详情（舰船、装备、物资…，`WithPage` 分页） |
+| `GetUniverseCategories` / `GetUniverseCategory` | 物品分类 |
+| `GetUniverseGroups` / `GetUniverseGroup` | 物品分组（`WithPage` 分页） |
+| `GetUniverseMoon` / `GetUniversePlanet` / `GetUniverseAsteroidBelt` | 月球/行星/小行星带详情 |
+| `GetUniverseStargate` / `GetUniverseStar` | 星门/恒星详情 |
+| `GetUniverseStation` / `GetUniverseStructure` | 空间站/建筑详情 |
+| `GetPublicStructures` | 所有公开建筑 ID（`WithFilter` 过滤） |
+| `GetUniverseSystemJumps` / `GetUniverseSystemKills` | 各星系跳跃数/击毁统计（近 1 小时） |
+| `GetUniverseRaces` / `GetUniverseBloodlines` / `GetUniverseAncestries` / `GetUniverseFactions` | 种族/血统/祖先/势力 |
+| `GetUniverseGraphics` / `GetUniverseGraphic` | 图形资源 |
 
 ## Market — 市场 (11)
 
@@ -83,14 +85,14 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetMarketsRegionIdOrders` | 区域市场订单（卖单/买单） | 公开 |
-| `GetMarketsRegionIdHistory` | 区域日历史行情 | 公开 |
-| `GetMarketsPrices` | 全服市场参考价 | 公开 |
-| `GetMarketsGroups` / `GetMarketsGroupsMarketGroupId` | 市场分组 | 公开 |
-| `GetMarketsRegionIdTypes` | 区域有行情的物品种类 | 公开 |
-| `GetMarketsStructuresStructureId` | 建筑内订单 | `esi-markets.read_structures.v1` |
-| `GetCharactersCharacterIdOrders` / `OrdersHistory` | 角色当前/历史订单 | `esi-markets.read_character_orders.v1` |
-| `GetCorporationsCorporationIdOrders` / `OrdersHistory` | 军团订单 | `esi-markets.read_corporation_orders.v1` |
+| `GetMarketOrders` | 区域市场订单（`regionID`、`orderType` 为位置参数，`WithPage` 分页） | 公开 |
+| `GetMarketHistory` | 区域日历史行情（`regionID`、`typeID` 为位置参数） | 公开 |
+| `GetMarketPrices` | 全服市场参考价 | 公开 |
+| `GetMarketGroups` / `GetMarketGroup` | 市场分组 | 公开 |
+| `GetMarketTypes` | 区域有行情的物品种类（`WithPage` 分页） | 公开 |
+| `GetStructureMarketOrders` | 建筑内订单 | `esi-markets.read_structures.v1` |
+| `GetCharacterMarketOrders` / `GetCharacterMarketOrderHistory` | 角色当前/历史订单（`WithPage` 分页） | `esi-markets.read_character_orders.v1` |
+| `GetCorporationMarketOrders` / `GetCorporationMarketOrderHistory` | 军团订单 | `esi-markets.read_corporation_orders.v1` |
 
 ## Wallet — 钱包 (6)
 
@@ -98,11 +100,11 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdWallet` | 角色余额 | `esi-wallet.read_character_wallet.v1` |
-| `GetCharactersCharacterIdWalletJournal` | 角色钱包流水（入账/出账） | 同上 |
-| `GetCharactersCharacterIdWalletTransactions` | 角色市场交易记录 | 同上 |
-| `GetCorporationsCorporationIdWallets` | 军团各财务分部余额 | `esi-wallet.read_corporation_wallets.v1` |
-| `GetCorporationsCorporationIdWalletsDivisionJournal` / `...Transactions` | 军团分部流水/交易 | 同上 |
+| `GetCharacterWalletBalance` | 角色余额 | `esi-wallet.read_character_wallet.v1` |
+| `GetCharacterWalletJournal` | 角色钱包流水（入账/出账，`WithPage` 分页） | 同上 |
+| `GetCharacterWalletTransactions` | 角色市场交易记录（`WithPage`/`WithFromID` 翻页） | 同上 |
+| `GetCorporationWallets` | 军团各财务分部余额 | `esi-wallet.read_corporation_wallets.v1` |
+| `GetCorporationWalletJournal` / `GetCorporationWalletTransactions` | 军团分部流水/交易（位置参数 `corporationID, division`） | 同上 |
 
 ## Assets — 资产 (6)
 
@@ -110,10 +112,10 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdAssets` | 角色全部资产（含 location_id、插槽） | `esi-assets.read_assets.v1` |
-| `PostCharactersCharacterIdAssetsLocations` | 批量解析资产所在建筑/空间站坐标 | 同上 |
-| `PostCharactersCharacterIdAssetsNames` | 批量解析物品名称 | 同上 |
-| `GetCorporationsCorporationIdAssets` 等 3 个 | 军团同组接口 | `esi-assets.read_corporation_assets.v1` |
+| `GetCharacterAssets` | 角色全部资产（含 location_id、插槽，`WithPage` 分页） | `esi-assets.read_assets.v1` |
+| `GetCharacterAssetLocations` | 批量解析资产所在建筑/空间站坐标 | 同上 |
+| `GetCharacterAssetNames` | 批量解析物品名称 | 同上 |
+| `GetCorporationAssets` 等 3 个 | 军团同组接口 | `esi-assets.read_corporation_assets.v1` |
 
 ## Contracts — 合同 (9)
 
@@ -121,11 +123,11 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetContractsPublicRegionId` | 区域公开合同 | 公开 |
-| `GetContractsPublicBidsContractId` / `PublicItemsContractId` | 公开合同出价/物品 | 公开 |
-| `GetCharactersCharacterIdContracts` | 角色合同 | `esi-contracts.read_character_contracts.v1` |
-| `GetCharactersCharacterIdContractsContractIdBids` / `Items` | 角色合同出价/物品 | 同上 |
-| `GetCorporationsCorporationIdContracts` 等 3 个 | 军团同组接口 | `esi-contracts.read_corporation_contracts.v1` |
+| `GetPublicContracts` | 区域公开合同（`WithPage` 分页） | 公开 |
+| `GetPublicContractBids` / `GetPublicContractItems` | 公开合同出价/物品（`WithPage` 分页） | 公开 |
+| `GetCharacterContracts` | 角色合同（`WithPage` 分页） | `esi-contracts.read_character_contracts.v1` |
+| `GetCharacterContractBids` / `GetCharacterContractItems` | 角色合同出价/物品 | 同上 |
+| `GetCorporationContracts` 等 3 个 | 军团同组接口 | `esi-contracts.read_corporation_contracts.v1` |
 
 ## Fleets — 舰队 (14)
 
@@ -133,11 +135,11 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdFleet` | 角色当前所在舰队 | `esi-fleets.read_fleet.v1` |
-| `GetFleetId` / `PutFleetId` | 舰队信息/修改设置 | 同上 + `esi-fleets.write_fleet.v1` |
-| `GetFleetIdMembers` / `PostFleetIdMembers` | 成员列表/邀请 | 读 + `esi-fleets.write_fleet.v1` |
-| `DeleteFleetIdMembersMemberId` / `PutFleetIdMembersMemberId` | 踢出/移动成员 | `esi-fleets.write_fleet.v1` |
-| `GetFleetIdWings` 及 wings/squads 增删改名 | 联队/小队编组 | 读 + write |
+| `GetCharacterFleet` | 角色当前所在舰队 | `esi-fleets.read_fleet.v1` |
+| `GetFleet` / `UpdateFleetSettings` | 舰队信息/修改设置 | 同上 + `esi-fleets.write_fleet.v1` |
+| `GetFleetMembers` / `CreateFleetInvitation` | 成员列表/邀请 | 读 + `esi-fleets.write_fleet.v1` |
+| `KickFleetMember` / `MoveFleetMember` | 踢出/移动成员 | `esi-fleets.write_fleet.v1` |
+| `GetFleetWings` 及 wings/squads 增删改名（`CreateFleetWing` / `RenameFleetWing` / `DeleteFleetWing` / `CreateFleetSquad` / `RenameFleetSquad` / `DeleteFleetSquad`） | 联队/小队编组 | 读 + write |
 
 ## Mail — 邮件 (9)
 
@@ -145,11 +147,11 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdMail` | 邮件头列表（分页） | `esi-mail.read_mail.v1` |
-| `PostCharactersCharacterIdMail` | 发送邮件 | `esi-mail.send_mail.v1` |
-| `GetCharactersCharacterIdMailLabels` / `Post...Labels` / `Delete...LabelsLabelId` | 标签管理 | `esi-mail.organize_mail.v1` |
-| `GetCharactersCharacterIdMailLists` | 邮件列表订阅 | `esi-mail.read_mail.v1` |
-| `DeleteCharactersCharacterIdMailMailId` | 删除邮件 | `esi-mail.organize_mail.v1` |
+| `GetCharacterMails` | 邮件头列表（`WithPage`/`WithLabels`/`WithLastMailID`） | `esi-mail.read_mail.v1` |
+| `SendCharacterMail` | 发送邮件 | `esi-mail.send_mail.v1` |
+| `GetCharacterMailLabels` / `CreateCharacterMailLabel` / `DeleteCharacterMailLabel` | 标签管理 | `esi-mail.organize_mail.v1` |
+| `GetCharacterMailLists` | 邮件列表订阅 | `esi-mail.read_mail.v1` |
+| `GetCharacterMail` / `UpdateCharacterMail` / `DeleteCharacterMail` | 单封邮件读取/更新/删除 | `esi-mail.read_mail.v1` / `esi-mail.organize_mail.v1` |
 
 ## Contacts — 联系人 (9)
 
@@ -157,10 +159,10 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdContacts` / `Post` / `Put` / `Delete` | 角色联系人增删改查 | `esi-contacts.read/write_contacts.v1` |
-| `GetCharactersCharacterIdContactsLabels` | 联系人标签 | `esi-contacts.read_contacts.v1` |
-| `GetCorporationsCorporationIdContacts` 等 | 军团联系人 | `esi-contacts.read_corporation_contacts.v1` |
-| `GetAlliancesAllianceIdContacts` 等 | 联盟联系人 | `esi-contacts.read_alliance_contacts.v1` |
+| `GetCharacterContacts` / `AddCharacterContacts` / `EditCharacterContacts` / `DeleteCharacterContacts` | 角色联系人增删改查（`WithLabelIDs`/`WithWatched`/`WithPage`） | `esi-contacts.read/write_contacts.v1` |
+| `GetCharacterContactLabels` | 联系人标签 | `esi-contacts.read_contacts.v1` |
+| `GetCorporationContacts` 等 | 军团联系人 | `esi-contacts.read_corporation_contacts.v1` |
+| `GetAllianceContacts` 等 | 联盟联系人 | `esi-contacts.read_alliance_contacts.v1` |
 
 ## Industry — 工业 (8)
 
@@ -168,13 +170,13 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdIndustryJobs` | 角色工业作业 | `esi-industry.read_character_jobs.v1` |
-| `GetCharactersCharacterIdMining` | 角色采矿账本 | `esi-industry.read_character_mining.v1` |
-| `GetCorporationsCorporationIdIndustryJobs` | 军团作业 | `esi-industry.read_corporation_jobs.v1` |
-| `GetCorporationCorporationIdMiningExtractions` | 月球钻探计时 | `esi-industry.read_corporation_mining.v1` |
-| `GetCorporationCorporationIdMiningObservers(+ObserverId)` | 采矿观测记录 | 同上 |
+| `GetCharacterIndustryJobs` | 角色工业作业（`WithIncludeCompleted`） | `esi-industry.read_character_jobs.v1` |
+| `GetCharacterMiningLedger` | 角色采矿账本（`WithPage` 分页） | `esi-industry.read_character_mining.v1` |
+| `GetCorporationIndustryJobs` | 军团作业（`WithIncludeCompleted`/`WithPage`） | `esi-industry.read_corporation_jobs.v1` |
+| `GetCorporationMoonExtractions` | 月球钻探计时（`WithPage` 分页） | `esi-industry.read_corporation_mining.v1` |
+| `GetCorporationMiningObservers` / `GetCorporationMiningObserverData` | 采矿观测记录（`WithPage` 分页） | 同上 |
 | `GetIndustryFacilities` | 工业设施列表 | 公开 |
-| `GetIndustrySystems` | 星系成本指数 | 公开 |
+| `GetIndustrySystemCostIndices` | 星系成本指数 | 公开 |
 
 ## Faction Warfare — 势力战争 (8)
 
@@ -182,10 +184,10 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetFwLeaderboards(+Characters/Corporations)` | 势力/飞行员/军团排行榜 | 公开 |
-| `GetFwStats` / `GetFwSystems` / `GetFwWars` | 总览/星系归属/交战 | 公开 |
-| `GetCharactersCharacterIdFwStats` | 角色 FW 战绩 | `esi-characters.read_fw_stats.v1` |
-| `GetCorporationsCorporationIdFwStats` | 军团 FW 战绩 | `esi-corporations.read_fw_stats.v1` |
+| `GetFactionWarfareLeaderboard` / `GetFactionWarfareCharacterLeaderboard` / `GetFactionWarfareCorporationLeaderboard` | 势力/飞行员/军团排行榜 | 公开 |
+| `GetFactionWarfareStats` / `GetFactionWarfareSystems` / `GetFactionWarfareWars` | 总览/星系归属/交战 | 公开 |
+| `GetCharacterFactionWarfareStats` | 角色 FW 战绩 | `esi-characters.read_fw_stats.v1` |
+| `GetCorporationFactionWarfareStats` | 军团 FW 战绩 | `esi-corporations.read_fw_stats.v1` |
 
 ## Killmails — 击杀报告 (3)
 
@@ -193,9 +195,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdKillmailsRecent` | 角色近期击杀与损失 | `esi-killmails.read_killmails.v1` |
-| `GetCorporationsCorporationIdKillmailsRecent` | 军团近期击杀与损失 | 同上 |
-| `GetKillmailsKillmailIdKillmailHash` | 单条击杀详情（需 id + hash） | 公开 |
+| `GetCharacterKillmails` | 角色近期击杀与损失 | `esi-killmails.read_killmails.v1` |
+| `GetCorporationKillmails` | 军团近期击杀与损失 | 同上 |
+| `GetKillmail` | 单条击杀详情（需 `killmailID` + `killmailHash` 位置参数） | 公开 |
 
 ## Skills — 技能 (3)
 
@@ -203,9 +205,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdAttributes` | 基础属性 | `esi-skills.read_skills.v1` |
-| `GetCharacterIdSkills` | 已学技能及等级 | 同上 |
-| `GetCharacterIdSkillqueue` | 技能队列 | `esi-skills.read_skillqueue.v1` |
+| `GetCharacterAttributes` | 基础属性 | `esi-skills.read_skills.v1` |
+| `GetCharacterSkills` | 已学技能及等级 | 同上 |
+| `GetCharacterSkillQueue` | 技能队列 | `esi-skills.read_skillqueue.v1` |
 
 ## Location — 位置 (3)
 
@@ -213,9 +215,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdLocation` | 当前所在星系/空间站 | `esi-location.read_location.v1` |
-| `GetCharacterIdOnline` | 是否在线 | `esi-location.read_online.v1` |
-| `GetCharacterIdShip` | 当前驾驶的舰船 | `esi-location.read_ship_type.v1` |
+| `GetCharacterLocation` | 当前所在星系/空间站 | `esi-location.read_location.v1` |
+| `GetCharacterOnline` | 是否在线 | `esi-location.read_online.v1` |
+| `GetCharacterShip` | 当前驾驶的舰船 | `esi-location.read_ship_type.v1` |
 
 ## Bookmarks — 位标 (4)
 
@@ -223,8 +225,8 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdBookmarks` / `...Folders` | 角色位标/文件夹 | `esi-bookmarks.read_character_bookmarks.v1` |
-| `GetCorporationsCorporationIdBookmarks` / `...Folders` | 军团位标/文件夹 | `esi-bookmarks.read_corporation_bookmarks.v1` |
+| `GetCharacterBookmarks` / `GetCharacterBookmarkFolders` | 角色位标/文件夹（`WithPage` 分页） | `esi-bookmarks.read_character_bookmarks.v1` |
+| `ListCorporationBookmarks` / `ListCorporationBookmarkFolders` | 军团位标/文件夹（`WithPage` 分页） | `esi-bookmarks.read_corporation_bookmarks.v1` |
 
 ## Calendar — 日历 (4)
 
@@ -232,9 +234,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdCalendar` / `GetCharacterIdCalendarEventId` | 事件列表/详情 | `esi-calendar.read_calendar_events.v1` |
-| `PutCharacterIdCalendarEventId` | 响应事件（接受/拒绝/犹豫） | `esi-calendar.respond_calendar_events.v1` |
-| `GetCharacterIdCalendarEventIdAttendees` | 参与者列表 | 读 |
+| `GetCharacterCalendarEvents` / `GetCalendarEvent` | 事件列表（`WithFromEvent`）/详情 | `esi-calendar.read_calendar_events.v1` |
+| `RespondToCalendarEvent` | 响应事件（接受/拒绝/犹豫） | `esi-calendar.respond_calendar_events.v1` |
+| `GetCalendarEventAttendees` | 参与者列表 | 读 |
 
 ## Clones — 克隆 (2)
 
@@ -242,8 +244,8 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdClones` | 跳跃克隆及 implanted 脑插 | `esi-clones.read_clones.v1` |
-| `GetCharacterIdImplants` | 当前生效脑插 | `esi-clones.read_implants.v1` |
+| `GetCharacterClones` | 跳跃克隆及 implanted 脑插 | `esi-clones.read_clones.v1` |
+| `GetCharacterImplants` | 当前生效脑插 | `esi-clones.read_implants.v1` |
 
 ## Fittings — 装配 (3)
 
@@ -251,9 +253,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdFittings` | 装配列表 | `esi-fittings.read_fittings.v1` |
-| `PostCharacterIdFittings` | 新建装配 | `esi-fittings.write_fittings.v1` |
-| `DeleteCharacterIdFittingsFittingId` | 删除装配 | 同上 |
+| `GetCharacterFittings` | 装配列表 | `esi-fittings.read_fittings.v1` |
+| `CreateCharacterFitting` | 新建装配 | `esi-fittings.write_fittings.v1` |
+| `DeleteCharacterFitting` | 删除装配 | 同上 |
 
 ## Loyalty — 忠诚点 (2)
 
@@ -261,8 +263,8 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharactersCharacterIdLoyaltyPoints` | 各势力 LP 余额 | `esi-characters.read_loyalty.v1` |
-| `GetLoyaltyStoresCorporationIdOffers` | LP 商店兑换列表 | 公开 |
+| `GetCharacterLoyaltyPoints` | 各势力 LP 余额 | `esi-characters.read_loyalty.v1` |
+| `GetLoyaltyStoreOffers` | LP 商店兑换列表 | 公开 |
 
 ## Planetary Interaction — 行星开发 (4)
 
@@ -270,9 +272,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdPlanets` / `GetCharacterIdPlanetsPlanetId` | 殖民地列表/布局 | `esi-planets.manage_planets.v1` |
-| `GetCorporationsCorporationIdCustomsOffices` | 军团海关办公室 | `esi-planets.read_customs_offices.v1` |
-| `GetSchematicsSchematicId` | 行星示意图 | 公开 |
+| `GetCharacterColonies` / `GetCharacterColonyLayout` | 殖民地列表/布局 | `esi-planets.manage_planets.v1` |
+| `GetCorporationCustomsOffices` | 军团海关办公室 | `esi-planets.read_customs_offices.v1` |
+| `GetSchematicInformation` | 行星示意图 | 公开 |
 
 ## Opportunities — 机遇系统 (5)
 
@@ -280,8 +282,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetOpportunitiesGroups(+GroupId)` / `GetOpportunitiesTasks(+TaskId)` | 任务组/任务 | 公开 |
-| `GetCharacterIdOpportunities` | 角色已完成任务 | `esi-opportunities.read_opportunities.v1` |
+| `GetOpportunityGroups` / `GetOpportunityGroup` | 任务组 | 公开 |
+| `GetOpportunityTasks` / `GetOpportunityTask` | 任务 | 公开 |
+| `GetCharacterOpportunities` | 角色已完成任务 | `esi-opportunities.read_opportunities.v1` |
 
 ## Sovereignty — 主权 (3)
 
@@ -299,8 +302,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 |
 |---|---|
-| `GetWars` / `GetWarId` | 战争列表/详情 |
-| `GetWarIdKillmails` | 战争相关击杀 |
+| `GetWars` | 战争列表（`WithMaxWarID` 翻页） |
+| `GetWar` | 战争详情 |
+| `GetWarKillmails` | 战争相关击杀（`WithPage` 分页） |
 
 ## Alliance — 联盟 (4)
 
@@ -309,8 +313,8 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 | 方法 | 说明 |
 |---|---|
 | `GetAlliances` | 全服联盟 ID 列表 |
-| `GetAllianceId` / `GetAllianceIdIcons` | 联盟信息/图标 |
-| `GetAllianceIdCorporations` | 成员军团列表 |
+| `GetAlliance` / `GetAllianceIcons` | 联盟信息/图标 |
+| `GetAllianceCorporations` | 成员军团列表 |
 
 ## Dogma — 教条属性 (5)
 
@@ -318,9 +322,9 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 |
 |---|---|
-| `GetAttributes` / `GetAttributesAttributeId` | 属性列表/详情 |
-| `GetEffects` / `GetEffectsEffectId` | 效果列表/详情 |
-| `GetDynamicItemsTypeIdItemId` | 动态物品（改装件）属性 |
+| `GetDogmaAttributes` / `GetDogmaAttribute` | 属性列表/详情 |
+| `GetDogmaEffects` / `GetDogmaEffect` | 效果列表/详情 |
+| `GetDogmaDynamicItem` | 动态物品（改装件）属性（位置参数 `typeID, itemID`） |
 
 ## User Interface — 游戏内 UI 联动 (5)
 
@@ -328,8 +332,8 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `PostUiAutopilotWaypoint` | 添加自动导航路径点 | `esi-ui.write_waypoint.v1` |
-| `PostUiOpenwindowMarketdetails` / `Information` / `Contract` / `Newmail` | 打开市场/信息/合同/邮件窗口 | `esi-ui.open_window.v1` |
+| `SetAutopilotWaypoint` | 添加自动导航路径点 | `esi-ui.write_waypoint.v1` |
+| `OpenMarketDetails` / `OpenInformationWindow` / `OpenContractWindow` / `OpenNewMailWindow` | 打开市场/信息/合同/邮件窗口 | `esi-ui.open_window.v1` |
 
 ## Search — 搜索 (1)
 
@@ -337,7 +341,7 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 | Scope |
 |---|---|---|
-| `GetCharacterIdSearch` | 指定类别搜索（categories 参数） | `esi-search.search_structures.v1` 等按类别 |
+| `SearchEntities` | 按类别搜索（`characterID, categories, search` 为位置参数） | `esi-search.search_structures.v1` 等按类别 |
 
 ## Incursions — 入侵 (1)
 
@@ -361,4 +365,4 @@ The 32 ESI modules at a glance. Methods live in the root file of the same name
 
 | 方法 | 说明 |
 |---|---|
-| `GetRouteOriginDestination` | 计算 origin→destination 的星系路径 |
+| `GetRoute` | 计算 `destination`→`origin` 星系路径（位置参数，可 `WithAvoid`/`WithConnections`/`WithFlag`） |

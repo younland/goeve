@@ -5,17 +5,17 @@ import (
 	"github.com/younland/goeve/models"
 )
 
-// GetStatus Retrieve the uptime and player counts.
-// GetStatus 获取服务器运行时间和玩家数量.
+// GetServerStatus Retrieve the uptime and player counts.
+// GetServerStatus 获取服务器运行时间和玩家数量.
 //
 // Route: GET /status/ — This route is cached for up to 30 seconds
 // 路由: GET /status/ — 该路由缓存长达 30 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStatus(ctx context.Context, params *models.GetStatusParams) (*models.GetStatus, error) {
-	query, headers := params.Values()
+func (c *Client) GetServerStatus(ctx context.Context, opts ...RequestOption) (*models.ServerStatus, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result *models.GetStatus
+	var result *models.ServerStatus
 	err := c.get(ctx, "/status/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

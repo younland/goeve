@@ -1,14 +1,10 @@
 package models
 
-import (
-	"net/url"
-	"strconv"
-	"time"
-)
+import "time"
 
-// GetCharactersCharacterIdOrders 200 ok object.
-// GetCharactersCharacterIdOrders 200 ok 对象.
-type GetCharactersCharacterIdOrders struct {
+// CharacterMarketOrder 200 ok object.
+// CharacterMarketOrder 200 ok 对象.
+type CharacterMarketOrder struct {
 	// Duration Number of days for which order is valid (starting from the issued date). An order expires at time issued + duration.
 	// Duration 订单有效的天数（自发布日期起）。订单在发布时间 + 持续时长时过期.
 	Duration int32 `json:"duration"`
@@ -54,9 +50,9 @@ type GetCharactersCharacterIdOrders struct {
 	VolumeTotal int32 `json:"volume_total"`
 }
 
-// GetCharactersCharacterIdOrdersHistory 200 ok object.
-// GetCharactersCharacterIdOrdersHistory 200 ok 对象.
-type GetCharactersCharacterIdOrdersHistory struct {
+// CharacterMarketOrderHistory 200 ok object.
+// CharacterMarketOrderHistory 200 ok 对象.
+type CharacterMarketOrderHistory struct {
 	// Duration Number of days the order was valid for (starting from the issued date). An order expires at time issued + duration.
 	// Duration 订单的有效天数（自发布日期起）。订单在发布时间 + 持续时长时过期.
 	Duration int32 `json:"duration"`
@@ -106,9 +102,9 @@ type GetCharactersCharacterIdOrdersHistory struct {
 	VolumeTotal int32 `json:"volume_total"`
 }
 
-// GetCorporationsCorporationIdOrders 200 ok object.
-// GetCorporationsCorporationIdOrders 200 ok 对象.
-type GetCorporationsCorporationIdOrders struct {
+// CorporationMarketOrder 200 ok object.
+// CorporationMarketOrder 200 ok 对象.
+type CorporationMarketOrder struct {
 	// Duration Number of days for which order is valid (starting from the issued date). An order expires at time issued + duration.
 	// Duration 订单有效的天数（自发布日期起）。订单在发布时间 + 持续时长时过期.
 	Duration int32 `json:"duration"`
@@ -157,9 +153,9 @@ type GetCorporationsCorporationIdOrders struct {
 	WalletDivision int32 `json:"wallet_division"`
 }
 
-// GetCorporationsCorporationIdOrdersHistory 200 ok object.
-// GetCorporationsCorporationIdOrdersHistory 200 ok 对象.
-type GetCorporationsCorporationIdOrdersHistory struct {
+// CorporationMarketOrderHistory 200 ok object.
+// CorporationMarketOrderHistory 200 ok 对象.
+type CorporationMarketOrderHistory struct {
 	// Duration Number of days the order was valid for (starting from the issued date). An order expires at time issued + duration.
 	// Duration 订单的有效天数（自发布日期起）。订单在发布时间 + 持续时长时过期.
 	Duration int32 `json:"duration"`
@@ -212,9 +208,9 @@ type GetCorporationsCorporationIdOrdersHistory struct {
 	WalletDivision int32 `json:"wallet_division"`
 }
 
-// GetMarketsGroupsMarketGroupId 200 ok object.
-// GetMarketsGroupsMarketGroupId 200 ok 对象.
-type GetMarketsGroupsMarketGroupId struct {
+// MarketGroup 200 ok object.
+// MarketGroup 200 ok 对象.
+type MarketGroup struct {
 	// Description description string.
 	// Description 描述字符串.
 	Description string `json:"description"`
@@ -232,9 +228,9 @@ type GetMarketsGroupsMarketGroupId struct {
 	Types []int32 `json:"types"`
 }
 
-// GetMarketsPrices 200 ok object.
-// GetMarketsPrices 200 ok 对象.
-type GetMarketsPrices struct {
+// MarketPrice 200 ok object.
+// MarketPrice 200 ok 对象.
+type MarketPrice struct {
 	// AdjustedPrice adjusted_price number.
 	// AdjustedPrice 调整价格数值.
 	AdjustedPrice float64 `json:"adjusted_price"`
@@ -246,9 +242,9 @@ type GetMarketsPrices struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetMarketsRegionIdHistory 200 ok object.
-// GetMarketsRegionIdHistory 200 ok 对象.
-type GetMarketsRegionIdHistory struct {
+// MarketHistoryEntry 200 ok object.
+// MarketHistoryEntry 200 ok 对象.
+type MarketHistoryEntry struct {
 	// Average average number.
 	// Average 平均值数值.
 	Average float64 `json:"average"`
@@ -269,9 +265,9 @@ type GetMarketsRegionIdHistory struct {
 	Volume int64 `json:"volume"`
 }
 
-// GetMarketsRegionIdOrders 200 ok object.
-// GetMarketsRegionIdOrders 200 ok 对象.
-type GetMarketsRegionIdOrders struct {
+// MarketOrder 200 ok object.
+// MarketOrder 200 ok 对象.
+type MarketOrder struct {
 	// Duration duration integer.
 	// Duration 持续时间整数.
 	Duration int32 `json:"duration"`
@@ -311,9 +307,9 @@ type GetMarketsRegionIdOrders struct {
 	VolumeTotal int32 `json:"volume_total"`
 }
 
-// GetMarketsStructuresStructureId 200 ok object.
-// GetMarketsStructuresStructureId 200 ok 对象.
-type GetMarketsStructuresStructureId struct {
+// StructureMarketOrder 200 ok object.
+// StructureMarketOrder 200 ok 对象.
+type StructureMarketOrder struct {
 	// Duration duration integer.
 	// Duration 持续时间整数.
 	Duration int32 `json:"duration"`
@@ -348,500 +344,4 @@ type GetMarketsStructuresStructureId struct {
 	// VolumeTotal volume_total integer.
 	// VolumeTotal 总体积整数.
 	VolumeTotal int32 `json:"volume_total"`
-}
-
-// GetCharactersCharacterIdOrdersHistoryParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdOrdersHistoryParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdOrdersHistoryParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdOrdersHistoryParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharactersCharacterIdOrdersParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdOrdersParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdOrdersParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdOrdersParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationsCorporationIdOrdersHistoryParams holds the optional query and header parameters of the request.
-// GetCorporationsCorporationIdOrdersHistoryParams 保存请求的可选查询与头部参数。
-type GetCorporationsCorporationIdOrdersHistoryParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationsCorporationIdOrdersHistoryParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationsCorporationIdOrdersParams holds the optional query and header parameters of the request.
-// GetCorporationsCorporationIdOrdersParams 保存请求的可选查询与头部参数。
-type GetCorporationsCorporationIdOrdersParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationsCorporationIdOrdersParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetsGroupsMarketGroupIdParams holds the optional query and header parameters of the request.
-// GetsGroupsMarketGroupIdParams 保存请求的可选查询与头部参数。
-type GetsGroupsMarketGroupIdParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetsGroupsMarketGroupIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetsGroupsParams holds the optional query and header parameters of the request.
-// GetsGroupsParams 保存请求的可选查询与头部参数。
-type GetsGroupsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetsGroupsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetsPricesParams holds the optional query and header parameters of the request.
-// GetsPricesParams 保存请求的可选查询与头部参数。
-type GetsPricesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetsPricesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetsRegionIdHistoryParams holds the optional query and header parameters of the request.
-// GetsRegionIdHistoryParams 保存请求的可选查询与头部参数。
-type GetsRegionIdHistoryParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// TypeId Return statistics for this type.
-	// TypeId 返回此类型的统计信息.
-	TypeId *int32
-}
-
-func (p *GetsRegionIdHistoryParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.TypeId != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("type_id", strconv.FormatInt(int64(*p.TypeId), 10))
-	}
-	return query, headers
-}
-
-// GetsRegionIdOrdersParams holds the optional query and header parameters of the request.
-// GetsRegionIdOrdersParams 保存请求的可选查询与头部参数。
-type GetsRegionIdOrdersParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// OrderType Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders.
-	// OrderType 过滤买单/卖单，默认返回所有订单。如果不带 type_id 查询，则始终同时返回买单和卖单.
-	OrderType *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// TypeId Return orders only for this type.
-	// TypeId 仅返回此类型的订单.
-	TypeId *int32
-}
-
-func (p *GetsRegionIdOrdersParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.OrderType != nil && *p.OrderType != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("order_type", *p.OrderType)
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.TypeId != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("type_id", strconv.FormatInt(int64(*p.TypeId), 10))
-	}
-	return query, headers
-}
-
-// GetsRegionIdTypesParams holds the optional query and header parameters of the request.
-// GetsRegionIdTypesParams 保存请求的可选查询与头部参数。
-type GetsRegionIdTypesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-}
-
-func (p *GetsRegionIdTypesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	return query, headers
-}
-
-// GetsStructuresStructureIdParams holds the optional query and header parameters of the request.
-// GetsStructuresStructureIdParams 保存请求的可选查询与头部参数。
-type GetsStructuresStructureIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetsStructuresStructureIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
 }

@@ -6,15 +6,15 @@ import (
 	"strconv"
 )
 
-// GetAttributes Get attributes.
-// GetAttributes 获取属性.
+// GetDogmaAttributes Get attributes.
+// GetDogmaAttributes 获取属性.
 //
 // Route: GET /dogma/attributes/
 // 路由: GET /dogma/attributes/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAttributes(ctx context.Context, params *models.GetAttributesParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetDogmaAttributes(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/dogma/attributes/", pathParams, query, headers, &result)
@@ -24,17 +24,17 @@ func (c *Client) GetAttributes(ctx context.Context, params *models.GetAttributes
 	return result, nil
 }
 
-// GetAttributesAttributeId Get attribute information.
-// GetAttributesAttributeId 获取属性信息.
+// GetDogmaAttribute Get attribute information.
+// GetDogmaAttribute 获取属性信息.
 //
 // Route: GET /dogma/attributes/{attribute_id}/
 // 路由: GET /dogma/attributes/{attribute_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAttributesAttributeId(ctx context.Context, attributeId int32, params *models.GetAttributesAttributeIdParams) (*models.GetDogmaAttributesAttributeId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"attribute_id": strconv.FormatInt(int64(attributeId), 10)}
-	var result *models.GetDogmaAttributesAttributeId
+func (c *Client) GetDogmaAttribute(ctx context.Context, attributeID int32, opts ...RequestOption) (*models.DogmaAttribute, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"attribute_id": strconv.FormatInt(int64(attributeID), 10)}
+	var result *models.DogmaAttribute
 	err := c.get(ctx, "/dogma/attributes/{attribute_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -42,17 +42,17 @@ func (c *Client) GetAttributesAttributeId(ctx context.Context, attributeId int32
 	return result, nil
 }
 
-// GetDynamicItemsTypeIdItemId Get dynamic item information.
-// GetDynamicItemsTypeIdItemId 获取动态物品信息.
+// GetDogmaDynamicItem Get dynamic item information.
+// GetDogmaDynamicItem 获取动态物品信息.
 //
 // Route: GET /dogma/dynamic/items/{type_id}/{item_id}/
 // 路由: GET /dogma/dynamic/items/{type_id}/{item_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDynamicItemsTypeIdItemId(ctx context.Context, itemId int64, typeId int32, params *models.GetDynamicItemsTypeIdItemIdParams) (*models.GetDogmaDynamicItemsTypeIdItemId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"item_id": strconv.FormatInt(int64(itemId), 10), "type_id": strconv.FormatInt(int64(typeId), 10)}
-	var result *models.GetDogmaDynamicItemsTypeIdItemId
+func (c *Client) GetDogmaDynamicItem(ctx context.Context, itemID int64, typeID int32, opts ...RequestOption) (*models.DogmaDynamicItem, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"item_id": strconv.FormatInt(int64(itemID), 10), "type_id": strconv.FormatInt(int64(typeID), 10)}
+	var result *models.DogmaDynamicItem
 	err := c.get(ctx, "/dogma/dynamic/items/{type_id}/{item_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -60,15 +60,15 @@ func (c *Client) GetDynamicItemsTypeIdItemId(ctx context.Context, itemId int64, 
 	return result, nil
 }
 
-// GetEffects Get effects.
-// GetEffects 获取效果.
+// GetDogmaEffects Get effects.
+// GetDogmaEffects 获取效果.
 //
 // Route: GET /dogma/effects/
 // 路由: GET /dogma/effects/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetEffects(ctx context.Context, params *models.GetEffectsParams) ([]int32, error) {
-	query, headers := params.Values()
+func (c *Client) GetDogmaEffects(ctx context.Context, opts ...RequestOption) ([]int32, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
 	var result []int32
 	err := c.get(ctx, "/dogma/effects/", pathParams, query, headers, &result)
@@ -78,17 +78,17 @@ func (c *Client) GetEffects(ctx context.Context, params *models.GetEffectsParams
 	return result, nil
 }
 
-// GetEffectsEffectId Get effect information.
-// GetEffectsEffectId 获取效果信息.
+// GetDogmaEffect Get effect information.
+// GetDogmaEffect 获取效果信息.
 //
 // Route: GET /dogma/effects/{effect_id}/
 // 路由: GET /dogma/effects/{effect_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetEffectsEffectId(ctx context.Context, effectId int32, params *models.GetEffectsEffectIdParams) (*models.GetDogmaEffectsEffectId, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"effect_id": strconv.FormatInt(int64(effectId), 10)}
-	var result *models.GetDogmaEffectsEffectId
+func (c *Client) GetDogmaEffect(ctx context.Context, effectID int32, opts ...RequestOption) (*models.DogmaEffect, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"effect_id": strconv.FormatInt(int64(effectID), 10)}
+	var result *models.DogmaEffect
 	err := c.get(ctx, "/dogma/effects/{effect_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

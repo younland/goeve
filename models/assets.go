@@ -1,13 +1,8 @@
 package models
 
-import (
-	"net/url"
-	"strconv"
-)
-
-// GetCharactersCharacterIdAssets 200 ok object.
-// GetCharactersCharacterIdAssets 200 ok 对象.
-type GetCharactersCharacterIdAssets struct {
+// CharacterAsset 200 ok object.
+// CharacterAsset 200 ok 对象.
+type CharacterAsset struct {
 	// IsBlueprintCopy is_blueprint_copy boolean.
 	// IsBlueprintCopy 是否为蓝图拷贝布尔值.
 	IsBlueprintCopy bool `json:"is_blueprint_copy"`
@@ -36,59 +31,9 @@ type GetCharactersCharacterIdAssets struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCharactersCharacterIdAssetsParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdAssetsParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdAssetsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdAssetsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationsCorporationIdAssets 200 ok object.
-// GetCorporationsCorporationIdAssets 200 ok 对象.
-type GetCorporationsCorporationIdAssets struct {
+// CorporationAsset 200 ok object.
+// CorporationAsset 200 ok 对象.
+type CorporationAsset struct {
 	// IsBlueprintCopy is_blueprint_copy boolean.
 	// IsBlueprintCopy 是否为蓝图拷贝布尔值.
 	IsBlueprintCopy bool `json:"is_blueprint_copy"`
@@ -117,102 +62,20 @@ type GetCorporationsCorporationIdAssets struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCorporationsCorporationIdAssetsParams holds the optional query and header parameters of the request.
-// GetCorporationsCorporationIdAssetsParams 保存请求的可选查询与头部参数。
-type GetCorporationsCorporationIdAssetsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationsCorporationIdAssetsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// PostCharactersCharacterIdAssetsLocations 200 ok object.
-// PostCharactersCharacterIdAssetsLocations 200 ok 对象.
-type PostCharactersCharacterIdAssetsLocations struct {
+// AssetLocation 200 ok object.
+// AssetLocation 200 ok 对象.
+type AssetLocation struct {
 	// ItemId item_id integer.
 	// ItemId item_id 整数.
 	ItemId int64 `json:"item_id"`
 	// Position position object.
 	// Position position 对象.
-	Position PostCharactersCharacterIdAssetsLocationsPosition `json:"position"`
+	Position AssetPosition `json:"position"`
 }
 
-// PostCharactersCharacterIdAssetsLocationsParams holds the optional query and header parameters of the request.
-// PostCharactersCharacterIdAssetsLocationsParams 保存请求的可选查询与头部参数。
-type PostCharactersCharacterIdAssetsLocationsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *PostCharactersCharacterIdAssetsLocationsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// PostCharactersCharacterIdAssetsLocationsPosition position object.
-// PostCharactersCharacterIdAssetsLocationsPosition position 对象.
-type PostCharactersCharacterIdAssetsLocationsPosition struct {
+// AssetPosition position object.
+// AssetPosition position 对象.
+type AssetPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -224,145 +87,13 @@ type PostCharactersCharacterIdAssetsLocationsPosition struct {
 	Z float64 `json:"z"`
 }
 
-// PostCharactersCharacterIdAssetsNames 200 ok object.
-// PostCharactersCharacterIdAssetsNames 200 ok 对象.
-type PostCharactersCharacterIdAssetsNames struct {
+// AssetName 200 ok object.
+// AssetName 200 ok 对象.
+type AssetName struct {
 	// ItemId item_id integer.
 	// ItemId item_id 整数.
 	ItemId int64 `json:"item_id"`
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
-}
-
-// PostCharactersCharacterIdAssetsNamesParams holds the optional query and header parameters of the request.
-// PostCharactersCharacterIdAssetsNamesParams 保存请求的可选查询与头部参数。
-type PostCharactersCharacterIdAssetsNamesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *PostCharactersCharacterIdAssetsNamesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// PostCorporationsCorporationIdAssetsLocations 200 ok object.
-// PostCorporationsCorporationIdAssetsLocations 200 ok 对象.
-type PostCorporationsCorporationIdAssetsLocations struct {
-	// ItemId item_id integer.
-	// ItemId item_id 整数.
-	ItemId int64 `json:"item_id"`
-	// Position position object.
-	// Position position 对象.
-	Position PostCorporationsCorporationIdAssetsLocationsPosition `json:"position"`
-}
-
-// PostCorporationsCorporationIdAssetsLocationsParams holds the optional query and header parameters of the request.
-// PostCorporationsCorporationIdAssetsLocationsParams 保存请求的可选查询与头部参数。
-type PostCorporationsCorporationIdAssetsLocationsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *PostCorporationsCorporationIdAssetsLocationsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// PostCorporationsCorporationIdAssetsLocationsPosition position object.
-// PostCorporationsCorporationIdAssetsLocationsPosition position 对象.
-type PostCorporationsCorporationIdAssetsLocationsPosition struct {
-	// X x number.
-	// X x 数字.
-	X float64 `json:"x"`
-	// Y y number.
-	// Y y 数字.
-	Y float64 `json:"y"`
-	// Z z number.
-	// Z z 数字.
-	Z float64 `json:"z"`
-}
-
-// PostCorporationsCorporationIdAssetsNames 200 ok object.
-// PostCorporationsCorporationIdAssetsNames 200 ok 对象.
-type PostCorporationsCorporationIdAssetsNames struct {
-	// ItemId item_id integer.
-	// ItemId item_id 整数.
-	ItemId int64 `json:"item_id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostCorporationsCorporationIdAssetsNamesParams holds the optional query and header parameters of the request.
-// PostCorporationsCorporationIdAssetsNamesParams 保存请求的可选查询与头部参数。
-type PostCorporationsCorporationIdAssetsNamesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *PostCorporationsCorporationIdAssetsNamesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
 }

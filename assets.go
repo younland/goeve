@@ -6,17 +6,17 @@ import (
 	"strconv"
 )
 
-// GetCharactersCharacterIdAssets Get character assets.
-// GetCharactersCharacterIdAssets 获取角色资产.
+// GetCharacterAssets Get character assets.
+// GetCharacterAssets 获取角色资产.
 //
 // Route: GET /characters/{character_id}/assets/ — This route is cached for up to 3600 seconds
 // 路由: GET /characters/{character_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharactersCharacterIdAssets(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdAssetsParams) ([]models.GetCharactersCharacterIdAssets, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result []models.GetCharactersCharacterIdAssets
+func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, opts ...RequestOption) ([]models.CharacterAsset, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result []models.CharacterAsset
 	err := c.get(ctx, "/characters/{character_id}/assets/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -24,17 +24,17 @@ func (c *Client) GetCharactersCharacterIdAssets(ctx context.Context, characterId
 	return result, nil
 }
 
-// GetCorporationsCorporationIdAssets Get corporation assets.
-// GetCorporationsCorporationIdAssets 获取军团资产.
+// GetCorporationAssets Get corporation assets.
+// GetCorporationAssets 获取军团资产.
 //
 // Route: GET /corporations/{corporation_id}/assets/ — This route is cached for up to 3600 seconds
 // 路由: GET /corporations/{corporation_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationsCorporationIdAssets(ctx context.Context, corporationId int32, params *models.GetCorporationsCorporationIdAssetsParams) ([]models.GetCorporationsCorporationIdAssets, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10)}
-	var result []models.GetCorporationsCorporationIdAssets
+func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, opts ...RequestOption) ([]models.CorporationAsset, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
+	var result []models.CorporationAsset
 	err := c.get(ctx, "/corporations/{corporation_id}/assets/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -42,20 +42,20 @@ func (c *Client) GetCorporationsCorporationIdAssets(ctx context.Context, corpora
 	return result, nil
 }
 
-// PostCharactersCharacterIdAssetsLocations Get character asset locations.
-// PostCharactersCharacterIdAssetsLocations 获取角色资产位置.
+// GetCharacterAssetLocations Get character asset locations.
+// GetCharacterAssetLocations 获取角色资产位置.
 //
 // Route: POST /characters/{character_id}/assets/locations/
 // 路由: POST /characters/{character_id}/assets/locations/
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) PostCharactersCharacterIdAssetsLocations(ctx context.Context, characterId int32, body []int64, params *models.PostCharactersCharacterIdAssetsLocationsParams) ([]models.PostCharactersCharacterIdAssetsLocations, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
+func (c *Client) GetCharacterAssetLocations(ctx context.Context, characterID int32, body []int64, opts ...RequestOption) ([]models.AssetLocation, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result []models.PostCharactersCharacterIdAssetsLocations
+	var result []models.AssetLocation
 	err := c.post(ctx, "/characters/{character_id}/assets/locations/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err
@@ -63,20 +63,20 @@ func (c *Client) PostCharactersCharacterIdAssetsLocations(ctx context.Context, c
 	return result, nil
 }
 
-// PostCharactersCharacterIdAssetsNames Get character asset names.
-// PostCharactersCharacterIdAssetsNames 获取角色资产名称.
+// GetCharacterAssetNames Get character asset names.
+// GetCharacterAssetNames 获取角色资产名称.
 //
 // Route: POST /characters/{character_id}/assets/names/
 // 路由: POST /characters/{character_id}/assets/names/
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) PostCharactersCharacterIdAssetsNames(ctx context.Context, characterId int32, body []int64, params *models.PostCharactersCharacterIdAssetsNamesParams) ([]models.PostCharactersCharacterIdAssetsNames, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
+func (c *Client) GetCharacterAssetNames(ctx context.Context, characterID int32, body []int64, opts ...RequestOption) ([]models.AssetName, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result []models.PostCharactersCharacterIdAssetsNames
+	var result []models.AssetName
 	err := c.post(ctx, "/characters/{character_id}/assets/names/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err
@@ -84,20 +84,20 @@ func (c *Client) PostCharactersCharacterIdAssetsNames(ctx context.Context, chara
 	return result, nil
 }
 
-// PostCorporationsCorporationIdAssetsLocations Get corporation asset locations.
-// PostCorporationsCorporationIdAssetsLocations 获取军团资产位置.
+// GetCorporationAssetLocations Get corporation asset locations.
+// GetCorporationAssetLocations 获取军团资产位置.
 //
 // Route: POST /corporations/{corporation_id}/assets/locations/
 // 路由: POST /corporations/{corporation_id}/assets/locations/
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) PostCorporationsCorporationIdAssetsLocations(ctx context.Context, corporationId int32, body []int64, params *models.PostCorporationsCorporationIdAssetsLocationsParams) ([]models.PostCorporationsCorporationIdAssetsLocations, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10)}
+func (c *Client) GetCorporationAssetLocations(ctx context.Context, corporationID int32, body []int64, opts ...RequestOption) ([]models.AssetLocation, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result []models.PostCorporationsCorporationIdAssetsLocations
+	var result []models.AssetLocation
 	err := c.post(ctx, "/corporations/{corporation_id}/assets/locations/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err
@@ -105,20 +105,20 @@ func (c *Client) PostCorporationsCorporationIdAssetsLocations(ctx context.Contex
 	return result, nil
 }
 
-// PostCorporationsCorporationIdAssetsNames Get corporation asset names.
-// PostCorporationsCorporationIdAssetsNames 获取军团资产名称.
+// GetCorporationAssetNames Get corporation asset names.
+// GetCorporationAssetNames 获取军团资产名称.
 //
 // Route: POST /corporations/{corporation_id}/assets/names/
 // 路由: POST /corporations/{corporation_id}/assets/names/
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) PostCorporationsCorporationIdAssetsNames(ctx context.Context, corporationId int32, body []int64, params *models.PostCorporationsCorporationIdAssetsNamesParams) ([]models.PostCorporationsCorporationIdAssetsNames, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10)}
+func (c *Client) GetCorporationAssetNames(ctx context.Context, corporationID int32, body []int64, opts ...RequestOption) ([]models.AssetName, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result []models.PostCorporationsCorporationIdAssetsNames
+	var result []models.AssetName
 	err := c.post(ctx, "/corporations/{corporation_id}/assets/names/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err

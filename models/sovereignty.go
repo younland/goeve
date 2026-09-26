@@ -1,13 +1,12 @@
 package models
 
 import (
-	"net/url"
 	"time"
 )
 
-// GetSovereigntyCampaigns 200 ok object.
-// GetSovereigntyCampaigns 200 ok 对象.
-type GetSovereigntyCampaigns struct {
+// SovereigntyCampaign 200 ok object.
+// SovereigntyCampaign 200 ok 对象.
+type SovereigntyCampaign struct {
 	// AttackersScore Score for all attacking parties, only present in Defense Events.
 	// AttackersScore 所有进攻方的得分，仅出现在防御事件中。
 	AttackersScore float64 `json:"attackers_score"`
@@ -29,7 +28,7 @@ type GetSovereigntyCampaigns struct {
 	EventType string `json:"event_type"`
 	// Participants Alliance participating and their respective scores, only present in Freeport Events.
 	// Participants 参与联盟及其各自得分，仅存在于自由港事件中。
-	Participants []GetSovereigntyCampaignsParticipant `json:"participants"`
+	Participants []SovereigntyCampaignParticipant `json:"participants"`
 	// SolarSystemId The solar system the structure is located in.
 	// SolarSystemId 建筑所在的星系。
 	SolarSystemId int32 `json:"solar_system_id"`
@@ -41,9 +40,9 @@ type GetSovereigntyCampaigns struct {
 	StructureId int64 `json:"structure_id"`
 }
 
-// GetSovereigntyCampaignsParticipant participant object.
-// GetSovereigntyCampaignsParticipant participant 对象.
-type GetSovereigntyCampaignsParticipant struct {
+// SovereigntyCampaignParticipant participant object.
+// SovereigntyCampaignParticipant participant 对象.
+type SovereigntyCampaignParticipant struct {
 	// AllianceId alliance_id integer.
 	// AllianceId 联盟 ID 整数.
 	AllianceId int32 `json:"alliance_id"`
@@ -52,9 +51,9 @@ type GetSovereigntyCampaignsParticipant struct {
 	Score float64 `json:"score"`
 }
 
-// GetSovereigntyMap 200 ok object.
-// GetSovereigntyMap 200 ok 对象.
-type GetSovereigntyMap struct {
+// SovereigntySystem 200 ok object.
+// SovereigntySystem 200 ok 对象.
+type SovereigntySystem struct {
 	// AllianceId alliance_id integer.
 	// AllianceId 联盟 ID 整数.
 	AllianceId int32 `json:"alliance_id"`
@@ -69,9 +68,9 @@ type GetSovereigntyMap struct {
 	SystemId int32 `json:"system_id"`
 }
 
-// GetSovereigntyStructures 200 ok object.
-// GetSovereigntyStructures 200 ok 对象.
-type GetSovereigntyStructures struct {
+// SovereigntyStructure 200 ok object.
+// SovereigntyStructure 200 ok 对象.
+type SovereigntyStructure struct {
 	// AllianceId The alliance that owns the structure.
 	// AllianceId 拥有该建筑的联盟。
 	AllianceId int32 `json:"alliance_id"`
@@ -93,100 +92,4 @@ type GetSovereigntyStructures struct {
 	// VulnerableStartTime The next time at which the structure will become vulnerable. Or the start time of the current window if current time is between this and vulnerableEndTime.
 	// VulnerableStartTime 建筑下一次进入可攻击状态的时间。如果当前时间介于该时间与 vulnerableEndTime 之间，则为当前窗口的开始时间。
 	VulnerableStartTime time.Time `json:"vulnerable_start_time"`
-}
-
-// GetCampaignsParams holds the optional query and header parameters of the request.
-// GetCampaignsParams 保存请求的可选查询与头部参数。
-type GetCampaignsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCampaignsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetMapParams holds the optional query and header parameters of the request.
-// GetMapParams 保存请求的可选查询与头部参数。
-type GetMapParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetMapParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetStructuresParams holds the optional query and header parameters of the request.
-// GetStructuresParams 保存请求的可选查询与头部参数。
-type GetStructuresParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetStructuresParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
 }

@@ -1,14 +1,12 @@
 package models
 
 import (
-	"net/url"
-	"strconv"
 	"time"
 )
 
-// GetCharactersCharacterIdPlanets 200 ok object.
-// GetCharactersCharacterIdPlanets 200 ok 对象.
-type GetCharactersCharacterIdPlanets struct {
+// Colony 200 ok object.
+// Colony 200 ok 对象.
+type Colony struct {
 	// LastUpdate last_update string.
 	// LastUpdate last_update 字符串.
 	LastUpdate time.Time `json:"last_update"`
@@ -33,9 +31,9 @@ type GetCharactersCharacterIdPlanets struct {
 	UpgradeLevel int32 `json:"upgrade_level"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdContent content object.
-// GetCharactersCharacterIdPlanetsPlanetIdContent 内容对象.
-type GetCharactersCharacterIdPlanetsPlanetIdContent struct {
+// ColonyContent content object.
+// ColonyContent 内容对象.
+type ColonyContent struct {
 	// Amount amount integer.
 	// Amount 金额整数.
 	Amount int64 `json:"amount"`
@@ -44,9 +42,9 @@ type GetCharactersCharacterIdPlanetsPlanetIdContent struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails extractor_details object.
-// GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails 采集器详情对象.
-type GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails struct {
+// ColonyExtractorDetails extractor_details object.
+// ColonyExtractorDetails 采集器详情对象.
+type ColonyExtractorDetails struct {
 	// CycleTime in seconds.
 	// CycleTime 单位：秒.
 	CycleTime int32 `json:"cycle_time"`
@@ -55,7 +53,7 @@ type GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails struct {
 	HeadRadius float64 `json:"head_radius"`
 	// Heads heads array.
 	// Heads 头部数组.
-	Heads []GetCharactersCharacterIdPlanetsPlanetIdHead `json:"heads"`
+	Heads []ColonyExtractorHead `json:"heads"`
 	// ProductTypeId product_type_id integer.
 	// ProductTypeId product_type_id 整数.
 	ProductTypeId int32 `json:"product_type_id"`
@@ -64,17 +62,17 @@ type GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails struct {
 	QtyPerCycle int32 `json:"qty_per_cycle"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails factory_details object.
-// GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails 工厂详情对象.
-type GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails struct {
+// ColonyFactoryDetails factory_details object.
+// ColonyFactoryDetails 工厂详情对象.
+type ColonyFactoryDetails struct {
 	// SchematicId schematic_id integer.
 	// SchematicId 示意图ID integer.
 	SchematicId int32 `json:"schematic_id"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdHead head object.
-// GetCharactersCharacterIdPlanetsPlanetIdHead 头部对象.
-type GetCharactersCharacterIdPlanetsPlanetIdHead struct {
+// ColonyExtractorHead head object.
+// ColonyExtractorHead 头部对象.
+type ColonyExtractorHead struct {
 	// HeadId head_id integer.
 	// HeadId 头部 ID 整数.
 	HeadId int32 `json:"head_id"`
@@ -86,9 +84,9 @@ type GetCharactersCharacterIdPlanetsPlanetIdHead struct {
 	Longitude float64 `json:"longitude"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdLink link object.
-// GetCharactersCharacterIdPlanetsPlanetIdLink link 对象.
-type GetCharactersCharacterIdPlanetsPlanetIdLink struct {
+// ColonyLink link object.
+// ColonyLink link 对象.
+type ColonyLink struct {
 	// DestinationPinId destination_pin_id integer.
 	// DestinationPinId 目标开采阵列 ID 整数.
 	DestinationPinId int64 `json:"destination_pin_id"`
@@ -100,35 +98,35 @@ type GetCharactersCharacterIdPlanetsPlanetIdLink struct {
 	SourcePinId int64 `json:"source_pin_id"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetId 200 ok object.
-// GetCharactersCharacterIdPlanetsPlanetId 200 ok 对象.
-type GetCharactersCharacterIdPlanetsPlanetId struct {
+// ColonyLayout 200 ok object.
+// ColonyLayout 200 ok 对象.
+type ColonyLayout struct {
 	// Links links array.
 	// Links links 数组.
-	Links []GetCharactersCharacterIdPlanetsPlanetIdLink `json:"links"`
+	Links []ColonyLink `json:"links"`
 	// Pins pins array.
 	// Pins pins 数组.
-	Pins []GetCharactersCharacterIdPlanetsPlanetIdPin `json:"pins"`
+	Pins []ColonyPin `json:"pins"`
 	// Routes routes array.
 	// Routes 路线列表 array.
-	Routes []GetCharactersCharacterIdPlanetsPlanetIdRoute `json:"routes"`
+	Routes []ColonyRoute `json:"routes"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdPin pin object.
-// GetCharactersCharacterIdPlanetsPlanetIdPin pin 对象.
-type GetCharactersCharacterIdPlanetsPlanetIdPin struct {
+// ColonyPin pin object.
+// ColonyPin pin 对象.
+type ColonyPin struct {
 	// Contents contents array.
 	// Contents 内容数组.
-	Contents []GetCharactersCharacterIdPlanetsPlanetIdContent `json:"contents"`
+	Contents []ColonyContent `json:"contents"`
 	// ExpiryTime expiry_time string.
 	// ExpiryTime 过期时间字符串.
 	ExpiryTime time.Time `json:"expiry_time"`
 	// ExtractorDetails extractor_details object.
 	// ExtractorDetails 采集器详情对象.
-	ExtractorDetails GetCharactersCharacterIdPlanetsPlanetIdExtractorDetails `json:"extractor_details"`
+	ExtractorDetails ColonyExtractorDetails `json:"extractor_details"`
 	// FactoryDetails factory_details object.
 	// FactoryDetails 工厂详情对象.
-	FactoryDetails GetCharactersCharacterIdPlanetsPlanetIdFactoryDetails `json:"factory_details"`
+	FactoryDetails ColonyFactoryDetails `json:"factory_details"`
 	// InstallTime install_time string.
 	// InstallTime 安装时间字符串.
 	InstallTime time.Time `json:"install_time"`
@@ -152,9 +150,9 @@ type GetCharactersCharacterIdPlanetsPlanetIdPin struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdRoute route object.
-// GetCharactersCharacterIdPlanetsPlanetIdRoute 路线 object.
-type GetCharactersCharacterIdPlanetsPlanetIdRoute struct {
+// ColonyRoute route object.
+// ColonyRoute 路线 object.
+type ColonyRoute struct {
 	// ContentTypeId content_type_id integer.
 	// ContentTypeId 内容类型 ID 整数.
 	ContentTypeId int32 `json:"content_type_id"`
@@ -175,9 +173,9 @@ type GetCharactersCharacterIdPlanetsPlanetIdRoute struct {
 	Waypoints []int64 `json:"waypoints"`
 }
 
-// GetCorporationsCorporationIdCustomsOffices 200 ok object.
-// GetCorporationsCorporationIdCustomsOffices 200 ok 对象.
-type GetCorporationsCorporationIdCustomsOffices struct {
+// CustomsOffice 200 ok object.
+// CustomsOffice 200 ok 对象.
+type CustomsOffice struct {
 	// AllianceTaxRate Only present if alliance access is allowed.
 	// AllianceTaxRate 仅当允许联盟访问时才会出现.
 	AllianceTaxRate float64 `json:"alliance_tax_rate"`
@@ -223,168 +221,13 @@ type GetCorporationsCorporationIdCustomsOffices struct {
 	TerribleStandingTaxRate float64 `json:"terrible_standing_tax_rate"`
 }
 
-// GetUniverseSchematicsSchematicId 200 ok object.
-// GetUniverseSchematicsSchematicId 200 ok 对象.
-type GetUniverseSchematicsSchematicId struct {
+// Schematic 200 ok object.
+// Schematic 200 ok 对象.
+type Schematic struct {
 	// CycleTime Time in seconds to process a run.
 	// CycleTime 处理一轮作业所需的时间（秒）
 	CycleTime int32 `json:"cycle_time"`
 	// SchematicName schematic_name string.
 	// SchematicName 示意图名称 string.
 	SchematicName string `json:"schematic_name"`
-}
-
-// GetCharactersCharacterIdPlanetsParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdPlanetsParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdPlanetsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdPlanetsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharactersCharacterIdPlanetsPlanetIdParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdPlanetsPlanetIdParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdPlanetsPlanetIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdPlanetsPlanetIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCorporationsCorporationIdCustomsOfficesParams holds the optional query and header parameters of the request.
-// GetCorporationsCorporationIdCustomsOfficesParams 保存请求的可选查询与头部参数。
-type GetCorporationsCorporationIdCustomsOfficesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCorporationsCorporationIdCustomsOfficesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetUniverseSchematicsSchematicIdParams holds the optional query and header parameters of the request.
-// GetUniverseSchematicsSchematicIdParams 保存请求的可选查询与头部参数。
-type GetUniverseSchematicsSchematicIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetUniverseSchematicsSchematicIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
 }

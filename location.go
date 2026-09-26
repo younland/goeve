@@ -6,17 +6,17 @@ import (
 	"strconv"
 )
 
-// GetCharactersCharacterIdLocation Get character location.
-// GetCharactersCharacterIdLocation 获取角色位置.
+// GetCharacterLocation Get character location.
+// GetCharacterLocation 获取角色位置.
 //
 // Route: GET /characters/{character_id}/location/ — This route is cached for up to 5 seconds
 // 路由: GET /characters/{character_id}/location/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_location.v1
 // 权限: esi-location.read_location.v1
-func (c *Client) GetCharactersCharacterIdLocation(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdLocationParams) (*models.GetCharactersCharacterIdLocation, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdLocation
+func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterLocation, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result *models.CharacterLocation
 	err := c.get(ctx, "/characters/{character_id}/location/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -24,17 +24,17 @@ func (c *Client) GetCharactersCharacterIdLocation(ctx context.Context, character
 	return result, nil
 }
 
-// GetCharactersCharacterIdOnline Get character online.
-// GetCharactersCharacterIdOnline 获取角色在线状态.
+// GetCharacterOnline Get character online.
+// GetCharacterOnline 获取角色在线状态.
 //
 // Route: GET /characters/{character_id}/online/ — This route is cached for up to 60 seconds
 // 路由: GET /characters/{character_id}/online/ — 该路由缓存长达 60 秒
 // Scopes: esi-location.read_online.v1
 // 权限: esi-location.read_online.v1
-func (c *Client) GetCharactersCharacterIdOnline(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdOnlineParams) (*models.GetCharactersCharacterIdOnline, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdOnline
+func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, opts ...RequestOption) (*models.OnlineStatus, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result *models.OnlineStatus
 	err := c.get(ctx, "/characters/{character_id}/online/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -42,17 +42,17 @@ func (c *Client) GetCharactersCharacterIdOnline(ctx context.Context, characterId
 	return result, nil
 }
 
-// GetCharactersCharacterIdShip Get current ship.
-// GetCharactersCharacterIdShip 获取当前舰船.
+// GetCharacterShip Get current ship.
+// GetCharacterShip 获取当前舰船.
 //
 // Route: GET /characters/{character_id}/ship/ — This route is cached for up to 5 seconds
 // 路由: GET /characters/{character_id}/ship/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_ship_type.v1
 // 权限: esi-location.read_ship_type.v1
-func (c *Client) GetCharactersCharacterIdShip(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdShipParams) (*models.GetCharactersCharacterIdShip, error) {
-	query, headers := params.Values()
-	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdShip
+func (c *Client) GetCharacterShip(ctx context.Context, characterID int32, opts ...RequestOption) (*models.CharacterShip, error) {
+	query, headers := newRequestOptions(opts...)
+	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
+	var result *models.CharacterShip
 	err := c.get(ctx, "/characters/{character_id}/ship/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

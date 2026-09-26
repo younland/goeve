@@ -1,13 +1,12 @@
 package models
 
 import (
-	"net/url"
 	"time"
 )
 
-// GetCharactersCharacterIdAttributes 200 ok object.
-// GetCharactersCharacterIdAttributes 200 ok 对象.
-type GetCharactersCharacterIdAttributes struct {
+// CharacterAttributes 200 ok object.
+// CharacterAttributes 200 ok 对象.
+type CharacterAttributes struct {
 	// AccruedRemapCooldownDate Neural remapping cooldown after a character uses remap accrued over time.
 	// AccruedRemapCooldownDate 角色使用随时间累积的重映射后的神经重映射冷却时间.
 	AccruedRemapCooldownDate time.Time `json:"accrued_remap_cooldown_date"`
@@ -34,50 +33,9 @@ type GetCharactersCharacterIdAttributes struct {
 	Willpower int32 `json:"willpower"`
 }
 
-// GetCharactersCharacterIdAttributesParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdAttributesParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdAttributesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdAttributesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharactersCharacterIdSkillqueue 200 ok object.
-// GetCharactersCharacterIdSkillqueue 200 ok 对象.
-type GetCharactersCharacterIdSkillqueue struct {
+// SkillQueueEntry 200 ok object.
+// SkillQueueEntry 200 ok 对象.
+type SkillQueueEntry struct {
 	// FinishDate Date on which training of the skill will complete. Omitted if the skill queue is paused.
 	// FinishDate 该技能训练完成的日期。如果技能队列暂停，则省略此项。
 	FinishDate time.Time `json:"finish_date"`
@@ -104,53 +62,12 @@ type GetCharactersCharacterIdSkillqueue struct {
 	TrainingStartSp int32 `json:"training_start_sp"`
 }
 
-// GetCharactersCharacterIdSkillqueueParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdSkillqueueParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdSkillqueueParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdSkillqueueParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetCharactersCharacterIdSkills 200 ok object.
-// GetCharactersCharacterIdSkills 200 ok 对象.
-type GetCharactersCharacterIdSkills struct {
+// CharacterSkills 200 ok object.
+// CharacterSkills 200 ok 对象.
+type CharacterSkills struct {
 	// Skills skills array.
 	// Skills 技能列表 array.
-	Skills []GetCharactersCharacterIdSkillsSkill `json:"skills"`
+	Skills []Skill `json:"skills"`
 	// TotalSp total_sp integer.
 	// TotalSp 总技能点数（SP）整数.
 	TotalSp int64 `json:"total_sp"`
@@ -159,9 +76,9 @@ type GetCharactersCharacterIdSkills struct {
 	UnallocatedSp int32 `json:"unallocated_sp"`
 }
 
-// GetCharactersCharacterIdSkillsSkill skill object.
-// GetCharactersCharacterIdSkillsSkill 技能 object.
-type GetCharactersCharacterIdSkillsSkill struct {
+// Skill skill object.
+// Skill 技能 object.
+type Skill struct {
 	// ActiveSkillLevel active_skill_level integer.
 	// ActiveSkillLevel 当前技能等级整数.
 	ActiveSkillLevel int32 `json:"active_skill_level"`
@@ -174,45 +91,4 @@ type GetCharactersCharacterIdSkillsSkill struct {
 	// TrainedSkillLevel trained_skill_level integer.
 	// TrainedSkillLevel 已训练技能等级整数.
 	TrainedSkillLevel int32 `json:"trained_skill_level"`
-}
-
-// GetCharactersCharacterIdSkillsParams holds the optional query and header parameters of the request.
-// GetCharactersCharacterIdSkillsParams 保存请求的可选查询与头部参数。
-type GetCharactersCharacterIdSkillsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetCharactersCharacterIdSkillsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
 }

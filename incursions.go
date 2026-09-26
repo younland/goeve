@@ -12,10 +12,10 @@ import (
 // 路由: GET /incursions/ — 该路由缓存长达 300 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetIncursions(ctx context.Context, params *models.GetIncursionsParams) ([]models.GetIncursions, error) {
-	query, headers := params.Values()
+func (c *Client) GetIncursions(ctx context.Context, opts ...RequestOption) ([]models.Incursion, error) {
+	query, headers := newRequestOptions(opts...)
 	var pathParams map[string]string
-	var result []models.GetIncursions
+	var result []models.Incursion
 	err := c.get(ctx, "/incursions/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

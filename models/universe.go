@@ -1,13 +1,8 @@
 package models
 
-import (
-	"net/url"
-	"strconv"
-)
-
-// GetUniverseAncestries 200 ok object.
-// GetUniverseAncestries 200 ok 对象.
-type GetUniverseAncestries struct {
+// UniverseAncestry 200 ok object.
+// UniverseAncestry 200 ok 对象.
+type UniverseAncestry struct {
 	// BloodlineId The bloodline associated with this ancestry.
 	// BloodlineId 与该血统关联的血脉.
 	BloodlineId int32 `json:"bloodline_id"`
@@ -28,23 +23,23 @@ type GetUniverseAncestries struct {
 	ShortDescription string `json:"short_description"`
 }
 
-// GetUniverseAsteroidBeltsAsteroidBeltId 200 ok object.
-// GetUniverseAsteroidBeltsAsteroidBeltId 200 ok 对象.
-type GetUniverseAsteroidBeltsAsteroidBeltId struct {
+// UniverseAsteroidBelt 200 ok object.
+// UniverseAsteroidBelt 200 ok 对象.
+type UniverseAsteroidBelt struct {
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
 	// Position position object.
 	// Position position 对象.
-	Position GetUniverseAsteroidBeltsAsteroidBeltIdPosition `json:"position"`
+	Position AsteroidBeltPosition `json:"position"`
 	// SystemId The solar system this asteroid belt is in.
 	// SystemId 该小行星带所在的星系.
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseAsteroidBeltsAsteroidBeltIdPosition position object.
-// GetUniverseAsteroidBeltsAsteroidBeltIdPosition position 对象.
-type GetUniverseAsteroidBeltsAsteroidBeltIdPosition struct {
+// AsteroidBeltPosition position object.
+// AsteroidBeltPosition position 对象.
+type AsteroidBeltPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -56,9 +51,9 @@ type GetUniverseAsteroidBeltsAsteroidBeltIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseBloodlines 200 ok object.
-// GetUniverseBloodlines 200 ok 对象.
-type GetUniverseBloodlines struct {
+// UniverseBloodline 200 ok object.
+// UniverseBloodline 200 ok 对象.
+type UniverseBloodline struct {
 	// BloodlineId bloodline_id integer.
 	// BloodlineId 血统 ID 整数.
 	BloodlineId int32 `json:"bloodline_id"`
@@ -94,9 +89,9 @@ type GetUniverseBloodlines struct {
 	Willpower int32 `json:"willpower"`
 }
 
-// GetUniverseCategoriesCategoryId 200 ok object.
-// GetUniverseCategoriesCategoryId 200 ok 对象.
-type GetUniverseCategoriesCategoryId struct {
+// UniverseCategory 200 ok object.
+// UniverseCategory 200 ok 对象.
+type UniverseCategory struct {
 	// CategoryId category_id integer.
 	// CategoryId 分类 ID 整数.
 	CategoryId int32 `json:"category_id"`
@@ -111,9 +106,9 @@ type GetUniverseCategoriesCategoryId struct {
 	Published bool `json:"published"`
 }
 
-// GetUniverseConstellationsConstellationId 200 ok object.
-// GetUniverseConstellationsConstellationId 200 ok 对象.
-type GetUniverseConstellationsConstellationId struct {
+// UniverseConstellation 200 ok object.
+// UniverseConstellation 200 ok 对象.
+type UniverseConstellation struct {
 	// ConstellationId constellation_id integer.
 	// ConstellationId 星座 ID 整数.
 	ConstellationId int32 `json:"constellation_id"`
@@ -122,7 +117,7 @@ type GetUniverseConstellationsConstellationId struct {
 	Name string `json:"name"`
 	// Position position object.
 	// Position position 对象.
-	Position GetUniverseConstellationsConstellationIdPosition `json:"position"`
+	Position ConstellationPosition `json:"position"`
 	// RegionId The region this constellation is in.
 	// RegionId 该星座所在的星域.
 	RegionId int32 `json:"region_id"`
@@ -131,9 +126,9 @@ type GetUniverseConstellationsConstellationId struct {
 	Systems []int32 `json:"systems"`
 }
 
-// GetUniverseConstellationsConstellationIdPosition position object.
-// GetUniverseConstellationsConstellationIdPosition position 对象.
-type GetUniverseConstellationsConstellationIdPosition struct {
+// ConstellationPosition position object.
+// ConstellationPosition position 对象.
+type ConstellationPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -145,9 +140,9 @@ type GetUniverseConstellationsConstellationIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseFactions 200 ok object.
-// GetUniverseFactions 200 ok 对象.
-type GetUniverseFactions struct {
+// UniverseFaction 200 ok object.
+// UniverseFaction 200 ok 对象.
+type UniverseFaction struct {
 	// CorporationId corporation_id integer.
 	// CorporationId 军团 ID 整数.
 	CorporationId int32 `json:"corporation_id"`
@@ -180,9 +175,9 @@ type GetUniverseFactions struct {
 	StationSystemCount int32 `json:"station_system_count"`
 }
 
-// GetUniverseGraphicsGraphicId 200 ok object.
-// GetUniverseGraphicsGraphicId 200 ok 对象.
-type GetUniverseGraphicsGraphicId struct {
+// UniverseGraphic 200 ok object.
+// UniverseGraphic 200 ok 对象.
+type UniverseGraphic struct {
 	// CollisionFile collision_file string.
 	// CollisionFile 碰撞文件字符串.
 	CollisionFile string `json:"collision_file"`
@@ -209,9 +204,9 @@ type GetUniverseGraphicsGraphicId struct {
 	SofRaceName string `json:"sof_race_name"`
 }
 
-// GetUniverseGroupsGroupId 200 ok object.
-// GetUniverseGroupsGroupId 200 ok 对象.
-type GetUniverseGroupsGroupId struct {
+// UniverseGroup 200 ok object.
+// UniverseGroup 200 ok 对象.
+type UniverseGroup struct {
 	// CategoryId category_id integer.
 	// CategoryId 分类 ID 整数.
 	CategoryId int32 `json:"category_id"`
@@ -229,9 +224,9 @@ type GetUniverseGroupsGroupId struct {
 	Types []int32 `json:"types"`
 }
 
-// GetUniverseMoonsMoonId 200 ok object.
-// GetUniverseMoonsMoonId 200 ok 对象.
-type GetUniverseMoonsMoonId struct {
+// UniverseMoon 200 ok object.
+// UniverseMoon 200 ok 对象.
+type UniverseMoon struct {
 	// MoonId moon_id integer.
 	// MoonId moon_id 整数.
 	MoonId int32 `json:"moon_id"`
@@ -240,15 +235,15 @@ type GetUniverseMoonsMoonId struct {
 	Name string `json:"name"`
 	// Position position object.
 	// Position position 对象.
-	Position GetUniverseMoonsMoonIdPosition `json:"position"`
+	Position MoonPosition `json:"position"`
 	// SystemId The solar system this moon is in.
 	// SystemId 该卫星所在的星系.
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseMoonsMoonIdPosition position object.
-// GetUniverseMoonsMoonIdPosition position 对象.
-type GetUniverseMoonsMoonIdPosition struct {
+// MoonPosition position object.
+// MoonPosition position 对象.
+type MoonPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -260,9 +255,9 @@ type GetUniverseMoonsMoonIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniversePlanetsPlanetId 200 ok object.
-// GetUniversePlanetsPlanetId 200 ok 对象.
-type GetUniversePlanetsPlanetId struct {
+// UniversePlanet 200 ok object.
+// UniversePlanet 200 ok 对象.
+type UniversePlanet struct {
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
@@ -271,7 +266,7 @@ type GetUniversePlanetsPlanetId struct {
 	PlanetId int32 `json:"planet_id"`
 	// Position position object.
 	// Position position 对象.
-	Position GetUniversePlanetsPlanetIdPosition `json:"position"`
+	Position PlanetPosition `json:"position"`
 	// SystemId The solar system this planet is in.
 	// SystemId 该行星所在的星系.
 	SystemId int32 `json:"system_id"`
@@ -280,9 +275,9 @@ type GetUniversePlanetsPlanetId struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetUniversePlanetsPlanetIdPosition position object.
-// GetUniversePlanetsPlanetIdPosition position 对象.
-type GetUniversePlanetsPlanetIdPosition struct {
+// PlanetPosition position object.
+// PlanetPosition position 对象.
+type PlanetPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -294,9 +289,9 @@ type GetUniversePlanetsPlanetIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseRaces 200 ok object.
-// GetUniverseRaces 200 ok 对象.
-type GetUniverseRaces struct {
+// UniverseRace 200 ok object.
+// UniverseRace 200 ok 对象.
+type UniverseRace struct {
 	// AllianceId The alliance generally associated with this race.
 	// AllianceId 通常与该种族关联的联盟.
 	AllianceId int32 `json:"alliance_id"`
@@ -311,9 +306,9 @@ type GetUniverseRaces struct {
 	RaceId int32 `json:"race_id"`
 }
 
-// GetUniverseRegionsRegionId 200 ok object.
-// GetUniverseRegionsRegionId 200 ok 对象.
-type GetUniverseRegionsRegionId struct {
+// UniverseRegion 200 ok object.
+// UniverseRegion 200 ok 对象.
+type UniverseRegion struct {
 	// Constellations constellations array.
 	// Constellations 星座数组.
 	Constellations []int32 `json:"constellations"`
@@ -328,9 +323,9 @@ type GetUniverseRegionsRegionId struct {
 	RegionId int32 `json:"region_id"`
 }
 
-// GetUniverseStargatesStargateIdDestination destination object.
-// GetUniverseStargatesStargateIdDestination 目的地对象.
-type GetUniverseStargatesStargateIdDestination struct {
+// StargateDestination destination object.
+// StargateDestination 目的地对象.
+type StargateDestination struct {
 	// StargateId The stargate this stargate connects to.
 	// StargateId 此星门连接的星门.
 	StargateId int32 `json:"stargate_id"`
@@ -339,18 +334,18 @@ type GetUniverseStargatesStargateIdDestination struct {
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseStargatesStargateId 200 ok object.
-// GetUniverseStargatesStargateId 200 ok 对象.
-type GetUniverseStargatesStargateId struct {
+// UniverseStargate 200 ok object.
+// UniverseStargate 200 ok 对象.
+type UniverseStargate struct {
 	// Destination destination object.
 	// Destination 目的地对象.
-	Destination GetUniverseStargatesStargateIdDestination `json:"destination"`
+	Destination StargateDestination `json:"destination"`
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
 	// Position position object.
 	// Position position 对象.
-	Position GetUniverseStargatesStargateIdPosition `json:"position"`
+	Position StargatePosition `json:"position"`
 	// StargateId stargate_id integer.
 	// StargateId 星门ID integer.
 	StargateId int32 `json:"stargate_id"`
@@ -362,9 +357,9 @@ type GetUniverseStargatesStargateId struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetUniverseStargatesStargateIdPosition position object.
-// GetUniverseStargatesStargateIdPosition position 对象.
-type GetUniverseStargatesStargateIdPosition struct {
+// StargatePosition position object.
+// StargatePosition position 对象.
+type StargatePosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -376,9 +371,9 @@ type GetUniverseStargatesStargateIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseStarsStarId 200 ok object.
-// GetUniverseStarsStarId 200 ok 对象.
-type GetUniverseStarsStarId struct {
+// UniverseStar 200 ok object.
+// UniverseStar 200 ok 对象.
+type UniverseStar struct {
 	// Age Age of star in years.
 	// Age 恒星的年龄（年）
 	Age int64 `json:"age"`
@@ -406,9 +401,9 @@ type GetUniverseStarsStarId struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetUniverseStationsStationId 200 ok object.
-// GetUniverseStationsStationId 200 ok 对象.
-type GetUniverseStationsStationId struct {
+// UniverseStation 200 ok object.
+// UniverseStation 200 ok 对象.
+type UniverseStation struct {
 	// MaxDockableShipVolume max_dockable_ship_volume number.
 	// MaxDockableShipVolume max_dockable_ship_volume 数值.
 	MaxDockableShipVolume float64 `json:"max_dockable_ship_volume"`
@@ -423,7 +418,7 @@ type GetUniverseStationsStationId struct {
 	Owner int32 `json:"owner"`
 	// Position position object.
 	// Position position 对象.
-	Position GetUniverseStationsStationIdPosition `json:"position"`
+	Position StationPosition `json:"position"`
 	// RaceId race_id integer.
 	// RaceId 种族ID integer.
 	RaceId int32 `json:"race_id"`
@@ -447,9 +442,9 @@ type GetUniverseStationsStationId struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetUniverseStationsStationIdPosition position object.
-// GetUniverseStationsStationIdPosition position 对象.
-type GetUniverseStationsStationIdPosition struct {
+// StationPosition position object.
+// StationPosition position 对象.
+type StationPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -461,9 +456,9 @@ type GetUniverseStationsStationIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseStructuresStructureId 200 ok object.
-// GetUniverseStructuresStructureId 200 ok 对象.
-type GetUniverseStructuresStructureId struct {
+// UniverseStructure 200 ok object.
+// UniverseStructure 200 ok 对象.
+type UniverseStructure struct {
 	// Name The full name of the structure.
 	// Name 建筑的全名.
 	Name string `json:"name"`
@@ -472,7 +467,7 @@ type GetUniverseStructuresStructureId struct {
 	OwnerId int32 `json:"owner_id"`
 	// Position Coordinates of the structure in Cartesian space relative to the Sun, in metres.
 	// Position 建筑相对于太阳的笛卡尔空间坐标，单位为米。
-	Position GetUniverseStructuresStructureIdPosition `json:"position"`
+	Position StructurePosition `json:"position"`
 	// SolarSystemId solar_system_id integer.
 	// SolarSystemId 星系ID integer.
 	SolarSystemId int32 `json:"solar_system_id"`
@@ -481,9 +476,9 @@ type GetUniverseStructuresStructureId struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetUniverseStructuresStructureIdPosition Coordinates of the structure in Cartesian space relative to the Sun, in metres.
-// GetUniverseStructuresStructureIdPosition 建筑相对于太阳的笛卡尔空间坐标，单位为米。
-type GetUniverseStructuresStructureIdPosition struct {
+// StructurePosition Coordinates of the structure in Cartesian space relative to the Sun, in metres.
+// StructurePosition 建筑相对于太阳的笛卡尔空间坐标，单位为米。
+type StructurePosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -495,9 +490,9 @@ type GetUniverseStructuresStructureIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseSystemJumps 200 ok object.
-// GetUniverseSystemJumps 200 ok 对象.
-type GetUniverseSystemJumps struct {
+// UniverseSystemJump 200 ok object.
+// UniverseSystemJump 200 ok 对象.
+type UniverseSystemJump struct {
 	// ShipJumps ship_jumps integer.
 	// ShipJumps 舰船跳跃次数 integer.
 	ShipJumps int32 `json:"ship_jumps"`
@@ -506,9 +501,9 @@ type GetUniverseSystemJumps struct {
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseSystemKills 200 ok object.
-// GetUniverseSystemKills 200 ok 对象.
-type GetUniverseSystemKills struct {
+// UniverseSystemKills 200 ok object.
+// UniverseSystemKills 200 ok 对象.
+type UniverseSystemKills struct {
 	// NpcKills Number of NPC ships killed in this system.
 	// NpcKills 在该星系被击毁的 NPC 舰船数量.
 	NpcKills int32 `json:"npc_kills"`
@@ -523,9 +518,9 @@ type GetUniverseSystemKills struct {
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseSystemsSystemId 200 ok object.
-// GetUniverseSystemsSystemId 200 ok 对象.
-type GetUniverseSystemsSystemId struct {
+// UniverseSolarSystem 200 ok object.
+// UniverseSolarSystem 200 ok 对象.
+type UniverseSolarSystem struct {
 	// ConstellationId The constellation this solar system is in.
 	// ConstellationId 该星系所在的星座.
 	ConstellationId int32 `json:"constellation_id"`
@@ -534,10 +529,10 @@ type GetUniverseSystemsSystemId struct {
 	Name string `json:"name"`
 	// Planets planets array.
 	// Planets planets 数组.
-	Planets []GetUniverseSystemsSystemIdPlanet `json:"planets"`
+	Planets []SolarSystemPlanet `json:"planets"`
 	// Position position object.
 	// Position position 对象.
-	Position GetUniverseSystemsSystemIdPosition `json:"position"`
+	Position SolarSystemPosition `json:"position"`
 	// SecurityClass security_class string.
 	// SecurityClass 安全等级 string.
 	SecurityClass string `json:"security_class"`
@@ -558,9 +553,9 @@ type GetUniverseSystemsSystemId struct {
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseSystemsSystemIdPlanet planet object.
-// GetUniverseSystemsSystemIdPlanet planet 对象.
-type GetUniverseSystemsSystemIdPlanet struct {
+// SolarSystemPlanet planet object.
+// SolarSystemPlanet planet 对象.
+type SolarSystemPlanet struct {
 	// AsteroidBelts asteroid_belts array.
 	// AsteroidBelts 小行星带数组.
 	AsteroidBelts []int32 `json:"asteroid_belts"`
@@ -572,9 +567,9 @@ type GetUniverseSystemsSystemIdPlanet struct {
 	PlanetId int32 `json:"planet_id"`
 }
 
-// GetUniverseSystemsSystemIdPosition position object.
-// GetUniverseSystemsSystemIdPosition position 对象.
-type GetUniverseSystemsSystemIdPosition struct {
+// SolarSystemPosition position object.
+// SolarSystemPosition position 对象.
+type SolarSystemPosition struct {
 	// X x number.
 	// X x 数字.
 	X float64 `json:"x"`
@@ -586,31 +581,9 @@ type GetUniverseSystemsSystemIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseTypesTypeIdDogmaAttribute dogma_attribute object.
-// GetUniverseTypesTypeIdDogmaAttribute 教条属性对象.
-type GetUniverseTypesTypeIdDogmaAttribute struct {
-	// AttributeId attribute_id integer.
-	// AttributeId 属性 ID 整数.
-	AttributeId int32 `json:"attribute_id"`
-	// Value value number.
-	// Value 价值数字.
-	Value float64 `json:"value"`
-}
-
-// GetUniverseTypesTypeIdDogmaEffect dogma_effect object.
-// GetUniverseTypesTypeIdDogmaEffect 教条效果对象.
-type GetUniverseTypesTypeIdDogmaEffect struct {
-	// EffectId effect_id integer.
-	// EffectId 效果 ID 整数.
-	EffectId int32 `json:"effect_id"`
-	// IsDefault is_default boolean.
-	// IsDefault 是否为默认布尔值.
-	IsDefault bool `json:"is_default"`
-}
-
-// GetUniverseTypesTypeId 200 ok object.
-// GetUniverseTypesTypeId 200 ok 对象.
-type GetUniverseTypesTypeId struct {
+// UniverseType 200 ok object.
+// UniverseType 200 ok 对象.
+type UniverseType struct {
 	// Capacity capacity number.
 	// Capacity 容量数值.
 	Capacity float64 `json:"capacity"`
@@ -619,10 +592,10 @@ type GetUniverseTypesTypeId struct {
 	Description string `json:"description"`
 	// DogmaAttributes dogma_attributes array.
 	// DogmaAttributes 教条属性数组.
-	DogmaAttributes []GetUniverseTypesTypeIdDogmaAttribute `json:"dogma_attributes"`
+	DogmaAttributes []DogmaAttributeValue `json:"dogma_attributes"`
 	// DogmaEffects dogma_effects array.
 	// DogmaEffects 教条效果数组.
-	DogmaEffects []GetUniverseTypesTypeIdDogmaEffect `json:"dogma_effects"`
+	DogmaEffects []DogmaEffectValue `json:"dogma_effects"`
 	// GraphicId graphic_id integer.
 	// GraphicId 图形 ID 整数.
 	GraphicId int32 `json:"graphic_id"`
@@ -661,9 +634,9 @@ type GetUniverseTypesTypeId struct {
 	Volume float64 `json:"volume"`
 }
 
-// PostUniverseIdsAgent agent object.
-// PostUniverseIdsAgent 代理人对象.
-type PostUniverseIdsAgent struct {
+// UniverseIdName agent object.
+// UniverseIdName 代理人对象.
+type UniverseIdName struct {
 	// Id id integer.
 	// Id ID 整数.
 	Id int32 `json:"id"`
@@ -672,143 +645,44 @@ type PostUniverseIdsAgent struct {
 	Name string `json:"name"`
 }
 
-// PostUniverseIdsAlliance alliance object.
-// PostUniverseIdsAlliance 联盟对象.
-type PostUniverseIdsAlliance struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIdsCharacter character object.
-// PostUniverseIdsCharacter 角色对象.
-type PostUniverseIdsCharacter struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIdsConstellation constellation object.
-// PostUniverseIdsConstellation 星座对象.
-type PostUniverseIdsConstellation struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIdsCorporation corporation object.
-// PostUniverseIdsCorporation 军团对象.
-type PostUniverseIdsCorporation struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIdsFaction faction object.
-// PostUniverseIdsFaction 势力对象.
-type PostUniverseIdsFaction struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIdsInventoryType inventory_type object.
-// PostUniverseIdsInventoryType 物品类型对象.
-type PostUniverseIdsInventoryType struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIds 200 ok object.
-// PostUniverseIds 200 ok 对象.
-type PostUniverseIds struct {
+// ResolvedIds 200 ok object.
+// ResolvedIds 200 ok 对象.
+type ResolvedIds struct {
 	// Agents agents array.
 	// Agents 代理人数组.
-	Agents []PostUniverseIdsAgent `json:"agents"`
+	Agents []UniverseIdName `json:"agents"`
 	// Alliances alliances array.
 	// Alliances 联盟数组.
-	Alliances []PostUniverseIdsAlliance `json:"alliances"`
+	Alliances []UniverseIdName `json:"alliances"`
 	// Characters characters array.
 	// Characters 角色数组.
-	Characters []PostUniverseIdsCharacter `json:"characters"`
+	Characters []UniverseIdName `json:"characters"`
 	// Constellations constellations array.
 	// Constellations 星座数组.
-	Constellations []PostUniverseIdsConstellation `json:"constellations"`
+	Constellations []UniverseIdName `json:"constellations"`
 	// Corporations corporations array.
 	// Corporations 军团数组.
-	Corporations []PostUniverseIdsCorporation `json:"corporations"`
+	Corporations []UniverseIdName `json:"corporations"`
 	// Factions factions array.
 	// Factions 势力数组.
-	Factions []PostUniverseIdsFaction `json:"factions"`
+	Factions []UniverseIdName `json:"factions"`
 	// InventoryTypes inventory_types array.
 	// InventoryTypes 物品类型数组.
-	InventoryTypes []PostUniverseIdsInventoryType `json:"inventory_types"`
+	InventoryTypes []UniverseIdName `json:"inventory_types"`
 	// Regions regions array.
 	// Regions 星域列表 array.
-	Regions []PostUniverseIdsRegion `json:"regions"`
+	Regions []UniverseIdName `json:"regions"`
 	// Stations stations array.
 	// Stations 空间站列表 array.
-	Stations []PostUniverseIdsStation `json:"stations"`
+	Stations []UniverseIdName `json:"stations"`
 	// Systems systems array.
 	// Systems systems 数组.
-	Systems []PostUniverseIdsSystem `json:"systems"`
+	Systems []UniverseIdName `json:"systems"`
 }
 
-// PostUniverseIdsRegion region object.
-// PostUniverseIdsRegion 星域 object.
-type PostUniverseIdsRegion struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIdsStation station object.
-// PostUniverseIdsStation 空间站 object.
-type PostUniverseIdsStation struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseIdsSystem system object.
-// PostUniverseIdsSystem 星系 object.
-type PostUniverseIdsSystem struct {
-	// Id id integer.
-	// Id ID 整数.
-	Id int32 `json:"id"`
-	// Name name string.
-	// Name name 字符串.
-	Name string `json:"name"`
-}
-
-// PostUniverseNames 200 ok object.
-// PostUniverseNames 200 ok 对象.
-type PostUniverseNames struct {
+// UniverseName 200 ok object.
+// UniverseName 200 ok 对象.
+type UniverseName struct {
 	// Category category string.
 	// Category 分类字符串.
 	// Enum values: "alliance", "character", "constellation", "corporation", "inventory_type", "region", "solar_system", "station", "faction".
@@ -819,1180 +693,4 @@ type PostUniverseNames struct {
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
-}
-
-// GetAncestriesParams holds the optional query and header parameters of the request.
-// GetAncestriesParams 保存请求的可选查询与头部参数。
-type GetAncestriesParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetAncestriesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetAsteroidBeltsAsteroidBeltIdParams holds the optional query and header parameters of the request.
-// GetAsteroidBeltsAsteroidBeltIdParams 保存请求的可选查询与头部参数。
-type GetAsteroidBeltsAsteroidBeltIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetAsteroidBeltsAsteroidBeltIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetBloodlinesParams holds the optional query and header parameters of the request.
-// GetBloodlinesParams 保存请求的可选查询与头部参数。
-type GetBloodlinesParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetBloodlinesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetCategoriesCategoryIdParams holds the optional query and header parameters of the request.
-// GetCategoriesCategoryIdParams 保存请求的可选查询与头部参数。
-type GetCategoriesCategoryIdParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetCategoriesCategoryIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetCategoriesParams holds the optional query and header parameters of the request.
-// GetCategoriesParams 保存请求的可选查询与头部参数。
-type GetCategoriesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetCategoriesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetConstellationsConstellationIdParams holds the optional query and header parameters of the request.
-// GetConstellationsConstellationIdParams 保存请求的可选查询与头部参数。
-type GetConstellationsConstellationIdParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetConstellationsConstellationIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetConstellationsParams holds the optional query and header parameters of the request.
-// GetConstellationsParams 保存请求的可选查询与头部参数。
-type GetConstellationsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetConstellationsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetFactionsParams holds the optional query and header parameters of the request.
-// GetFactionsParams 保存请求的可选查询与头部参数。
-type GetFactionsParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetFactionsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetGraphicsGraphicIdParams holds the optional query and header parameters of the request.
-// GetGraphicsGraphicIdParams 保存请求的可选查询与头部参数。
-type GetGraphicsGraphicIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetGraphicsGraphicIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetGraphicsParams holds the optional query and header parameters of the request.
-// GetGraphicsParams 保存请求的可选查询与头部参数。
-type GetGraphicsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetGraphicsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetGroupsGroupIdParamsX holds the optional query and header parameters of the request.
-// GetGroupsGroupIdParamsX 保存请求的可选查询与头部参数。
-type GetGroupsGroupIdParamsX struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetGroupsGroupIdParamsX) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetGroupsParamsX holds the optional query and header parameters of the request.
-// GetGroupsParamsX 保存请求的可选查询与头部参数。
-type GetGroupsParamsX struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-}
-
-func (p *GetGroupsParamsX) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	return query, headers
-}
-
-// GetMoonsMoonIdParams holds the optional query and header parameters of the request.
-// GetMoonsMoonIdParams 保存请求的可选查询与头部参数。
-type GetMoonsMoonIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetMoonsMoonIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetPlanetsPlanetIdParams holds the optional query and header parameters of the request.
-// GetPlanetsPlanetIdParams 保存请求的可选查询与头部参数。
-type GetPlanetsPlanetIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetPlanetsPlanetIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetRacesParams holds the optional query and header parameters of the request.
-// GetRacesParams 保存请求的可选查询与头部参数。
-type GetRacesParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetRacesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetRegionsParams holds the optional query and header parameters of the request.
-// GetRegionsParams 保存请求的可选查询与头部参数。
-type GetRegionsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetRegionsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetRegionsRegionIdParams holds the optional query and header parameters of the request.
-// GetRegionsRegionIdParams 保存请求的可选查询与头部参数。
-type GetRegionsRegionIdParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetRegionsRegionIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetStargatesStargateIdParams holds the optional query and header parameters of the request.
-// GetStargatesStargateIdParams 保存请求的可选查询与头部参数。
-type GetStargatesStargateIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetStargatesStargateIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetStarsStarIdParams holds the optional query and header parameters of the request.
-// GetStarsStarIdParams 保存请求的可选查询与头部参数。
-type GetStarsStarIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetStarsStarIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetStationsStationIdParams holds the optional query and header parameters of the request.
-// GetStationsStationIdParams 保存请求的可选查询与头部参数。
-type GetStationsStationIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetStationsStationIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetStructuresParamsX holds the optional query and header parameters of the request.
-// GetStructuresParamsX 保存请求的可选查询与头部参数。
-type GetStructuresParamsX struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Filter Only list public structures that have this service online.
-	// Filter 仅列出该服务在线的公共建筑.
-	Filter *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetStructuresParamsX) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Filter != nil && *p.Filter != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("filter", *p.Filter)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetStructuresStructureIdParams holds the optional query and header parameters of the request.
-// GetStructuresStructureIdParams 保存请求的可选查询与头部参数。
-type GetStructuresStructureIdParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Token Access token to use if unable to set a header.
-	// Token 如果无法设置请求头，则使用此访问令牌.
-	Token *string
-}
-
-func (p *GetStructuresStructureIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Token != nil && *p.Token != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("token", *p.Token)
-	}
-	return query, headers
-}
-
-// GetSystemJumpsParams holds the optional query and header parameters of the request.
-// GetSystemJumpsParams 保存请求的可选查询与头部参数。
-type GetSystemJumpsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetSystemJumpsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetSystemKillsParams holds the optional query and header parameters of the request.
-// GetSystemKillsParams 保存请求的可选查询与头部参数。
-type GetSystemKillsParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetSystemKillsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetSystemsParamsX holds the optional query and header parameters of the request.
-// GetSystemsParamsX 保存请求的可选查询与头部参数。
-type GetSystemsParamsX struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-}
-
-func (p *GetSystemsParamsX) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	return query, headers
-}
-
-// GetSystemsSystemIdParams holds the optional query and header parameters of the request.
-// GetSystemsSystemIdParams 保存请求的可选查询与头部参数。
-type GetSystemsSystemIdParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetSystemsSystemIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// GetTypesParams holds the optional query and header parameters of the request.
-// GetTypesParams 保存请求的可选查询与头部参数。
-type GetTypesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Page Which page of results to return.
-	// Page 返回第几页结果.
-	Page *int32
-}
-
-func (p *GetTypesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Page != nil {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("page", strconv.FormatInt(int64(*p.Page), 10))
-	}
-	return query, headers
-}
-
-// GetTypesTypeIdParams holds the optional query and header parameters of the request.
-// GetTypesTypeIdParams 保存请求的可选查询与头部参数。
-type GetTypesTypeIdParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// IfNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag.
-	// IfNoneMatch 来自先前请求的 ETag。如果与当前 ETag 匹配，将返回 304.
-	IfNoneMatch *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *GetTypesTypeIdParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.IfNoneMatch != nil && *p.IfNoneMatch != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["If-None-Match"] = *p.IfNoneMatch
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// PostIdsParams holds the optional query and header parameters of the request.
-// PostIdsParams 保存请求的可选查询与头部参数。
-type PostIdsParams struct {
-	// AcceptLanguage Language to use in the response.
-	// AcceptLanguage 响应中使用的语言.
-	AcceptLanguage *string
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-	// Language Language to use in the response, takes precedence over Accept-Language.
-	// Language 响应中使用的语言，优先于 Accept-Language.
-	Language *string
-}
-
-func (p *PostIdsParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.AcceptLanguage != nil && *p.AcceptLanguage != "" {
-		if headers == nil {
-			headers = map[string]string{}
-		}
-		headers["Accept-Language"] = *p.AcceptLanguage
-	}
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	if p.Language != nil && *p.Language != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("language", *p.Language)
-	}
-	return query, headers
-}
-
-// PostNamesParams holds the optional query and header parameters of the request.
-// PostNamesParams 保存请求的可选查询与头部参数。
-type PostNamesParams struct {
-	// Datasource The server name you would like data from.
-	// Datasource 你希望获取数据的服务器名称.
-	Datasource *string
-}
-
-func (p *PostNamesParams) Values() (url.Values, map[string]string) {
-	if p == nil {
-		return nil, nil
-	}
-	var query url.Values
-	var headers map[string]string
-	if p.Datasource != nil && *p.Datasource != "" {
-		if query == nil {
-			query = url.Values{}
-		}
-		query.Set("datasource", *p.Datasource)
-	}
-	return query, headers
 }
