@@ -32,14 +32,14 @@ func (c *Client) DeleteCharacterFitting(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/fittings/ — 该路由缓存长达 300 秒
 // Scopes: esi-fittings.read_fittings.v1
 // 权限: esi-fittings.read_fittings.v1
-func (c *Client) GetCharacterFittings(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.Fitting, error) {
+func (c *Client) GetCharacterFittings(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Fitting, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.Fitting

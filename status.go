@@ -13,11 +13,11 @@ import (
 // 路由: GET /status/ — 该路由缓存长达 30 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetServerStatus(ctx context.Context, ifNoneMatch string) (*models.ServerStatus, error) {
+func (c *Client) GetServerStatus(ctx context.Context, ifNoneMatch ...string) (*models.ServerStatus, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result *models.ServerStatus

@@ -14,11 +14,11 @@ import (
 // 路由: GET /universe/ancestries/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseAncestries(ctx context.Context, ifNoneMatch string) ([]models.UniverseAncestry, error) {
+func (c *Client) GetUniverseAncestries(ctx context.Context, ifNoneMatch ...string) ([]models.UniverseAncestry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.UniverseAncestry
@@ -36,11 +36,11 @@ func (c *Client) GetUniverseAncestries(ctx context.Context, ifNoneMatch string) 
 // 路由: GET /universe/asteroid_belts/{asteroid_belt_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseAsteroidBelt(ctx context.Context, asteroidBeltID int32, ifNoneMatch string) (*models.UniverseAsteroidBelt, error) {
+func (c *Client) GetUniverseAsteroidBelt(ctx context.Context, asteroidBeltID int32, ifNoneMatch ...string) (*models.UniverseAsteroidBelt, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"asteroid_belt_id": strconv.FormatInt(int64(asteroidBeltID), 10)}
 	var result *models.UniverseAsteroidBelt
@@ -58,11 +58,11 @@ func (c *Client) GetUniverseAsteroidBelt(ctx context.Context, asteroidBeltID int
 // 路由: GET /universe/bloodlines/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseBloodlines(ctx context.Context, ifNoneMatch string) ([]models.UniverseBloodline, error) {
+func (c *Client) GetUniverseBloodlines(ctx context.Context, ifNoneMatch ...string) ([]models.UniverseBloodline, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.UniverseBloodline
@@ -80,11 +80,11 @@ func (c *Client) GetUniverseBloodlines(ctx context.Context, ifNoneMatch string) 
 // 路由: GET /universe/categories/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseCategories(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetUniverseCategories(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -102,11 +102,11 @@ func (c *Client) GetUniverseCategories(ctx context.Context, ifNoneMatch string) 
 // 路由: GET /universe/categories/{category_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseCategory(ctx context.Context, categoryID int32, ifNoneMatch string) (*models.UniverseCategory, error) {
+func (c *Client) GetUniverseCategory(ctx context.Context, categoryID int32, ifNoneMatch ...string) (*models.UniverseCategory, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"category_id": strconv.FormatInt(int64(categoryID), 10)}
 	var result *models.UniverseCategory
@@ -124,11 +124,11 @@ func (c *Client) GetUniverseCategory(ctx context.Context, categoryID int32, ifNo
 // 路由: GET /universe/constellations/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetConstellations(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetConstellations(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -146,11 +146,11 @@ func (c *Client) GetConstellations(ctx context.Context, ifNoneMatch string) ([]i
 // 路由: GET /universe/constellations/{constellation_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetConstellationInformation(ctx context.Context, constellationID int32, ifNoneMatch string) (*models.UniverseConstellation, error) {
+func (c *Client) GetConstellationInformation(ctx context.Context, constellationID int32, ifNoneMatch ...string) (*models.UniverseConstellation, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"constellation_id": strconv.FormatInt(int64(constellationID), 10)}
 	var result *models.UniverseConstellation
@@ -168,11 +168,11 @@ func (c *Client) GetConstellationInformation(ctx context.Context, constellationI
 // 路由: GET /universe/factions/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseFactions(ctx context.Context, ifNoneMatch string) ([]models.UniverseFaction, error) {
+func (c *Client) GetUniverseFactions(ctx context.Context, ifNoneMatch ...string) ([]models.UniverseFaction, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.UniverseFaction
@@ -190,11 +190,11 @@ func (c *Client) GetUniverseFactions(ctx context.Context, ifNoneMatch string) ([
 // 路由: GET /universe/graphics/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseGraphics(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetUniverseGraphics(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -212,11 +212,11 @@ func (c *Client) GetUniverseGraphics(ctx context.Context, ifNoneMatch string) ([
 // 路由: GET /universe/graphics/{graphic_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseGraphic(ctx context.Context, graphicID int32, ifNoneMatch string) (*models.UniverseGraphic, error) {
+func (c *Client) GetUniverseGraphic(ctx context.Context, graphicID int32, ifNoneMatch ...string) (*models.UniverseGraphic, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"graphic_id": strconv.FormatInt(int64(graphicID), 10)}
 	var result *models.UniverseGraphic
@@ -234,14 +234,14 @@ func (c *Client) GetUniverseGraphic(ctx context.Context, graphicID int32, ifNone
 // 路由: GET /universe/groups/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseGroups(ctx context.Context, page int32, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetUniverseGroups(ctx context.Context, page int32, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -259,11 +259,11 @@ func (c *Client) GetUniverseGroups(ctx context.Context, page int32, ifNoneMatch 
 // 路由: GET /universe/groups/{group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseGroup(ctx context.Context, groupID int32, ifNoneMatch string) (*models.UniverseGroup, error) {
+func (c *Client) GetUniverseGroup(ctx context.Context, groupID int32, ifNoneMatch ...string) (*models.UniverseGroup, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupID), 10)}
 	var result *models.UniverseGroup
@@ -281,11 +281,11 @@ func (c *Client) GetUniverseGroup(ctx context.Context, groupID int32, ifNoneMatc
 // 路由: GET /universe/moons/{moon_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseMoon(ctx context.Context, moonID int32, ifNoneMatch string) (*models.UniverseMoon, error) {
+func (c *Client) GetUniverseMoon(ctx context.Context, moonID int32, ifNoneMatch ...string) (*models.UniverseMoon, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"moon_id": strconv.FormatInt(int64(moonID), 10)}
 	var result *models.UniverseMoon
@@ -303,11 +303,11 @@ func (c *Client) GetUniverseMoon(ctx context.Context, moonID int32, ifNoneMatch 
 // 路由: GET /universe/planets/{planet_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniversePlanet(ctx context.Context, planetID int32, ifNoneMatch string) (*models.UniversePlanet, error) {
+func (c *Client) GetUniversePlanet(ctx context.Context, planetID int32, ifNoneMatch ...string) (*models.UniversePlanet, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"planet_id": strconv.FormatInt(int64(planetID), 10)}
 	var result *models.UniversePlanet
@@ -325,11 +325,11 @@ func (c *Client) GetUniversePlanet(ctx context.Context, planetID int32, ifNoneMa
 // 路由: GET /universe/races/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseRaces(ctx context.Context, ifNoneMatch string) ([]models.UniverseRace, error) {
+func (c *Client) GetUniverseRaces(ctx context.Context, ifNoneMatch ...string) ([]models.UniverseRace, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.UniverseRace
@@ -347,11 +347,11 @@ func (c *Client) GetUniverseRaces(ctx context.Context, ifNoneMatch string) ([]mo
 // 路由: GET /universe/regions/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseRegions(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetUniverseRegions(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -369,11 +369,11 @@ func (c *Client) GetUniverseRegions(ctx context.Context, ifNoneMatch string) ([]
 // 路由: GET /universe/regions/{region_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseRegion(ctx context.Context, regionID int32, ifNoneMatch string) (*models.UniverseRegion, error) {
+func (c *Client) GetUniverseRegion(ctx context.Context, regionID int32, ifNoneMatch ...string) (*models.UniverseRegion, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionID), 10)}
 	var result *models.UniverseRegion
@@ -391,11 +391,11 @@ func (c *Client) GetUniverseRegion(ctx context.Context, regionID int32, ifNoneMa
 // 路由: GET /universe/stargates/{stargate_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseStargate(ctx context.Context, stargateID int32, ifNoneMatch string) (*models.UniverseStargate, error) {
+func (c *Client) GetUniverseStargate(ctx context.Context, stargateID int32, ifNoneMatch ...string) (*models.UniverseStargate, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"stargate_id": strconv.FormatInt(int64(stargateID), 10)}
 	var result *models.UniverseStargate
@@ -413,11 +413,11 @@ func (c *Client) GetUniverseStargate(ctx context.Context, stargateID int32, ifNo
 // 路由: GET /universe/stars/{star_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseStar(ctx context.Context, starID int32, ifNoneMatch string) (*models.UniverseStar, error) {
+func (c *Client) GetUniverseStar(ctx context.Context, starID int32, ifNoneMatch ...string) (*models.UniverseStar, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"star_id": strconv.FormatInt(int64(starID), 10)}
 	var result *models.UniverseStar
@@ -435,11 +435,11 @@ func (c *Client) GetUniverseStar(ctx context.Context, starID int32, ifNoneMatch 
 // 路由: GET /universe/stations/{station_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseStation(ctx context.Context, stationID int32, ifNoneMatch string) (*models.UniverseStation, error) {
+func (c *Client) GetUniverseStation(ctx context.Context, stationID int32, ifNoneMatch ...string) (*models.UniverseStation, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"station_id": strconv.FormatInt(int64(stationID), 10)}
 	var result *models.UniverseStation
@@ -457,14 +457,14 @@ func (c *Client) GetUniverseStation(ctx context.Context, stationID int32, ifNone
 // 路由: GET /universe/structures/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetPublicStructures(ctx context.Context, filter string, ifNoneMatch string) ([]int64, error) {
+func (c *Client) GetPublicStructures(ctx context.Context, filter string, ifNoneMatch ...string) ([]int64, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if filter != "" {
 		query.Set("filter", filter)
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int64
@@ -482,14 +482,14 @@ func (c *Client) GetPublicStructures(ctx context.Context, filter string, ifNoneM
 // 路由: GET /universe/structures/{structure_id}/ — 该路由缓存长达 3600 秒
 // Scopes: esi-universe.read_structures.v1
 // 权限: esi-universe.read_structures.v1
-func (c *Client) GetUniverseStructure(ctx context.Context, structureID int64, token string, ifNoneMatch string) (*models.UniverseStructure, error) {
+func (c *Client) GetUniverseStructure(ctx context.Context, structureID int64, token string, ifNoneMatch ...string) (*models.UniverseStructure, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"structure_id": strconv.FormatInt(int64(structureID), 10)}
 	var result *models.UniverseStructure
@@ -507,11 +507,11 @@ func (c *Client) GetUniverseStructure(ctx context.Context, structureID int64, to
 // 路由: GET /universe/system_jumps/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseSystemJumps(ctx context.Context, ifNoneMatch string) ([]models.UniverseSystemJump, error) {
+func (c *Client) GetUniverseSystemJumps(ctx context.Context, ifNoneMatch ...string) ([]models.UniverseSystemJump, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.UniverseSystemJump
@@ -529,11 +529,11 @@ func (c *Client) GetUniverseSystemJumps(ctx context.Context, ifNoneMatch string)
 // 路由: GET /universe/system_kills/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseSystemKills(ctx context.Context, ifNoneMatch string) ([]models.UniverseSystemKills, error) {
+func (c *Client) GetUniverseSystemKills(ctx context.Context, ifNoneMatch ...string) ([]models.UniverseSystemKills, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.UniverseSystemKills
@@ -551,11 +551,11 @@ func (c *Client) GetUniverseSystemKills(ctx context.Context, ifNoneMatch string)
 // 路由: GET /universe/systems/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseSystems(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetUniverseSystems(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -573,11 +573,11 @@ func (c *Client) GetUniverseSystems(ctx context.Context, ifNoneMatch string) ([]
 // 路由: GET /universe/systems/{system_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseSystem(ctx context.Context, systemID int32, ifNoneMatch string) (*models.UniverseSolarSystem, error) {
+func (c *Client) GetUniverseSystem(ctx context.Context, systemID int32, ifNoneMatch ...string) (*models.UniverseSolarSystem, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"system_id": strconv.FormatInt(int64(systemID), 10)}
 	var result *models.UniverseSolarSystem
@@ -595,14 +595,14 @@ func (c *Client) GetUniverseSystem(ctx context.Context, systemID int32, ifNoneMa
 // 路由: GET /universe/types/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseTypes(ctx context.Context, page int32, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetUniverseTypes(ctx context.Context, page int32, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -620,11 +620,11 @@ func (c *Client) GetUniverseTypes(ctx context.Context, page int32, ifNoneMatch s
 // 路由: GET /universe/types/{type_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseType(ctx context.Context, typeID int32, ifNoneMatch string) (*models.UniverseType, error) {
+func (c *Client) GetUniverseType(ctx context.Context, typeID int32, ifNoneMatch ...string) (*models.UniverseType, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"type_id": strconv.FormatInt(int64(typeID), 10)}
 	var result *models.UniverseType

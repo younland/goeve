@@ -13,11 +13,11 @@ import (
 // 路由: GET /sovereignty/campaigns/ — 该路由缓存长达 5 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSovereigntyCampaigns(ctx context.Context, ifNoneMatch string) ([]models.SovereigntyCampaign, error) {
+func (c *Client) GetSovereigntyCampaigns(ctx context.Context, ifNoneMatch ...string) ([]models.SovereigntyCampaign, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.SovereigntyCampaign
@@ -35,11 +35,11 @@ func (c *Client) GetSovereigntyCampaigns(ctx context.Context, ifNoneMatch string
 // 路由: GET /sovereignty/map/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSovereigntyMap(ctx context.Context, ifNoneMatch string) ([]models.SovereigntySystem, error) {
+func (c *Client) GetSovereigntyMap(ctx context.Context, ifNoneMatch ...string) ([]models.SovereigntySystem, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.SovereigntySystem
@@ -57,11 +57,11 @@ func (c *Client) GetSovereigntyMap(ctx context.Context, ifNoneMatch string) ([]m
 // 路由: GET /sovereignty/structures/ — 该路由缓存长达 120 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSovereigntyStructures(ctx context.Context, ifNoneMatch string) ([]models.SovereigntyStructure, error) {
+func (c *Client) GetSovereigntyStructures(ctx context.Context, ifNoneMatch ...string) ([]models.SovereigntyStructure, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.SovereigntyStructure

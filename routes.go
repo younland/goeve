@@ -13,7 +13,7 @@ import (
 // 路由: GET /route/{origin}/{destination}/ — 该路由缓存长达 86400 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetRoute(ctx context.Context, destination int32, origin int32, avoid []int32, connections [][]int32, flag string, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetRoute(ctx context.Context, destination int32, origin int32, avoid []int32, connections [][]int32, flag string, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	for _, v := range avoid {
@@ -27,8 +27,8 @@ func (c *Client) GetRoute(ctx context.Context, destination int32, origin int32, 
 	if flag != "" {
 		query.Set("flag", flag)
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"destination": strconv.FormatInt(int64(destination), 10), "origin": strconv.FormatInt(int64(origin), 10)}
 	var result []int32

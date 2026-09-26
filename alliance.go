@@ -14,11 +14,11 @@ import (
 // 路由: GET /alliances/{alliance_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAlliance(ctx context.Context, allianceID int32, ifNoneMatch string) (*models.Alliance, error) {
+func (c *Client) GetAlliance(ctx context.Context, allianceID int32, ifNoneMatch ...string) (*models.Alliance, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result *models.Alliance
@@ -36,11 +36,11 @@ func (c *Client) GetAlliance(ctx context.Context, allianceID int32, ifNoneMatch 
 // 路由: GET /alliances/{alliance_id}/corporations/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAllianceCorporations(ctx context.Context, allianceID int32, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetAllianceCorporations(ctx context.Context, allianceID int32, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result []int32
@@ -58,11 +58,11 @@ func (c *Client) GetAllianceCorporations(ctx context.Context, allianceID int32, 
 // 路由: GET /alliances/{alliance_id}/icons/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAllianceIcons(ctx context.Context, allianceID int32, ifNoneMatch string) (*models.AllianceIcons, error) {
+func (c *Client) GetAllianceIcons(ctx context.Context, allianceID int32, ifNoneMatch ...string) (*models.AllianceIcons, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result *models.AllianceIcons
@@ -80,11 +80,11 @@ func (c *Client) GetAllianceIcons(ctx context.Context, allianceID int32, ifNoneM
 // 路由: GET /alliances/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAlliances(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetAlliances(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32

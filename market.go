@@ -14,14 +14,14 @@ import (
 // 路由: GET /characters/{character_id}/orders/ — 该路由缓存长达 1200 秒
 // Scopes: esi-markets.read_character_orders.v1
 // 权限: esi-markets.read_character_orders.v1
-func (c *Client) GetCharacterMarketOrders(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.CharacterMarketOrder, error) {
+func (c *Client) GetCharacterMarketOrders(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.CharacterMarketOrder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterMarketOrder
@@ -39,7 +39,7 @@ func (c *Client) GetCharacterMarketOrders(ctx context.Context, characterID int32
 // 路由: GET /characters/{character_id}/orders/history/ — 该路由缓存长达 3600 秒
 // Scopes: esi-markets.read_character_orders.v1
 // 权限: esi-markets.read_character_orders.v1
-func (c *Client) GetCharacterMarketOrderHistory(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.CharacterMarketOrderHistory, error) {
+func (c *Client) GetCharacterMarketOrderHistory(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.CharacterMarketOrderHistory, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -48,8 +48,8 @@ func (c *Client) GetCharacterMarketOrderHistory(ctx context.Context, characterID
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterMarketOrderHistory
@@ -67,7 +67,7 @@ func (c *Client) GetCharacterMarketOrderHistory(ctx context.Context, characterID
 // 路由: GET /corporations/{corporation_id}/orders/ — 该路由缓存长达 1200 秒
 // Scopes: esi-markets.read_corporation_orders.v1
 // 权限: esi-markets.read_corporation_orders.v1
-func (c *Client) GetCorporationMarketOrders(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationMarketOrder, error) {
+func (c *Client) GetCorporationMarketOrders(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationMarketOrder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -76,8 +76,8 @@ func (c *Client) GetCorporationMarketOrders(ctx context.Context, corporationID i
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationMarketOrder
@@ -95,7 +95,7 @@ func (c *Client) GetCorporationMarketOrders(ctx context.Context, corporationID i
 // 路由: GET /corporations/{corporation_id}/orders/history/ — 该路由缓存长达 3600 秒
 // Scopes: esi-markets.read_corporation_orders.v1
 // 权限: esi-markets.read_corporation_orders.v1
-func (c *Client) GetCorporationMarketOrderHistory(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationMarketOrderHistory, error) {
+func (c *Client) GetCorporationMarketOrderHistory(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationMarketOrderHistory, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -104,8 +104,8 @@ func (c *Client) GetCorporationMarketOrderHistory(ctx context.Context, corporati
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationMarketOrderHistory
@@ -123,11 +123,11 @@ func (c *Client) GetCorporationMarketOrderHistory(ctx context.Context, corporati
 // 路由: GET /markets/groups/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMarketGroups(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetMarketGroups(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -145,11 +145,11 @@ func (c *Client) GetMarketGroups(ctx context.Context, ifNoneMatch string) ([]int
 // 路由: GET /markets/groups/{market_group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMarketGroup(ctx context.Context, marketGroupID int32, ifNoneMatch string) (*models.MarketGroup, error) {
+func (c *Client) GetMarketGroup(ctx context.Context, marketGroupID int32, ifNoneMatch ...string) (*models.MarketGroup, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"market_group_id": strconv.FormatInt(int64(marketGroupID), 10)}
 	var result *models.MarketGroup
@@ -167,11 +167,11 @@ func (c *Client) GetMarketGroup(ctx context.Context, marketGroupID int32, ifNone
 // 路由: GET /markets/prices/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMarketPrices(ctx context.Context, ifNoneMatch string) ([]models.MarketPrice, error) {
+func (c *Client) GetMarketPrices(ctx context.Context, ifNoneMatch ...string) ([]models.MarketPrice, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.MarketPrice
@@ -189,11 +189,11 @@ func (c *Client) GetMarketPrices(ctx context.Context, ifNoneMatch string) ([]mod
 // 路由: GET /markets/{region_id}/history/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMarketHistory(ctx context.Context, regionID int32, typeID string, ifNoneMatch string) ([]models.MarketHistoryEntry, error) {
+func (c *Client) GetMarketHistory(ctx context.Context, regionID int32, typeID string, ifNoneMatch ...string) ([]models.MarketHistoryEntry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	query.Set("type_id", typeID)
 	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionID), 10)}
@@ -212,7 +212,7 @@ func (c *Client) GetMarketHistory(ctx context.Context, regionID int32, typeID st
 // 路由: GET /markets/{region_id}/orders/ — 该路由缓存长达 300 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMarketOrders(ctx context.Context, regionID int32, orderType string, page int32, typeID int32, ifNoneMatch string) ([]models.MarketOrder, error) {
+func (c *Client) GetMarketOrders(ctx context.Context, regionID int32, orderType string, page int32, typeID int32, ifNoneMatch ...string) ([]models.MarketOrder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if page > 0 {
@@ -221,8 +221,8 @@ func (c *Client) GetMarketOrders(ctx context.Context, regionID int32, orderType 
 	if typeID != 0 {
 		query.Set("type_id", strconv.FormatInt(int64(typeID), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	query.Set("order_type", orderType)
 	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionID), 10)}
@@ -241,14 +241,14 @@ func (c *Client) GetMarketOrders(ctx context.Context, regionID int32, orderType 
 // 路由: GET /markets/{region_id}/types/ — 该路由缓存长达 600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMarketTypes(ctx context.Context, regionID int32, page int32, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetMarketTypes(ctx context.Context, regionID int32, page int32, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionID), 10)}
 	var result []int32
@@ -266,7 +266,7 @@ func (c *Client) GetMarketTypes(ctx context.Context, regionID int32, page int32,
 // 路由: GET /markets/structures/{structure_id}/ — 该路由缓存长达 300 秒
 // Scopes: esi-markets.structure_markets.v1
 // 权限: esi-markets.structure_markets.v1
-func (c *Client) GetStructureMarketOrders(ctx context.Context, structureID int64, token string, page int32, ifNoneMatch string) ([]models.StructureMarketOrder, error) {
+func (c *Client) GetStructureMarketOrders(ctx context.Context, structureID int64, token string, page int32, ifNoneMatch ...string) ([]models.StructureMarketOrder, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -275,8 +275,8 @@ func (c *Client) GetStructureMarketOrders(ctx context.Context, structureID int64
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"structure_id": strconv.FormatInt(structureID, 10)}
 	var result []models.StructureMarketOrder

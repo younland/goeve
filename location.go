@@ -14,14 +14,14 @@ import (
 // 路由: GET /characters/{character_id}/location/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_location.v1
 // 权限: esi-location.read_location.v1
-func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterLocation, error) {
+func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterLocation, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterLocation
@@ -39,14 +39,14 @@ func (c *Client) GetCharacterLocation(ctx context.Context, characterID int32, to
 // 路由: GET /characters/{character_id}/online/ — 该路由缓存长达 60 秒
 // Scopes: esi-location.read_online.v1
 // 权限: esi-location.read_online.v1
-func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.OnlineStatus, error) {
+func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.OnlineStatus, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.OnlineStatus
@@ -64,14 +64,14 @@ func (c *Client) GetCharacterOnline(ctx context.Context, characterID int32, toke
 // 路由: GET /characters/{character_id}/ship/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_ship_type.v1
 // 权限: esi-location.read_ship_type.v1
-func (c *Client) GetCharacterShip(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterShip, error) {
+func (c *Client) GetCharacterShip(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterShip, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterShip

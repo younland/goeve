@@ -13,8 +13,8 @@ A Go client library for the NetEase EVE Online EVE Swagger Interface (ESI), hand
 - Full coverage of all **204 ESI operations / 204 个 ESI 接口全覆盖** (38 modules: Character, Corporation, Universe, Market, Fleets, ...)
   覆盖全部 38 个模块：角色、军团、宇宙、市场、舰队等
 - Semantic method names (no mechanical operationId conversion / 方法名语义化命名，非 operationId 机械转换)
-- Explicit positional parameters: required business parameters plus optional ones (`token`, `page`, `ifNoneMatch`, filters) in a fixed order, zero value = omit
-  显式位置参数：必需业务参数在前，可选参数（`token`、`page`、`ifNoneMatch`、过滤器等）按固定顺序追加，零值表示不传
+- Explicit positional parameters: required business parameters plus optional ones (`token`, `page`, filters) in a fixed order, zero value = omit; on GET methods the trailing `ifNoneMatch ...string` variadic parameter is simply omitted when no ETag negotiation is wanted
+  显式位置参数：必需业务参数在前，可选参数（`token`、`page`、过滤器等）按固定顺序追加，零值表示不传；GET 方法末尾的变长参数 `ifNoneMatch ...string` 不需要 ETag 协商时直接省略
 - Bilingual godoc on every method, model and field (English + 简体中文) / 每个方法、模型、字段都有中英双语注释
 - Integrated NetEase EVE SSO OAuth2 token acquisition (implicit + authorization code + refresh) / 内置网易 EVE SSO OAuth2 令牌获取（隐式、授权码、刷新）
 - ETag / `If-None-Match` (304) support / ETag 缓存协商支持
@@ -44,9 +44,9 @@ Methods are called directly on the `Client`, and the source files are organized 
 
 (All 32 modules / 共 32 个模块，见 `goeve_iface.go`)
 
-Public endpoints need no token; every method takes its path/business parameters explicitly, followed by optional ones in a fixed order — `token` (empty = client TokenSource / anonymous), `page` (0 = default), business filters, and finally `ifNoneMatch` (empty = no ETag):
+Public endpoints need no token; every method takes its path/business parameters explicitly, followed by optional ones in a fixed order — `token` (empty = client TokenSource / anonymous), `page` (0 = default), business filters. GET methods end with an optional variadic `ifNoneMatch ...string`: omit it for no ETag negotiation, or pass the ETag string as the last argument:
 
-公开接口无需令牌；每个方法的参数显式传入：路径与业务必需参数在前，可选参数按固定顺序追加——`token`（空 = 使用客户端 TokenSource / 匿名）、`page`（0 = 默认第 1 页）、业务过滤参数，最后 `ifNoneMatch`（空 = 不传 ETag）：
+公开接口无需令牌；每个方法的参数显式传入：路径与业务必需参数在前，可选参数按固定顺序追加——`token`（空 = 使用客户端 TokenSource / 匿名）、`page`（0 = 默认第 1 页）、业务过滤参数。GET 方法末尾是变长可选参数 `ifNoneMatch ...string`：不需要 ETag 协商时省略，需要时把 ETag 作为最后一个参数传入：
 
 ```go
 package main
@@ -66,14 +66,14 @@ func main() {
     )
 
     // Server status / 服务器状态
-    status, err := client.GetServerStatus(context.Background(), "")
+    status, err := client.GetServerStatus(context.Background())
     if err != nil {
         log.Fatal(err)
     }
     log.Printf("players=%d version=%s", status.Players, status.ServerVersion)
 
     // Character public info / 角色公开信息
-    character, err := client.GetCharacter(context.Background(), 95234356, "")
+    character, err := client.GetCharacter(context.Background(), 95234356)
     if err != nil {
         log.Fatal(err)
     }
@@ -81,7 +81,7 @@ func main() {
 
     // Market orders: regionID and orderType are business parameters, page and typeID optional
     // 市场订单：regionID、orderType 为业务参数，page、typeID 为可选参数（0 = 不传）
-    orders, err := client.GetMarketOrders(context.Background(), 10000002, "sell", 1, 0, "")
+    orders, err := client.GetMarketOrders(context.Background(), 10000002, "sell", 1, 0)
     if err != nil {
         log.Fatal(err)
     }
@@ -116,7 +116,7 @@ client := goeve.NewClient(goeve.WithTokenSource(ts))
 
 // 4. Call authenticated endpoints: token "" uses the client's TokenSource
 //    调用受保护接口：token 传 "" 表示使用客户端 TokenSource（也可显式传 token.AccessToken）
-balance, err := client.GetCharacterWalletBalance(context.Background(), characterID, "", "")
+balance, err := client.GetCharacterWalletBalance(context.Background(), characterID, "")
 ```
 
 ### Implicit flow / 隐式模式
@@ -149,7 +149,7 @@ token, err := goeve.RefreshAccessToken(context.Background(), refreshToken)
 // 分页：循环递增 page（0 = 默认第 1 页）直至返回空页
 page := int32(1)
 for {
-    assets, err := client.GetCharacterAssets(ctx, characterID, "", page, "")
+    assets, err := client.GetCharacterAssets(ctx, characterID, "", page)
     if err != nil {
         log.Fatal(err)
     }
@@ -162,10 +162,10 @@ for {
 
 // Mail has no page parameter: walk back with lastMailID (0 = from the newest)
 // 邮件接口没有 page 参数：用 lastMailID 回溯翻页（0 = 从最新开始）
-mails, err := client.GetCharacterMails(ctx, characterID, "", nil, lastMailID, "")
+mails, err := client.GetCharacterMails(ctx, characterID, "", nil, lastMailID)
 
-// ETag negotiation: pass ifNoneMatch as the last argument; on 304 the result is nil and err is nil
-// ETag 协商：最后一个参数传 ETag；服务器返回 304 时结果为 nil 且无错误
+// ETag negotiation: append the ETag as the trailing variadic argument; on 304 the result is nil and err is nil
+// ETag 协商：把 ETag 作为末尾变长参数传入；服务器返回 304 时结果为 nil 且无错误
 mails, err = client.GetCharacterMails(ctx, characterID, "", nil, 0, etag)
 if err == nil && mails == nil {
     // not modified / 数据未变化
@@ -174,7 +174,7 @@ if err == nil && mails == nil {
 // Language: client-level WithLanguage applies Accept-Language to every request
 // 语言：客户端级 WithLanguage 为所有请求设置 Accept-Language
 client := goeve.NewClient(goeve.WithLanguage(goeve.LanguageChinese))
-region, err := client.GetUniverseRegion(ctx, regionID, "")
+region, err := client.GetUniverseRegion(ctx, regionID)
 ```
 
 ## Project structure / 项目结构
@@ -201,13 +201,15 @@ Response types live in the `models` sub package and are referenced as
 `models.Character`, `models.MarketOrder`, `models.WalletJournalEntry`, etc.
 All request parameters are explicit positional arguments: after the required
 path/business parameters, optional ones are appended in a fixed order
-(`token`, `page`, business filters, `ifNoneMatch`), where a zero value
-(`""`, `0`, `nil`, `false`) means "do not send".
+(`token`, `page`, business filters), where a zero value (`""`, `0`, `nil`,
+`false`) means "do not send". GET methods additionally end with a variadic
+`ifNoneMatch ...string` for ETag negotiation — omit it when not needed.
 
 响应类型位于 `models` 子包，以 `models.Character`、`models.MarketOrder`、
 `models.WalletJournalEntry` 等形式引用。所有请求参数均为显式位置参数：
 必需的路径/业务参数之后，按固定顺序追加可选参数（`token`、`page`、
-业务过滤参数、`ifNoneMatch`），零值（`""`、`0`、`nil`、`false`）表示不传。
+业务过滤参数），零值（`""`、`0`、`nil`、`false`）表示不传。GET 方法末尾
+另有变长参数 `ifNoneMatch ...string` 用于 ETag 协商，不需要时可省略。
 
 When CCP/NetEase publishes an updated spec, download it from
 `https://ali-esi.evepc.163.com/latest/swagger.json` for reference and extend the

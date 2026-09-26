@@ -14,7 +14,7 @@ import (
 // TestGetServerStatus 对公开的 /status 接口发起真实网络调用。
 func TestGetServerStatus(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	status, err := client.GetServerStatus(context.Background(), "")
+	status, err := client.GetServerStatus(context.Background())
 	if err != nil {
 		t.Fatalf("GetServerStatus failed: %v", err)
 	}
@@ -30,7 +30,7 @@ func TestGetServerStatus(t *testing.T) {
 // TestGetCharacterNotFound 检查查询不存在的角色时返回结构化的 404 APIError。
 func TestGetCharacterNotFound(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	_, err := client.GetCharacter(context.Background(), 1, "")
+	_, err := client.GetCharacter(context.Background(), 1)
 	if err == nil {
 		t.Fatal("expected an error")
 	}
@@ -50,7 +50,7 @@ func TestGetUniverseCategories(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
 	ctx := context.Background()
 
-	categories, err := client.GetUniverseCategories(ctx, "")
+	categories, err := client.GetUniverseCategories(ctx)
 	if err != nil {
 		t.Fatalf("GetUniverseCategories failed: %v", err)
 	}
@@ -76,7 +76,7 @@ func TestGetUniverseCategories(t *testing.T) {
 // TestAPIError 检查无效 ID 是否以结构化的 APIError 返回。
 func TestAPIError(t *testing.T) {
 	client := NewClient(WithTimeout(30 * time.Second))
-	_, err := client.GetCharacter(context.Background(), 0, "")
+	_, err := client.GetCharacter(context.Background(), 0)
 	if err == nil {
 		t.Fatal("expected an error")
 	}
@@ -180,7 +180,7 @@ func TestWithAuthTokenPerRequest(t *testing.T) {
 	client := NewClient(WithBaseURL(server.URL))
 
 	// empty token: no Authorization header / 空令牌：不携带 Authorization 头
-	if _, err := client.GetCharacterWalletBalance(context.Background(), 95234356, "", ""); err != nil {
+	if _, err := client.GetCharacterWalletBalance(context.Background(), 95234356, ""); err != nil {
 		t.Fatalf("unauthenticated request failed: %v", err)
 	}
 	// explicit token: Bearer sent / 显式传入令牌：发送 Bearer

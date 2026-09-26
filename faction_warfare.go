@@ -14,14 +14,14 @@ import (
 // 路由: GET /characters/{character_id}/fw/stats/
 // Scopes: esi-characters.read_fw_stats.v1
 // 权限: esi-characters.read_fw_stats.v1
-func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterFactionWarfareStats, error) {
+func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterFactionWarfareStats, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterFactionWarfareStats
@@ -39,14 +39,14 @@ func (c *Client) GetCharacterFactionWarfareStats(ctx context.Context, characterI
 // 路由: GET /corporations/{corporation_id}/fw/stats/
 // Scopes: esi-corporations.read_fw_stats.v1
 // 权限: esi-corporations.read_fw_stats.v1
-func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, corporationID int32, token string, ifNoneMatch string) (*models.CorporationFactionWarfareStats, error) {
+func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, corporationID int32, token string, ifNoneMatch ...string) (*models.CorporationFactionWarfareStats, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result *models.CorporationFactionWarfareStats
@@ -64,11 +64,11 @@ func (c *Client) GetCorporationFactionWarfareStats(ctx context.Context, corporat
 // 路由: GET /fw/leaderboards/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareLeaderboard(ctx context.Context, ifNoneMatch string) (*models.FactionWarfareLeaderboard, error) {
+func (c *Client) GetFactionWarfareLeaderboard(ctx context.Context, ifNoneMatch ...string) (*models.FactionWarfareLeaderboard, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result *models.FactionWarfareLeaderboard
@@ -86,11 +86,11 @@ func (c *Client) GetFactionWarfareLeaderboard(ctx context.Context, ifNoneMatch s
 // 路由: GET /fw/leaderboards/characters/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareCharacterLeaderboard(ctx context.Context, ifNoneMatch string) (*models.FactionWarfareCharacterLeaderboard, error) {
+func (c *Client) GetFactionWarfareCharacterLeaderboard(ctx context.Context, ifNoneMatch ...string) (*models.FactionWarfareCharacterLeaderboard, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result *models.FactionWarfareCharacterLeaderboard
@@ -108,11 +108,11 @@ func (c *Client) GetFactionWarfareCharacterLeaderboard(ctx context.Context, ifNo
 // 路由: GET /fw/leaderboards/corporations/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareCorporationLeaderboard(ctx context.Context, ifNoneMatch string) (*models.FactionWarfareCorporationLeaderboard, error) {
+func (c *Client) GetFactionWarfareCorporationLeaderboard(ctx context.Context, ifNoneMatch ...string) (*models.FactionWarfareCorporationLeaderboard, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result *models.FactionWarfareCorporationLeaderboard
@@ -130,11 +130,11 @@ func (c *Client) GetFactionWarfareCorporationLeaderboard(ctx context.Context, if
 // 路由: GET /fw/stats/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareStats(ctx context.Context, ifNoneMatch string) ([]models.FactionWarfareStats, error) {
+func (c *Client) GetFactionWarfareStats(ctx context.Context, ifNoneMatch ...string) ([]models.FactionWarfareStats, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.FactionWarfareStats
@@ -152,11 +152,11 @@ func (c *Client) GetFactionWarfareStats(ctx context.Context, ifNoneMatch string)
 // 路由: GET /fw/systems/ — 该路由缓存长达 1800 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareSystems(ctx context.Context, ifNoneMatch string) ([]models.FactionWarfareSystem, error) {
+func (c *Client) GetFactionWarfareSystems(ctx context.Context, ifNoneMatch ...string) ([]models.FactionWarfareSystem, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.FactionWarfareSystem
@@ -174,11 +174,11 @@ func (c *Client) GetFactionWarfareSystems(ctx context.Context, ifNoneMatch strin
 // 路由: GET /fw/wars/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFactionWarfareWars(ctx context.Context, ifNoneMatch string) ([]models.FactionWarfareWar, error) {
+func (c *Client) GetFactionWarfareWars(ctx context.Context, ifNoneMatch ...string) ([]models.FactionWarfareWar, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.FactionWarfareWar

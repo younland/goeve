@@ -35,7 +35,7 @@ func (c *Client) DeleteCharacterContacts(ctx context.Context, characterID int32,
 // 路由: GET /alliances/{alliance_id}/contacts/ — 该路由缓存长达 300 秒
 // Scopes: esi-alliances.read_contacts.v1
 // 权限: esi-alliances.read_contacts.v1
-func (c *Client) GetAllianceContacts(ctx context.Context, allianceID int32, token string, page int32, ifNoneMatch string) ([]models.AllianceContact, error) {
+func (c *Client) GetAllianceContacts(ctx context.Context, allianceID int32, token string, page int32, ifNoneMatch ...string) ([]models.AllianceContact, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -44,8 +44,8 @@ func (c *Client) GetAllianceContacts(ctx context.Context, allianceID int32, toke
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result []models.AllianceContact
@@ -63,14 +63,14 @@ func (c *Client) GetAllianceContacts(ctx context.Context, allianceID int32, toke
 // 路由: GET /alliances/{alliance_id}/contacts/labels/ — 该路由缓存长达 300 秒
 // Scopes: esi-alliances.read_contacts.v1
 // 权限: esi-alliances.read_contacts.v1
-func (c *Client) GetAllianceContactLabels(ctx context.Context, allianceID int32, token string, ifNoneMatch string) ([]models.ContactLabel, error) {
+func (c *Client) GetAllianceContactLabels(ctx context.Context, allianceID int32, token string, ifNoneMatch ...string) ([]models.ContactLabel, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceID), 10)}
 	var result []models.ContactLabel
@@ -88,7 +88,7 @@ func (c *Client) GetAllianceContactLabels(ctx context.Context, allianceID int32,
 // 路由: GET /characters/{character_id}/contacts/ — 该路由缓存长达 300 秒
 // Scopes: esi-characters.read_contacts.v1
 // 权限: esi-characters.read_contacts.v1
-func (c *Client) GetCharacterContacts(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.CharacterContact, error) {
+func (c *Client) GetCharacterContacts(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.CharacterContact, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -97,8 +97,8 @@ func (c *Client) GetCharacterContacts(ctx context.Context, characterID int32, to
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterContact
@@ -116,14 +116,14 @@ func (c *Client) GetCharacterContacts(ctx context.Context, characterID int32, to
 // 路由: GET /characters/{character_id}/contacts/labels/ — 该路由缓存长达 300 秒
 // Scopes: esi-characters.read_contacts.v1
 // 权限: esi-characters.read_contacts.v1
-func (c *Client) GetCharacterContactLabels(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.ContactLabel, error) {
+func (c *Client) GetCharacterContactLabels(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.ContactLabel, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.ContactLabel
@@ -141,7 +141,7 @@ func (c *Client) GetCharacterContactLabels(ctx context.Context, characterID int3
 // 路由: GET /corporations/{corporation_id}/contacts/ — 该路由缓存长达 300 秒
 // Scopes: esi-corporations.read_contacts.v1
 // 权限: esi-corporations.read_contacts.v1
-func (c *Client) GetCorporationContacts(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationContact, error) {
+func (c *Client) GetCorporationContacts(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationContact, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -150,8 +150,8 @@ func (c *Client) GetCorporationContacts(ctx context.Context, corporationID int32
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationContact
@@ -169,14 +169,14 @@ func (c *Client) GetCorporationContacts(ctx context.Context, corporationID int32
 // 路由: GET /corporations/{corporation_id}/contacts/labels/ — 该路由缓存长达 300 秒
 // Scopes: esi-corporations.read_contacts.v1
 // 权限: esi-corporations.read_contacts.v1
-func (c *Client) GetCorporationContactLabels(ctx context.Context, corporationID int32, token string, ifNoneMatch string) ([]models.ContactLabel, error) {
+func (c *Client) GetCorporationContactLabels(ctx context.Context, corporationID int32, token string, ifNoneMatch ...string) ([]models.ContactLabel, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.ContactLabel

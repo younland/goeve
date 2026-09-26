@@ -14,14 +14,14 @@ import (
 // 路由: GET /characters/{character_id}/attributes/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharacterAttributes(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterAttributes, error) {
+func (c *Client) GetCharacterAttributes(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterAttributes, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterAttributes
@@ -39,14 +39,14 @@ func (c *Client) GetCharacterAttributes(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/skillqueue/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skillqueue.v1
 // 权限: esi-skills.read_skillqueue.v1
-func (c *Client) GetCharacterSkillQueue(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.SkillQueueEntry, error) {
+func (c *Client) GetCharacterSkillQueue(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.SkillQueueEntry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.SkillQueueEntry
@@ -64,14 +64,14 @@ func (c *Client) GetCharacterSkillQueue(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/skills/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharacterSkills(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterSkills, error) {
+func (c *Client) GetCharacterSkills(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterSkills, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterSkills

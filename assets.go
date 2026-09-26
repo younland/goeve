@@ -14,7 +14,7 @@ import (
 // 路由: GET /characters/{character_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_assets.v1
 // 权限: esi-assets.read_assets.v1
-func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.CharacterAsset, error) {
+func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.CharacterAsset, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -23,8 +23,8 @@ func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, toke
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterAsset
@@ -42,7 +42,7 @@ func (c *Client) GetCharacterAssets(ctx context.Context, characterID int32, toke
 // 路由: GET /corporations/{corporation_id}/assets/ — 该路由缓存长达 3600 秒
 // Scopes: esi-assets.read_corporation_assets.v1
 // 权限: esi-assets.read_corporation_assets.v1
-func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch string) ([]models.CorporationAsset, error) {
+func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, token string, page int32, ifNoneMatch ...string) ([]models.CorporationAsset, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -51,8 +51,8 @@ func (c *Client) GetCorporationAssets(ctx context.Context, corporationID int32, 
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationID), 10)}
 	var result []models.CorporationAsset

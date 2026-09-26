@@ -14,11 +14,11 @@ import (
 // 路由: GET /wars/{war_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetWar(ctx context.Context, warID int32, ifNoneMatch string) (*models.War, error) {
+func (c *Client) GetWar(ctx context.Context, warID int32, ifNoneMatch ...string) (*models.War, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"war_id": strconv.FormatInt(int64(warID), 10)}
 	var result *models.War
@@ -36,14 +36,14 @@ func (c *Client) GetWar(ctx context.Context, warID int32, ifNoneMatch string) (*
 // 路由: GET /wars/{war_id}/killmails/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetWarKillmails(ctx context.Context, warID int32, page int32, ifNoneMatch string) ([]models.KillmailRef, error) {
+func (c *Client) GetWarKillmails(ctx context.Context, warID int32, page int32, ifNoneMatch ...string) ([]models.KillmailRef, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"war_id": strconv.FormatInt(int64(warID), 10)}
 	var result []models.KillmailRef
@@ -61,14 +61,14 @@ func (c *Client) GetWarKillmails(ctx context.Context, warID int32, page int32, i
 // 路由: GET /wars/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetWars(ctx context.Context, maxWarID int32, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetWars(ctx context.Context, maxWarID int32, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if maxWarID != 0 {
 		query.Set("max_war_id", strconv.FormatInt(int64(maxWarID), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32

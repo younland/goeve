@@ -13,11 +13,11 @@ import (
 // 路由: GET /incursions/ — 该路由缓存长达 300 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetIncursions(ctx context.Context, ifNoneMatch string) ([]models.Incursion, error) {
+func (c *Client) GetIncursions(ctx context.Context, ifNoneMatch ...string) ([]models.Incursion, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []models.Incursion

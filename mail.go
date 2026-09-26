@@ -50,7 +50,7 @@ func (c *Client) DeleteCharacterMail(ctx context.Context, characterID int32, mai
 // 路由: GET /characters/{character_id}/mail/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, token string, labels []int32, lastMailID int32, ifNoneMatch string) ([]models.MailHeader, error) {
+func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, token string, labels []int32, lastMailID int32, ifNoneMatch ...string) ([]models.MailHeader, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -62,8 +62,8 @@ func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, token
 	if lastMailID != 0 {
 		query.Set("last_mail_id", strconv.FormatInt(int64(lastMailID), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.MailHeader
@@ -81,14 +81,14 @@ func (c *Client) GetCharacterMails(ctx context.Context, characterID int32, token
 // 路由: GET /characters/{character_id}/mail/labels/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.MailLabels, error) {
+func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.MailLabels, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.MailLabels
@@ -106,14 +106,14 @@ func (c *Client) GetCharacterMailLabels(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/mail/lists/ — 该路由缓存长达 120 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.MailingList, error) {
+func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.MailingList, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.MailingList
@@ -131,14 +131,14 @@ func (c *Client) GetCharacterMailLists(ctx context.Context, characterID int32, t
 // 路由: GET /characters/{character_id}/mail/{mail_id}/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharacterMail(ctx context.Context, characterID int32, mailID int32, token string, ifNoneMatch string) (*models.Mail, error) {
+func (c *Client) GetCharacterMail(ctx context.Context, characterID int32, mailID int32, token string, ifNoneMatch ...string) (*models.Mail, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10), "mail_id": strconv.FormatInt(int64(mailID), 10)}
 	var result *models.Mail

@@ -14,11 +14,11 @@ import (
 // 路由: GET /characters/{character_id}/ — 该路由缓存长达 604800 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCharacter(ctx context.Context, characterID int32, ifNoneMatch string) (*models.Character, error) {
+func (c *Client) GetCharacter(ctx context.Context, characterID int32, ifNoneMatch ...string) (*models.Character, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.Character
@@ -36,14 +36,14 @@ func (c *Client) GetCharacter(ctx context.Context, characterID int32, ifNoneMatc
 // 路由: GET /characters/{character_id}/agents_research/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_agents_research.v1
 // 权限: esi-characters.read_agents_research.v1
-func (c *Client) GetCharacterAgentsResearch(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.AgentResearch, error) {
+func (c *Client) GetCharacterAgentsResearch(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.AgentResearch, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.AgentResearch
@@ -61,7 +61,7 @@ func (c *Client) GetCharacterAgentsResearch(ctx context.Context, characterID int
 // 路由: GET /characters/{character_id}/blueprints/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_blueprints.v1
 // 权限: esi-characters.read_blueprints.v1
-func (c *Client) GetCharacterBlueprints(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch string) ([]models.Blueprint, error) {
+func (c *Client) GetCharacterBlueprints(ctx context.Context, characterID int32, token string, page int32, ifNoneMatch ...string) ([]models.Blueprint, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
@@ -70,8 +70,8 @@ func (c *Client) GetCharacterBlueprints(ctx context.Context, characterID int32, 
 	if page > 0 {
 		query.Set("page", strconv.FormatInt(int64(page), 10))
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.Blueprint
@@ -89,11 +89,11 @@ func (c *Client) GetCharacterBlueprints(ctx context.Context, characterID int32, 
 // 路由: GET /characters/{character_id}/corporationhistory/ — 该路由缓存长达 86400 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCharacterCorporationHistory(ctx context.Context, characterID int32, ifNoneMatch string) ([]models.CorporationHistoryEntry, error) {
+func (c *Client) GetCharacterCorporationHistory(ctx context.Context, characterID int32, ifNoneMatch ...string) ([]models.CorporationHistoryEntry, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CorporationHistoryEntry
@@ -111,14 +111,14 @@ func (c *Client) GetCharacterCorporationHistory(ctx context.Context, characterID
 // 路由: GET /characters/{character_id}/fatigue/ — 该路由缓存长达 300 秒
 // Scopes: esi-characters.read_fatigue.v1
 // 权限: esi-characters.read_fatigue.v1
-func (c *Client) GetCharacterJumpFatigue(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.JumpFatigue, error) {
+func (c *Client) GetCharacterJumpFatigue(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.JumpFatigue, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.JumpFatigue
@@ -136,14 +136,14 @@ func (c *Client) GetCharacterJumpFatigue(ctx context.Context, characterID int32,
 // 路由: GET /characters/{character_id}/medals/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_medals.v1
 // 权限: esi-characters.read_medals.v1
-func (c *Client) GetCharacterMedals(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.Medal, error) {
+func (c *Client) GetCharacterMedals(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Medal, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.Medal
@@ -161,14 +161,14 @@ func (c *Client) GetCharacterMedals(ctx context.Context, characterID int32, toke
 // 路由: GET /characters/{character_id}/notifications/ — 该路由缓存长达 600 秒
 // Scopes: esi-characters.read_notifications.v1
 // 权限: esi-characters.read_notifications.v1
-func (c *Client) GetCharacterNotifications(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.Notification, error) {
+func (c *Client) GetCharacterNotifications(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Notification, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.Notification
@@ -186,14 +186,14 @@ func (c *Client) GetCharacterNotifications(ctx context.Context, characterID int3
 // 路由: GET /characters/{character_id}/notifications/contacts/ — 该路由缓存长达 600 秒
 // Scopes: esi-characters.read_notifications.v1
 // 权限: esi-characters.read_notifications.v1
-func (c *Client) GetCharacterContactNotifications(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.ContactNotification, error) {
+func (c *Client) GetCharacterContactNotifications(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.ContactNotification, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.ContactNotification
@@ -211,11 +211,11 @@ func (c *Client) GetCharacterContactNotifications(ctx context.Context, character
 // 路由: GET /characters/{character_id}/portrait/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCharacterPortrait(ctx context.Context, characterID int32, ifNoneMatch string) (*models.CharacterPortraits, error) {
+func (c *Client) GetCharacterPortrait(ctx context.Context, characterID int32, ifNoneMatch ...string) (*models.CharacterPortraits, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterPortraits
@@ -233,14 +233,14 @@ func (c *Client) GetCharacterPortrait(ctx context.Context, characterID int32, if
 // 路由: GET /characters/{character_id}/roles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_corporation_roles.v1
 // 权限: esi-characters.read_corporation_roles.v1
-func (c *Client) GetCharacterCorporationRoles(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.CharacterCorporationRoles, error) {
+func (c *Client) GetCharacterCorporationRoles(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.CharacterCorporationRoles, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.CharacterCorporationRoles
@@ -258,14 +258,14 @@ func (c *Client) GetCharacterCorporationRoles(ctx context.Context, characterID i
 // 路由: GET /characters/{character_id}/standings/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_standings.v1
 // 权限: esi-characters.read_standings.v1
-func (c *Client) GetCharacterStandings(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.Standing, error) {
+func (c *Client) GetCharacterStandings(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.Standing, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.Standing
@@ -283,14 +283,14 @@ func (c *Client) GetCharacterStandings(ctx context.Context, characterID int32, t
 // 路由: GET /characters/{character_id}/titles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_titles.v1
 // 权限: esi-characters.read_titles.v1
-func (c *Client) GetCharacterCorporationTitles(ctx context.Context, characterID int32, token string, ifNoneMatch string) ([]models.CharacterTitle, error) {
+func (c *Client) GetCharacterCorporationTitles(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) ([]models.CharacterTitle, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result []models.CharacterTitle

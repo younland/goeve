@@ -14,14 +14,14 @@ import (
 // 路由: GET /characters/{character_id}/fleet/ — 该路由缓存长达 60 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetCharacterFleet(ctx context.Context, characterID int32, token string, ifNoneMatch string) (*models.FleetMembership, error) {
+func (c *Client) GetCharacterFleet(ctx context.Context, characterID int32, token string, ifNoneMatch ...string) (*models.FleetMembership, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterID), 10)}
 	var result *models.FleetMembership
@@ -39,14 +39,14 @@ func (c *Client) GetCharacterFleet(ctx context.Context, characterID int32, token
 // 路由: GET /fleets/{fleet_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetFleet(ctx context.Context, fleetID int64, token string, ifNoneMatch string) (*models.Fleet, error) {
+func (c *Client) GetFleet(ctx context.Context, fleetID int64, token string, ifNoneMatch ...string) (*models.Fleet, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"fleet_id": strconv.FormatInt(int64(fleetID), 10)}
 	var result *models.Fleet
@@ -87,14 +87,14 @@ func (c *Client) UpdateFleetSettings(ctx context.Context, fleetID int64, body *m
 // 路由: GET /fleets/{fleet_id}/members/ — 该路由缓存长达 5 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetFleetMembers(ctx context.Context, fleetID int64, token string, ifNoneMatch string) ([]models.FleetMember, error) {
+func (c *Client) GetFleetMembers(ctx context.Context, fleetID int64, token string, ifNoneMatch ...string) ([]models.FleetMember, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"fleet_id": strconv.FormatInt(int64(fleetID), 10)}
 	var result []models.FleetMember
@@ -219,14 +219,14 @@ func (c *Client) RenameFleetSquad(ctx context.Context, fleetID int64, squadID in
 // 路由: GET /fleets/{fleet_id}/wings/ — 该路由缓存长达 5 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetFleetWings(ctx context.Context, fleetID int64, token string, ifNoneMatch string) ([]models.FleetWing, error) {
+func (c *Client) GetFleetWings(ctx context.Context, fleetID int64, token string, ifNoneMatch ...string) ([]models.FleetWing, error) {
 	query := url.Values{}
 	headers := map[string]string{}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"fleet_id": strconv.FormatInt(int64(fleetID), 10)}
 	var result []models.FleetWing

@@ -14,11 +14,11 @@ import (
 // 路由: GET /dogma/attributes/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaAttributes(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetDogmaAttributes(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -36,11 +36,11 @@ func (c *Client) GetDogmaAttributes(ctx context.Context, ifNoneMatch string) ([]
 // 路由: GET /dogma/attributes/{attribute_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaAttribute(ctx context.Context, attributeID int32, ifNoneMatch string) (*models.DogmaAttribute, error) {
+func (c *Client) GetDogmaAttribute(ctx context.Context, attributeID int32, ifNoneMatch ...string) (*models.DogmaAttribute, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"attribute_id": strconv.FormatInt(int64(attributeID), 10)}
 	var result *models.DogmaAttribute
@@ -58,11 +58,11 @@ func (c *Client) GetDogmaAttribute(ctx context.Context, attributeID int32, ifNon
 // 路由: GET /dogma/dynamic/items/{type_id}/{item_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaDynamicItem(ctx context.Context, itemID int64, typeID int32, ifNoneMatch string) (*models.DogmaDynamicItem, error) {
+func (c *Client) GetDogmaDynamicItem(ctx context.Context, itemID int64, typeID int32, ifNoneMatch ...string) (*models.DogmaDynamicItem, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"item_id": strconv.FormatInt(int64(itemID), 10), "type_id": strconv.FormatInt(int64(typeID), 10)}
 	var result *models.DogmaDynamicItem
@@ -80,11 +80,11 @@ func (c *Client) GetDogmaDynamicItem(ctx context.Context, itemID int64, typeID i
 // 路由: GET /dogma/effects/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaEffects(ctx context.Context, ifNoneMatch string) ([]int32, error) {
+func (c *Client) GetDogmaEffects(ctx context.Context, ifNoneMatch ...string) ([]int32, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	var pathParams map[string]string
 	var result []int32
@@ -102,11 +102,11 @@ func (c *Client) GetDogmaEffects(ctx context.Context, ifNoneMatch string) ([]int
 // 路由: GET /dogma/effects/{effect_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetDogmaEffect(ctx context.Context, effectID int32, ifNoneMatch string) (*models.DogmaEffect, error) {
+func (c *Client) GetDogmaEffect(ctx context.Context, effectID int32, ifNoneMatch ...string) (*models.DogmaEffect, error) {
 	query := url.Values{}
 	headers := map[string]string{}
-	if ifNoneMatch != "" {
-		headers["If-None-Match"] = ifNoneMatch
+	if len(ifNoneMatch) > 0 && ifNoneMatch[0] != "" {
+		headers["If-None-Match"] = ifNoneMatch[0]
 	}
 	pathParams := map[string]string{"effect_id": strconv.FormatInt(int64(effectID), 10)}
 	var result *models.DogmaEffect
