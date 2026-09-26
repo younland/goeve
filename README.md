@@ -185,6 +185,28 @@ corresponding module files.
 当接口规范更新时，可从 `https://ali-esi.evepc.163.com/latest/swagger.json`
 下载最新规范作参考，并在对应模块文件中补充新接口。
 
+## AI Skills / 智能体技能
+
+This repo ships an agent skill (`.agents/skills/goeve/SKILL.md`) that teaches coding agents how to use this library — endpoint lookup by module, SSO flow, params/pagination conventions and error handling.
+
+本仓库内置智能体技能（`.agents/skills/goeve/SKILL.md`），向 Claude Code、Cursor、Kimi Code 等编程智能体传授本库用法。
+
+Install it with the [skills CLI](https://github.com/vercel-labs/skills) (no global install needed / 无需全局安装):
+
+```bash
+# 本仓库已内置该技能（.agents/skills/goeve），在本项目中智能体自动可用、无需安装
+# from GitHub, into another project（需要本仓库已推送到 GitHub）
+npx skills add younland/goeve --skill goeve          # 安装到当前项目
+npx skills add younland/goeve --skill goeve -g       # 全局安装（-y 跳过确认）
+
+# or from a local checkout / 本地仓库直接安装到其他项目
+npx skills add /path/to/goeve/.agents/skills/goeve
+```
+
+After installation the skill is picked up automatically when an agent works with this library.
+
+安装后智能体在处理与本库相关的任务时会自动加载该技能。
+
 ## Testing / 测试
 
 ```bash
