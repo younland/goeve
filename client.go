@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -94,18 +95,14 @@ func WithTimeout(timeout time.Duration) Option {
 	}
 }
 
-// WithAuthToken sets the access token used for Authorization: Bearer authentication.
-// The token will be sent with every request.
-// WithAuthToken 设置用于 Authorization: Bearer 认证的访问令牌，随每个请求发送。
-func WithAuthToken(token string) Option {
-	return func(c *Client) {
-		c.restyClient.SetAuthToken(token)
-	}
-}
-
 // WithTokenSource attaches a TokenSource to the client. Before every request the
 // current access token is obtained from the source, refreshing it automatically
-// when it has expired.
+// when it has expired. It is ignored for requests that carry their own token
+// via the WithAuthToken RequestOption.
+//
+// WithTokenSource 为客户端挂载 TokenSource。每次请求前都会从该源获取当前
+// 访问令牌，过期时自动使用 refresh_token 续期。对于通过 WithAuthToken
+// 请求选项自带令牌的请求不生效。
 //
 // WithTokenSource 为客户端挂载 TokenSource。每次请求前都会从该源获取当前
 // 访问令牌，过期时自动使用 refresh_token 续期。
@@ -141,7 +138,7 @@ func (c *Client) RestyClient() *resty.Client {
 func (c *Client) send(ctx context.Context, method, path string, pathParams map[string]string, query url.Values, headers map[string]string, body, result any) (*resty.Response, error) {
 	request := c.restyClient.NewRequest()
 	request.SetContext(ctx)
-	if c.tokenSource != nil {
+	if _, ok := headers["Authorization"]; !ok && c.tokenSource != nil {
 		token, err := c.tokenSource.Token(ctx)
 		if err != nil {
 			return nil, err
@@ -282,6 +279,21 @@ func WithIfNoneMatch(etag string) RequestOption {
 // WithAcceptLanguage 覆盖客户端默认的 Accept-Language（本次请求生效）。
 func WithAcceptLanguage(language string) RequestOption {
 	return func(o *requestOptions) { o.setHeader("Accept-Language", language) }
+}
+
+// WithAuthToken sends the given access token as Authorization: Bearer for this
+// request only — use it on endpoints that require authentication. It overrides
+// the client's TokenSource for this request; pass an empty token to make an
+// unauthenticated request.
+//
+// WithAuthToken 仅本次请求携带指定的 access_token（Authorization: Bearer），
+// 用于需要授权的接口。它会覆盖客户端的 TokenSource（传空字符串可强制匿名请求）。
+func WithAuthToken(token string) RequestOption {
+	return func(o *requestOptions) {
+		if token != "" {
+			o.setHeader("Authorization", "Bearer "+strings.TrimSpace(token))
+		}
+	}
 }
 
 // WithFromEvent filters calendar events starting after the given event ID.

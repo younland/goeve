@@ -129,7 +129,10 @@ authURL := goeve.BuildAuthorizeURL(goeve.AuthorizeConfig{
     Scope:        "esi-location.read_location.v1",
 })
 token, err := goeve.ParseImplicitRedirect(redirectURL)
-client := goeve.NewClient(goeve.WithAuthToken(token.AccessToken))
+
+// the token is passed per request on endpoints that require it
+// 需要授权的接口在调用时传入令牌（仅本次请求生效）
+character, err := client.GetCharacter(ctx, characterID, goeve.WithAuthToken(token.AccessToken))
 ```
 
 ### Refresh / 刷新

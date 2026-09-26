@@ -2,6 +2,8 @@ package goeve
 
 import (
 	"context"
+	"net/http"
+	"net/http/httptest"
 	"net/url"
 	"strings"
 	"testing"
@@ -160,5 +162,39 @@ func TestTokenValid(t *testing.T) {
 	}
 	if (&Token{Expiry: time.Now().Add(time.Hour)}).Valid() != false {
 		t.Fatal("token without access token should be invalid")
+	}
+}
+
+// TestWithAuthTokenPerRequest verifies that WithAuthToken sends the token only
+// for the request that carries the option.
+// TestWithAuthTokenPerRequest 验证 WithAuthToken 只为携带该选项的请求发送令牌。
+func TestWithAuthTokenPerRequest(t *testing.T) {
+	var gotAuth []string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotAuth = append(gotAuth, r.Header.Get("Authorization"))
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"players":1,"server_version":"test","start_time":"2026-09-27T00:00:00Z","vip":false}`))
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL))
+
+	// without the option: no Authorization header / 不带选项：无 Authorization 头
+	if _, err := client.GetServerStatus(context.Background()); err != nil {
+		t.Fatalf("unauthenticated request failed: %v", err)
+	}
+	// with the option: Bearer token sent / 带选项：发送 Bearer 令牌
+	if _, err := client.GetServerStatus(context.Background(), WithAuthToken("abc123")); err != nil {
+		t.Fatalf("authenticated request failed: %v", err)
+	}
+
+	if len(gotAuth) != 2 {
+		t.Fatalf("expected 2 requests, got %d", len(gotAuth))
+	}
+	if gotAuth[0] != "" {
+		t.Errorf("request without option should not carry Authorization, got %q", gotAuth[0])
+	}
+	if gotAuth[1] != "Bearer abc123" {
+		t.Errorf("Authorization = %q, want %q", gotAuth[1], "Bearer abc123")
 	}
 }

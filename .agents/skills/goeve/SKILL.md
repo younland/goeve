@@ -31,7 +31,7 @@ grep goeve go.mod || go get github.com/younland/goeve
 
 | 约定 | 说明 |
 |---|---|
-| 创建客户端 | `client := goeve.NewClient(goeve.WithTimeout(30*time.Second), goeve.WithDebug(true))`；客户端选项还有 `WithBaseURL` / `WithHTTPClient` / `WithAuthToken` / `WithTokenSource` / `WithLanguage`（默认 Accept-Language） |
+| 创建客户端 | `client := goeve.NewClient(goeve.WithTimeout(30*time.Second), goeve.WithDebug(true))`；客户端选项还有 `WithBaseURL` / `WithHTTPClient` / `WithTokenSource` / `WithLanguage`（默认 Accept-Language）；**需要授权的接口在调用时用请求选项 `goeve.WithAuthToken(token)` 传入令牌**（仅本次请求生效，覆盖 TokenSource） |
 | 返回值 | 只有 `(result, error)`，不返回 `*resty.Response`。对象返回指针 `*models.Xxx`，数组返回切片 `[]models.Xxx`，204 响应只返回 `error` |
 | 参数 | 第一个参数永远是 `context.Context`；**路径与业务必需参数是位置参数**（如 `characterID`、`regionID` + `orderType`）；**所有可选查询/Header 参数统一为 `...goeve.RequestOption`**，不再有每方法独立的参数结构体 |
 | 命名 | 方法名已语义化（如 `get_characters_character_id` → `GetCharacter`，`get_markets_region_id_orders` → `GetMarketOrders`，`get_characters_character_id_wallet` → `GetCharacterWalletBalance`），**不要按 operationId 机械推导**，以 `goeve_iface.go` 与方法 godoc 为准 |
