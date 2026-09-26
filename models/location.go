@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-// GetCharactersCharacterIdLocationOk 200 ok object.
-// GetCharactersCharacterIdLocationOk 200 ok 对象.
-type GetCharactersCharacterIdLocationOk struct {
+// GetCharactersCharacterIdLocation 200 ok object.
+// GetCharactersCharacterIdLocation 200 ok 对象.
+type GetCharactersCharacterIdLocation struct {
 	// SolarSystemId solar_system_id integer.
 	// SolarSystemId 星系ID integer.
 	SolarSystemId int32 `json:"solar_system_id"`
@@ -19,9 +19,9 @@ type GetCharactersCharacterIdLocationOk struct {
 	StructureId int64 `json:"structure_id"`
 }
 
-// GetCharactersCharacterIdOnlineOk 200 ok object.
-// GetCharactersCharacterIdOnlineOk 200 ok 对象.
-type GetCharactersCharacterIdOnlineOk struct {
+// GetCharactersCharacterIdOnline 200 ok object.
+// GetCharactersCharacterIdOnline 200 ok 对象.
+type GetCharactersCharacterIdOnline struct {
 	// LastLogin Timestamp of the last login.
 	// LastLogin 最后一次登录的时间戳.
 	LastLogin time.Time `json:"last_login"`
@@ -36,9 +36,9 @@ type GetCharactersCharacterIdOnlineOk struct {
 	Online bool `json:"online"`
 }
 
-// GetCharactersCharacterIdShipOk 200 ok object.
-// GetCharactersCharacterIdShipOk 200 ok 对象.
-type GetCharactersCharacterIdShipOk struct {
+// GetCharactersCharacterIdShip 200 ok object.
+// GetCharactersCharacterIdShip 200 ok 对象.
+type GetCharactersCharacterIdShip struct {
 	// ShipItemId Item id's are unique to a ship and persist until it is repackaged. This value can be used to track repeated uses of a ship, or detect when a pilot changes into a different instance of the same ship type.
 	// ShipItemId 物品 ID 对一艘舰船唯一，并在其重新打包之前保持不变。该值可用于追踪舰船的重复使用，或检测飞行员何时更换为同型舰船的另一实例。
 	ShipItemId int64 `json:"ship_item_id"`

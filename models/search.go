@@ -5,9 +5,9 @@ import (
 	"strconv"
 )
 
-// GetCharactersCharacterIdSearchOk 200 ok object.
-// GetCharactersCharacterIdSearchOk 200 ok 对象.
-type GetCharactersCharacterIdSearchOk struct {
+// GetCharactersCharacterIdSearch 200 ok object.
+// GetCharactersCharacterIdSearch 200 ok 对象.
+type GetCharactersCharacterIdSearch struct {
 	// Agent agent array.
 	// Agent 代理人数组.
 	Agent []int32 `json:"agent"`

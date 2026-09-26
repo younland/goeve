@@ -13,10 +13,10 @@ import (
 // 路由: GET /corporations/{corporation_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCorporationId(ctx context.Context, corporationId int32, params *models.GetCorporationIdParams) (*models.GetCorporationsCorporationIdOk, error) {
+func (c *Client) GetCorporationId(ctx context.Context, corporationId int32, params *models.GetCorporationIdParams) (*models.GetCorporationsCorporationId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10)}
-	var result *models.GetCorporationsCorporationIdOk
+	var result *models.GetCorporationsCorporationId
 	err := c.get(ctx, "/corporations/{corporation_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -85,10 +85,10 @@ func (c *Client) GetCorporationIdContainersLogs(ctx context.Context, corporation
 // 路由: GET /corporations/{corporation_id}/divisions/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_divisions.v1
 // 权限: esi-corporations.read_divisions.v1
-func (c *Client) GetCorporationIdDivisions(ctx context.Context, corporationId int32, params *models.GetCorporationIdDivisionsParams) (*models.GetCorporationsCorporationIdDivisionsOk, error) {
+func (c *Client) GetCorporationIdDivisions(ctx context.Context, corporationId int32, params *models.GetCorporationIdDivisionsParams) (*models.GetCorporationsCorporationIdDivisions, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10)}
-	var result *models.GetCorporationsCorporationIdDivisionsOk
+	var result *models.GetCorporationsCorporationIdDivisions
 	err := c.get(ctx, "/corporations/{corporation_id}/divisions/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -121,10 +121,10 @@ func (c *Client) GetCorporationIdFacilities(ctx context.Context, corporationId i
 // 路由: GET /corporations/{corporation_id}/icons/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCorporationIdIcons(ctx context.Context, corporationId int32, params *models.GetCorporationIdIconsParams) (*models.GetCorporationsCorporationIdIconsOk, error) {
+func (c *Client) GetCorporationIdIcons(ctx context.Context, corporationId int32, params *models.GetCorporationIdIconsParams) (*models.GetCorporationsCorporationIdIcons, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10)}
-	var result *models.GetCorporationsCorporationIdIconsOk
+	var result *models.GetCorporationsCorporationIdIcons
 	err := c.get(ctx, "/corporations/{corporation_id}/icons/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -337,10 +337,10 @@ func (c *Client) GetCorporationIdStarbases(ctx context.Context, corporationId in
 // 路由: GET /corporations/{corporation_id}/starbases/{starbase_id}/ — 该路由缓存长达 3600 秒
 // Scopes: esi-corporations.read_starbases.v1
 // 权限: esi-corporations.read_starbases.v1
-func (c *Client) GetCorporationIdStarbasesStarbaseId(ctx context.Context, corporationId int32, starbaseId int64, params *models.GetCorporationIdStarbasesStarbaseIdParams) (*models.GetCorporationsCorporationIdStarbasesStarbaseIdOk, error) {
+func (c *Client) GetCorporationIdStarbasesStarbaseId(ctx context.Context, corporationId int32, starbaseId int64, params *models.GetCorporationIdStarbasesStarbaseIdParams) (*models.GetCorporationsCorporationIdStarbasesStarbaseId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10), "starbase_id": strconv.FormatInt(int64(starbaseId), 10)}
-	var result *models.GetCorporationsCorporationIdStarbasesStarbaseIdOk
+	var result *models.GetCorporationsCorporationIdStarbasesStarbaseId
 	err := c.get(ctx, "/corporations/{corporation_id}/starbases/{starbase_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

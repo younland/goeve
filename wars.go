@@ -13,10 +13,10 @@ import (
 // 路由: GET /wars/{war_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetWarId(ctx context.Context, warId int32, params *models.GetWarIdParams) (*models.GetWarsWarIdOk, error) {
+func (c *Client) GetWarId(ctx context.Context, warId int32, params *models.GetWarIdParams) (*models.GetWarsWarId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"war_id": strconv.FormatInt(int64(warId), 10)}
-	var result *models.GetWarsWarIdOk
+	var result *models.GetWarsWarId
 	err := c.get(ctx, "/wars/{war_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

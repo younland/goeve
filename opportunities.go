@@ -49,10 +49,10 @@ func (c *Client) GetOpportunitiesGroups(ctx context.Context, params *models.GetG
 // 路由: GET /opportunities/groups/{group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetOpportunitiesGroupsGroupId(ctx context.Context, groupId int32, params *models.GetGroupsGroupIdParams) (*models.GetOpportunitiesGroupsGroupIdOk, error) {
+func (c *Client) GetOpportunitiesGroupsGroupId(ctx context.Context, groupId int32, params *models.GetGroupsGroupIdParams) (*models.GetOpportunitiesGroupsGroupId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupId), 10)}
-	var result *models.GetOpportunitiesGroupsGroupIdOk
+	var result *models.GetOpportunitiesGroupsGroupId
 	err := c.get(ctx, "/opportunities/groups/{group_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -85,10 +85,10 @@ func (c *Client) GetTasks(ctx context.Context, params *models.GetTasksParams) ([
 // 路由: GET /opportunities/tasks/{task_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetTasksTaskId(ctx context.Context, taskId int32, params *models.GetTasksTaskIdParams) (*models.GetOpportunitiesTasksTaskIdOk, error) {
+func (c *Client) GetTasksTaskId(ctx context.Context, taskId int32, params *models.GetTasksTaskIdParams) (*models.GetOpportunitiesTasksTaskId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"task_id": strconv.FormatInt(int64(taskId), 10)}
-	var result *models.GetOpportunitiesTasksTaskIdOk
+	var result *models.GetOpportunitiesTasksTaskId
 	err := c.get(ctx, "/opportunities/tasks/{task_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

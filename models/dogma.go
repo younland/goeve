@@ -66,9 +66,9 @@ func (p *GetAttributesParams) Values() (url.Values, map[string]string) {
 	return query, headers
 }
 
-// GetDogmaAttributesAttributeIdOk 200 ok object.
-// GetDogmaAttributesAttributeIdOk 200 ok 对象.
-type GetDogmaAttributesAttributeIdOk struct {
+// GetDogmaAttributesAttributeId 200 ok object.
+// GetDogmaAttributesAttributeId 200 ok 对象.
+type GetDogmaAttributesAttributeId struct {
 	// AttributeId attribute_id integer.
 	// AttributeId 属性 ID 整数.
 	AttributeId int32 `json:"attribute_id"`
@@ -123,9 +123,9 @@ type GetDogmaDynamicItemsTypeIdItemIdDogmaEffect struct {
 	IsDefault bool `json:"is_default"`
 }
 
-// GetDogmaDynamicItemsTypeIdItemIdOk 200 ok object.
-// GetDogmaDynamicItemsTypeIdItemIdOk 200 ok 对象.
-type GetDogmaDynamicItemsTypeIdItemIdOk struct {
+// GetDogmaDynamicItemsTypeIdItemId 200 ok object.
+// GetDogmaDynamicItemsTypeIdItemId 200 ok 对象.
+type GetDogmaDynamicItemsTypeIdItemId struct {
 	// CreatedBy The ID of the character who created the item.
 	// CreatedBy 创建该物品的角色 ID.
 	CreatedBy int32 `json:"created_by"`
@@ -166,9 +166,9 @@ type GetDogmaEffectsEffectIdModifier struct {
 	Operator int32 `json:"operator"`
 }
 
-// GetDogmaEffectsEffectIdOk 200 ok object.
-// GetDogmaEffectsEffectIdOk 200 ok 对象.
-type GetDogmaEffectsEffectIdOk struct {
+// GetDogmaEffectsEffectId 200 ok object.
+// GetDogmaEffectsEffectId 200 ok 对象.
+type GetDogmaEffectsEffectId struct {
 	// Description description string.
 	// Description 描述字符串.
 	Description string `json:"description"`

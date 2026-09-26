@@ -55,10 +55,10 @@ func (c *Client) DeleteFleetIdWingsWingId(ctx context.Context, fleetId int64, wi
 // 路由: GET /characters/{character_id}/fleet/ — 该路由缓存长达 60 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetCharactersCharacterIdFleet(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdFleetParams) (*models.GetCharactersCharacterIdFleetOk, error) {
+func (c *Client) GetCharactersCharacterIdFleet(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdFleetParams) (*models.GetCharactersCharacterIdFleet, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdFleetOk
+	var result *models.GetCharactersCharacterIdFleet
 	err := c.get(ctx, "/characters/{character_id}/fleet/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -73,10 +73,10 @@ func (c *Client) GetCharactersCharacterIdFleet(ctx context.Context, characterId 
 // 路由: GET /fleets/{fleet_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-fleets.read_fleet.v1
 // 权限: esi-fleets.read_fleet.v1
-func (c *Client) GetFleetId(ctx context.Context, fleetId int64, params *models.GetFleetIdParams) (*models.GetFleetsFleetIdOk, error) {
+func (c *Client) GetFleetId(ctx context.Context, fleetId int64, params *models.GetFleetIdParams) (*models.GetFleetsFleetId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"fleet_id": strconv.FormatInt(int64(fleetId), 10)}
-	var result *models.GetFleetsFleetIdOk
+	var result *models.GetFleetsFleetId
 	err := c.get(ctx, "/fleets/{fleet_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -144,10 +144,10 @@ func (c *Client) PostFleetIdMembers(ctx context.Context, fleetId int64, body *mo
 // 路由: POST /fleets/{fleet_id}/wings/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) PostFleetIdWings(ctx context.Context, fleetId int64, params *models.PostFleetIdWingsParams) (*models.PostFleetsFleetIdWingsCreated, error) {
+func (c *Client) PostFleetIdWings(ctx context.Context, fleetId int64, params *models.PostFleetIdWingsParams) (*models.PostFleetsFleetIdWings, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"fleet_id": strconv.FormatInt(int64(fleetId), 10)}
-	var result *models.PostFleetsFleetIdWingsCreated
+	var result *models.PostFleetsFleetIdWings
 	err := c.post(ctx, "/fleets/{fleet_id}/wings/", pathParams, query, headers, nil, &result)
 	if err != nil {
 		return nil, err
@@ -162,10 +162,10 @@ func (c *Client) PostFleetIdWings(ctx context.Context, fleetId int64, params *mo
 // 路由: POST /fleets/{fleet_id}/wings/{wing_id}/squads/
 // Scopes: esi-fleets.write_fleet.v1
 // 权限: esi-fleets.write_fleet.v1
-func (c *Client) PostFleetIdWingsWingIdSquads(ctx context.Context, fleetId int64, wingId int64, params *models.PostFleetIdWingsWingIdSquadsParams) (*models.PostFleetsFleetIdWingsWingIdSquadsCreated, error) {
+func (c *Client) PostFleetIdWingsWingIdSquads(ctx context.Context, fleetId int64, wingId int64, params *models.PostFleetIdWingsWingIdSquadsParams) (*models.PostFleetsFleetIdWingsWingIdSquads, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"fleet_id": strconv.FormatInt(int64(fleetId), 10), "wing_id": strconv.FormatInt(int64(wingId), 10)}
-	var result *models.PostFleetsFleetIdWingsWingIdSquadsCreated
+	var result *models.PostFleetsFleetIdWingsWingIdSquads
 	err := c.post(ctx, "/fleets/{fleet_id}/wings/{wing_id}/squads/", pathParams, query, headers, nil, &result)
 	if err != nil {
 		return nil, err

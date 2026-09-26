@@ -13,10 +13,10 @@ import (
 // 路由: GET /characters/{character_id}/fw/stats/
 // Scopes: esi-characters.read_fw_stats.v1
 // 权限: esi-characters.read_fw_stats.v1
-func (c *Client) GetCharactersCharacterIdFwStats(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdFwStatsParams) (*models.GetCharactersCharacterIdFwStatsOk, error) {
+func (c *Client) GetCharactersCharacterIdFwStats(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdFwStatsParams) (*models.GetCharactersCharacterIdFwStats, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdFwStatsOk
+	var result *models.GetCharactersCharacterIdFwStats
 	err := c.get(ctx, "/characters/{character_id}/fw/stats/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -31,10 +31,10 @@ func (c *Client) GetCharactersCharacterIdFwStats(ctx context.Context, characterI
 // 路由: GET /corporations/{corporation_id}/fw/stats/
 // Scopes: esi-corporations.read_fw_stats.v1
 // 权限: esi-corporations.read_fw_stats.v1
-func (c *Client) GetCorporationsCorporationIdFwStats(ctx context.Context, corporationId int32, params *models.GetCorporationsCorporationIdFwStatsParams) (*models.GetCorporationsCorporationIdFwStatsOk, error) {
+func (c *Client) GetCorporationsCorporationIdFwStats(ctx context.Context, corporationId int32, params *models.GetCorporationsCorporationIdFwStatsParams) (*models.GetCorporationsCorporationIdFwStats, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"corporation_id": strconv.FormatInt(int64(corporationId), 10)}
-	var result *models.GetCorporationsCorporationIdFwStatsOk
+	var result *models.GetCorporationsCorporationIdFwStats
 	err := c.get(ctx, "/corporations/{corporation_id}/fw/stats/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -49,10 +49,10 @@ func (c *Client) GetCorporationsCorporationIdFwStats(ctx context.Context, corpor
 // 路由: GET /fw/leaderboards/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFwLeaderboards(ctx context.Context, params *models.GetFwLeaderboardsParams) (*models.GetFwLeaderboardsOk, error) {
+func (c *Client) GetFwLeaderboards(ctx context.Context, params *models.GetFwLeaderboardsParams) (*models.GetFwLeaderboards, error) {
 	query, headers := params.Values()
 	var pathParams map[string]string
-	var result *models.GetFwLeaderboardsOk
+	var result *models.GetFwLeaderboards
 	err := c.get(ctx, "/fw/leaderboards/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -67,10 +67,10 @@ func (c *Client) GetFwLeaderboards(ctx context.Context, params *models.GetFwLead
 // 路由: GET /fw/leaderboards/characters/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFwLeaderboardsCharacters(ctx context.Context, params *models.GetFwLeaderboardsCharactersParams) (*models.GetFwLeaderboardsCharactersOk, error) {
+func (c *Client) GetFwLeaderboardsCharacters(ctx context.Context, params *models.GetFwLeaderboardsCharactersParams) (*models.GetFwLeaderboardsCharacters, error) {
 	query, headers := params.Values()
 	var pathParams map[string]string
-	var result *models.GetFwLeaderboardsCharactersOk
+	var result *models.GetFwLeaderboardsCharacters
 	err := c.get(ctx, "/fw/leaderboards/characters/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -85,10 +85,10 @@ func (c *Client) GetFwLeaderboardsCharacters(ctx context.Context, params *models
 // 路由: GET /fw/leaderboards/corporations/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetFwLeaderboardsCorporations(ctx context.Context, params *models.GetFwLeaderboardsCorporationsParams) (*models.GetFwLeaderboardsCorporationsOk, error) {
+func (c *Client) GetFwLeaderboardsCorporations(ctx context.Context, params *models.GetFwLeaderboardsCorporationsParams) (*models.GetFwLeaderboardsCorporations, error) {
 	query, headers := params.Values()
 	var pathParams map[string]string
-	var result *models.GetFwLeaderboardsCorporationsOk
+	var result *models.GetFwLeaderboardsCorporations
 	err := c.get(ctx, "/fw/leaderboards/corporations/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

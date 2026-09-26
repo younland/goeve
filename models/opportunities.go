@@ -16,9 +16,9 @@ type GetCharactersCharacterIdOpportunities struct {
 	TaskId int32 `json:"task_id"`
 }
 
-// GetOpportunitiesGroupsGroupIdOk 200 ok object.
-// GetOpportunitiesGroupsGroupIdOk 200 ok 对象.
-type GetOpportunitiesGroupsGroupIdOk struct {
+// GetOpportunitiesGroupsGroupId 200 ok object.
+// GetOpportunitiesGroupsGroupId 200 ok 对象.
+type GetOpportunitiesGroupsGroupId struct {
 	// ConnectedGroups The groups that are connected to this group on the opportunities map.
 	// ConnectedGroups 机遇地图上与此组相连的其他组.
 	ConnectedGroups []int32 `json:"connected_groups"`
@@ -39,9 +39,9 @@ type GetOpportunitiesGroupsGroupIdOk struct {
 	RequiredTasks []int32 `json:"required_tasks"`
 }
 
-// GetOpportunitiesTasksTaskIdOk 200 ok object.
-// GetOpportunitiesTasksTaskIdOk 200 ok 对象.
-type GetOpportunitiesTasksTaskIdOk struct {
+// GetOpportunitiesTasksTaskId 200 ok object.
+// GetOpportunitiesTasksTaskId 200 ok 对象.
+type GetOpportunitiesTasksTaskId struct {
 	// Description description string.
 	// Description 描述字符串.
 	Description string `json:"description"`

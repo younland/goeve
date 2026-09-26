@@ -59,10 +59,10 @@ func (c *Client) GetCharactersCharacterIdMail(ctx context.Context, characterId i
 // 路由: GET /characters/{character_id}/mail/labels/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharactersCharacterIdMailLabels(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdMailLabelsParams) (*models.GetCharactersCharacterIdMailLabelsOk, error) {
+func (c *Client) GetCharactersCharacterIdMailLabels(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdMailLabelsParams) (*models.GetCharactersCharacterIdMailLabels, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdMailLabelsOk
+	var result *models.GetCharactersCharacterIdMailLabels
 	err := c.get(ctx, "/characters/{character_id}/mail/labels/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -95,10 +95,10 @@ func (c *Client) GetCharactersCharacterIdMailLists(ctx context.Context, characte
 // 路由: GET /characters/{character_id}/mail/{mail_id}/ — 该路由缓存长达 30 秒
 // Scopes: esi-mail.read_mail.v1
 // 权限: esi-mail.read_mail.v1
-func (c *Client) GetCharactersCharacterIdMailMailId(ctx context.Context, characterId int32, mailId int32, params *models.GetCharactersCharacterIdMailMailIdParams) (*models.GetCharactersCharacterIdMailMailIdOk, error) {
+func (c *Client) GetCharactersCharacterIdMailMailId(ctx context.Context, characterId int32, mailId int32, params *models.GetCharactersCharacterIdMailMailIdParams) (*models.GetCharactersCharacterIdMailMailId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10), "mail_id": strconv.FormatInt(int64(mailId), 10)}
-	var result *models.GetCharactersCharacterIdMailMailIdOk
+	var result *models.GetCharactersCharacterIdMailMailId
 	err := c.get(ctx, "/characters/{character_id}/mail/{mail_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

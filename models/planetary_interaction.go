@@ -100,9 +100,9 @@ type GetCharactersCharacterIdPlanetsPlanetIdLink struct {
 	SourcePinId int64 `json:"source_pin_id"`
 }
 
-// GetCharactersCharacterIdPlanetsPlanetIdOk 200 ok object.
-// GetCharactersCharacterIdPlanetsPlanetIdOk 200 ok 对象.
-type GetCharactersCharacterIdPlanetsPlanetIdOk struct {
+// GetCharactersCharacterIdPlanetsPlanetId 200 ok object.
+// GetCharactersCharacterIdPlanetsPlanetId 200 ok 对象.
+type GetCharactersCharacterIdPlanetsPlanetId struct {
 	// Links links array.
 	// Links links 数组.
 	Links []GetCharactersCharacterIdPlanetsPlanetIdLink `json:"links"`
@@ -223,9 +223,9 @@ type GetCorporationsCorporationIdCustomsOffices struct {
 	TerribleStandingTaxRate float64 `json:"terrible_standing_tax_rate"`
 }
 
-// GetUniverseSchematicsSchematicIdOk 200 ok object.
-// GetUniverseSchematicsSchematicIdOk 200 ok 对象.
-type GetUniverseSchematicsSchematicIdOk struct {
+// GetUniverseSchematicsSchematicId 200 ok object.
+// GetUniverseSchematicsSchematicId 200 ok 对象.
+type GetUniverseSchematicsSchematicId struct {
 	// CycleTime Time in seconds to process a run.
 	// CycleTime 处理一轮作业所需的时间（秒）
 	CycleTime int32 `json:"cycle_time"`

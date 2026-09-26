@@ -547,9 +547,9 @@ type GetCharactersCharacterIdCorporationhistory struct {
 	StartDate time.Time `json:"start_date"`
 }
 
-// GetCharactersCharacterIdFatigueOk 200 ok object.
-// GetCharactersCharacterIdFatigueOk 200 ok 对象.
-type GetCharactersCharacterIdFatigueOk struct {
+// GetCharactersCharacterIdFatigue 200 ok object.
+// GetCharactersCharacterIdFatigue 200 ok 对象.
+type GetCharactersCharacterIdFatigue struct {
 	// JumpFatigueExpireDate Character's jump fatigue expiry.
 	// JumpFatigueExpireDate 角色跳跃疲劳到期时间.
 	JumpFatigueExpireDate time.Time `json:"jump_fatigue_expire_date"`
@@ -659,9 +659,9 @@ type GetCharactersCharacterIdNotificationsContacts struct {
 	StandingLevel float64 `json:"standing_level"`
 }
 
-// GetCharactersCharacterIdOk 200 ok object.
-// GetCharactersCharacterIdOk 200 ok 对象.
-type GetCharactersCharacterIdOk struct {
+// GetCharactersCharacterId 200 ok object.
+// GetCharactersCharacterId 200 ok 对象.
+type GetCharactersCharacterId struct {
 	// AllianceId The character's alliance ID.
 	// AllianceId 角色的联盟 ID.
 	AllianceId int32 `json:"alliance_id"`
@@ -698,9 +698,9 @@ type GetCharactersCharacterIdOk struct {
 	Title string `json:"title"`
 }
 
-// GetCharactersCharacterIdPortraitOk 200 ok object.
-// GetCharactersCharacterIdPortraitOk 200 ok 对象.
-type GetCharactersCharacterIdPortraitOk struct {
+// GetCharactersCharacterIdPortrait 200 ok object.
+// GetCharactersCharacterIdPortrait 200 ok 对象.
+type GetCharactersCharacterIdPortrait struct {
 	// Px128x128 px128x128 string.
 	// Px128x128 px128x128 字符串.
 	Px128x128 string `json:"px128x128"`
@@ -715,9 +715,9 @@ type GetCharactersCharacterIdPortraitOk struct {
 	Px64x64 string `json:"px64x64"`
 }
 
-// GetCharactersCharacterIdRolesOk 200 ok object.
-// GetCharactersCharacterIdRolesOk 200 ok 对象.
-type GetCharactersCharacterIdRolesOk struct {
+// GetCharactersCharacterIdRoles 200 ok object.
+// GetCharactersCharacterIdRoles 200 ok 对象.
+type GetCharactersCharacterIdRoles struct {
 	// Roles roles array.
 	// Roles 角色列表 array.
 	Roles []string `json:"roles"`

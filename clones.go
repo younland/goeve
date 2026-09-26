@@ -13,10 +13,10 @@ import (
 // 路由: GET /characters/{character_id}/clones/ — 该路由缓存长达 120 秒
 // Scopes: esi-clones.read_clones.v1
 // 权限: esi-clones.read_clones.v1
-func (c *Client) GetCharactersCharacterIdClones(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdClonesParams) (*models.GetCharactersCharacterIdClonesOk, error) {
+func (c *Client) GetCharactersCharacterIdClones(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdClonesParams) (*models.GetCharactersCharacterIdClones, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdClonesOk
+	var result *models.GetCharactersCharacterIdClones
 	err := c.get(ctx, "/characters/{character_id}/clones/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

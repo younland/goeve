@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-// GetCharactersCharacterIdFleetOk 200 ok object.
-// GetCharactersCharacterIdFleetOk 200 ok 对象.
-type GetCharactersCharacterIdFleetOk struct {
+// GetCharactersCharacterIdFleet 200 ok object.
+// GetCharactersCharacterIdFleet 200 ok 对象.
+type GetCharactersCharacterIdFleet struct {
 	// FleetId The character's current fleet ID.
 	// FleetId 角色当前的舰队 ID.
 	FleetId int64 `json:"fleet_id"`
@@ -59,9 +59,9 @@ type GetFleetsFleetIdMembers struct {
 	WingId int64 `json:"wing_id"`
 }
 
-// GetFleetsFleetIdOk 200 ok object.
-// GetFleetsFleetIdOk 200 ok 对象.
-type GetFleetsFleetIdOk struct {
+// GetFleetsFleetId 200 ok object.
+// GetFleetsFleetId 200 ok 对象.
+type GetFleetsFleetId struct {
 	// IsFreeMove Is free-move enabled.
 	// IsFreeMove 是否启用自由移动.
 	IsFreeMove bool `json:"is_free_move"`
@@ -119,17 +119,17 @@ type PostFleetsFleetIdMembersInvitation struct {
 	WingId int64 `json:"wing_id"`
 }
 
-// PostFleetsFleetIdWingsCreated 201 created object.
-// PostFleetsFleetIdWingsCreated 201 created 对象.
-type PostFleetsFleetIdWingsCreated struct {
+// PostFleetsFleetIdWings 201 created object.
+// PostFleetsFleetIdWings 201 created 对象.
+type PostFleetsFleetIdWings struct {
 	// WingId The wing_id of the newly created wing.
 	// WingId 新建小队（wing）的 wing_id.
 	WingId int64 `json:"wing_id"`
 }
 
-// PostFleetsFleetIdWingsWingIdSquadsCreated 201 created object.
-// PostFleetsFleetIdWingsWingIdSquadsCreated 201 created 对象.
-type PostFleetsFleetIdWingsWingIdSquadsCreated struct {
+// PostFleetsFleetIdWingsWingIdSquads 201 created object.
+// PostFleetsFleetIdWingsWingIdSquads 201 created 对象.
+type PostFleetsFleetIdWingsWingIdSquads struct {
 	// SquadId The squad_id of the newly created squad.
 	// SquadId 新建小队的 squad_id.
 	SquadId int64 `json:"squad_id"`

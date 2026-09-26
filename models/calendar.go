@@ -39,9 +39,9 @@ type GetCharactersCharacterIdCalendarEventIdAttendees struct {
 	EventResponse string `json:"event_response"`
 }
 
-// GetCharactersCharacterIdCalendarEventIdOk Full details of a specific event.
-// GetCharactersCharacterIdCalendarEventIdOk 某个特定事件的完整详情.
-type GetCharactersCharacterIdCalendarEventIdOk struct {
+// GetCharactersCharacterIdCalendarEventId Full details of a specific event.
+// GetCharactersCharacterIdCalendarEventId 某个特定事件的完整详情.
+type GetCharactersCharacterIdCalendarEventId struct {
 	// Date date string.
 	// Date 日期字符串.
 	Date time.Time `json:"date"`

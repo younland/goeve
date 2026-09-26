@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-// GetCharactersCharacterIdAttributesOk 200 ok object.
-// GetCharactersCharacterIdAttributesOk 200 ok 对象.
-type GetCharactersCharacterIdAttributesOk struct {
+// GetCharactersCharacterIdAttributes 200 ok object.
+// GetCharactersCharacterIdAttributes 200 ok 对象.
+type GetCharactersCharacterIdAttributes struct {
 	// AccruedRemapCooldownDate Neural remapping cooldown after a character uses remap accrued over time.
 	// AccruedRemapCooldownDate 角色使用随时间累积的重映射后的神经重映射冷却时间.
 	AccruedRemapCooldownDate time.Time `json:"accrued_remap_cooldown_date"`
@@ -145,9 +145,9 @@ func (p *GetCharactersCharacterIdSkillqueueParams) Values() (url.Values, map[str
 	return query, headers
 }
 
-// GetCharactersCharacterIdSkillsOk 200 ok object.
-// GetCharactersCharacterIdSkillsOk 200 ok 对象.
-type GetCharactersCharacterIdSkillsOk struct {
+// GetCharactersCharacterIdSkills 200 ok object.
+// GetCharactersCharacterIdSkills 200 ok 对象.
+type GetCharactersCharacterIdSkills struct {
 	// Skills skills array.
 	// Skills 技能列表 array.
 	Skills []GetCharactersCharacterIdSkillsSkill `json:"skills"`

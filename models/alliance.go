@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-// GetAlliancesAllianceIdIconsOk 200 ok object.
-// GetAlliancesAllianceIdIconsOk 200 ok 对象.
-type GetAlliancesAllianceIdIconsOk struct {
+// GetAlliancesAllianceIdIcons 200 ok object.
+// GetAlliancesAllianceIdIcons 200 ok 对象.
+type GetAlliancesAllianceIdIcons struct {
 	// Px128x128 px128x128 string.
 	// Px128x128 px128x128 字符串.
 	Px128x128 string `json:"px128x128"`
@@ -16,9 +16,9 @@ type GetAlliancesAllianceIdIconsOk struct {
 	Px64x64 string `json:"px64x64"`
 }
 
-// GetAlliancesAllianceIdOk 200 ok object.
-// GetAlliancesAllianceIdOk 200 ok 对象.
-type GetAlliancesAllianceIdOk struct {
+// GetAlliancesAllianceId 200 ok object.
+// GetAlliancesAllianceId 200 ok 对象.
+type GetAlliancesAllianceId struct {
 	// CreatorCorporationId ID of the corporation that created the alliance.
 	// CreatorCorporationId 创建该联盟的军团 ID.
 	CreatorCorporationId int32 `json:"creator_corporation_id"`

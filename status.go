@@ -12,10 +12,10 @@ import (
 // 路由: GET /status/ — 该路由缓存长达 30 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStatus(ctx context.Context, params *models.GetStatusParams) (*models.GetStatusOk, error) {
+func (c *Client) GetStatus(ctx context.Context, params *models.GetStatusParams) (*models.GetStatus, error) {
 	query, headers := params.Values()
 	var pathParams map[string]string
-	var result *models.GetStatusOk
+	var result *models.GetStatus
 	err := c.get(ctx, "/status/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

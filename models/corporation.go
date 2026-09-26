@@ -108,9 +108,9 @@ type GetCorporationsCorporationIdDivisionsHangarHangar struct {
 	Name string `json:"name"`
 }
 
-// GetCorporationsCorporationIdDivisionsOk 200 ok object.
-// GetCorporationsCorporationIdDivisionsOk 200 ok 对象.
-type GetCorporationsCorporationIdDivisionsOk struct {
+// GetCorporationsCorporationIdDivisions 200 ok object.
+// GetCorporationsCorporationIdDivisions 200 ok 对象.
+type GetCorporationsCorporationIdDivisions struct {
 	// Hangar hangar array.
 	// Hangar 机库数组.
 	Hangar []GetCorporationsCorporationIdDivisionsHangarHangar `json:"hangar"`
@@ -144,9 +144,9 @@ type GetCorporationsCorporationIdFacilities struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCorporationsCorporationIdIconsOk 200 ok object.
-// GetCorporationsCorporationIdIconsOk 200 ok 对象.
-type GetCorporationsCorporationIdIconsOk struct {
+// GetCorporationsCorporationIdIcons 200 ok object.
+// GetCorporationsCorporationIdIcons 200 ok 对象.
+type GetCorporationsCorporationIdIcons struct {
 	// Px128x128 px128x128 string.
 	// Px128x128 px128x128 字符串.
 	Px128x128 string `json:"px128x128"`
@@ -239,9 +239,9 @@ type GetCorporationsCorporationIdMembertracking struct {
 	StartDate time.Time `json:"start_date"`
 }
 
-// GetCorporationsCorporationIdOk 200 ok object.
-// GetCorporationsCorporationIdOk 200 ok 对象.
-type GetCorporationsCorporationIdOk struct {
+// GetCorporationsCorporationId 200 ok object.
+// GetCorporationsCorporationId 200 ok 对象.
+type GetCorporationsCorporationId struct {
 	// AllianceId ID of the alliance that corporation is a member of, if any.
 	// AllianceId 该军团所属联盟的 ID（如有）
 	AllianceId int32 `json:"alliance_id"`
@@ -413,9 +413,9 @@ type GetCorporationsCorporationIdStarbasesStarbaseIdFuel struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetCorporationsCorporationIdStarbasesStarbaseIdOk 200 ok object.
-// GetCorporationsCorporationIdStarbasesStarbaseIdOk 200 ok 对象.
-type GetCorporationsCorporationIdStarbasesStarbaseIdOk struct {
+// GetCorporationsCorporationIdStarbasesStarbaseId 200 ok object.
+// GetCorporationsCorporationIdStarbasesStarbaseId 200 ok 对象.
+type GetCorporationsCorporationIdStarbasesStarbaseId struct {
 	// AllowAllianceMembers allow_alliance_members boolean.
 	// AllowAllianceMembers 是否允许联盟成员布尔值.
 	AllowAllianceMembers bool `json:"allow_alliance_members"`

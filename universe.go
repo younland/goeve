@@ -31,10 +31,10 @@ func (c *Client) GetAncestries(ctx context.Context, params *models.GetAncestries
 // 路由: GET /universe/asteroid_belts/{asteroid_belt_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAsteroidBeltsAsteroidBeltId(ctx context.Context, asteroidBeltId int32, params *models.GetAsteroidBeltsAsteroidBeltIdParams) (*models.GetUniverseAsteroidBeltsAsteroidBeltIdOk, error) {
+func (c *Client) GetAsteroidBeltsAsteroidBeltId(ctx context.Context, asteroidBeltId int32, params *models.GetAsteroidBeltsAsteroidBeltIdParams) (*models.GetUniverseAsteroidBeltsAsteroidBeltId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"asteroid_belt_id": strconv.FormatInt(int64(asteroidBeltId), 10)}
-	var result *models.GetUniverseAsteroidBeltsAsteroidBeltIdOk
+	var result *models.GetUniverseAsteroidBeltsAsteroidBeltId
 	err := c.get(ctx, "/universe/asteroid_belts/{asteroid_belt_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -85,10 +85,10 @@ func (c *Client) GetCategories(ctx context.Context, params *models.GetCategories
 // 路由: GET /universe/categories/{category_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCategoriesCategoryId(ctx context.Context, categoryId int32, params *models.GetCategoriesCategoryIdParams) (*models.GetUniverseCategoriesCategoryIdOk, error) {
+func (c *Client) GetCategoriesCategoryId(ctx context.Context, categoryId int32, params *models.GetCategoriesCategoryIdParams) (*models.GetUniverseCategoriesCategoryId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"category_id": strconv.FormatInt(int64(categoryId), 10)}
-	var result *models.GetUniverseCategoriesCategoryIdOk
+	var result *models.GetUniverseCategoriesCategoryId
 	err := c.get(ctx, "/universe/categories/{category_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -121,10 +121,10 @@ func (c *Client) GetConstellations(ctx context.Context, params *models.GetConste
 // 路由: GET /universe/constellations/{constellation_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetConstellationsConstellationId(ctx context.Context, constellationId int32, params *models.GetConstellationsConstellationIdParams) (*models.GetUniverseConstellationsConstellationIdOk, error) {
+func (c *Client) GetConstellationsConstellationId(ctx context.Context, constellationId int32, params *models.GetConstellationsConstellationIdParams) (*models.GetUniverseConstellationsConstellationId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"constellation_id": strconv.FormatInt(int64(constellationId), 10)}
-	var result *models.GetUniverseConstellationsConstellationIdOk
+	var result *models.GetUniverseConstellationsConstellationId
 	err := c.get(ctx, "/universe/constellations/{constellation_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -175,10 +175,10 @@ func (c *Client) GetGraphics(ctx context.Context, params *models.GetGraphicsPara
 // 路由: GET /universe/graphics/{graphic_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetGraphicsGraphicId(ctx context.Context, graphicId int32, params *models.GetGraphicsGraphicIdParams) (*models.GetUniverseGraphicsGraphicIdOk, error) {
+func (c *Client) GetGraphicsGraphicId(ctx context.Context, graphicId int32, params *models.GetGraphicsGraphicIdParams) (*models.GetUniverseGraphicsGraphicId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"graphic_id": strconv.FormatInt(int64(graphicId), 10)}
-	var result *models.GetUniverseGraphicsGraphicIdOk
+	var result *models.GetUniverseGraphicsGraphicId
 	err := c.get(ctx, "/universe/graphics/{graphic_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -211,10 +211,10 @@ func (c *Client) GetGroups(ctx context.Context, params *models.GetGroupsParamsX)
 // 路由: GET /universe/groups/{group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetGroupsGroupId(ctx context.Context, groupId int32, params *models.GetGroupsGroupIdParamsX) (*models.GetUniverseGroupsGroupIdOk, error) {
+func (c *Client) GetGroupsGroupId(ctx context.Context, groupId int32, params *models.GetGroupsGroupIdParamsX) (*models.GetUniverseGroupsGroupId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"group_id": strconv.FormatInt(int64(groupId), 10)}
-	var result *models.GetUniverseGroupsGroupIdOk
+	var result *models.GetUniverseGroupsGroupId
 	err := c.get(ctx, "/universe/groups/{group_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -229,10 +229,10 @@ func (c *Client) GetGroupsGroupId(ctx context.Context, groupId int32, params *mo
 // 路由: GET /universe/moons/{moon_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetMoonsMoonId(ctx context.Context, moonId int32, params *models.GetMoonsMoonIdParams) (*models.GetUniverseMoonsMoonIdOk, error) {
+func (c *Client) GetMoonsMoonId(ctx context.Context, moonId int32, params *models.GetMoonsMoonIdParams) (*models.GetUniverseMoonsMoonId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"moon_id": strconv.FormatInt(int64(moonId), 10)}
-	var result *models.GetUniverseMoonsMoonIdOk
+	var result *models.GetUniverseMoonsMoonId
 	err := c.get(ctx, "/universe/moons/{moon_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -247,10 +247,10 @@ func (c *Client) GetMoonsMoonId(ctx context.Context, moonId int32, params *model
 // 路由: GET /universe/planets/{planet_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetPlanetsPlanetId(ctx context.Context, planetId int32, params *models.GetPlanetsPlanetIdParams) (*models.GetUniversePlanetsPlanetIdOk, error) {
+func (c *Client) GetPlanetsPlanetId(ctx context.Context, planetId int32, params *models.GetPlanetsPlanetIdParams) (*models.GetUniversePlanetsPlanetId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"planet_id": strconv.FormatInt(int64(planetId), 10)}
-	var result *models.GetUniversePlanetsPlanetIdOk
+	var result *models.GetUniversePlanetsPlanetId
 	err := c.get(ctx, "/universe/planets/{planet_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -301,10 +301,10 @@ func (c *Client) GetRegions(ctx context.Context, params *models.GetRegionsParams
 // 路由: GET /universe/regions/{region_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetRegionsRegionId(ctx context.Context, regionId int32, params *models.GetRegionsRegionIdParams) (*models.GetUniverseRegionsRegionIdOk, error) {
+func (c *Client) GetRegionsRegionId(ctx context.Context, regionId int32, params *models.GetRegionsRegionIdParams) (*models.GetUniverseRegionsRegionId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"region_id": strconv.FormatInt(int64(regionId), 10)}
-	var result *models.GetUniverseRegionsRegionIdOk
+	var result *models.GetUniverseRegionsRegionId
 	err := c.get(ctx, "/universe/regions/{region_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -319,10 +319,10 @@ func (c *Client) GetRegionsRegionId(ctx context.Context, regionId int32, params 
 // 路由: GET /universe/stargates/{stargate_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStargatesStargateId(ctx context.Context, stargateId int32, params *models.GetStargatesStargateIdParams) (*models.GetUniverseStargatesStargateIdOk, error) {
+func (c *Client) GetStargatesStargateId(ctx context.Context, stargateId int32, params *models.GetStargatesStargateIdParams) (*models.GetUniverseStargatesStargateId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"stargate_id": strconv.FormatInt(int64(stargateId), 10)}
-	var result *models.GetUniverseStargatesStargateIdOk
+	var result *models.GetUniverseStargatesStargateId
 	err := c.get(ctx, "/universe/stargates/{stargate_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -337,10 +337,10 @@ func (c *Client) GetStargatesStargateId(ctx context.Context, stargateId int32, p
 // 路由: GET /universe/stars/{star_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStarsStarId(ctx context.Context, starId int32, params *models.GetStarsStarIdParams) (*models.GetUniverseStarsStarIdOk, error) {
+func (c *Client) GetStarsStarId(ctx context.Context, starId int32, params *models.GetStarsStarIdParams) (*models.GetUniverseStarsStarId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"star_id": strconv.FormatInt(int64(starId), 10)}
-	var result *models.GetUniverseStarsStarIdOk
+	var result *models.GetUniverseStarsStarId
 	err := c.get(ctx, "/universe/stars/{star_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -355,10 +355,10 @@ func (c *Client) GetStarsStarId(ctx context.Context, starId int32, params *model
 // 路由: GET /universe/stations/{station_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetStationsStationId(ctx context.Context, stationId int32, params *models.GetStationsStationIdParams) (*models.GetUniverseStationsStationIdOk, error) {
+func (c *Client) GetStationsStationId(ctx context.Context, stationId int32, params *models.GetStationsStationIdParams) (*models.GetUniverseStationsStationId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"station_id": strconv.FormatInt(int64(stationId), 10)}
-	var result *models.GetUniverseStationsStationIdOk
+	var result *models.GetUniverseStationsStationId
 	err := c.get(ctx, "/universe/stations/{station_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -391,10 +391,10 @@ func (c *Client) GetStructures(ctx context.Context, params *models.GetStructures
 // 路由: GET /universe/structures/{structure_id}/ — 该路由缓存长达 3600 秒
 // Scopes: esi-universe.read_structures.v1
 // 权限: esi-universe.read_structures.v1
-func (c *Client) GetStructuresStructureId(ctx context.Context, structureId int64, params *models.GetStructuresStructureIdParams) (*models.GetUniverseStructuresStructureIdOk, error) {
+func (c *Client) GetStructuresStructureId(ctx context.Context, structureId int64, params *models.GetStructuresStructureIdParams) (*models.GetUniverseStructuresStructureId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"structure_id": strconv.FormatInt(int64(structureId), 10)}
-	var result *models.GetUniverseStructuresStructureIdOk
+	var result *models.GetUniverseStructuresStructureId
 	err := c.get(ctx, "/universe/structures/{structure_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -463,10 +463,10 @@ func (c *Client) GetSystems(ctx context.Context, params *models.GetSystemsParams
 // 路由: GET /universe/systems/{system_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetSystemsSystemId(ctx context.Context, systemId int32, params *models.GetSystemsSystemIdParams) (*models.GetUniverseSystemsSystemIdOk, error) {
+func (c *Client) GetSystemsSystemId(ctx context.Context, systemId int32, params *models.GetSystemsSystemIdParams) (*models.GetUniverseSystemsSystemId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"system_id": strconv.FormatInt(int64(systemId), 10)}
-	var result *models.GetUniverseSystemsSystemIdOk
+	var result *models.GetUniverseSystemsSystemId
 	err := c.get(ctx, "/universe/systems/{system_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -499,10 +499,10 @@ func (c *Client) GetTypes(ctx context.Context, params *models.GetTypesParams) ([
 // 路由: GET /universe/types/{type_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetTypesTypeId(ctx context.Context, typeId int32, params *models.GetTypesTypeIdParams) (*models.GetUniverseTypesTypeIdOk, error) {
+func (c *Client) GetTypesTypeId(ctx context.Context, typeId int32, params *models.GetTypesTypeIdParams) (*models.GetUniverseTypesTypeId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"type_id": strconv.FormatInt(int64(typeId), 10)}
-	var result *models.GetUniverseTypesTypeIdOk
+	var result *models.GetUniverseTypesTypeId
 	err := c.get(ctx, "/universe/types/{type_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -517,13 +517,13 @@ func (c *Client) GetTypesTypeId(ctx context.Context, typeId int32, params *model
 // 路由: POST /universe/ids/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) PostIds(ctx context.Context, body []string, params *models.PostIdsParams) (*models.PostUniverseIdsOk, error) {
+func (c *Client) PostIds(ctx context.Context, body []string, params *models.PostIdsParams) (*models.PostUniverseIds, error) {
 	query, headers := params.Values()
 	var pathParams map[string]string
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result *models.PostUniverseIdsOk
+	var result *models.PostUniverseIds
 	err := c.post(ctx, "/universe/ids/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err

@@ -31,10 +31,10 @@ func (c *Client) GetCharactersCharacterIdPlanets(ctx context.Context, characterI
 // 路由: GET /characters/{character_id}/planets/{planet_id}/
 // Scopes: esi-planets.manage_planets.v1
 // 权限: esi-planets.manage_planets.v1
-func (c *Client) GetCharactersCharacterIdPlanetsPlanetId(ctx context.Context, characterId int32, planetId int32, params *models.GetCharactersCharacterIdPlanetsPlanetIdParams) (*models.GetCharactersCharacterIdPlanetsPlanetIdOk, error) {
+func (c *Client) GetCharactersCharacterIdPlanetsPlanetId(ctx context.Context, characterId int32, planetId int32, params *models.GetCharactersCharacterIdPlanetsPlanetIdParams) (*models.GetCharactersCharacterIdPlanetsPlanetId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10), "planet_id": strconv.FormatInt(int64(planetId), 10)}
-	var result *models.GetCharactersCharacterIdPlanetsPlanetIdOk
+	var result *models.GetCharactersCharacterIdPlanetsPlanetId
 	err := c.get(ctx, "/characters/{character_id}/planets/{planet_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -67,10 +67,10 @@ func (c *Client) GetCorporationsCorporationIdCustomsOffices(ctx context.Context,
 // 路由: GET /universe/schematics/{schematic_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetUniverseSchematicsSchematicId(ctx context.Context, schematicId int32, params *models.GetUniverseSchematicsSchematicIdParams) (*models.GetUniverseSchematicsSchematicIdOk, error) {
+func (c *Client) GetUniverseSchematicsSchematicId(ctx context.Context, schematicId int32, params *models.GetUniverseSchematicsSchematicIdParams) (*models.GetUniverseSchematicsSchematicId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"schematic_id": strconv.FormatInt(int64(schematicId), 10)}
-	var result *models.GetUniverseSchematicsSchematicIdOk
+	var result *models.GetUniverseSchematicsSchematicId
 	err := c.get(ctx, "/universe/schematics/{schematic_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

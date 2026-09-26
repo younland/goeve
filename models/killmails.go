@@ -103,9 +103,9 @@ type GetKillmailsKillmailIdKillmailHashItemsItem struct {
 	Singleton int32 `json:"singleton"`
 }
 
-// GetKillmailsKillmailIdKillmailHashOk 200 ok object.
-// GetKillmailsKillmailIdKillmailHashOk 200 ok 对象.
-type GetKillmailsKillmailIdKillmailHashOk struct {
+// GetKillmailsKillmailIdKillmailHash 200 ok object.
+// GetKillmailsKillmailIdKillmailHash 200 ok 对象.
+type GetKillmailsKillmailIdKillmailHash struct {
 	// Attackers attackers array.
 	// Attackers 攻击者数组.
 	Attackers []GetKillmailsKillmailIdKillmailHashAttacker `json:"attackers"`

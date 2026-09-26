@@ -45,13 +45,13 @@ func (c *Client) GetCharactersCharacterIdFittings(ctx context.Context, character
 // 路由: POST /characters/{character_id}/fittings/
 // Scopes: esi-fittings.write_fittings.v1
 // 权限: esi-fittings.write_fittings.v1
-func (c *Client) PostCharactersCharacterIdFittings(ctx context.Context, characterId int32, body *models.PostCharactersCharacterIdFittingsFitting, params *models.PostCharactersCharacterIdFittingsParams) (*models.PostCharactersCharacterIdFittingsCreated, error) {
+func (c *Client) PostCharactersCharacterIdFittings(ctx context.Context, characterId int32, body *models.PostCharactersCharacterIdFittingsFitting, params *models.PostCharactersCharacterIdFittingsParams) (*models.PostCharactersCharacterIdFittings, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
 	if body == nil {
 		return nil, errBodyRequired
 	}
-	var result *models.PostCharactersCharacterIdFittingsCreated
+	var result *models.PostCharactersCharacterIdFittings
 	err := c.post(ctx, "/characters/{character_id}/fittings/", pathParams, query, headers, body, &result)
 	if err != nil {
 		return nil, err

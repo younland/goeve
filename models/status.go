@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-// GetStatusOk 200 ok object.
-// GetStatusOk 200 ok 对象.
-type GetStatusOk struct {
+// GetStatus 200 ok object.
+// GetStatus 200 ok 对象.
+type GetStatus struct {
 	// Players Current online player count.
 	// Players 当前在线玩家数量.
 	Players int32 `json:"players"`

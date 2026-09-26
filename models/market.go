@@ -212,9 +212,9 @@ type GetCorporationsCorporationIdOrdersHistory struct {
 	WalletDivision int32 `json:"wallet_division"`
 }
 
-// GetMarketsGroupsMarketGroupIdOk 200 ok object.
-// GetMarketsGroupsMarketGroupIdOk 200 ok 对象.
-type GetMarketsGroupsMarketGroupIdOk struct {
+// GetMarketsGroupsMarketGroupId 200 ok object.
+// GetMarketsGroupsMarketGroupId 200 ok 对象.
+type GetMarketsGroupsMarketGroupId struct {
 	// Description description string.
 	// Description 描述字符串.
 	Description string `json:"description"`

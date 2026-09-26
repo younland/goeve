@@ -28,9 +28,9 @@ type GetUniverseAncestries struct {
 	ShortDescription string `json:"short_description"`
 }
 
-// GetUniverseAsteroidBeltsAsteroidBeltIdOk 200 ok object.
-// GetUniverseAsteroidBeltsAsteroidBeltIdOk 200 ok 对象.
-type GetUniverseAsteroidBeltsAsteroidBeltIdOk struct {
+// GetUniverseAsteroidBeltsAsteroidBeltId 200 ok object.
+// GetUniverseAsteroidBeltsAsteroidBeltId 200 ok 对象.
+type GetUniverseAsteroidBeltsAsteroidBeltId struct {
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
@@ -94,9 +94,9 @@ type GetUniverseBloodlines struct {
 	Willpower int32 `json:"willpower"`
 }
 
-// GetUniverseCategoriesCategoryIdOk 200 ok object.
-// GetUniverseCategoriesCategoryIdOk 200 ok 对象.
-type GetUniverseCategoriesCategoryIdOk struct {
+// GetUniverseCategoriesCategoryId 200 ok object.
+// GetUniverseCategoriesCategoryId 200 ok 对象.
+type GetUniverseCategoriesCategoryId struct {
 	// CategoryId category_id integer.
 	// CategoryId 分类 ID 整数.
 	CategoryId int32 `json:"category_id"`
@@ -111,9 +111,9 @@ type GetUniverseCategoriesCategoryIdOk struct {
 	Published bool `json:"published"`
 }
 
-// GetUniverseConstellationsConstellationIdOk 200 ok object.
-// GetUniverseConstellationsConstellationIdOk 200 ok 对象.
-type GetUniverseConstellationsConstellationIdOk struct {
+// GetUniverseConstellationsConstellationId 200 ok object.
+// GetUniverseConstellationsConstellationId 200 ok 对象.
+type GetUniverseConstellationsConstellationId struct {
 	// ConstellationId constellation_id integer.
 	// ConstellationId 星座 ID 整数.
 	ConstellationId int32 `json:"constellation_id"`
@@ -180,9 +180,9 @@ type GetUniverseFactions struct {
 	StationSystemCount int32 `json:"station_system_count"`
 }
 
-// GetUniverseGraphicsGraphicIdOk 200 ok object.
-// GetUniverseGraphicsGraphicIdOk 200 ok 对象.
-type GetUniverseGraphicsGraphicIdOk struct {
+// GetUniverseGraphicsGraphicId 200 ok object.
+// GetUniverseGraphicsGraphicId 200 ok 对象.
+type GetUniverseGraphicsGraphicId struct {
 	// CollisionFile collision_file string.
 	// CollisionFile 碰撞文件字符串.
 	CollisionFile string `json:"collision_file"`
@@ -209,9 +209,9 @@ type GetUniverseGraphicsGraphicIdOk struct {
 	SofRaceName string `json:"sof_race_name"`
 }
 
-// GetUniverseGroupsGroupIdOk 200 ok object.
-// GetUniverseGroupsGroupIdOk 200 ok 对象.
-type GetUniverseGroupsGroupIdOk struct {
+// GetUniverseGroupsGroupId 200 ok object.
+// GetUniverseGroupsGroupId 200 ok 对象.
+type GetUniverseGroupsGroupId struct {
 	// CategoryId category_id integer.
 	// CategoryId 分类 ID 整数.
 	CategoryId int32 `json:"category_id"`
@@ -229,9 +229,9 @@ type GetUniverseGroupsGroupIdOk struct {
 	Types []int32 `json:"types"`
 }
 
-// GetUniverseMoonsMoonIdOk 200 ok object.
-// GetUniverseMoonsMoonIdOk 200 ok 对象.
-type GetUniverseMoonsMoonIdOk struct {
+// GetUniverseMoonsMoonId 200 ok object.
+// GetUniverseMoonsMoonId 200 ok 对象.
+type GetUniverseMoonsMoonId struct {
 	// MoonId moon_id integer.
 	// MoonId moon_id 整数.
 	MoonId int32 `json:"moon_id"`
@@ -260,9 +260,9 @@ type GetUniverseMoonsMoonIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniversePlanetsPlanetIdOk 200 ok object.
-// GetUniversePlanetsPlanetIdOk 200 ok 对象.
-type GetUniversePlanetsPlanetIdOk struct {
+// GetUniversePlanetsPlanetId 200 ok object.
+// GetUniversePlanetsPlanetId 200 ok 对象.
+type GetUniversePlanetsPlanetId struct {
 	// Name name string.
 	// Name name 字符串.
 	Name string `json:"name"`
@@ -311,9 +311,9 @@ type GetUniverseRaces struct {
 	RaceId int32 `json:"race_id"`
 }
 
-// GetUniverseRegionsRegionIdOk 200 ok object.
-// GetUniverseRegionsRegionIdOk 200 ok 对象.
-type GetUniverseRegionsRegionIdOk struct {
+// GetUniverseRegionsRegionId 200 ok object.
+// GetUniverseRegionsRegionId 200 ok 对象.
+type GetUniverseRegionsRegionId struct {
 	// Constellations constellations array.
 	// Constellations 星座数组.
 	Constellations []int32 `json:"constellations"`
@@ -339,9 +339,9 @@ type GetUniverseStargatesStargateIdDestination struct {
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseStargatesStargateIdOk 200 ok object.
-// GetUniverseStargatesStargateIdOk 200 ok 对象.
-type GetUniverseStargatesStargateIdOk struct {
+// GetUniverseStargatesStargateId 200 ok object.
+// GetUniverseStargatesStargateId 200 ok 对象.
+type GetUniverseStargatesStargateId struct {
 	// Destination destination object.
 	// Destination 目的地对象.
 	Destination GetUniverseStargatesStargateIdDestination `json:"destination"`
@@ -376,9 +376,9 @@ type GetUniverseStargatesStargateIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseStarsStarIdOk 200 ok object.
-// GetUniverseStarsStarIdOk 200 ok 对象.
-type GetUniverseStarsStarIdOk struct {
+// GetUniverseStarsStarId 200 ok object.
+// GetUniverseStarsStarId 200 ok 对象.
+type GetUniverseStarsStarId struct {
 	// Age Age of star in years.
 	// Age 恒星的年龄（年）
 	Age int64 `json:"age"`
@@ -406,9 +406,9 @@ type GetUniverseStarsStarIdOk struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// GetUniverseStationsStationIdOk 200 ok object.
-// GetUniverseStationsStationIdOk 200 ok 对象.
-type GetUniverseStationsStationIdOk struct {
+// GetUniverseStationsStationId 200 ok object.
+// GetUniverseStationsStationId 200 ok 对象.
+type GetUniverseStationsStationId struct {
 	// MaxDockableShipVolume max_dockable_ship_volume number.
 	// MaxDockableShipVolume max_dockable_ship_volume 数值.
 	MaxDockableShipVolume float64 `json:"max_dockable_ship_volume"`
@@ -461,9 +461,9 @@ type GetUniverseStationsStationIdPosition struct {
 	Z float64 `json:"z"`
 }
 
-// GetUniverseStructuresStructureIdOk 200 ok object.
-// GetUniverseStructuresStructureIdOk 200 ok 对象.
-type GetUniverseStructuresStructureIdOk struct {
+// GetUniverseStructuresStructureId 200 ok object.
+// GetUniverseStructuresStructureId 200 ok 对象.
+type GetUniverseStructuresStructureId struct {
 	// Name The full name of the structure.
 	// Name 建筑的全名.
 	Name string `json:"name"`
@@ -523,9 +523,9 @@ type GetUniverseSystemKills struct {
 	SystemId int32 `json:"system_id"`
 }
 
-// GetUniverseSystemsSystemIdOk 200 ok object.
-// GetUniverseSystemsSystemIdOk 200 ok 对象.
-type GetUniverseSystemsSystemIdOk struct {
+// GetUniverseSystemsSystemId 200 ok object.
+// GetUniverseSystemsSystemId 200 ok 对象.
+type GetUniverseSystemsSystemId struct {
 	// ConstellationId The constellation this solar system is in.
 	// ConstellationId 该星系所在的星座.
 	ConstellationId int32 `json:"constellation_id"`
@@ -608,9 +608,9 @@ type GetUniverseTypesTypeIdDogmaEffect struct {
 	IsDefault bool `json:"is_default"`
 }
 
-// GetUniverseTypesTypeIdOk 200 ok object.
-// GetUniverseTypesTypeIdOk 200 ok 对象.
-type GetUniverseTypesTypeIdOk struct {
+// GetUniverseTypesTypeId 200 ok object.
+// GetUniverseTypesTypeId 200 ok 对象.
+type GetUniverseTypesTypeId struct {
 	// Capacity capacity number.
 	// Capacity 容量数值.
 	Capacity float64 `json:"capacity"`
@@ -738,9 +738,9 @@ type PostUniverseIdsInventoryType struct {
 	Name string `json:"name"`
 }
 
-// PostUniverseIdsOk 200 ok object.
-// PostUniverseIdsOk 200 ok 对象.
-type PostUniverseIdsOk struct {
+// PostUniverseIds 200 ok object.
+// PostUniverseIds 200 ok 对象.
+type PostUniverseIds struct {
 	// Agents agents array.
 	// Agents 代理人数组.
 	Agents []PostUniverseIdsAgent `json:"agents"`

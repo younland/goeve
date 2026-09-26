@@ -38,9 +38,9 @@ type GetCharactersCharacterIdClonesJumpClone struct {
 	Name string `json:"name"`
 }
 
-// GetCharactersCharacterIdClonesOk 200 ok object.
-// GetCharactersCharacterIdClonesOk 200 ok 对象.
-type GetCharactersCharacterIdClonesOk struct {
+// GetCharactersCharacterIdClones 200 ok object.
+// GetCharactersCharacterIdClones 200 ok 对象.
+type GetCharactersCharacterIdClones struct {
 	// HomeLocation home_location object.
 	// HomeLocation 常驻地点对象.
 	HomeLocation GetCharactersCharacterIdClonesHomeLocation `json:"home_location"`

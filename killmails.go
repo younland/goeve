@@ -49,10 +49,10 @@ func (c *Client) GetCorporationsCorporationIdKillmailsRecent(ctx context.Context
 // 路由: GET /killmails/{killmail_id}/{killmail_hash}/ — 该路由缓存长达 30758400 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetKillmailIdKillmailHash(ctx context.Context, killmailHash string, killmailId int32, params *models.GetKillmailIdKillmailHashParams) (*models.GetKillmailsKillmailIdKillmailHashOk, error) {
+func (c *Client) GetKillmailIdKillmailHash(ctx context.Context, killmailHash string, killmailId int32, params *models.GetKillmailIdKillmailHashParams) (*models.GetKillmailsKillmailIdKillmailHash, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"killmail_hash": killmailHash, "killmail_id": strconv.FormatInt(int64(killmailId), 10)}
-	var result *models.GetKillmailsKillmailIdKillmailHashOk
+	var result *models.GetKillmailsKillmailIdKillmailHash
 	err := c.get(ctx, "/killmails/{killmail_id}/{killmail_hash}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

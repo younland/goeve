@@ -13,10 +13,10 @@ import (
 // 路由: GET /characters/{character_id}/location/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_location.v1
 // 权限: esi-location.read_location.v1
-func (c *Client) GetCharactersCharacterIdLocation(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdLocationParams) (*models.GetCharactersCharacterIdLocationOk, error) {
+func (c *Client) GetCharactersCharacterIdLocation(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdLocationParams) (*models.GetCharactersCharacterIdLocation, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdLocationOk
+	var result *models.GetCharactersCharacterIdLocation
 	err := c.get(ctx, "/characters/{character_id}/location/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -31,10 +31,10 @@ func (c *Client) GetCharactersCharacterIdLocation(ctx context.Context, character
 // 路由: GET /characters/{character_id}/online/ — 该路由缓存长达 60 秒
 // Scopes: esi-location.read_online.v1
 // 权限: esi-location.read_online.v1
-func (c *Client) GetCharactersCharacterIdOnline(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdOnlineParams) (*models.GetCharactersCharacterIdOnlineOk, error) {
+func (c *Client) GetCharactersCharacterIdOnline(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdOnlineParams) (*models.GetCharactersCharacterIdOnline, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdOnlineOk
+	var result *models.GetCharactersCharacterIdOnline
 	err := c.get(ctx, "/characters/{character_id}/online/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -49,10 +49,10 @@ func (c *Client) GetCharactersCharacterIdOnline(ctx context.Context, characterId
 // 路由: GET /characters/{character_id}/ship/ — 该路由缓存长达 5 秒
 // Scopes: esi-location.read_ship_type.v1
 // 权限: esi-location.read_ship_type.v1
-func (c *Client) GetCharactersCharacterIdShip(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdShipParams) (*models.GetCharactersCharacterIdShipOk, error) {
+func (c *Client) GetCharactersCharacterIdShip(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdShipParams) (*models.GetCharactersCharacterIdShip, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdShipOk
+	var result *models.GetCharactersCharacterIdShip
 	err := c.get(ctx, "/characters/{character_id}/ship/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

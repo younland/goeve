@@ -103,10 +103,10 @@ func (c *Client) GetsGroups(ctx context.Context, params *models.GetsGroupsParams
 // 路由: GET /markets/groups/{market_group_id}/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetsGroupsMarketGroupId(ctx context.Context, marketGroupId int32, params *models.GetsGroupsMarketGroupIdParams) (*models.GetMarketsGroupsMarketGroupIdOk, error) {
+func (c *Client) GetsGroupsMarketGroupId(ctx context.Context, marketGroupId int32, params *models.GetsGroupsMarketGroupIdParams) (*models.GetMarketsGroupsMarketGroupId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"market_group_id": strconv.FormatInt(int64(marketGroupId), 10)}
-	var result *models.GetMarketsGroupsMarketGroupIdOk
+	var result *models.GetMarketsGroupsMarketGroupId
 	err := c.get(ctx, "/markets/groups/{market_group_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

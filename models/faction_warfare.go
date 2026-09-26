@@ -19,9 +19,9 @@ type GetCharactersCharacterIdFwStatsKills struct {
 	Yesterday int32 `json:"yesterday"`
 }
 
-// GetCharactersCharacterIdFwStatsOk 200 ok object.
-// GetCharactersCharacterIdFwStatsOk 200 ok 对象.
-type GetCharactersCharacterIdFwStatsOk struct {
+// GetCharactersCharacterIdFwStats 200 ok object.
+// GetCharactersCharacterIdFwStats 200 ok 对象.
+type GetCharactersCharacterIdFwStats struct {
 	// CurrentRank The given character's current faction rank.
 	// CurrentRank 指定角色当前的势力军衔.
 	CurrentRank int32 `json:"current_rank"`
@@ -111,9 +111,9 @@ type GetCorporationsCorporationIdFwStatsKills struct {
 	Yesterday int32 `json:"yesterday"`
 }
 
-// GetCorporationsCorporationIdFwStatsOk 200 ok object.
-// GetCorporationsCorporationIdFwStatsOk 200 ok 对象.
-type GetCorporationsCorporationIdFwStatsOk struct {
+// GetCorporationsCorporationIdFwStats 200 ok object.
+// GetCorporationsCorporationIdFwStats 200 ok 对象.
+type GetCorporationsCorporationIdFwStats struct {
 	// EnlistedOn The enlistment date of the given corporation into faction warfare. Will not be included if corporation is not enlisted in faction warfare.
 	// EnlistedOn 指定军团加入势力战争的日期。如果军团未加入势力战争则不包含此项.
 	EnlistedOn time.Time `json:"enlisted_on"`
@@ -266,9 +266,9 @@ type GetFwLeaderboardsCharactersLastWeekLastWeek1 struct {
 	CharacterId int32 `json:"character_id"`
 }
 
-// GetFwLeaderboardsCharactersOk 200 ok object.
-// GetFwLeaderboardsCharactersOk 200 ok 对象.
-type GetFwLeaderboardsCharactersOk struct {
+// GetFwLeaderboardsCharacters 200 ok object.
+// GetFwLeaderboardsCharacters 200 ok 对象.
+type GetFwLeaderboardsCharacters struct {
 	// Kills Top 100 rankings of pilots by number of kills from yesterday, last week and in total.
 	// Kills 飞行员按昨天、上周及总计击杀数排名的前 100 名.
 	Kills GetFwLeaderboardsCharactersKills `json:"kills"`
@@ -403,9 +403,9 @@ type GetFwLeaderboardsCorporationsLastWeekLastWeek1 struct {
 	CorporationId int32 `json:"corporation_id"`
 }
 
-// GetFwLeaderboardsCorporationsOk 200 ok object.
-// GetFwLeaderboardsCorporationsOk 200 ok 对象.
-type GetFwLeaderboardsCorporationsOk struct {
+// GetFwLeaderboardsCorporations 200 ok object.
+// GetFwLeaderboardsCorporations 200 ok 对象.
+type GetFwLeaderboardsCorporations struct {
 	// Kills Top 10 rankings of corporations by number of kills from yesterday, last week and in total.
 	// Kills 军团按昨天、上周及总计击杀数排名的前 10 名.
 	Kills GetFwLeaderboardsCorporationsKills `json:"kills"`
@@ -518,9 +518,9 @@ type GetFwLeaderboardsLastWeekLastWeek1 struct {
 	FactionId int32 `json:"faction_id"`
 }
 
-// GetFwLeaderboardsOk 200 ok object.
-// GetFwLeaderboardsOk 200 ok 对象.
-type GetFwLeaderboardsOk struct {
+// GetFwLeaderboards 200 ok object.
+// GetFwLeaderboards 200 ok 对象.
+type GetFwLeaderboards struct {
 	// Kills Top 4 rankings of factions by number of kills from yesterday, last week and in total.
 	// Kills 派系按昨天、上周及总计击杀数排名的前 4 名.
 	Kills GetFwLeaderboardsKills `json:"kills"`

@@ -39,9 +39,9 @@ type GetCharactersCharacterIdFittingsItem struct {
 	TypeId int32 `json:"type_id"`
 }
 
-// PostCharactersCharacterIdFittingsCreated 201 created object.
-// PostCharactersCharacterIdFittingsCreated 201 created 对象.
-type PostCharactersCharacterIdFittingsCreated struct {
+// PostCharactersCharacterIdFittings 201 created object.
+// PostCharactersCharacterIdFittings 201 created 对象.
+type PostCharactersCharacterIdFittings struct {
 	// FittingId fitting_id integer.
 	// FittingId 装配 ID 整数.
 	FittingId int32 `json:"fitting_id"`

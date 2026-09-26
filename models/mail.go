@@ -114,9 +114,9 @@ type GetCharactersCharacterIdMailLabelsLabel struct {
 	UnreadCount int32 `json:"unread_count"`
 }
 
-// GetCharactersCharacterIdMailLabelsOk 200 ok object.
-// GetCharactersCharacterIdMailLabelsOk 200 ok 对象.
-type GetCharactersCharacterIdMailLabelsOk struct {
+// GetCharactersCharacterIdMailLabels 200 ok object.
+// GetCharactersCharacterIdMailLabels 200 ok 对象.
+type GetCharactersCharacterIdMailLabels struct {
 	// Labels labels array.
 	// Labels labels 数组.
 	Labels []GetCharactersCharacterIdMailLabelsLabel `json:"labels"`
@@ -136,9 +136,9 @@ type GetCharactersCharacterIdMailLists struct {
 	Name string `json:"name"`
 }
 
-// GetCharactersCharacterIdMailMailIdOk 200 ok object.
-// GetCharactersCharacterIdMailMailIdOk 200 ok 对象.
-type GetCharactersCharacterIdMailMailIdOk struct {
+// GetCharactersCharacterIdMailMailId 200 ok object.
+// GetCharactersCharacterIdMailMailId 200 ok 对象.
+type GetCharactersCharacterIdMailMailId struct {
 	// Body Mail's body.
 	// Body 邮件正文.
 	Body string `json:"body"`

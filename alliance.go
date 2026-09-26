@@ -13,10 +13,10 @@ import (
 // 路由: GET /alliances/{alliance_id}/ — 该路由缓存长达 3600 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAllianceId(ctx context.Context, allianceId int32, params *models.GetAllianceIdParams) (*models.GetAlliancesAllianceIdOk, error) {
+func (c *Client) GetAllianceId(ctx context.Context, allianceId int32, params *models.GetAllianceIdParams) (*models.GetAlliancesAllianceId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceId), 10)}
-	var result *models.GetAlliancesAllianceIdOk
+	var result *models.GetAlliancesAllianceId
 	err := c.get(ctx, "/alliances/{alliance_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -49,10 +49,10 @@ func (c *Client) GetAllianceIdCorporations(ctx context.Context, allianceId int32
 // 路由: GET /alliances/{alliance_id}/icons/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetAllianceIdIcons(ctx context.Context, allianceId int32, params *models.GetAllianceIdIconsParams) (*models.GetAlliancesAllianceIdIconsOk, error) {
+func (c *Client) GetAllianceIdIcons(ctx context.Context, allianceId int32, params *models.GetAllianceIdIconsParams) (*models.GetAlliancesAllianceIdIcons, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"alliance_id": strconv.FormatInt(int64(allianceId), 10)}
-	var result *models.GetAlliancesAllianceIdIconsOk
+	var result *models.GetAlliancesAllianceIdIcons
 	err := c.get(ctx, "/alliances/{alliance_id}/icons/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

@@ -31,10 +31,10 @@ func (c *Client) GetCharactersCharacterIdCalendar(ctx context.Context, character
 // 路由: GET /characters/{character_id}/calendar/{event_id}/ — 该路由缓存长达 5 秒
 // Scopes: esi-calendar.read_calendar_events.v1
 // 权限: esi-calendar.read_calendar_events.v1
-func (c *Client) GetCharactersCharacterIdCalendarEventId(ctx context.Context, characterId int32, eventId int32, params *models.GetCharactersCharacterIdCalendarEventIdParams) (*models.GetCharactersCharacterIdCalendarEventIdOk, error) {
+func (c *Client) GetCharactersCharacterIdCalendarEventId(ctx context.Context, characterId int32, eventId int32, params *models.GetCharactersCharacterIdCalendarEventIdParams) (*models.GetCharactersCharacterIdCalendarEventId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10), "event_id": strconv.FormatInt(int64(eventId), 10)}
-	var result *models.GetCharactersCharacterIdCalendarEventIdOk
+	var result *models.GetCharactersCharacterIdCalendarEventId
 	err := c.get(ctx, "/characters/{character_id}/calendar/{event_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

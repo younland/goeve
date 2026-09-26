@@ -13,10 +13,10 @@ import (
 // 路由: GET /characters/{character_id}/ — 该路由缓存长达 604800 秒
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCharacterId(ctx context.Context, characterId int32, params *models.GetCharacterIdParams) (*models.GetCharactersCharacterIdOk, error) {
+func (c *Client) GetCharacterId(ctx context.Context, characterId int32, params *models.GetCharacterIdParams) (*models.GetCharactersCharacterId, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdOk
+	var result *models.GetCharactersCharacterId
 	err := c.get(ctx, "/characters/{character_id}/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -85,10 +85,10 @@ func (c *Client) GetCharacterIdCorporationhistory(ctx context.Context, character
 // 路由: GET /characters/{character_id}/fatigue/ — 该路由缓存长达 300 秒
 // Scopes: esi-characters.read_fatigue.v1
 // 权限: esi-characters.read_fatigue.v1
-func (c *Client) GetCharacterIdFatigue(ctx context.Context, characterId int32, params *models.GetCharacterIdFatigueParams) (*models.GetCharactersCharacterIdFatigueOk, error) {
+func (c *Client) GetCharacterIdFatigue(ctx context.Context, characterId int32, params *models.GetCharacterIdFatigueParams) (*models.GetCharactersCharacterIdFatigue, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdFatigueOk
+	var result *models.GetCharactersCharacterIdFatigue
 	err := c.get(ctx, "/characters/{character_id}/fatigue/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -157,10 +157,10 @@ func (c *Client) GetCharacterIdNotificationsContacts(ctx context.Context, charac
 // 路由: GET /characters/{character_id}/portrait/
 // Scopes: none (public endpoint)
 // 权限: 无（公开接口）
-func (c *Client) GetCharacterIdPortrait(ctx context.Context, characterId int32, params *models.GetCharacterIdPortraitParams) (*models.GetCharactersCharacterIdPortraitOk, error) {
+func (c *Client) GetCharacterIdPortrait(ctx context.Context, characterId int32, params *models.GetCharacterIdPortraitParams) (*models.GetCharactersCharacterIdPortrait, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdPortraitOk
+	var result *models.GetCharactersCharacterIdPortrait
 	err := c.get(ctx, "/characters/{character_id}/portrait/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -175,10 +175,10 @@ func (c *Client) GetCharacterIdPortrait(ctx context.Context, characterId int32, 
 // 路由: GET /characters/{character_id}/roles/ — 该路由缓存长达 3600 秒
 // Scopes: esi-characters.read_corporation_roles.v1
 // 权限: esi-characters.read_corporation_roles.v1
-func (c *Client) GetCharacterIdRoles(ctx context.Context, characterId int32, params *models.GetCharacterIdRolesParams) (*models.GetCharactersCharacterIdRolesOk, error) {
+func (c *Client) GetCharacterIdRoles(ctx context.Context, characterId int32, params *models.GetCharacterIdRolesParams) (*models.GetCharactersCharacterIdRoles, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdRolesOk
+	var result *models.GetCharactersCharacterIdRoles
 	err := c.get(ctx, "/characters/{character_id}/roles/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

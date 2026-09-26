@@ -13,10 +13,10 @@ import (
 // 路由: GET /characters/{character_id}/attributes/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharactersCharacterIdAttributes(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdAttributesParams) (*models.GetCharactersCharacterIdAttributesOk, error) {
+func (c *Client) GetCharactersCharacterIdAttributes(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdAttributesParams) (*models.GetCharactersCharacterIdAttributes, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdAttributesOk
+	var result *models.GetCharactersCharacterIdAttributes
 	err := c.get(ctx, "/characters/{character_id}/attributes/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err
@@ -49,10 +49,10 @@ func (c *Client) GetCharactersCharacterIdSkillqueue(ctx context.Context, charact
 // 路由: GET /characters/{character_id}/skills/ — 该路由缓存长达 120 秒
 // Scopes: esi-skills.read_skills.v1
 // 权限: esi-skills.read_skills.v1
-func (c *Client) GetCharactersCharacterIdSkills(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdSkillsParams) (*models.GetCharactersCharacterIdSkillsOk, error) {
+func (c *Client) GetCharactersCharacterIdSkills(ctx context.Context, characterId int32, params *models.GetCharactersCharacterIdSkillsParams) (*models.GetCharactersCharacterIdSkills, error) {
 	query, headers := params.Values()
 	pathParams := map[string]string{"character_id": strconv.FormatInt(int64(characterId), 10)}
-	var result *models.GetCharactersCharacterIdSkillsOk
+	var result *models.GetCharactersCharacterIdSkills
 	err := c.get(ctx, "/characters/{character_id}/skills/", pathParams, query, headers, &result)
 	if err != nil {
 		return nil, err

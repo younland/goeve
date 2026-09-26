@@ -62,9 +62,9 @@ type GetWarsWarIdKillmails struct {
 	KillmailId int32 `json:"killmail_id"`
 }
 
-// GetWarsWarIdOk 200 ok object.
-// GetWarsWarIdOk 200 ok 对象.
-type GetWarsWarIdOk struct {
+// GetWarsWarId 200 ok object.
+// GetWarsWarId 200 ok 对象.
+type GetWarsWarId struct {
 	// Aggressor The aggressor corporation or alliance that declared this war, only contains either corporation_id or alliance_id.
 	// Aggressor 宣战的进攻方军团或联盟，仅包含 corporation_id 或 alliance_id 之一.
 	Aggressor GetWarsWarIdAggressor `json:"aggressor"`
